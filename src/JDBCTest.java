@@ -9,7 +9,7 @@ public class JDBCTest {
 
         try {
             // 1. Get a connection to database
-            myConn = DriverManager.getConnection("jdbc:mysql://106.14.212.210:3306/demo", "student", "students");
+            myConn = DriverManager.getConnection("jdbc:mysql://106.14.212.210:3306/2017j2ee", "2017J2EE", "2017J2EE");
 
             System.out.println("Database connection successful!\n");
 
@@ -17,11 +17,11 @@ public class JDBCTest {
             myStmt = myConn.createStatement();
 
             // 3. Execute SQL query
-            myRs = myStmt.executeQuery("select * from employees");
+            myRs = myStmt.executeQuery("select * from location");
 
             // 4. Process the result set
             while (myRs.next()) {
-                System.out.println(myRs.getString("last_name") + ", " + myRs.getString("first_name"));
+                System.out.println(myRs.getString("location_name"));
             }
         } catch (Exception exc) {
             exc.printStackTrace();
