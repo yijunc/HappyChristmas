@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource name="jdbc/2017J2EE" auth="Container"
+              type="javax.sql.DataSource" maxActive="20" maxIdle="5" maxWait="10000"
+              username="2017J2EE" password="2017J2EE" driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://106.14.212.210:3306/2017j2ee?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"/>
+</Context>
