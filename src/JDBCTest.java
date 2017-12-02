@@ -20,6 +20,7 @@ public class JDBCTest {
             myRs = myStmt.executeQuery("select * from location");
 
             // 4. Process the result set
+
             while (myRs.next()) {
                 System.out.println(myRs.getString("location_name"));
             }
