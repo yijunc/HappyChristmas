@@ -11,7 +11,7 @@ import java.io.IOException;
 import javax.sql.DataSource;
 import javax.annotation.Resource;
 
-@WebServlet("/UserController")
+@WebServlet(name = "UserController")
 public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
