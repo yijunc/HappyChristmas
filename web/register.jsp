@@ -345,7 +345,7 @@
         </div>
     </section>
 
-    <jsp:include page="templates/footers.html"></jsp:include>
-    <jsp:include page="templates/loginModal.html"></jsp:include>
+    <jsp:include page="templates/footers.jsp"></jsp:include>
+    <jsp:include page="templates/loginModal.jsp"></jsp:include>
 </body>
 </html>

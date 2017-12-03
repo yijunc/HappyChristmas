@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+         pageEncoding="utf-8" %>
+
 <!-- FOOTER -->
 <footer style="background-image: url(/img/background/bg-footer.jpg);">
     <!-- FOOTER INFO -->
@@ -22,11 +25,11 @@
                     </div>
                     <div class="useLink">
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="dashboard.html"> 网站主页</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="sign-up.html"> 车辆信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="login.html"> 车位信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="add-listings.html"> 个人中心</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 用户登录</a> </li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 网站主页</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 车辆信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 车位信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 个人中心</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="login.jsp"> 用户登录</a></li>
                         </ul>
                     </div>
                 </div>

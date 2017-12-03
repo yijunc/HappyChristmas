@@ -210,8 +210,8 @@
         </div>
     </section>
 
-    <jsp:include page="templates/loginModal.html"></jsp:include>
-    <jsp:include page="templates/footers.html"></jsp:include>
+    <%@include file="/templates/loginModal.jsp" %>
+    <%@include file="/templates/footers.jsp" %>
 
 </body>
 </html>
