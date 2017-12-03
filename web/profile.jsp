@@ -50,144 +50,342 @@
 
 </head>
 <body class="body-wrapper">
-    <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
-    <div class="main-wrapper">
-        <!-- HEADER -->
+<div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
+<div class="main-wrapper">
+    <!-- HEADER -->
+    <header id="pageTop" class="header">
 
-        <!-- DASHBOARD PROFILE SECTION -->
-        <section class="clearfix bg-dark profileSection">
-            <div class="container">
+        <!-- TOP INFO BAR -->
+
+        <div class="nav-wrapper navbarWhite">
+
+            <div class="container-fluid header-bg">
                 <div class="row">
+                    <div class="col-lg-4 col-sm-4 col-xs-6 header-left empty">empty
+                    </div>
+                    <div class="col-lg-8 col-sm-8 col-xs-6 header-right empty">empty
+                    </div>
+                </div>
+            </div>
 
-                    <div class="col-md-4 col-sm-5 col-xs-12">  <!--left-->
-                        <div class="dashboardBoxBg mb30">
-                            <div class="profileImage">
-                                <img src="img/dashboard/user-2.jpg" alt="Image User" class="img-circle">
-                                <div class="file-upload profileImageUpload">
-                                    <div class="upload-area">
-                                        <input type="file" name="img[]" class="file">
-                                        <button class="browse" type="button">上传头像<i class="icon-listy icon-upload"></i></button>
+            <!-- NAVBAR -->
+            <nav id="menuBar" class="navbar navbar-default lightHeader" role="navigation">
+                <div class="container">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><img src="img/logo-blue.png" alt="logo"></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav navbar-right mr0">
+                            <li class=" dropdown singleDrop">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">home <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="index.html">Map Version</a></li>
+                                    <li><a href="index-2.html">Travel Version</a></li>
+                                    <li><a href="index-3.html">Automobile Version</a></li>
+                                </ul>
+                            </li>
+                            <li class=" dropdown megaDropMenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listing <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="row dropdown-menu">
+                                    <li class="col-sm-4 col-xs-12">
+                                        <ul class="list-unstyled">
+                                            <li><h5>listing Grids</h5></li>
+                                            <li><a href="category-grid.html">Listing Grid Left</a></li>
+                                            <li><a href="category-grid-right.html">Listing Grid Right</a></li>
+                                            <li><a href="category-grid-full.html">Listing Grid Fullwidth</a></li>
+                                            <li><h5>listing lists</h5></li>
+                                            <li><a href="category-list-left.html">Listing list Left</a></li>
+                                            <li><a href="category-list-right.html">Listing list Right</a></li>
+                                            <li><a href="category-list-full.html">Listing list Full</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="col-sm-4 col-xs-12">
+                                        <ul class="list-unstyled">
+                                            <li><h5>listing Sidebar Map</h5></li>
+                                            <li><a href="listing-sidebar-map-left.html">Listing Sidebar Map left</a></li>
+                                            <li><a href="listing-sidebar-map-right.html">Listing Sidebar Map right</a></li>
+                                            <li><a href="listing-sidebar-map-full.html">Listing Sidebar Map Full</a></li>
+                                            <li><h5>listing Details</h5></li>
+                                            <li><a href="listing-details-left.html">Listing Details Left</a></li>
+                                            <li><a href="listing-details-right.html">Listing Details Right</a></li>
+                                            <li><a href="listing-details-full.html">Listing Details Full</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="col-sm-4 col-xs-12">
+                                        <ul class="list-unstyled">
+                                            <li class="mega-img">
+                                                <a href=""><img src="img/works/works-big-3.png" alt=""></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class=" dropdown singleDrop">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">pages <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <li><a href="contact-us.html">Contact Us</a></li>
+                                    <li><a href="terms-of-services.html">Terms and Conditions</a></li>
+                                    <li><a href="sign-up.html">Create Account</a></li>
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="pricing-table.html">Pricing</a></li>
+                                    <li><a href="payment-process.html">Payment</a></li>
+                                    <li><a href="how-it-works.html">How It Works</a></li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="blog.html">blog </a></li>
+                            <li class="active dropdown singleDrop">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="dashboard.html">Dashboard</a></li>
+                                    <li><a href="add-listings.html">Add Listing</a></li>
+                                    <li><a href="edit-listings.html">Edit Listing</a></li>
+                                    <li><a href="listings.html">My Listings</a></li>
+                                    <li><a href="profile.html">My Profile</a></li>
+                                    <li><a href="oders.html">My Orders</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="navbar-dashboard-area">
+            <nav class="navbar navbar-default lightHeader navbar-dashboard" role="navigation">
+                <div class="container">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-dash">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-dash">
+                        <ul class="nav navbar-nav mr0">
+                            <li class="active">
+                                <a href="dashboard.html"><i class="fa fa-tachometer icon-dash" aria-hidden="true"></i> Dashboard</a>
+                            </li>
+                            <li class="dropdown singleDrop">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-ul icon-dash" aria-hidden="true"></i> Listings <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <li><a href="listings.html">My Listings</a></li>
+                                    <li><a href="add-listings.html">Add Listings</a></li>
+                                    <li><a href="edit-listings.html">My Listings</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown singleDrop">
+                                <a href="dashboard.html#categories" class="scrolling"><i class="fa fa-pie-chart icon-dash" aria-hidden="true"></i> Categories</a>
+                            </li>
+                            <li><a href="oders.html"><i class="fa fa-cogs icon-dash" aria-hidden="true"></i> Orders</a></li>
+                            <li><a href="dashboard.html#message" class="scrolling"><i class="fa fa-envelope icon-dash" aria-hidden="true"></i> Messages</a></li>
+                            <li><a href="profile.html"><i class="fa fa-user icon-dash" aria-hidden="true"></i> Personal Details</a></li>
+                        </ul>
+                        <div class="row adjustRow">
+                            <div class="pull-right col-xs-12 col-sm-2">
+                                <form class="navbar-form" role="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search" name="q">
+                                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="icon-listy icon-search-2"></i></button>
+                      </span>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- DASHBOARD PROFILE SECTION -->
+    <section class="clearfix bg-dark profileSection">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 col-sm-5 col-xs-12">  <!--left-->
+                    <div class="dashboardBoxBg mb30">
+                        <div class="profileImage">
+                            <img src="img/dashboard/user-2.jpg" alt="Image User" class="img-circle">
+                            <div class="file-upload profileImageUpload">
+                                <div class="upload-area">
+                                    <input type="file" name="img[]" class="file">
+                                    <button class="browse" type="button">上传头像<i class="icon-listy icon-upload"></i></button>
                                 </div>
                             </div>
-                            <div class="profileUserInfo bt profileName">
-                                <p>普通会员</p>
-                                <h2>Nora</h2>
-                                <h5>Email:<span>1379026619@qq.com</span></h5>
-                                <a href="#" class="btn btn-primary">修改</a>
+                        </div>
+                        <div class="profileUserInfo bt profileName">
+                            <p>普通会员</p>
+                            <h2>Nora</h2>
+                            <h5>Email:<span>1379026619@qq.com</span></h5>
+                            <a href="#" class="btn btn-primary">修改</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-7 col-xs-12">  <!--right-->
+
+                    <!-- <div class="dashboardBoxBg "> -->
+                    <ul class="nav nav-tabs" id="userNavBar">
+                        <li role="presentation" class="active" id="carRentalOrders" onclick="changeCarRentalOrders()"><a href="#"">我的租车订单</a></li>
+                        <li role="presentation" id="parkingOrders" onclick="changeParkingOrders()"><a href="#" >我的停车位订单</a></li>
+                        <li role="presentation" id="loadOrders" onclick="changeLoadOrdrt()"><a href="#">我的出租订单</a></li>
+                        <li role="presentation" id="payment" onclick="changePayment()"><a href="#" >我的收支</a></li>
+                    </ul>
+                    <!-- </div> -->
+
+
+                    <div id ="carRentalOrdersList">
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h2>Your CarRentalOrdersList</h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-8 col-sm-7 col-xs-12">  <!--right-->
-
-                        <!-- <div class="dashboardBoxBg "> -->
-                        <ul class="nav nav-tabs">
-                            <li role="presentation" class="active"><a href="#">我的租车订单</a></li>
-                            <li role="presentation"><a href="#">我的停车位订单</a></li>
-                            <li role="presentation"><a href="#">我的收支</a></li>
-                        </ul>
-                        <!-- </div> -->
-
-                        <form>
-                            <div class="dashboardBoxBg mt30">
-                                <div class="profileIntro">
-                                    <h2>Your Profile</h2>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.</p>
-                                </div>
+                    <div id ="parkingOrdersList">
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h2>Your ParkingOrdersList</h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.</p>
                             </div>
-                            <div class="dashboardBoxBg mt30">
-                                <div class="profileIntro">
-                                    <h3>About You</h3>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="firstNameProfile">Fast Name</label>
-                                            <input type="text" class="form-control" id="firstNameProfile" placeholder="Jane">
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="lastNameProfile">Last Name</label>
-                                            <input type="text" class="form-control" id="lastNameProfile" placeholder="Doe">
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="emailProfile">Email</label>
-                                            <input type="text" class="form-control" id="emailProfile" placeholder="Jane@example.com">
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="phoneProfile">Phone</label>
-                                            <input type="text" class="form-control" id="phoneProfile" placeholder="254 - 265 - 3265">
-                                        </div>
-                                        <div class="form-group col-xs-12">
-                                            <label for="aboutYou">About You</label>
-                                            <textarea class="form-control" rows="5" id="aboutYou" placeholder="About You"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dashboardBoxBg mt30">
-                                <div class="profileIntro">
-                                    <h3>Social Network</h3>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="linkedInUrl">Linked in URL</label>
-                                            <input type="text" class="form-control" id="linkedInUrl" placeholder="http://linkedin.com/listty">
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="facebookUrl">Facebook URL</label>
-                                            <input type="text" class="form-control" id="facebookUrl" placeholder="http://facebook.com/listty">
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="twitterUrl">Twitter URL</label>
-                                            <input type="text" class="form-control" id="twitterUrl" placeholder="http://twitter.com/listty">
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="youTubeUrl">You Tube URL</label>
-                                            <input type="text" class="form-control" id="youTubeUrl" placeholder="http://youtube.com/listty">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-area mt30">
-                                <button class="btn btn-primary" type="button">Save Change</button>
-                            </div>
-                            <div class="dashboardBoxBg mt30">
-                                <div class="profileIntro">
-                                    <h3>Update password</h3>
-                                    <div class="row">
-                                        <div class="form-group col-xs-12">
-                                            <label for="currentPassword">Current Password</label>
-                                            <input type="password" class="form-control" id="currentPassword" placeholder="********">
-                                        </div>
-                                        <div class="form-group col-xs-12">
-                                            <label for="newPassword">New Password</label>
-                                            <input type="password" class="form-control" id="newPassword" placeholder="New Password">
-                                        </div>
-                                        <div class="form-group col-xs-12">
-                                            <label for="confirmPassword">Confirm Password</label>
-                                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
-                                        </div>
-                                        <div class="form-group col-xs-12">
-                                            <button class="btn btn-primary" type="button">Change Password</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+
+                    <div id ="loadOrdersList">
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h2>Your LoadOrdersList</h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id ="paymentList">
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h2>Your PaymentList</h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <form>
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h2>Your Profile</h2>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form Ipsum available.</p>
+                            </div>
+                        </div>
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h3>About You</h3>
+                                <div class="row">
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="firstNameProfile">Fast Name</label>
+                                        <input type="text" class="form-control" id="firstNameProfile" placeholder="Jane">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="lastNameProfile">Last Name</label>
+                                        <input type="text" class="form-control" id="lastNameProfile" placeholder="Doe">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="emailProfile">Email</label>
+                                        <input type="text" class="form-control" id="emailProfile" placeholder="Jane@example.com">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="phoneProfile">Phone</label>
+                                        <input type="text" class="form-control" id="phoneProfile" placeholder="254 - 265 - 3265">
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <label for="aboutYou">About You</label>
+                                        <textarea class="form-control" rows="5" id="aboutYou" placeholder="About You"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h3>Social Network</h3>
+                                <div class="row">
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="linkedInUrl">Linked in URL</label>
+                                        <input type="text" class="form-control" id="linkedInUrl" placeholder="http://linkedin.com/listty">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="facebookUrl">Facebook URL</label>
+                                        <input type="text" class="form-control" id="facebookUrl" placeholder="http://facebook.com/listty">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="twitterUrl">Twitter URL</label>
+                                        <input type="text" class="form-control" id="twitterUrl" placeholder="http://twitter.com/listty">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="youTubeUrl">You Tube URL</label>
+                                        <input type="text" class="form-control" id="youTubeUrl" placeholder="http://youtube.com/listty">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-area mt30">
+                            <button class="btn btn-primary" type="button">Save Change</button>
+                        </div>
+                        <div class="dashboardBoxBg mt30">
+                            <div class="profileIntro">
+                                <h3>Update password</h3>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="currentPassword">Current Password</label>
+                                        <input type="password" class="form-control" id="currentPassword" placeholder="********">
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <button class="btn btn-primary" type="button">Change Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FOOTER -->
-        <footer class="copyRightDashboard">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p>Copyright © 2016. All Rights Reserved</p>
-                    </div>
+    <!-- FOOTER -->
+    <footer class="copyRightDashboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>Copyright © 2016. All Rights Reserved</p>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+</div>
 
     <!-- JAVASCRIPTS -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -205,7 +403,60 @@
     <script src="plugins/isotope/isotope-triger.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58"></script>
     <script src="js/map.js"></script>
-
     <script src="js/custom.js"></script>
+    <script>
+        $(document).ready(function(){
+            document.getElementById("carRentalOrdersList").style.display='block';
+            document.getElementById("parkingOrdersList").style.display='none';
+            document.getElementById("loadOrdersList").style.display='none';
+            document.getElementById("paymentList").style.display='none';
+        });
+        function changeCarRentalOrders(){
+            $("#carRentalOrders").addClass("active");
+            $("#parkingOrders").removeClass("active");
+            $("#loadOrders").removeClass("active");
+            $("#payment").removeClass("active");
+            document.getElementById("carRentalOrdersList").style.display='block';
+            document.getElementById("parkingOrdersList").style.display='none';
+            document.getElementById("loadOrdersList").style.display='none';
+            document.getElementById("paymentList").style.display='none';
+
+            // $("#userNavBar li").each(function(){
+            // if ($this().attr("class") == "active")
+            //   alert($(this).attr("id"));
+            //  });
+        }
+        function changeParkingOrders(){
+            $("#carRentalOrders").removeClass("active");
+            $("#parkingOrders").addClass("active");
+            $("#loadOrders").removeClass("active");
+            $("#payment").removeClass("active");
+            document.getElementById("carRentalOrdersList").style.display='none';
+            document.getElementById("parkingOrdersList").style.display='block';
+            document.getElementById("loadOrdersList").style.display='none';
+            document.getElementById("paymentList").style.display='none';
+        }
+        function changeLoadOrdrt(){
+            $("#carRentalOrders").removeClass("active");
+            $("#parkingOrders").removeClass("active");
+            $("#loadOrders").addClass("active");
+            $("#payment").removeClass("active");
+            document.getElementById("carRentalOrdersList").style.display='none';
+            document.getElementById("parkingOrdersList").style.display='none';
+            document.getElementById("loadOrdersList").style.display='block';
+            document.getElementById("paymentList").style.display='none';
+        }
+        function changePayment(){
+            $("#carRentalOrders").removeClass("active");
+            $("#parkingOrders").removeClass("active");
+            $("#loadOrders").removeClass("active");
+            $("#payment").addClass("active");
+            document.getElementById("carRentalOrdersList").style.display='none';
+            document.getElementById("parkingOrdersList").style.display='none';
+            document.getElementById("loadOrdersList").style.display='none';
+            document.getElementById("paymentList").style.display='block';
+        }
+
+    </script>
 </body>
 </html>
