@@ -25,11 +25,11 @@
                     </div>
                     <div class="useLink">
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 网站主页</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 车辆信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 车位信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="#"> 个人中心</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i><a href="login.jsp"> 用户登录</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="index.jsp">网站主页</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">租车信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">车位信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">新闻中心</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="login.jsp">用户登录</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
 </div>
 
 <!-- JAVASCRIPTS -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/jquery/jquery.min.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
