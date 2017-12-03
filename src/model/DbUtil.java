@@ -1,4 +1,4 @@
-package utilities;
+package model;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
