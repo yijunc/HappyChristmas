@@ -1,12 +1,19 @@
-package utilities;
+package model;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DbClose {
+public class DbUtil {
 
-    public static void close(Connection myConn, Statement myStmt, ResultSet myRs) {
+    protected DataSource dataSource;
+
+    protected DbUtil(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    protected void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 
         try {
             if (myRs != null) {
