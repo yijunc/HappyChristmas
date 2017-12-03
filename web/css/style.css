@@ -862,7 +862,7 @@ textarea.form-control {
 }
 
 .loginForm .btn-block {
-  width: 100%;
+  width: 100px;
 }
 
 #loginModal .modal-dialog {
@@ -1849,9 +1849,8 @@ a.link:hover {
 
 .loginSection .form-group button.btn-primary {
   border: 1px solid #e5e5e5;
-  background-color: transparent;
-  color: #222222;
-  width: 115px;
+  background-color: #2196f3;
+  width: 80%;
   padding: 17px 0;
 }
 

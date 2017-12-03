@@ -5,7 +5,8 @@
   Time: 16:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+         pageEncoding="utf-8" %>
 <html>
 <head>
 
@@ -13,8 +14,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Member Login - Car Space Share</title>
-
     <!-- PLUGINS CSS STYLE -->
     <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
     <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +32,10 @@
 
     <!-- FAVICON -->
     <link href="img/favicon.png" rel="shortcut icon">
+</head>
+
+<head>
+    <title>用户登录</title>
 </head>
 
 <body class="body-wrapper">
@@ -161,45 +164,15 @@
         </div>
     </header>
 
-
-    <!-- LOGIN  MODAL -->
-    <div id="loginModal" tabindex="-1" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Log In to your Account</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="loginForm">
-                        <div class="form-group">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            <input type="password" class="form-control" id="pwd" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Log In</button>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox"> Remember me</label>
-                            <a href="#" class="pull-right link">Fogot Password?</a>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <p>Don’t have an Account? <a href="#" class="link">Sign up</a></p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
     <!-- LOGIN SECTION -->
+
+    <style type="text/css">
+        .panel-body .fa {
+            margin-left: 4%;
+            margin-top: 7%;
+        }
+    </style>
+
     <section class="clearfix loginSection">
         <div class="container">
             <div class="row">
@@ -207,24 +180,29 @@
                     <div class="panel panel-default loginPanel">
                         <div class="panel-heading text-center">用户登录</div>
                         <div class="panel-body">
-                            <form class="loginForm">
+                            <form class="loginForm" action="/UserController" method="post">
+                                <input type="hidden" name="command" value="LOGIN"/>
                                 <div class="form-group">
-                                    <label for="userName">用户名：</label>
-                                    <input type="text" class="form-control" id="userName">
+                                    <label for="user_name">用户名：</label>
+                                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                                    <input type="text" class="form-control" id="user_name">
                                     <p class="help-block">请输入你的用户名</p>
                                 </div>
                                 <div class="form-group">
-                                    <label for="userPassword">密码：</label>
-                                    <input type="password" class="form-control" id="userPassword">
+                                    <label for="user_psw">密码：</label>
+                                    <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
+                                    <input type="password" class="form-control" id="user_psw">
                                     <p class="help-block">请输入当前用户名所对应的密码</p>
                                 </div>
+
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
+                                    <button type="submit" class="btn btn-primary">登录</button>
+                                    <a href="#" class="pull-right link">忘记密码?</a>
                                 </div>
                             </form>
                         </div>
                         <div class="panel-footer text-center">
-                            <p>还没有账号？<a href="sign-up.html" class="link">注册新用户</a></p>
+                            <p>还没有账号？<a href="/register.jsp" class="link">注册新用户</a></p>
                         </div>
                     </div>
                 </div>
@@ -232,6 +210,7 @@
         </div>
     </section>
 
+    <jsp:include page="templates/loginModal.html"></jsp:include>
     <jsp:include page="templates/footers.html"></jsp:include>
 
 </body>
