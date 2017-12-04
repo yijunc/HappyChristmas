@@ -62,13 +62,88 @@
                     <!-- </div> -->
 
 
-                    <div id="carRentalOrdersList">
+                    <form>
                         <div class="dashboardBoxBg mt30">
                             <div class="profileIntro">
-                                <h2>Your CarRentalOrdersList</h2>
+                                <h2>Your Profile</h2>
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have
                                     suffered alteration in some form Ipsum available.</p>
                             </div>
+                        </div>
+                    </form>
+
+                    <div id="carRentalOrdersList">
+                        <div class="dashboardBoxBg mt30">
+                            <%--<div class="profileIntro">--%>
+
+                                <div class="col-xs-12"><!--租车订单-->
+                                    <div class="table-responsive bgAdd"  data-pattern="priority-columns">
+                                        <table id="ordersTable" class="table table-small-font table-bordered table-striped" cellspacing="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th>订单号</th>
+                                                <th data-priority="">预约日期</th>
+                                                <th data-priority="2">车型ID</th>
+                                                <th data-priority="3">价格</th>
+                                                <th data-priority="6">租车时间</th>
+                                                <th data-priority="6">还车时间</th>
+                                                <th data-priority="3">订单状态</th>
+                                                <th data-priority="2">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tfoot>
+                                            <tr>
+                                                <th>订单号</th>
+                                                <th data-priority="">预约日期</th>
+                                                <th data-priority="2">车型ID</th>
+                                                <th data-priority="3">价格</th>
+                                                <th data-priority="6">租车时间</th>
+                                                <th data-priority="6">还车时间</th>
+                                                <th data-priority="3">订单状态</th>
+                                                <th data-priority="2">操作</th>
+                                            </tr>
+                                            </tfoot>
+                                            <tbody>
+                                            <tr>
+                                                <td>2475</td>
+                                                <td>12/12/2017</td>
+                                                <td>别克GL8</td>
+                                                <td>¥222.00</td>
+                                                <td>12/12/2017</td>
+                                                <td>15/12/2017</td>
+                                                <td><span class="label label-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary">View</button>
+                                                        <button type="button" class="btn btn-primary">Edit</button>
+                                                        <button type="button" class="btn btn-primary">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                <% for ( int fontSize = 1; fontSize <= 50; fontSize++){ %>
+                                            <tr>
+                                                <td>2475</td>
+                                                <td>12/12/2017</td>
+                                                <td>别克GL8</td>
+                                                <td>¥222.00</td>
+                                                <td>12/12/2017</td>
+                                                <td>15/12/2017</td>
+                                                <td><span class="label label-warning">Pending</span></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary">View</button>
+                                                        <button type="button" class="btn btn-primary">Edit</button>
+                                                        <button type="button" class="btn btn-primary">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                <%}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            <%--</div>--%>
                         </div>
                     </div>
 
