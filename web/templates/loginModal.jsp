@@ -17,15 +17,15 @@
                 <h4 class="modal-title">用户登录</h4>
             </div>
             <div class="modal-body">
-                <form class="loginForm" action="/UserController" method="post">
+                <form class="loginForm" action="/UserController" method="POST">
                     <input type="hidden" name="command" value="LOGIN"/>
                     <div class="form-group">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <input type="text" class="form-control" id="user_name" placeholder="用户名">
+                        <input type="text" class="form-control" id="user_name" placeholder="用户名" name="user_name">
                     </div>
                     <div class="form-group">
                         <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input type="password" class="form-control" id="user_psw" placeholder="密码">
+                        <input type="password" class="form-control" id="user_psw" placeholder="密码" name="user_psw">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">登录</button>
