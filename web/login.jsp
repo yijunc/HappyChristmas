@@ -5,8 +5,7 @@
   Time: 16:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"
-         pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 
 <%@include file="templates/headers.jsp" %>
@@ -19,7 +18,9 @@
 <div class="page-loader" style="background: url(/img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper">
     <!-- HEADER -->
-    <%@include file="/templates/navbars.jsp" %>
+    <header id="pageTop" class="header">
+        <%@include file="templates/navbars.jsp" %>
+    </header>
 
     <!-- LOGIN SECTION -->
 
@@ -42,13 +43,13 @@
                                 <div class="form-group">
                                     <label for="user_name">用户名：</label>
                                     <i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                                    <input type="text" class="form-control" id="user_name">
+                                    <input type="text" class="form-control" id="user_name" name="user_name">
                                     <p class="help-block">请输入你的用户名</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="user_psw">密码：</label>
                                     <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
-                                    <input type="password" class="form-control" id="user_psw">
+                                    <input type="password" class="form-control" id="user_psw" name="user_psw">
                                     <p class="help-block">请输入当前用户名所对应的密码</p>
                                 </div>
 
@@ -66,9 +67,10 @@
             </div>
         </div>
     </section>
+</div>
 
-    <%@include file="/templates/loginModal.jsp" %>
-    <%@include file="/templates/footers.jsp" %>
+<%@include file="/templates/loginModal.jsp" %>
+<%@include file="/templates/footers.jsp" %>
 
 </body>
 </html>

@@ -53,7 +53,11 @@ public class UserController extends HttpServlet {
 
             // route to the appropriate method
             switch (theCommand) {
-
+                case "LOGIN":
+                    login(request, response);
+                    break;
+                default:
+                    break;
             }
 
         } catch (Exception exc) {
@@ -74,14 +78,13 @@ public class UserController extends HttpServlet {
         if (user_db == null
                 || user_db.getUserCredit() <= 0
                 || !user_db.isUserValid()
-                || user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
+                || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
             request.setAttribute("logged_in", false);
 
             //Forward to login.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
-        }
-        else{
+        } else {
             request.setAttribute("logged_in", true);
             request.setAttribute("isAdmin", user_db.isUserAdmin());
 

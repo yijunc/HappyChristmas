@@ -5,8 +5,7 @@
   Time: 下午6:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"
-         pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <html>
 
@@ -20,7 +19,9 @@
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper">
 
-    <%@include file="/templates/navbars.jsp" %>
+    <header id="pageTop" class="header">
+        <%@include file="templates/navbars.jsp" %>
+    </header>
 
     <!-- DASHBOARD PROFILE SECTION -->
     <section class="clearfix bg-dark profileSection">

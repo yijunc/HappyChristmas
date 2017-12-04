@@ -25,8 +25,8 @@ public class UserDbUtil extends DbUtil {
             myConn = dataSource.getConnection();
 
             // create sql statement
-            String sql = "select * from 2017j2ee.user WHERE user_name=".concat(userName);
-
+            String sql = "select * from 2017j2ee.user WHERE user_name=\"".concat(userName).concat("\"");
+            System.out.println("In UserDbUtil: ".concat(sql));
             myStmt = myConn.createStatement();
 
             // execute query

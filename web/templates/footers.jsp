@@ -9,9 +9,9 @@
             <div class="row">
                 <div class="col-sm-7 col-xs-12">
                     <div class="footerText">
-                        <a href="index.html" class="footerLogo"><img src="img/logo-footer.png"
-                                                                     alt="Footer Logo"></a>
-                        <p>一个圣诞节需要上交的J2EE课程作业。圣诞节快乐🎄。</p>
+                        <a href="index.jsp" class="footerLogo"><img src="img/logo-footer.png"
+                                                                    alt="Footer Logo"></a>
+                        <p>一个圣诞节需要上交的J2EE课程作业。圣诞节快乐。🎄</p>
                         <p>一个车辆租赁出租，车位租赁的信息管理平台。</p>
                         <ul class="list-styled list-contact">
                             <li><i class="fa fa-user-circle-o" aria-hidden="true"></i>赵宁 10151590121</li>
@@ -26,9 +26,9 @@
                     <div class="useLink">
                         <ul class="list-unstyled">
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="index.jsp">网站主页</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">租车信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">车位信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">新闻中心</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentcar.jsp">租车信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentspace.jsp">车位信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="news.jsp">新闻中心</a></li>
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="login.jsp">用户登录</a></li>
                         </ul>
                     </div>
