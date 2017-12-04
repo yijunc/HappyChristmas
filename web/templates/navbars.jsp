@@ -29,7 +29,7 @@
 
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.jsp"><img src="img/logo-blue.png" alt="logo"></a>
+                    <a class="navbar-brand" href="index.jsp"><img src="/img/logo-blue.png" alt="logo"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,7 +55,7 @@
                     </ul>
                     <button class="btn btn-default navbar-btn" type="button" data-toggle="modal"
                             data-target="#loginModal"><i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                        <span>欢迎，宁姐</span>
+                        <span>用户登录</span>
                     </button>
 
                 </div>
