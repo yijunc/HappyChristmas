@@ -6,8 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <%@include file="/templates/headers.jsp" %>
 
@@ -17,7 +16,9 @@
 <body class="body-wrapper">
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper">
-    <%@include file="/templates/navbars.jsp" %>
+    <header id="pageTop" class="header">
+        <%@include file="templates/navbars.jsp" %>
+    </header>
 
     <!-- BANNER SECTION -->
     <section class="clearfix homeBanner" style="background-image: url(img/banner/banner1.jpg);">
@@ -542,9 +543,10 @@
             </div>
         </div>
     </section>
+</div>
 
-    <%@include file="/templates/loginModal.jsp" %>
-    <%@include file="/templates/footers.jsp" %>
+<%@include file="/templates/loginModal.jsp" %>
+<%@include file="/templates/footers.jsp" %>
 </body>
 
 </html>

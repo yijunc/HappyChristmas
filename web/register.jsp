@@ -5,8 +5,8 @@
   Time: 13:33
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"
-         pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<html>
 <%@include file="/templates/headers.jsp" %>
 
 <head>
@@ -15,7 +15,9 @@
 <body class="body-wrapper">
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper">
-    <%@include file="/templates/navbars.jsp" %>
+    <header id="pageTop" class="header">
+        <%@include file="templates/navbars.jsp" %>
+    </header>
 
     <!-- PAGE TITLE SECTION -->
     <section class="clearfix pageTitleSection" style="background-image: url();">
@@ -125,7 +127,7 @@
                                         </div>
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <label for="passwordFirst" class="control-label">Password*</label>
-                                            <input type="password" class="form-control" id="password">
+                                            <input type="password" class="form-control" id="passwordFirst">
                                         </div>
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <label for="passwordAgain" class="control-label">Password (re-type)*</label>
@@ -185,8 +187,8 @@
             </div>
         </div>
     </section>
-
-    <jsp:include page="templates/footers.jsp"></jsp:include>
-    <jsp:include page="templates/loginModal.jsp"></jsp:include>
+</div>
+<%@include file="templates/loginModal.jsp" %>
+<%@include file="templates/footers.jsp" %>
 </body>
 </html>

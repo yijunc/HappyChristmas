@@ -26,9 +26,9 @@
                     <div class="useLink">
                         <ul class="list-unstyled">
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="index.jsp">网站主页</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">租车信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">车位信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="#">新闻中心</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentcar.jsp">租车信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentspace.jsp">车位信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="news.jsp">新闻中心</a></li>
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="login.jsp">用户登录</a></li>
                         </ul>
                     </div>

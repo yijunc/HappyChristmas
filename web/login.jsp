@@ -5,8 +5,7 @@
   Time: 16:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"
-         pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <html>
 
 <%@include file="templates/headers.jsp" %>
@@ -19,7 +18,9 @@
 <div class="page-loader" style="background: url(/img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper">
     <!-- HEADER -->
-    <%@include file="/templates/navbars.jsp" %>
+    <header id="pageTop" class="header">
+        <%@include file="templates/navbars.jsp" %>
+    </header>
 
     <!-- LOGIN SECTION -->
 
@@ -66,9 +67,10 @@
             </div>
         </div>
     </section>
+</div>
 
-    <%@include file="/templates/loginModal.jsp" %>
-    <%@include file="/templates/footers.jsp" %>
+<%@include file="/templates/loginModal.jsp" %>
+<%@include file="/templates/footers.jsp" %>
 
 </body>
 </html>
