@@ -74,7 +74,7 @@ public class UserController extends HttpServlet {
         if (user_db == null
                 || user_db.getUserCredit() <= 0
                 || !user_db.isUserValid()
-                || user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
+                || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
             request.setAttribute("logged_in", false);
 
             //Forward to login.jsp
