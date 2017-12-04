@@ -1993,7 +1993,7 @@ a.link:hover {
 }
 
 .navbar-brand > img {
-  width: 100%;
+  width: 20%;
 }
 
 @media (min-width: 768px) {
@@ -3106,7 +3106,7 @@ footer {
 }
 
 .footerText .footerLogo img {
-  width: auto;
+  width: 35%;
 }
 
 .footerText p {
