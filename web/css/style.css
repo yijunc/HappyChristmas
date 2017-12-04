@@ -1993,7 +1993,7 @@ a.link:hover {
 }
 
 .navbar-brand > img {
-  width: 20%;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
