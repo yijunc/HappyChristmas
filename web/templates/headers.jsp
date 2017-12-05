@@ -14,6 +14,7 @@
     <link href="plugins/selectbox/select_option1.css" rel="stylesheet">
     <link href="plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+    <link href="plugins/rwdtable/css/rwd-table.css" rel="stylesheet">
     <link href="plugins/isotope/isotope.min.css" rel="stylesheet">
     <link href="plugins/map/css/map.css" rel="stylesheet">
 
