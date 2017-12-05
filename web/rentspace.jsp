@@ -10,7 +10,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <head>
-    <title>车位信息查询</title>
+    <title>车位信息查询--HAPPY CHRISTMAS</title>
 </head>
 
 <body class="body-wrapper">

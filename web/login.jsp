@@ -11,7 +11,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <head>
-    <title>用户登录</title>
+    <title>用户登录--HAPPY CHRISTMAS</title>
 </head>
 
 <body class="body-wrapper">

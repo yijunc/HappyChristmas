@@ -1,5 +1,4 @@
 <%@ page import="bean.User" %>
-<%@ page import="javax.management.monitor.StringMonitor" %>
 <%--
   Created by IntelliJ IDEA.
   User: cyj970209
@@ -13,22 +12,20 @@
     Object loggedIn = request.getAttribute("logged_in");
     User currentUser = null;
     boolean hasLoggedIn;
-    if(loggedIn != null){
+    if (loggedIn != null) {
         session.setAttribute("hasLoggedIn", loggedIn);
-        if((boolean)session.getAttribute("hasLoggedIn")){
+        if ((boolean) session.getAttribute("hasLoggedIn")) {
             session.setAttribute("currentUser", request.getAttribute("current_user"));
         }
     }
-    if(session.getAttribute("hasLoggedIn") != null){
+    if (session.getAttribute("hasLoggedIn") != null) {
         hasLoggedIn = (boolean) session.getAttribute("hasLoggedIn");
-        if(hasLoggedIn){
+        if (hasLoggedIn) {
             currentUser = (User) session.getAttribute("currentUser");
         }
-    }
-    else{
+    } else {
         hasLoggedIn = false;
     }
-
 %>
 <!-- TOP INFO BAR -->
 
@@ -73,8 +70,7 @@
                     <li class=""><a href="rentspace.jsp">车位信息 </a></li>
                     <li class=""><a href="news.jsp">新闻中心 </a></li>
                     <%
-                        System.out.println(currentUser);
-                        if(currentUser != null && currentUser.isUserAdmin()){
+                        if (currentUser != null && currentUser.isUserAdmin()) {
                             out.print("<li class=\" dropdown singleDrop\">\n" +
                                     "                        <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"\n" +
                                     "                           role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">管理员网站管理 <i\n" +
@@ -91,14 +87,13 @@
                     %>
                 </ul>
                 <%
-                    if(hasLoggedIn){
+                    if (hasLoggedIn) {
                         out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
                                 "                    <a href=\"profile.jsp\"><span>");
                         out.print("欢迎, ".concat(currentUser.getUserName()));
                         out.print("</span></a>\n" +
                                 "                </button>");
-                    }
-                    else{
+                    } else {
                         out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\" data-toggle=\"modal\"\n" +
                                 "                        data-target=\"#loginModal\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
                                 "                    <span>用户登录</span>\n" +

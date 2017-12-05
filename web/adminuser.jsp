@@ -27,22 +27,22 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>Orders</h2>
+                        <h2>网站用户管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
                             <div class="row">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="orderId">Order ID</label>
-                                    <input type="text" class="form-control" id="orderId" placeholder="Order ID">
+                                    <label for="orderId">用户ID</label>
+                                    <input type="text" class="form-control" id="orderId" placeholder="请输入用户ID">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="orderStatus">Order Status</label>
-                                    <input type="text" class="form-control" id="orderStatus" placeholder="Order Status">
+                                    <label for="orderStatus">用户状态</label>
+                                    <input type="text" class="form-control" id="orderStatus" placeholder="做成选择按钮">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="customer">Customer</label>
-                                    <input type="text" class="form-control" id="customer" placeholder="Customer">
+                                    <label for="customer">用户名</label>
+                                    <input type="text" class="form-control" id="customer" placeholder="请输入用户名">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateAdded">Date Added</label>

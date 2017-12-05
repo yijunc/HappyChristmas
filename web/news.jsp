@@ -11,7 +11,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <head>
-    <title>新闻中心</title>
+    <title>新闻中心--HAPPY CHRISTMAS</title>
 </head>
 
 <body class="body-wrapper">
