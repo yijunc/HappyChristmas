@@ -11,7 +11,7 @@
 <%@include file="/templates/headers.jsp" %>
 
 <head>
-    <title>网站主页</title>
+    <title>网站主页--HAPPY CHRISTMAS</title>
 </head>
 <body class="body-wrapper">
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
@@ -26,12 +26,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="banerInfo">
-                        <h1>Explore. Discover. Share</h1>
-                        <p>Listty helps to find out great things arround you</p>
+                        <h1>租赁. 连接. 分享</h1>
+                        <p>『HAPPY CHRISTMAS』连接车主与租客，分享咨询与新闻</p>
                         <form class="form-inline" action="listing-sidebar-map-left.html" method="">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">Find</div>
+                                    <div class="input-group-addon">查找</div>
                                     <input type="text" class="form-control" id="findItem"
                                            placeholder="What are you looking for?">
                                     <div class="input-group-addon addon-right"></div>
@@ -39,13 +39,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">Near</div>
+                                    <div class="input-group-addon">类别</div>
                                     <input type="text" class="form-control" id="nearLocation" placeholder="Location">
                                     <div class="input-group-addon addon-right"><i class="icon-listy icon-target"
                                                                                   aria-hidden="true"></i></div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Search <i class="fa fa-search"
+                            <button type="submit" class="btn btn-primary">搜索 <i class="fa fa-search"
                                                                                     aria-hidden="true"></i></button>
                         </form>
                     </div>
@@ -58,72 +58,40 @@
     <section class="clearfix interestArea">
         <div class="container">
             <div class="page-header text-center">
-                <h2>What are You Interested in?
-                    <small>Explore and connect with great local businesses</small>
+                <h2>在这里你能找？
+                    <small>『HAPPY CHRISTMAS』提供租车、车位、咨询、分享</small>
                 </h2>
             </div>
             <div class="row">
                 <div class="col-sm-3 col-xs-12">
-                    <a href="category-grid-full.html" class="interestContent">
+                    <a href="rentcar.jsp" class="interestContent">
 					<span>
-						<i class="icon-listy icon-tea-cup-1"></i>
-						Restaurant
+						<i class="fa fa-car fa-3x"></i>
+						租车分享
 					</span>
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12">
-                    <a href="category-list-full.html" class="interestContent">
+                    <a href="rentspace.jsp" class="interestContent">
 					<span>
-						<i class="icon-listy icon-building"></i>
-						Hotels
+						<i class="fa fa-product-hunt fa-3x" aria-hidden="true"></i>
+						车位预定
 					</span>
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12">
-                    <a href="category-grid.html" class="interestContent">
+                    <a href="news.jsp" class="interestContent">
 					<span>
-						<i class="icon-listy icon-martini"></i>
-						Nightclubs
+						<i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
+						新闻动态
 					</span>
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12">
-                    <a href="category-list-left.html" class="interestContent">
+                    <a class="interestContent">
 					<span>
-						<i class="icon-listy icon-car-1"></i>
-						Auto Motive
-					</span>
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-12">
-                    <a href="category-grid-right.html" class="interestContent">
-					<span>
-						<i class="icon-listy icon-castle"></i>
-						Museums
-					</span>
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-12">
-                    <a href="category-list-right.html" class="interestContent">
-					<span>
-						<i class="icon-listy icon-television"></i>
-						Movie Theaters
-					</span>
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-12">
-                    <a href="category-grid-full.html" class="interestContent">
-					<span>
-						<i class="icon-listy icon-mall-1"></i>
-						Shopping
-					</span>
-                    </a>
-                </div>
-                <div class="col-sm-3 col-xs-12">
-                    <a href="all-business.html" class="interestContent">
-					<span>
-						<i class="icon-listy icon-more"></i>
-						View All
+						<i class="fa fa-plus-square-o fa-3x" aria-hidden="true"></i>
+						更多内容
 					</span>
                     </a>
                 </div>
@@ -393,88 +361,39 @@
     <section class="clearfix countUpSection">
         <div class="container">
             <div class="page-header text-center">
-                <h2>Why Listy?</h2>
+                <h2>为什么选择 『HAPPY CHRISTMAS』？</h2>
             </div>
             <div class="row">
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
                         <div class="counter">140</div>
-                        <div class="counterInfo bg-color-1">Color Variations</div>
+                        <div class="counterInfo bg-color-1">平台车辆数</div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
                         <div class="counter">120</div>
-                        <div class="counterInfo bg-color-2">Layouts</div>
+                        <div class="counterInfo bg-color-2">平台车位数</div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
                         <div class="counter">180</div>
-                        <div class="counterInfo bg-color-3">Inner Pages</div>
+                        <div class="counterInfo bg-color-3">达成交易单数</div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
                         <div class="counter">220</div>
-                        <div class="counterInfo bg-color-4">Admin Pages</div>
+                        <div class="counterInfo bg-color-4">平台用户数</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="btnArea text-center">
-                        <a href="#" class="btn btn-primary">Get it now</a>
+                        <a href="#" class="btn btn-primary">加入我们</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WORKS SECTION -->
-    <section class="clearfix worksArea">
-        <div class="container">
-            <div class="page-header text-center">
-                <h2>How it Works?
-                    <small>This are some of most popular listing</small>
-                </h2>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <div class="thumbnail text-center worksContent">
-                        <img src="img/works/works-1.png" alt="Image works">
-                        <div class="caption">
-                            <a href="how-it-works.html"><h3>Find what you want</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="thumbnail text-center worksContent">
-                        <img src="img/works/works-2.png" alt="Image works">
-                        <div class="caption">
-                            <a href="how-it-works.html"><h3>Review & Plan your day</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="thumbnail text-center worksContent">
-                        <img src="img/works/works-3.png" alt="Image works">
-                        <div class="caption">
-                            <a href="how-it-works.html"><h3>Explore Location</h3></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="btnArea text-center"><a href="#" class="btn btn-primary">Watch it now <i
-                            class="fa fa-play-circle" aria-hidden="true"></i></a></div>
                 </div>
             </div>
         </div>
@@ -484,7 +403,7 @@
     <section class="clearfix articlesArea">
         <div class="container">
             <div class="page-header text-center">
-                <h2>Articles
+                <h2>新闻热点
                     <small>Brouse latest tips from our blog</small>
                 </h2>
             </div>
@@ -532,12 +451,12 @@
             <div class="row">
                 <div class="col-md-10 col-sm-9 col-xs-12">
                     <div class="callInfo">
-                        <h4><span>Listty</span> is the <span>best way</span> <br>to find great local business</h4>
+                        <h4>祝大家圣诞快乐~🎄</h4>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-3 col-xs-12">
                     <div class="btnArea">
-                        <a href="sign-up.html" class="btn btn-primary btn-block">Get Started</a>
+                        <a href="register.jsp" class="btn btn-primary btn-block">成为用户</a>
                     </div>
                 </div>
             </div>

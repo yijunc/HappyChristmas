@@ -10,11 +10,11 @@
     <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
     <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="plugins/listtyicons/style.css" rel="stylesheet">
     <link href="plugins/datepicker/datepicker.min.css" rel="stylesheet">
     <link href="plugins/selectbox/select_option1.css" rel="stylesheet">
     <link href="plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+    <link href="plugins/rwdtable/css/rwd-table.css" rel="stylesheet">
     <link href="plugins/isotope/isotope.min.css" rel="stylesheet">
     <link href="plugins/map/css/map.css" rel="stylesheet">
 

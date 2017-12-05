@@ -29,7 +29,23 @@
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentcar.jsp">租车信息</a></li>
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentspace.jsp">车位信息</a></li>
                             <li><i class="fa fa-link" aria-hidden="true"></i> <a href="news.jsp">新闻中心</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="login.jsp">用户登录</a></li>
+                            <%
+                                if(hasLoggedIn && currentUser != null && currentUser.isUserAdmin()){
+                                    out.print("<li><i class=\"fa fa-link\" aria-hidden=\"true\"></i> <a href=\"admindashboard.jsp\">" + currentUser.getUserName() + "的管理主页</a></li>");
+                                }
+                            %>
+                            <li><i class="fa fa-link" aria-hidden="true"></i>
+                                <%
+                                    if(hasLoggedIn){
+                                        out.print("<a href=\"profile.jsp?user_id=" + currentUser.getUserId() + "\">");
+                                        out.print(currentUser.getUserName());
+                                        out.print("的个人主页</a>");
+                                    }
+                                    else{
+                                        out.print("<a href=\"login.jsp\">用户登录</a>");
+                                    }
+                                %>
+                            </li>
                         </ul>
                     </div>
                 </div>

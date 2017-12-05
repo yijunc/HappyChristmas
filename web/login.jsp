@@ -11,7 +11,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <head>
-    <title>用户登录</title>
+    <title>用户登录--HAPPY CHRISTMAS</title>
 </head>
 
 <body class="body-wrapper">
@@ -38,6 +38,11 @@
                     <div class="panel panel-default loginPanel">
                         <div class="panel-heading text-center">用户登录</div>
                         <div class="panel-body">
+                            <%
+                                if(loggedIn != null && ! ((boolean) loggedIn)){
+                                    out.print("<div class=\"alert alert-danger\" role=\"alert\"><strong>登录错误！</strong>用户名不存在 或 密码不匹配</div>");
+                                }
+                            %>
                             <form class="loginForm" action="/UserController" method="post">
                                 <input type="hidden" name="command" value="LOGIN"/>
                                 <div class="form-group">

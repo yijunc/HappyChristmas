@@ -80,14 +80,12 @@ public class UserController extends HttpServlet {
                 || !user_db.isUserValid()
                 || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
             request.setAttribute("logged_in", false);
-
             //Forward to login.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
         } else {
             request.setAttribute("logged_in", true);
-            request.setAttribute("isAdmin", user_db.isUserAdmin());
-
+            request.setAttribute("current_user", user_db);
             //Forword to index.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);

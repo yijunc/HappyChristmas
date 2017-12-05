@@ -1,3 +1,4 @@
+<%@ page import="bean.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: cyj970209
@@ -7,7 +8,25 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
-
+<%
+    Object loggedIn = request.getAttribute("logged_in");
+    User currentUser = null;
+    boolean hasLoggedIn;
+    if (loggedIn != null) {
+        session.setAttribute("hasLoggedIn", loggedIn);
+        if ((boolean) session.getAttribute("hasLoggedIn")) {
+            session.setAttribute("currentUser", request.getAttribute("current_user"));
+        }
+    }
+    if (session.getAttribute("hasLoggedIn") != null) {
+        hasLoggedIn = (boolean) session.getAttribute("hasLoggedIn");
+        if (hasLoggedIn) {
+            currentUser = (User) session.getAttribute("currentUser");
+        }
+    } else {
+        hasLoggedIn = false;
+    }
+%>
 <!-- TOP INFO BAR -->
 
 <div class="nav-wrapper navbarWhite">
@@ -50,24 +69,37 @@
                     </li>
                     <li class=""><a href="rentspace.jsp">车位信息 </a></li>
                     <li class=""><a href="news.jsp">新闻中心 </a></li>
-                    <li class=" dropdown singleDrop">
-                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
-                           role="button" aria-haspopup="true" aria-expanded="false">管理员网站管理 <i
-                                class="fa fa-angle-down" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="admindashboard.jsp">管理主页</a></li>
-                            <li><a href="adminrentcar.jsp">租车信息与订单管理</a></li>
-                            <li><a href="adminrentspace.jsp">车位信息与订单管理</a></li>
-                            <li><a href="adminuser.jsp">用户管理</a></li>
-                            <li><a href="adminnews.jsp">新闻发布与评论管理</a></li>
-                        </ul>
-                    </li>
+                    <%
+                        if (currentUser != null && currentUser.isUserAdmin()) {
+                            out.print("<li class=\" dropdown singleDrop\">\n" +
+                                    "                        <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"\n" +
+                                    "                           role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">管理员网站管理 <i\n" +
+                                    "                                class=\"fa fa-angle-down\" aria-hidden=\"true\"></i></a>\n" +
+                                    "                        <ul class=\"dropdown-menu dropdown-menu-right\">\n" +
+                                    "                            <li><a href=\"admindashboard.jsp\">管理主页</a></li>\n" +
+                                    "                            <li><a href=\"adminrentcar.jsp\">租车信息与订单管理</a></li>\n" +
+                                    "                            <li><a href=\"adminrentspace.jsp\">车位信息与订单管理</a></li>\n" +
+                                    "                            <li><a href=\"adminuser.jsp\">用户管理</a></li>\n" +
+                                    "                            <li><a href=\"adminnews.jsp\">新闻发布与评论管理</a></li>\n" +
+                                    "                        </ul>\n" +
+                                    "                    </li>");
+                        }
+                    %>
                 </ul>
-                <button class="btn btn-default navbar-btn" type="button" data-toggle="modal"
-                        data-target="#loginModal"><i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                    <span>用户登录</span>
-                </button>
-
+                <%
+                    if (hasLoggedIn) {
+                        out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
+                                "                    <a href=\"profile.jsp\"><span>");
+                        out.print("欢迎, ".concat(currentUser.getUserName()));
+                        out.print("</span></a>\n" +
+                                "                </button>");
+                    } else {
+                        out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\" data-toggle=\"modal\"\n" +
+                                "                        data-target=\"#loginModal\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
+                                "                    <span>用户登录</span>\n" +
+                                "                </button>");
+                    }
+                %>
             </div>
 
         </div>
