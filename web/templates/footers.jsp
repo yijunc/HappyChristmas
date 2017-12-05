@@ -56,13 +56,14 @@
 </div>
 
 <!-- JAVASCRIPTS -->
-<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
 <script src="plugins/waypoints/waypoints.min.js"></script>
 <script src="plugins/counter-up/jquery.counterup.min.js"></script>
 <script src="plugins/datepicker/bootstrap-datepicker.min.js"></script>
+<script src="plugins/rwdtable/js/rwd-table.js"></script>
 <script src="plugins/selectbox/jquery.selectbox-0.1.3.min.js"></script>
 <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 <script src="plugins/isotope/isotope.min.js"></script>

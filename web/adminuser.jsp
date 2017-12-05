@@ -21,6 +21,7 @@
         <%@include file="templates/adminnavbar.jsp" %>
     </header>
 
+
     <!-- DASHBOARD ORDERS SECTION -->
     <section class="clearfix bg-dark dashboardOrders">
         <div class="container">
@@ -45,32 +46,32 @@
                                     <input type="text" class="form-control" id="customer" placeholder="请输入用户名">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateAdded">Date Added</label>
+                                    <label for="dateSelect">最后登录日期</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateModified">Date Modified</label>
+                                    <label for="customer">用户手机号</label>
+                                    <input type="text" class="form-control" id="customer-p" placeholder="请输入用户手机号">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label for="dateSelect">最后订单成交日期</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" id="amount" placeholder="Amount">
                                 </div>
                             </div>
                         </div>
@@ -82,24 +83,24 @@
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th data-priority="">Customer</th>
-                                <th data-priority="2">Amount</th>
-                                <th data-priority="6">Date Added</th>
-                                <th data-priority="6">Date Modified</th>
-                                <th data-priority="3">Status</th>
-                                <th data-priority="2">Action</th>
+                                <th>用户 ID</th>
+                                <th data-priority="">用户名</th>
+                                <th data-priority="2">用户手机号</th>
+                                <th data-priority="6">最后登录日期</th>
+                                <th data-priority="6">最后成交日期</th>
+                                <th data-priority="3">用户状态</th>
+                                <th data-priority="2">操作</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Customer</th>
-                                <th>Amount</th>
-                                <th>Date Added</th>
-                                <th>Date Modified</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>用户 ID</th>
+                                <th>用户名</th>
+                                <th>用户手机号</th>
+                                <th>最后登录日期</th>
+                                <th>最后成交日期</th>
+                                <th>用户状态</th>
+                                <th>操作</th>
                             </tr>
                             </tfoot>
                             <tbody>
