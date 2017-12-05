@@ -1,3 +1,5 @@
+<%@ page import="bean.User" %>
+<%@ page import="javax.management.monitor.StringMonitor" %>
 <%--
   Created by IntelliJ IDEA.
   User: cyj970209
@@ -7,7 +9,29 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
+<%
+    boolean hasLoggedIn;
+    Object loggedIn = request.getAttribute("logged_in");
+    User currentUser = null;
+    System.out.println("In navbar: loggedIn : " + loggedIn);
+    if(loggedIn != null){
+        session.setAttribute("hasLoggedIn", loggedIn);
+        if((boolean)session.getAttribute("hasLoggedIn")){
+            session.setAttribute("currentUser", request.getAttribute("current_user"));
+        }
+    }
+    System.out.println("In session: loggedIn : " + session.getAttribute("hasLoggedIn"));
+    if(session.getAttribute("hasLoggedIn") != null){
+        hasLoggedIn = (boolean) session.getAttribute("hasLoggedIn");
+        if(hasLoggedIn){
+            currentUser = (User) session.getAttribute("currentUser");
+        }
+    }
+    else{
+        hasLoggedIn = false;
+    }
 
+%>
 <!-- TOP INFO BAR -->
 
 <div class="nav-wrapper navbarWhite">
@@ -63,11 +87,21 @@
                         </ul>
                     </li>
                 </ul>
-                <button class="btn btn-default navbar-btn" type="button" data-toggle="modal"
-                        data-target="#loginModal"><i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                    <span>用户登录</span>
-                </button>
-
+                <%
+                    if(hasLoggedIn){
+                        out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
+                                "                    <a href=\"profile.jsp\"><span>");
+                        out.print("欢迎, ".concat(currentUser.getUserName()));
+                        out.print("</span></a>\n" +
+                                "                </button>");
+                    }
+                    else{
+                        out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\" data-toggle=\"modal\"\n" +
+                                "                        data-target=\"#loginModal\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
+                                "                    <span>用户登录</span>\n" +
+                                "                </button>");
+                    }
+                %>
             </div>
 
         </div>

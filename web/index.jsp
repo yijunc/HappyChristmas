@@ -11,7 +11,7 @@
 <%@include file="/templates/headers.jsp" %>
 
 <head>
-    <title>网站主页</title>
+    <title>网站主页--HAPPY CHRISTMAS</title>
 </head>
 <body class="body-wrapper">
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
@@ -26,12 +26,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="banerInfo">
-                        <h1>Explore. Discover. Share</h1>
-                        <p>Listty helps to find out great things arround you</p>
+                        <h1>租赁. 连接. 分享</h1>
+                        <p>『HAPPY CHRISTMAS』连接车主与租客，分享咨询与新闻</p>
                         <form class="form-inline" action="listing-sidebar-map-left.html" method="">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">Find</div>
+                                    <div class="input-group-addon">查找</div>
                                     <input type="text" class="form-control" id="findItem"
                                            placeholder="What are you looking for?">
                                     <div class="input-group-addon addon-right"></div>
@@ -39,13 +39,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">Near</div>
+                                    <div class="input-group-addon">类别</div>
                                     <input type="text" class="form-control" id="nearLocation" placeholder="Location">
                                     <div class="input-group-addon addon-right"><i class="icon-listy icon-target"
                                                                                   aria-hidden="true"></i></div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Search <i class="fa fa-search"
+                            <button type="submit" class="btn btn-primary">搜索 <i class="fa fa-search"
                                                                                     aria-hidden="true"></i></button>
                         </form>
                     </div>
