@@ -10,17 +10,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <%
-    boolean hasLoggedIn;
     Object loggedIn = request.getAttribute("logged_in");
     User currentUser = null;
-    System.out.println("In navbar: loggedIn : " + loggedIn);
+    boolean hasLoggedIn;
     if(loggedIn != null){
         session.setAttribute("hasLoggedIn", loggedIn);
         if((boolean)session.getAttribute("hasLoggedIn")){
             session.setAttribute("currentUser", request.getAttribute("current_user"));
         }
     }
-    System.out.println("In session: loggedIn : " + session.getAttribute("hasLoggedIn"));
     if(session.getAttribute("hasLoggedIn") != null){
         hasLoggedIn = (boolean) session.getAttribute("hasLoggedIn");
         if(hasLoggedIn){
@@ -74,18 +72,23 @@
                     </li>
                     <li class=""><a href="rentspace.jsp">车位信息 </a></li>
                     <li class=""><a href="news.jsp">新闻中心 </a></li>
-                    <li class=" dropdown singleDrop">
-                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
-                           role="button" aria-haspopup="true" aria-expanded="false">管理员网站管理 <i
-                                class="fa fa-angle-down" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="admindashboard.jsp">管理主页</a></li>
-                            <li><a href="adminrentcar.jsp">租车信息与订单管理</a></li>
-                            <li><a href="adminrentspace.jsp">车位信息与订单管理</a></li>
-                            <li><a href="adminuser.jsp">用户管理</a></li>
-                            <li><a href="adminnews.jsp">新闻发布与评论管理</a></li>
-                        </ul>
-                    </li>
+                    <%
+                        System.out.println(currentUser);
+                        if(currentUser != null && currentUser.isUserAdmin()){
+                            out.print("<li class=\" dropdown singleDrop\">\n" +
+                                    "                        <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"\n" +
+                                    "                           role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">管理员网站管理 <i\n" +
+                                    "                                class=\"fa fa-angle-down\" aria-hidden=\"true\"></i></a>\n" +
+                                    "                        <ul class=\"dropdown-menu dropdown-menu-right\">\n" +
+                                    "                            <li><a href=\"admindashboard.jsp\">管理主页</a></li>\n" +
+                                    "                            <li><a href=\"adminrentcar.jsp\">租车信息与订单管理</a></li>\n" +
+                                    "                            <li><a href=\"adminrentspace.jsp\">车位信息与订单管理</a></li>\n" +
+                                    "                            <li><a href=\"adminuser.jsp\">用户管理</a></li>\n" +
+                                    "                            <li><a href=\"adminnews.jsp\">新闻发布与评论管理</a></li>\n" +
+                                    "                        </ul>\n" +
+                                    "                    </li>");
+                        }
+                    %>
                 </ul>
                 <%
                     if(hasLoggedIn){

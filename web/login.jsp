@@ -40,7 +40,7 @@
                         <div class="panel-body">
                             <%
                                 if(loggedIn != null && ! ((boolean) loggedIn)){
-                                    out.print("<div class=\"alert alert-danger\" role=\"alert\">用户名不存在 或 密码不匹配 请重试</div>");
+                                    out.print("<div class=\"alert alert-danger\" role=\"alert\"><strong>登录错误！</strong>用户名不存在 或 密码不匹配</div>");
                                 }
                             %>
                             <form class="loginForm" action="/UserController" method="post">
