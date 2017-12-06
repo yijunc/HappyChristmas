@@ -35,20 +35,17 @@
                             <form action="/UserController" method="get" class="row">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userId">用户ID</label>
-                                    <input type="text" class="form-control" id="userId" placeholder="请输入用户ID" name="user_id">
+                                    <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
+                                           name="user_id">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="userStatus">用户状态</label>
-                                    <br>
-                                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                        <select id="userStatus" name="user_status">
-                                            <option value="all">所有状态</option>
-                                            <option value="activated">已激活</option>
-                                            <option value="pending">等待审核</option>
-                                            <option value="suspended">已被冻结</option>
-                                        </select>
-                                    </div>
-
+                                    <label for="userStatus"> 用户状态</label></br>
+                                    <select id="userStatus" style="color: #000000; width: 100%; height: 40px; margin-top: 5px">
+                                        <option value="all">&nbsp;全部状态</option>
+                                        <option value="activated">&nbsp;已激活</option>
+                                        <option value="pending">&nbsp;等待审核</option>
+                                        <option value="suspended">&nbsp;已被冻结</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="customer">用户名</label>
@@ -91,8 +88,12 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;</button>
-                                    <button type="reset" class="btn btn-primary btn-lg" >&nbsp;&nbsp;<i class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;</button>
+                                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                    </button>
+                                    <button type="reset" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
+                                            class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
+                                    </button>
                                 </div>
                             </form>
                         </div>
