@@ -15,6 +15,32 @@ public class UserDbUtil extends DbUtil {
         super(dataSource);
     }
 
+//    public List<User> listUser() throws Exception{
+//        Connection myConn = null;
+//        Statement myStmt = null;
+//        ResultSet myRs = null;
+//
+//        try {
+//            // get a connection
+//            myConn = dataSource.getConnection();
+//
+//            // create sql statement
+//            String sql = "select * from 2017j2ee.user WHERE user_name=\"".concat(userName).concat("\"");
+//            System.out.println("In UserDbUtil: ".concat(sql));
+//            myStmt = myConn.createStatement();
+//
+//            // execute query
+//            myRs = myStmt.executeQuery(sql);
+//
+//            // process result set
+//
+//
+//        } finally {
+//            // close JDBC objects
+//            close(myConn, myStmt, myRs);
+//        }
+//    }
+
     public User getUserByName(String userName) throws Exception{
         Connection myConn = null;
         Statement myStmt = null;
@@ -40,11 +66,12 @@ public class UserDbUtil extends DbUtil {
                         myRs.getString("user_psw"),
                         myRs.getString("user_cell"),
                         myRs.getBoolean("user_valid"),
-                        myRs.getInt("user_credit"),
                         myRs.getString("user_email"),
                         myRs.getBoolean("user_admin"),
                         myRs.getBoolean("user_avatar"),
-                        myRs.getInt("user_balance"));
+                        myRs.getInt("user_balance"),
+                        myRs.getDate("user_last_seen"),
+                        myRs.getDate("user_register_date"));
             }
             else{
                 return null;

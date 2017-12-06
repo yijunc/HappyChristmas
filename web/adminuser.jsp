@@ -32,14 +32,23 @@
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <div class="row">
+                            <form action="/UserController" method="get" class="row">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="orderId">用户ID</label>
-                                    <input type="text" class="form-control" id="orderId" placeholder="请输入用户ID">
+                                    <label for="userId">用户ID</label>
+                                    <input type="text" class="form-control" id="userId" placeholder="请输入用户ID" name="user_id">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="orderStatus">用户状态</label>
-                                    <input type="text" class="form-control" id="orderStatus" placeholder="做成选择按钮">
+                                    <label for="userStatus">用户状态</label>
+                                    <br>
+                                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                        <select id="userStatus" name="user_status">
+                                            <option value="all">所有状态</option>
+                                            <option value="activated">已激活</option>
+                                            <option value="pending">等待审核</option>
+                                            <option value="suspended">已被冻结</option>
+                                        </select>
+                                    </div>
+
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="customer">用户名</label>
@@ -58,8 +67,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="customer">用户手机号</label>
-                                    <input type="text" class="form-control" id="customer-p" placeholder="请输入用户手机号">
+                                    <label for="dateSelect">用户注册日期</label>
+                                    <div class="dateSelect">
+                                        <div class="input-group date ed-datepicker filterDate"
+                                             data-provide="datepicker">
+                                            <input type="text" class="form-control" placeholder="月/日/年">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateSelect">最后订单成交日期</label>
@@ -73,7 +90,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-xs-6">
+                                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;</button>
+                                    <button type="reset" class="btn btn-primary btn-lg" >&nbsp;&nbsp;<i class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -85,7 +106,7 @@
                             <tr>
                                 <th>用户 ID</th>
                                 <th data-priority="">用户名</th>
-                                <th data-priority="2">用户手机号</th>
+                                <th data-priority="6">用户注册日期</th>
                                 <th data-priority="6">最后登录日期</th>
                                 <th data-priority="6">最后成交日期</th>
                                 <th data-priority="3">用户状态</th>
@@ -96,7 +117,7 @@
                             <tr>
                                 <th>用户 ID</th>
                                 <th>用户名</th>
-                                <th>用户手机号</th>
+                                <th>用户注册日期</th>
                                 <th>最后登录日期</th>
                                 <th>最后成交日期</th>
                                 <th>用户状态</th>
