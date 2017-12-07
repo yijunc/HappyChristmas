@@ -1,5 +1,7 @@
 package bean;
 
+import controller.UserController;
+
 import java.util.Date;
 
 public class User {
@@ -7,7 +9,7 @@ public class User {
     private String userName;
     private String userPsw;
     private String userCell;
-    private boolean userValid;
+    private int userValid;
     private String userEmail;
     private boolean userAdmin;
     private boolean userAvatar;
@@ -15,10 +17,14 @@ public class User {
     private Date userLastSeen;
     private Date userRegisterDate;
 
+
+
+    private Date userLastOrderDate;
+
     public User() {
     }
 
-    public User(int userId, String userName, String userPsw, String userCell, boolean userValid, String userEmail, boolean userAdmin, boolean userAvatar, int userBalance, Date userLastSeen, Date userRegisterDate) {
+    public User(int userId, String userName, String userPsw, String userCell, int userValid, String userEmail, boolean userAdmin, boolean userAvatar, int userBalance, Date userLastSeen, Date userRegisterDate, Date userLastOrderDate) {
         this.userId = userId;
         this.userName = userName;
         this.userPsw = userPsw;
@@ -30,6 +36,7 @@ public class User {
         this.userBalance = userBalance;
         this.userLastSeen = userLastSeen;
         this.userRegisterDate = userRegisterDate;
+        this.userLastOrderDate = userLastOrderDate;
     }
 
     public int getUserId() {
@@ -68,11 +75,11 @@ public class User {
         return this;
     }
 
-    public boolean isUserValid() {
+    public int getUserValid() {
         return userValid;
     }
 
-    public User setUserValid(boolean userValid) {
+    public User setUserValid(int userValid) {
         this.userValid = userValid;
         return this;
     }
@@ -128,6 +135,15 @@ public class User {
 
     public User setUserRegisterDate(Date userRegisterDate) {
         this.userRegisterDate = userRegisterDate;
+        return this;
+    }
+
+    public Date getUserLastOrderDate() {
+        return userLastOrderDate;
+    }
+
+    public User setUserLastOrderDate(Date userLastOrderDate) {
+        this.userLastOrderDate = userLastOrderDate;
         return this;
     }
 }

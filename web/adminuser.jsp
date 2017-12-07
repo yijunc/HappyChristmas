@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="bean.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -32,7 +34,7 @@
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <form action="/UserController" method="POST" class="row">
+                            <form action="/UserController" method="get" class="row">
                                 <input type="hidden" name="command" value="ADMIN_USER"/>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userId">用户ID</label>
@@ -42,24 +44,26 @@
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
-                                        <select  id="userStatus" class="select-drop" name="user_status">
-                                            <option value="all">全部状态</option>
-                                            <option value="activated">已激活</option>
-                                            <option value="pending">等待审核</option>
-                                            <option value="suspended">已被冻结</option>
+                                        <select id="userStatus" class="select-drop" name="user_status">
+                                            <%--<option value="3">全部状态</option>--%>
+                                            <option value="1">已激活</option>
+                                            <option value="2">待审核</option>
+                                            <option value="0">已冻结</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userName">用户名</label>
-                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名" name="user_name">
+                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
+                                           name="user_name">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateLastLogined" name="date_last_logined">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   id="dateLastLogined" name="date_last_logined">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -71,7 +75,8 @@
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateRegister" name="date_egister">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   id="dateRegister" name="date_register">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -83,7 +88,8 @@
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed" name="date_ealed">
+                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed"
+                                                   name="date_dealed">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -131,480 +137,53 @@
                             </tfoot>
                             <tbody>
                             <%
-                                Object obj = request.getAttribute("list_num");
-                                Object object = request.getAttribute("user_list");
-
-////                                    for (int fontSize = 1; fontSize <= 50; fontSize++){
-//                                        out.print(object);
+                                Boolean empty = (Boolean) request.getAttribute("empty");
+                                if (empty == null) {
+                                    empty = true;
+                                }
+                                if (!empty) {
+                                    List<User> result = (List<User>) request.getAttribute("user_list");
+                                    for (User mUser : result) { %>
+                            <tr>
+                                <td><%=mUser.getUserId()%>
+                                </td>
+                                <td><%=mUser.getUserName()%>
+                                </td>
+                                <td><%=mUser.getUserRegisterDate()%>
+                                </td>
+                                <td><%=mUser.getUserLastSeen()%>
+                                </td>
+                                <td><%=mUser.getUserLastOrderDate()%>
+                                </td>
+                                <%
+                                    switch (mUser.getUserValid()) {
+                                        case 0:%>
+                                <td><span class="label label-danger">已冻结</span></td>
+                                <%
+                                        break;
+                                    case 1:%>
+                                <td><span class="label label-success">已激活</span></td>
+                                <%
+                                        break;
+                                    case 2:%>
+                                <td><span class="label label-warning">待审核</span></td>
+                                <%
+                                        break;
+                                    }
+                                %>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary">View</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                        <button type="button" class="btn btn-primary">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <%
+                                    }
+                                }
                             %>
-                            <%--<tr>--%>
-                                <%--<td>${}</td>--%>
-                                <%--<td>Tiger Nixon</td>--%>
-                                <%--<td>$700</td>--%>
-                                <%--<td>12/12/2017</td>--%>
-                                <%--<td>15/12/2017</td>--%>
-                                <%--<td><span class="label label-warning">Pending</span></td>--%>
-                                <%--<td>--%>
-                                    <%--<div class="btn-group">--%>
-                                        <%--<button type="button" class="btn btn-primary">View</button>--%>
-                                        <%--<button type="button" class="btn btn-primary">Edit</button>--%>
-                                        <%--<button type="button" class="btn btn-primary">Delete</button>--%>
-                                    <%--</div>--%>
-                                <%--</td>--%>
 
-                            <%--<%}%>--%>
-
-                            <% for (int fontSize = 1; fontSize <= 50; fontSize++) { %>
-                            <tr>
-                                <td>2475</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                                    <%}%>
-                            <tr>
-                                <td>2475</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2470</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2471</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2472</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2465</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2474</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2461</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2463</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2468</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2466</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2457</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2354</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2648</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2145</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2874</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2963</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2854</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2654</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2185</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2598</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2176</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2211</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2323</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2636</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2525</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2727</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2929</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-danger">Canceled</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2424</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-success">Active</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2531</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>

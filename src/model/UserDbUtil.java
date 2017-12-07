@@ -62,13 +62,14 @@ public class UserDbUtil extends DbUtil {
                         myRs.getString("user_name"),
                         myRs.getString("user_psw"),
                         myRs.getString("user_cell"),
-                        myRs.getBoolean("user_valid"),
+                        myRs.getInt("user_valid"),
                         myRs.getString("user_email"),
                         myRs.getBoolean("user_admin"),
                         myRs.getBoolean("user_avatar"),
                         myRs.getInt("user_balance"),
                         myRs.getDate("user_last_seen"),
-                        myRs.getDate("user_register_date"));
+                        myRs.getDate("user_register_date"),
+                        myRs.getDate("user_last_order_date"));
             }
             return null;
 
@@ -81,7 +82,7 @@ public class UserDbUtil extends DbUtil {
 //
 //            // process result set
 //
-//            if (myRs.first()) {
+//            if ( null != myRs.first()) {
 //                return new User(myRs.getInt("user_id"),
 //                        myRs.getString("user_name"),
 //                        myRs.getString("user_psw"),
@@ -112,22 +113,66 @@ public class UserDbUtil extends DbUtil {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
 
-            String sql = "select * from 2017j2ee.user WHERE" +
-                    " user_id=? AND user_name=?";
-            //预编译
-            PreparedStatement ptmt = (PreparedStatement) myConn.prepareStatement(sql); //预编译SQL，减少sql执行
+            String sql = "select * from 2017j2ee.user WHERE";
+//                    " user_id=? AND user_valid=? AND user_name=?";
 
-            //传参
-            ptmt.setInt(1, Integer.parseInt(userId));
-//            ptmt.setString(2, userStatus);
-            ptmt.setString(2, userName);
-//            ptmt.setDate(4, new Date(g.getBirthday().getTime()));
+            System.out.println(userId);
+            System.out.println(userStatus);
+            System.out.println(userName);
+            System.out.println(dateLastLogined);
+            System.out.println(dateRegister);
+            System.out.println(dateDealed);
+
+
+            if ( null != userId && userId.length() != 0) {
+                sql = sql + " user_id=" + userId;
+            } else {
+                sql = sql + " user_id IS NOT NULL";
+            }
+            sql += " AND ";
+            if ( null != userStatus && userStatus.length() != 0) {
+                sql = sql + " user_valid=" +  userStatus;
+            } else {
+                sql = sql + " user_valid IS NOT NULL";
+            }
+            sql += " AND ";
+            if ( null != userName && userName.length() != 0) {
+                sql = sql + " user_name=\"" +  userName  + "\"";
+            } else {
+                sql = sql + " user_name IS NOT NULL";
+            }
+            sql += " AND ";
+            if ( null != dateLastLogined && dateLastLogined.length() != 0) {
+                sql = sql + " user_last_seen=\"" +  dateLastLogined  + "\"";
+            } else {
+                sql = sql + " user_last_seen IS NOT NULL";
+            }
+            sql += " AND ";
+            if ( null != dateRegister && dateRegister.length() != 0) {
+                sql = sql + "user_register_date=\"" +  dateRegister  + "\"";
+            } else {
+                sql = sql + "user_register_date IS NOT NULL";
+            }
+
+            if ( null != dateDealed && dateDealed.length() != 0) {
+                sql += " AND ";
+                sql = sql + " user_last_order_date=\"" +  dateDealed  + "\"";
+            }
+
+//            //预编译
+//            PreparedStatement ptmt = (PreparedStatement) myConn.prepareStatement(sql); //预编译SQL，减少sql执行
+//
+//            //传参
+//            ptmt.setInt(1, Integer.parseInt(userId));
+//            ptmt.setInt();
+//            ptmt.setString(2, userName);
+////            ptmt.setDate(4, new Date(g.getBirthday().getTime()));
 
             //执行
-            ptmt.execute();
-            myRs = ptmt.executeQuery();
+            System.out.println(sql);
+            myRs = myStmt.executeQuery(sql);
 
-            List<User> userList = new ArrayList<>();
+            List<User> userList = new ArrayList<User>();
             User mUser = null;
 
             while (myRs.next()) {
@@ -135,13 +180,14 @@ public class UserDbUtil extends DbUtil {
                         .setUserName(myRs.getString("user_name"))
                         .setUserPsw(myRs.getString("user_psw"))
                         .setUserCell(myRs.getString("user_cell"))
-                        .setUserValid(myRs.getBoolean("user_valid"))
+                        .setUserValid(myRs.getInt("user_valid"))
                         .setUserEmail(myRs.getString("user_email"))
                         .setUserAdmin(myRs.getBoolean("user_admin"))
                         .setUserAvatar(myRs.getBoolean("user_avatar"))
                         .setUserBalance(myRs.getInt("user_balance"))
                         .setUserLastSeen(myRs.getDate("user_last_seen"))
-                        .setUserRegisterDate(myRs.getDate("user_register_date"));
+                        .setUserRegisterDate(myRs.getDate("user_register_date"))
+                        .setUserLastOrderDate(myRs.getDate("user_last_order_date"));
                 System.out.println("UserDbUtil:select success! User Select= " + mUser.getUserId() + " || " + mUser.getUserName());
                 userList.add(mUser);
             }

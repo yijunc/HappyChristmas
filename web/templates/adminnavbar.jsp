@@ -43,7 +43,7 @@
                             车位信息与订单管理</a>
                     </li>
                     <li class="">
-                        <a href="adminuser.jsp"><i class="fa fa-user icon-dash" aria-hidden="true"></i>
+                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-user icon-dash" aria-hidden="true"></i>
                             用户管理</a>
                     </li>
                     <li class="">

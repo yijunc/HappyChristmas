@@ -79,7 +79,7 @@
                                     "                            <li><a href=\"admindashboard.jsp\">管理主页</a></li>\n" +
                                     "                            <li><a href=\"adminrentcar.jsp\">租车信息与订单管理</a></li>\n" +
                                     "                            <li><a href=\"adminrentspace.jsp\">车位信息与订单管理</a></li>\n" +
-                                    "                            <li><a href=\"adminuser.jsp\">用户管理</a></li>\n" +
+                                    "                            <li><a href=\"/UserController?command=ADMIN_USER\">用户管理</a></li>\n" +
                                     "                            <li><a href=\"adminnews.jsp\">新闻发布与评论管理</a></li>\n" +
                                     "                        </ul>\n" +
                                     "                    </li>");

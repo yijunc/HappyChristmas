@@ -79,7 +79,7 @@ public class UserController extends HttpServlet {
         User user = new User();
         User user_db = userDbUtil.getUserByName(request.getParameter("user_name"));
         if (user_db == null
-                || !user_db.isUserValid()
+                || user_db.getUserValid()!=1
                 || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
             request.setAttribute("logged_in", false);
             //Forward to login.jsp
@@ -103,17 +103,23 @@ public class UserController extends HttpServlet {
         String dateRegister = request.getParameter("date_register");
         String dateDealed = request.getParameter("date_dealed");
 
-        System.out.println("UserController: userId="+userId);
+        System.out.println(userId);
+        System.out.println(userStatus);
+        System.out.println(userName);
+        System.out.println(dateLastLogined);
+        System.out.println(dateRegister);
+        System.out.println(dateDealed);
 
         List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, dateLastLogined, dateRegister, dateDealed);
         if (userList != null) {
-            request.setAttribute("list_num", userList.size());
+
+            request.setAttribute("empty",false);
             request.setAttribute("user_list", userList);
             //Forward to adminuser.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
             dispatcher.forward(request, response);
         } else {
-            request.setAttribute("list_num", 0);
+            request.setAttribute("empty", true);
             //Forword to adminuser.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
             dispatcher.forward(request, response);
