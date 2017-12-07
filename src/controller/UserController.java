@@ -4,12 +4,14 @@ import bean.User;
 import model.UserDbUtil;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -79,7 +81,7 @@ public class UserController extends HttpServlet {
         User user = new User();
         User user_db = userDbUtil.getUserByName(request.getParameter("user_name"));
         if (user_db == null
-                || user_db.getUserValid()!=1
+                || user_db.getUserValid() != 1
                 || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
             request.setAttribute("logged_in", false);
             //Forward to login.jsp
@@ -103,17 +105,26 @@ public class UserController extends HttpServlet {
         String dateRegister = request.getParameter("date_register");
         String dateDealed = request.getParameter("date_dealed");
 
-        System.out.println(userId);
-        System.out.println(userStatus);
-        System.out.println(userName);
-        System.out.println(dateLastLogined);
-        System.out.println(dateRegister);
-        System.out.println(dateDealed);
+        if (userName != null) {
+            // 编码，解决中文乱码
+            String str = URLEncoder.encode(userName, "utf-8");
+            // 设置 name 和 url cookie
+            Cookie name = new Cookie("user_name", str);
+
+            // 设置cookie过期时间为24小时。
+            name.setMaxAge(60 * 60 * 24);
+
+            // 在响应头部添加cookie
+            response.addCookie(name);
+            System.out.println("cookie:"+str);
+        }
+
 
         List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, dateLastLogined, dateRegister, dateDealed);
+
         if (userList != null) {
 
-            request.setAttribute("empty",false);
+            request.setAttribute("empty", false);
             request.setAttribute("user_list", userList);
             //Forward to adminuser.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");

@@ -117,12 +117,12 @@ public class UserDbUtil extends DbUtil {
             String sql = "select * from 2017j2ee.user WHERE";
 //                    " user_id=? AND user_valid=? AND user_name=?";
 
-            System.out.println(userId);
-            System.out.println(userStatus);
-            System.out.println(userName);
-            System.out.println(dateLastLogined);
-            System.out.println(dateRegister);
-            System.out.println(dateDealed);
+//            System.out.println(userId);
+//            System.out.println(userStatus);
+//            System.out.println(userName);
+//            System.out.println(dateLastLogined);
+//            System.out.println(dateRegister);
+//            System.out.println(dateDealed);
 
 
             SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
@@ -173,7 +173,7 @@ public class UserDbUtil extends DbUtil {
 ////            ptmt.setDate(4, new Date(g.getBirthday().getTime()));
 
             //执行
-            System.out.println(sql);
+            System.out.println("sql:"+sql);
             myRs = myStmt.executeQuery(sql);
 
             List<User> userList = new ArrayList<User>();
@@ -192,7 +192,7 @@ public class UserDbUtil extends DbUtil {
                         .setUserLastSeen(myRs.getDate("user_last_seen"))
                         .setUserRegisterDate(myRs.getDate("user_register_date"))
                         .setUserLastOrderDate(myRs.getDate("user_last_order_date"));
-                System.out.println("UserDbUtil:select success! User Select= " + mUser.getUserId() + " || " + mUser.getUserName());
+//                System.out.println("UserDbUtil:select success! User Select= " + mUser.getUserId() + " || " + mUser.getUserName());
                 userList.add(mUser);
             }
 
