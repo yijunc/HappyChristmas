@@ -4,6 +4,7 @@ import bean.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,13 +125,16 @@ public class UserDbUtil extends DbUtil {
             System.out.println(dateDealed);
 
 
+            SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
+            SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
+
             if ( null != userId && userId.length() != 0) {
                 sql = sql + " user_id=" + userId;
             } else {
                 sql = sql + " user_id IS NOT NULL";
             }
             sql += " AND ";
-            if ( null != userStatus && userStatus.length() != 0) {
+            if ( null != userStatus && userStatus.length() != 0 && !userStatus.equals("3")) {
                 sql = sql + " user_valid=" +  userStatus;
             } else {
                 sql = sql + " user_valid IS NOT NULL";
@@ -143,20 +147,20 @@ public class UserDbUtil extends DbUtil {
             }
             sql += " AND ";
             if ( null != dateLastLogined && dateLastLogined.length() != 0) {
-                sql = sql + " user_last_seen=\"" +  dateLastLogined  + "\"";
+                sql = sql + " user_last_seen=\"" +  dateFormatTo.format(dateFormatFrom.parse(dateLastLogined))  + "\"";
             } else {
                 sql = sql + " user_last_seen IS NOT NULL";
             }
             sql += " AND ";
             if ( null != dateRegister && dateRegister.length() != 0) {
-                sql = sql + "user_register_date=\"" +  dateRegister  + "\"";
+                sql = sql + "user_register_date=\"" +  dateFormatTo.format(dateFormatFrom.parse(dateRegister))  + "\"";
             } else {
                 sql = sql + "user_register_date IS NOT NULL";
             }
 
             if ( null != dateDealed && dateDealed.length() != 0) {
                 sql += " AND ";
-                sql = sql + " user_last_order_date=\"" +  dateDealed  + "\"";
+                sql = sql + " user_last_order_date=\"" +  dateFormatTo.format(dateFormatFrom.parse(dateDealed))  + "\"";
             }
 
 //            //预编译

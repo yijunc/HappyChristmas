@@ -34,7 +34,7 @@
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <form action="/UserController" method="get" class="row">
+                            <form action="/UserController" method="POST" class="row">
                                 <input type="hidden" name="command" value="ADMIN_USER"/>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userId">用户ID</label>
@@ -45,7 +45,7 @@
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
                                         <select id="userStatus" class="select-drop" name="user_status">
-                                            <%--<option value="3">全部状态</option>--%>
+                                            <option value="3">全部状态</option>
                                             <option value="1">已激活</option>
                                             <option value="2">待审核</option>
                                             <option value="0">已冻结</option>
@@ -153,7 +153,14 @@
                                 </td>
                                 <td><%=mUser.getUserLastSeen()%>
                                 </td>
-                                <td><%=mUser.getUserLastOrderDate()%>
+                                <td>
+                                    <%
+                                        if (mUser.getUserLastOrderDate() == null) {
+                                            out.print("无最后下单时间");
+                                        } else {
+                                            out.print(mUser.getUserLastOrderDate());
+                                        }
+                                    %>
                                 </td>
                                 <%
                                     switch (mUser.getUserValid()) {
@@ -168,14 +175,14 @@
                                     case 2:%>
                                 <td><span class="label label-warning">待审核</span></td>
                                 <%
-                                        break;
+                                            break;
                                     }
                                 %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
+                                        <button type="button" class="btn btn-primary">查看用户详情</button>
+                                        <button type="button" class="btn btn-primary">审核通过</button>
+                                        <button type="button" class="btn btn-primary">冻结账户</button>
                                     </div>
                                 </td>
                             </tr>
