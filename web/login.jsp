@@ -42,6 +42,10 @@
                                 if(loggedIn != null && ! ((boolean) loggedIn)){
                                     out.print("<div class=\"alert alert-danger\" role=\"alert\"><strong>登录错误！</strong>用户名不存在 或 密码不匹配</div>");
                                 }
+                                if(session.getAttribute("is_authorized") != null && !(boolean)session.getAttribute("is_authorized")){
+                                    out.print("<div class=\"alert alert-warning\" role=\"alert\"><strong>权限错误！</strong>请登录管理员账号</div>");
+                                    session.removeAttribute("is_authorized");
+                                }
                             %>
                             <form class="loginForm" action="/UserController" method="post">
                                 <input type="hidden" name="command" value="LOGIN"/>

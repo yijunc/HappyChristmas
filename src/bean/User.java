@@ -1,33 +1,36 @@
 package bean;
 
+import java.util.Date;
+
 public class User {
     private int userId;
     private String userName;
     private String userPsw;
     private String userCell;
     private boolean userValid;
-    private int userCredit;
     private String userEmail;
     private boolean userAdmin;
     private boolean userAvatar;
     private int userBalance;
+    private Date userLastSeen;
+    private Date userRegisterDate;
 
     public User() {
     }
 
-    public User(int userId, String userName, String userPsw, String userCell, boolean userValid, int userCredit, String userEmail, boolean userAdmin, boolean userAvatar, int userBalance) {
+    public User(int userId, String userName, String userPsw, String userCell, boolean userValid, String userEmail, boolean userAdmin, boolean userAvatar, int userBalance, Date userLastSeen, Date userRegisterDate) {
         this.userId = userId;
         this.userName = userName;
         this.userPsw = userPsw;
         this.userCell = userCell;
         this.userValid = userValid;
-        this.userCredit = userCredit;
         this.userEmail = userEmail;
         this.userAdmin = userAdmin;
         this.userAvatar = userAvatar;
         this.userBalance = userBalance;
+        this.userLastSeen = userLastSeen;
+        this.userRegisterDate = userRegisterDate;
     }
-
 
     public int getUserId() {
         return userId;
@@ -69,14 +72,6 @@ public class User {
         this.userValid = userValid;
     }
 
-    public int getUserCredit() {
-        return userCredit;
-    }
-
-    public void setUserCredit(int userCredit) {
-        this.userCredit = userCredit;
-    }
-
     public String getUserEmail() {
         return userEmail;
     }
@@ -107,5 +102,21 @@ public class User {
 
     public void setUserBalance(int userBalance) {
         this.userBalance = userBalance;
+    }
+
+    public Date getUserLastSeen() {
+        return userLastSeen;
+    }
+
+    public void setUserLastSeen(Date userLastSeen) {
+        this.userLastSeen = userLastSeen;
+    }
+
+    public Date getUserRegisterDate() {
+        return userRegisterDate;
+    }
+
+    public void setUserRegisterDate(Date userRegisterDate) {
+        this.userRegisterDate = userRegisterDate;
     }
 }

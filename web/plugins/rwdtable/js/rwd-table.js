@@ -110,19 +110,19 @@
         pattern: 'priority-columns',
         stickyTableHeader: true,
         fixedNavbar: '.navbar-fixed-top',  // Is there a fixed navbar? The stickyTableHeader needs to know about it!
-        addDisplayAllBtn: true, // should it have a display-all button?
-        addFocusBtn: true,  // should it have a focus button?
+        addDisplayAllBtn: false, // should it have a display-all button?
+        addFocusBtn: false,  // should it have a focus button?
         focusBtnIcon: 'glyphicon glyphicon-screenshot',
         mainContainer: window,
         i18n: {
             focus     : 'Focus',
-            display   : 'Display',
+            display   : '选择显示列',
             displayAll: 'Display all'
         }
     };
 
     // Wrap table
-    ResponsiveTable.prototype.wrapTable = function() {        
+    ResponsiveTable.prototype.wrapTable = function() {
         this.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
         this.$tableWrapper = this.$tableScrollWrapper.parent();
     };

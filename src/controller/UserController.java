@@ -76,7 +76,6 @@ public class UserController extends HttpServlet {
         User user = new User();
         User user_db = userDbUtil.getUserByName(request.getParameter("user_name"));
         if (user_db == null
-                || user_db.getUserCredit() <= 0
                 || !user_db.isUserValid()
                 || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {
             request.setAttribute("logged_in", false);
