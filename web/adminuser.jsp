@@ -32,7 +32,8 @@
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <form action="/UserController" method="get" class="row">
+                            <form action="/UserController" method="POST" class="row">
+                                <input type="hidden" name="command" value="ADMIN_USER"/>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userId">用户ID</label>
                                     <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
@@ -41,7 +42,7 @@
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
-                                        <select  id="userStatus" class="select-drop">
+                                        <select  id="userStatus" class="select-drop" name="user_status">
                                             <option value="all">全部状态</option>
                                             <option value="activated">已激活</option>
                                             <option value="pending">等待审核</option>
@@ -50,15 +51,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="customer">用户名</label>
-                                    <input type="text" class="form-control" id="customer" placeholder="请输入用户名">
+                                    <label for="userName">用户名</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名" name="user_name">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateSelect">最后登录日期</label>
+                                    <label for="dateLastLogined">最后登录日期</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年">
+                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateLastLogined" name="date_last_logined">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -66,11 +67,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateSelect">用户注册日期</label>
+                                    <label for="dateRegister">用户注册日期</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年">
+                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateRegister" name="date_egister">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -78,11 +79,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateSelect">最后订单成交日期</label>
+                                    <label for="dateDealed">最后订单成交日期</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年">
+                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed" name="date_ealed">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -129,6 +130,30 @@
                             </tr>
                             </tfoot>
                             <tbody>
+                            <%
+                                Object obj = request.getAttribute("list_num");
+                                Object object = request.getAttribute("user_list");
+
+////                                    for (int fontSize = 1; fontSize <= 50; fontSize++){
+//                                        out.print(object);
+                            %>
+                            <%--<tr>--%>
+                                <%--<td>${}</td>--%>
+                                <%--<td>Tiger Nixon</td>--%>
+                                <%--<td>$700</td>--%>
+                                <%--<td>12/12/2017</td>--%>
+                                <%--<td>15/12/2017</td>--%>
+                                <%--<td><span class="label label-warning">Pending</span></td>--%>
+                                <%--<td>--%>
+                                    <%--<div class="btn-group">--%>
+                                        <%--<button type="button" class="btn btn-primary">View</button>--%>
+                                        <%--<button type="button" class="btn btn-primary">Edit</button>--%>
+                                        <%--<button type="button" class="btn btn-primary">Delete</button>--%>
+                                    <%--</div>--%>
+                                <%--</td>--%>
+
+                            <%--<%}%>--%>
+
                             <% for (int fontSize = 1; fontSize <= 50; fontSize++) { %>
                             <tr>
                                 <td>2475</td>

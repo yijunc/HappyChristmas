@@ -56,6 +56,9 @@ public class UserController extends HttpServlet {
                 case "LOGIN":
                     login(request, response);
                     break;
+                case "ADMIN_USER":
+                    adminUser(request, response);
+                    break;
                 default:
                     break;
             }
@@ -87,6 +90,32 @@ public class UserController extends HttpServlet {
             request.setAttribute("current_user", user_db);
             //Forword to index.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+        }
+
+    }
+
+    private void adminUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String userId = request.getParameter("user_id");
+        String userStatus = request.getParameter("user_status"); //  {all,activated,pending,suspended}
+        String userName = request.getParameter("user_name");
+        String dateLastLogined = request.getParameter("date_last_logined");
+        String dateRegister = request.getParameter("date_register");
+        String dateDealed = request.getParameter("date_dealed");
+
+        System.out.println("UserController: userId="+userId);
+
+        List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, dateLastLogined, dateRegister, dateDealed);
+        if (userList != null) {
+            request.setAttribute("list_num", userList.size());
+            request.setAttribute("user_list", userList);
+            //Forward to adminuser.jsp
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("list_num", 0);
+            //Forword to adminuser.jsp
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
             dispatcher.forward(request, response);
         }
 
