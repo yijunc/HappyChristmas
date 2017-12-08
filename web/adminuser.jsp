@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
-<%@ page import="java.net.URLDecoder" %>
+<%@ page import="bean.Search" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -35,12 +35,23 @@
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
+                            <%
+                                Boolean empty = (Boolean) request.getAttribute("empty");
+                                if (empty == null) {
+                                    empty = true;
+                                }
+                                if (!empty) {
+                                    Search searchInput = (Search) request.getAttribute("search_input");
+                            %>
                             <form action="/UserController" method="POST" class="row" id="userSearchForm">
                                 <input type="hidden" name="command" value="ADMIN_USER"/>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userId">用户ID</label>
                                     <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
-                                           name="user_id" value=<%=session.getAttribute("useradmin_user_id") == null ? "" : session.getAttribute("useradmin_user_id")%>>
+                                           name="user_id"
+                                    <%if(0!=searchInput.getSearchId()){%>
+                                    value=<%=searchInput.getSearchId()%>
+                                    <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
@@ -55,37 +66,33 @@
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userName">用户名</label>
-                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
-                                    name="user_name" value=<%=session.getAttribute("useradmin_user_name") == null ? "" : session.getAttribute("useradmin_user_name")%>>
+                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
+                                    <%--name="user_name">--%>
                                     <%--<%--%>
-                                        <%--Cookie cookie = null;--%>
-                                        <%--Cookie[] cookies = null;--%>
-                                        <%--// 获取cookies的数据,是一个数组--%>
-                                        <%--cookies = request.getCookies();--%>
-                                        <%--boolean hasUserNameRec = false;--%>
-                                        <%--if (cookies != null) {--%>
-                                            <%--for (int i = 0; i < cookies.length; i++) {--%>
-                                                <%--cookie = cookies[i];--%>
-                                                <%--if (cookie.getName().equals("user_name")) {--%>
-                                                    <%--String name = URLDecoder.decode(cookie.getValue(),"utf-8");--%>
-                                                    <%--System.out.println("参数名 : " + name);--%>
+                                    <%--Cookie cookie = null;--%>
+                                    <%--Cookie[] cookies = null;--%>
+                                    <%--// 获取cookies的数据,是一个数组--%>
+                                    <%--cookies = request.getCookies();--%>
+                                    <%--if (cookies != null) {--%>
+                                    <%--for (int i = 0; i < cookies.length; i++) {--%>
+                                    <%--cookie = cookies[i];--%>
+                                    <%--String name = cookie.getValue();--%>
+                                    <%--if (cookie.getName().equals("user_name")) {--%>
+                                    <%--out.println("参数名 : " + cookie.getValue());--%>
                                     <%--%>--%>
                                     <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                           <%--name="user_name" value=<%=name%>>--%>
+                                    <%--name="user_name" value=<%=name%>>--%>
 
                                     <%--<%--%>
-                                                    <%--hasUserNameRec = true;--%>
-                                                    <%--break;--%>
-                                                <%--}--%>
-                                            <%--}--%>
-                                        <%--}--%>
-                                        <%--if(!hasUserNameRec){--%>
+                                    <%--}--%>
+                                    <%--}--%>
+                                    <%--} else {--%>
                                     <%--%>--%>
-                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                           <%--name="user_name">--%>
-                                    <%--<%--%>
-                                        <%--}--%>
-                                    <%--%>--%>
+                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
+                                           name="user_name"
+                                           <%if(null!=searchInput.getSearchName()){%>
+                                           value=<%=searchInput.getSearchName()%>
+                                    <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
@@ -93,7 +100,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
-                                                   id="dateLastLogined" name="date_last_logined" value="">
+                                                   id="dateLastLogined" name="date_last_logined"
+                                                <%if(searchInput.getDateLastLogined()!=null){%>
+                                                   value=<%=searchInput.getDateLastLogined()%>
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -106,7 +116,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
-                                                   id="dateRegister" name="date_register" value="">
+                                                   id="dateRegister" name="date_register"
+                                                <%if(searchInput.getSearchStartDate()!=null){%>
+                                                   value=<%=searchInput.getSearchStartDate()%>
+                                                <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -119,7 +132,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed"
-                                                   name="date_dealed" value="">
+                                                   name="date_dealed"
+                                                <%if(searchInput.getSearchOrderDate()!=null){%>
+                                                   value=<%=searchInput.getSearchOrderDate()%>
+                                                       <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -127,15 +143,10 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <script type="text/javascript">
-                                        function formReset() {
-
-                                        }
-                                    </script>
-                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true" ></i>搜索&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg" onclick="formReset()">&nbsp;&nbsp;<i
+                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
                                     </button>
                                 </div>
@@ -172,13 +183,8 @@
                             </tfoot>
                             <tbody>
                             <%
-                                Boolean empty = (Boolean) request.getAttribute("empty");
-                                if (empty == null) {
-                                    empty = true;
-                                }
-                                if (!empty) {
-                                    List<User> result = (List<User>) request.getAttribute("user_list");
-                                    for (User mUser : result) { %>
+                                List<User> result = (List<User>) request.getAttribute("user_list");
+                                for (User mUser : result) { %>
                             <tr>
                                 <td><%=mUser.getUserId()%>
                                 </td>
@@ -240,4 +246,65 @@
 
 
 </body>
+<script>
+    //    $(document).ready(function () {
+    //        if (get_cookie("user_id").length != 0) {
+    //            $("input#userId").val(get_cookie("user_id"));
+    ////            alert(get_cookie("user_id"));
+    ////            delCookie("user_id");
+    //
+    //        }
+    //        if (get_cookie("user_name").length != 0) {
+    //            $("input#userName").val(get_cookie("user_name"));
+    //            alert(get_cookie("user_name"));
+    //            delCookie("user_name");
+    //        }
+    //
+    ////        if (!get_cookie("user_name").equals("\"\"")) {
+    ////            $("input#userName").val(get_cookie("user_name"));
+    ////        }
+    ////        else
+    ////            $("input#userName").val("");
+    ////        var value = $.cookie('the_cookie');
+    ////        alert(value);
+    //    });
+    //
+    //    function setCookie() {
+    //        var userId = $("input#userId").val();
+    //        var userName = $("input#userName").val();
+    //        if (userId.length != 0) {
+    //            document.cookie = "user_id=" + userId;
+    //        }
+    //        if (userName.length != 0) {
+    //            document.cookie = "user_name" + userName;
+    ////            alert("set cookie : "+userName);
+    //        }
+    ////        $.cookie('the_cookie', '默认cookie的值');
+    //    }
+    //
+    //    function get_cookie(Name) {
+    //        var search = Name + "="//查询检索的值
+    //        var returnvalue = "";//返回值
+    //        if (document.cookie.length > 0) {
+    //            sd = document.cookie.indexOf(search);
+    //            if (sd != -1) {
+    //                sd += search.length;
+    //                end = document.cookie.indexOf(";", sd);
+    //                if (end == -1)
+    //                    end = document.cookie.length;
+    //                //unescape() 函数可对通过 escape() 编码的字符串进行解码。
+    //                returnvalue = unescape(document.cookie.substring(sd, end))
+    //            }
+    //        }
+    //        return returnvalue;
+    //    }
+    //    //删除cookies
+    //    function delCookie(name) {
+    //        var exp = new Date();
+    //        exp.setTime(exp.getTime() - 1);
+    //        var cval = getCookie(name);
+    //        if (cval != null)
+    //            document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    //    }
+</script>
 </html>
