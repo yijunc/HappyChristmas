@@ -323,23 +323,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sidebarInner sidebarCategory">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Related Categories</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li><a href="#">Fast food</a></li>
-                                    <li><a href="#">Chinese restaurants</a></li>
-                                    <li><a href="#">Creole restaurants</a></li>
-                                    <li><a href="#">Seafood</a></li>
-                                    <li><a href="#">Thai restaurants</a></li>
-                                    <li><a href="#">Street food</a></li>
-                                    <li><a href="#">Japanese restaurants</a></li>
-                                    <li><a href="#">Greek restaurants</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <%--<div class="sidebarInner sidebarCategory">--%>
+                        <%--<div class="panel panel-default">--%>
+                            <%--<div class="panel-heading">Related Categories</div>--%>
+                            <%--<div class="panel-body">--%>
+                                <%--<ul class="list-unstyle categoryList">--%>
+                                    <%--<li><a href="#">Fast food</a></li>--%>
+                                    <%--<li><a href="#">Chinese restaurants</a></li>--%>
+                                    <%--<li><a href="#">Creole restaurants</a></li>--%>
+                                    <%--<li><a href="#">Seafood</a></li>--%>
+                                    <%--<li><a href="#">Thai restaurants</a></li>--%>
+                                    <%--<li><a href="#">Street food</a></li>--%>
+                                    <%--<li><a href="#">Japanese restaurants</a></li>--%>
+                                    <%--<li><a href="#">Greek restaurants</a></li>--%>
+                                <%--</ul>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </div>
             </div>
         </div>

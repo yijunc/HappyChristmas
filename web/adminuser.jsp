@@ -154,7 +154,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
                                             class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
                                     </button>
