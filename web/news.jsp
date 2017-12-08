@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="pageTitle">
-                        <h2>Blog Page</h2>
+                        <h2>新闻资讯</h2>
                     </div>
                 </div>
             </div>
@@ -101,10 +101,6 @@
                             </div>
                         </div>
                         <div class="thumbnail blogInner">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item"
-                                        src="https://www.youtube.com/embed/jdMXyXuualc"></iframe>
-                            </div>
                             <div class="caption">
                                 <h4>Nov 22, 2016 by
                                     <a href="#">Admin</a>
@@ -168,41 +164,6 @@
                                     voluptatem </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="paginationCommon blogPagination">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                      </span>
-                                    </a>
-                                </li>
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                      <span aria-hidden="true">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                      </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
                 <div class="col-sm-4 col-xs-12">

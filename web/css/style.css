@@ -6027,18 +6027,6 @@ input[type=radio]:focus,
     opacity: 1;
 }
 
-#blog-carousel-id .carousel-control.left i.icon-listy {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-#blog-carousel-id .carousel-control.right i.icon-listy {
-    position: absolute;
-    top: 50%;
-    right: 50%;
-}
-
 #blog-carousel-id .carousel-control:hover i.icon-listy {
     background-color: #2196f3;
     border-color: #2196f3;

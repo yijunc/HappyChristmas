@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>Orders</h2>
+                        <h2>网站车位出租订单管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">

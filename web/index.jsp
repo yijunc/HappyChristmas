@@ -107,23 +107,23 @@
     <section class="clearfix thingsArea">
         <div class="container">
             <div class="page-header text-center">
-                <h2>Popular Things Near You
-                    <small>This are some of most popular listing</small>
+                <h2>最新租赁信息
+                    <small>筛选出『HAPPY CHRISTMAS』平台上最新发布的信息</small>
                 </h2>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div id="thubmnailSlider" class="carousel slide thumbnailCarousel">
+                    <div id="thumbnailSlider" class="carousel slide thumbnailCarousel">
 
                         <ol class="carousel-indicators">
-                            <li data-target="#thubmnailSlider" data-slide-to="0" class="active"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="1"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="2"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="3"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="4"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="5"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="6"></li>
-                            <li data-target="#thubmnailSlider" data-slide-to="7"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="0" class="active"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="1"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="2"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="3"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="4"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="5"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="6"></li>
+                            <li data-target="#thumbnailSlider" data-slide-to="7"></li>
                         </ol>
 
                         <!-- Carousel items -->
@@ -351,9 +351,9 @@
 
                         </div>
 
-                        <a class="left carousel-control" href="#thubmnailSlider" data-slide="prev"><i
+                        <a class="left carousel-control" href="#thumbnailSlider" data-slide="prev"><i
                                 class="fa fa-angle-left" aria-hidden="true"></i></a>
-                        <a class="right carousel-control" href="#thubmnailSlider" data-slide="next"><i
+                        <a class="right carousel-control" href="#thumbnailSlider" data-slide="next"><i
                                 class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
