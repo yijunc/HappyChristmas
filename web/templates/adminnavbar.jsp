@@ -36,19 +36,15 @@
                     </li>
                     <li class="">
                         <a href="adminrentcar.jsp"><i class="fa fa-car icon-dash" aria-hidden="true"></i>
-                            租车信息与订单管理</a>
+                            租车订单管理</a>
                     </li>
                     <li class="">
                         <a href="adminrentspace.jsp"><i class="fa fa-product-hunt icon-dash" aria-hidden="true"></i>
-                            车位信息与订单管理</a>
+                            车位订单管理</a>
                     </li>
                     <li class="">
                         <a href="/UserController?command=ADMIN_USER"><i class="fa fa-user icon-dash" aria-hidden="true"></i>
                             用户管理</a>
-                    </li>
-                    <li class="">
-                        <a href="adminnews.jsp"><i class="fa fa-envelope icon-dash" aria-hidden="true"></i>
-                            新闻发布与评论管理</a>
                     </li>
                 </ul>
             </div>

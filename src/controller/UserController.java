@@ -105,19 +105,18 @@ public class UserController extends HttpServlet {
         String dateRegister = request.getParameter("date_register");
         String dateDealed = request.getParameter("date_dealed");
 
-        if (userName != null) {
-            // 编码，解决中文乱码
-            String str = URLEncoder.encode(userName, "utf-8");
-            // 设置 name 和 url cookie
-            Cookie name = new Cookie("user_name", str);
-
-            // 设置cookie过期时间为24小时。
-            name.setMaxAge(60 * 60 * 24);
-
-            // 在响应头部添加cookie
-            response.addCookie(name);
-            System.out.println("cookie:"+str);
-        }
+//        if (userName != null && userName.length() != 0) {
+//            // 编码，解决中文乱码
+//            String str = URLEncoder.encode(userName, "utf-8");
+//            System.out.println(str);
+//            // 设置 name 和 url cookie
+//            Cookie name = new Cookie("user_name", str);
+//
+//            // 设置cookie过期时间为24小时。
+//            name.setMaxAge(60 * 60 * 24);
+//            // 在响应头部添加cookie
+//            response.addCookie(name);
+//        }
 
 
         List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, dateLastLogined, dateRegister, dateDealed);

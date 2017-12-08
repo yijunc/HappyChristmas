@@ -28,21 +28,25 @@
                     <div class="banerInfo">
                         <h1>租赁. 连接. 分享</h1>
                         <p>『HAPPY CHRISTMAS』连接车主与租客，分享咨询与新闻</p>
-                        <form class="form-inline" action="listing-sidebar-map-left.html" method="">
+                        <form class="form-inline" action="" method="">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">查找</div>
+                                    <div class="input-group-addon" style="width: 30%;">查找</div>
                                     <input type="text" class="form-control" id="findItem"
-                                           placeholder="What are you looking for?">
-                                    <div class="input-group-addon addon-right"></div>
+                                           placeholder="输入您想要了解的信息">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">类别</div>
-                                    <input type="text" class="form-control" id="nearLocation" placeholder="Location">
-                                    <div class="input-group-addon addon-right"><i class="icon-listy icon-target"
-                                                                                  aria-hidden="true"></i></div>
+                                    <div class="input-group-addon" style="width: 30%;">类别</div>
+                                    <div class="contactSelect">
+                                        <select id="" class="select-drop" name="user_status" style="margin-right: 10%">
+                                            <option value="">未选择</option>
+                                            <option value="1">车辆租赁资讯</option>
+                                            <option value="2">车位租赁资讯</option>
+                                            <option value="0">新闻资讯</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">搜索 <i class="fa fa-search"

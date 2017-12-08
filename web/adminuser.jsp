@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
+<%@ page import="java.net.URLDecoder" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -34,12 +35,12 @@
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <form action="/UserController" method="POST" class="row">
+                            <form action="/UserController" method="POST" class="row" id="userSearchForm">
                                 <input type="hidden" name="command" value="ADMIN_USER"/>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userId">用户ID</label>
                                     <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
-                                           name="user_id">
+                                           name="user_id" value=<%=session.getAttribute("useradmin_user_id") == null ? "" : session.getAttribute("useradmin_user_id")%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
@@ -54,31 +55,37 @@
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userName">用户名</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
+                                    name="user_name" value=<%=session.getAttribute("useradmin_user_name") == null ? "" : session.getAttribute("useradmin_user_name")%>>
+                                    <%--<%--%>
+                                        <%--Cookie cookie = null;--%>
+                                        <%--Cookie[] cookies = null;--%>
+                                        <%--// 获取cookies的数据,是一个数组--%>
+                                        <%--cookies = request.getCookies();--%>
+                                        <%--boolean hasUserNameRec = false;--%>
+                                        <%--if (cookies != null) {--%>
+                                            <%--for (int i = 0; i < cookies.length; i++) {--%>
+                                                <%--cookie = cookies[i];--%>
+                                                <%--if (cookie.getName().equals("user_name")) {--%>
+                                                    <%--String name = URLDecoder.decode(cookie.getValue(),"utf-8");--%>
+                                                    <%--System.out.println("参数名 : " + name);--%>
+                                    <%--%>--%>
                                     <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                    <%--name="user_name">--%>
-                                    <%
-                                        Cookie cookie = null;
-                                        Cookie[] cookies = null;
-                                        // 获取cookies的数据,是一个数组
-                                        cookies = request.getCookies();
-                                        if (cookies != null) {
-                                            for (int i = 0; i < cookies.length; i++) {
-                                                cookie = cookies[i];
-                                                String name = cookie.getValue();
-                                                if (cookie.getName().equals("user_name")) {
-                                                    out.println("参数名 : " + cookie.getValue());
-                                    %>
-                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
-                                           name="user_name" value=<%=name%> >
+                                           <%--name="user_name" value=<%=name%>>--%>
 
-                                    <%
-                                            }
-                                        }
-                                    } else {
-                                    %>
-                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
-                                           name="user_name">
-                                    <%}%>
+                                    <%--<%--%>
+                                                    <%--hasUserNameRec = true;--%>
+                                                    <%--break;--%>
+                                                <%--}--%>
+                                            <%--}--%>
+                                        <%--}--%>
+                                        <%--if(!hasUserNameRec){--%>
+                                    <%--%>--%>
+                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
+                                           <%--name="user_name">--%>
+                                    <%--<%--%>
+                                        <%--}--%>
+                                    <%--%>--%>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
@@ -86,7 +93,7 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
-                                                   id="dateLastLogined" name="date_last_logined">
+                                                   id="dateLastLogined" name="date_last_logined" value="">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -99,7 +106,7 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
-                                                   id="dateRegister" name="date_register">
+                                                   id="dateRegister" name="date_register" value="">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -112,7 +119,7 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed"
-                                                   name="date_dealed">
+                                                   name="date_dealed" value="">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -120,10 +127,15 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                    <script type="text/javascript">
+                                        function formReset() {
+
+                                        }
+                                    </script>
+                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
+                                            class="fa fa-search" aria-hidden="true" ></i>搜索&nbsp;&nbsp;
                                     </button>
-                                    <button type="reset" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="formReset()">&nbsp;&nbsp;<i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
                                     </button>
                                 </div>
@@ -228,12 +240,4 @@
 
 
 </body>
-<script>
-    $(document).ready(function () {
-        remainInput();
-    }
-    function remainInput() {
-
-    }
-</script>
 </html>
