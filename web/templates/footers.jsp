@@ -69,9 +69,4 @@
 <script src="plugins/isotope/isotope.min.js"></script>
 <script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
 <script src="plugins/isotope/isotope-triger.min.js"></script>
-<%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58"></script>--%>
-<%--<script src="plugins/map/js/rich-marker.js"></script>--%>
-<%--<script src="plugins/map/js/infobox_packed.js"></script>--%>
-<%--<script src="js/single-map.js"></script>--%>
-<%--<script src="js/map.js"></script>--%>
 <script src="js/custom.js"></script>

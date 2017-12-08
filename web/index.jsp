@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon" style="width: 30%;">类别</div>
-                                    <div class="contactSelect">
+                                    <div class="searchSelectboxes">
                                         <select id="" class="select-drop" name="user_status" style="margin-right: 10%">
                                             <option value="">未选择</option>
                                             <option value="1">车辆租赁资讯</option>

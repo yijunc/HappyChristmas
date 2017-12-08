@@ -16,7 +16,6 @@
     <link href="plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
     <link href="plugins/isotope/isotope.min.css" rel="stylesheet">
-    <link href="plugins/map/css/map.css" rel="stylesheet">
 
     <!-- CUSTOM CSS -->
     <link href="css/style.css" rel="stylesheet">
