@@ -16,9 +16,6 @@ public class User {
     private int userBalance;
     private Date userLastSeen;
     private Date userRegisterDate;
-
-
-
     private Date userLastOrderDate;
 
     public User() {

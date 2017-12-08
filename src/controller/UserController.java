@@ -1,10 +1,13 @@
 package controller;
 
+import bean.Search;
 import bean.User;
 import model.UserDbUtil;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -22,9 +25,12 @@ import javax.sql.DataSource;
  */
 @WebServlet("/UserController")
 public class UserController extends HttpServlet {
+    private final static String TAG = "UserController";
     private static final long serialVersionUID = 1L;
-
     private UserDbUtil userDbUtil;
+
+    SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
+    SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
 
     @Resource(name = "jdbc/2017J2EE")
     private DataSource dataSource;
@@ -105,6 +111,28 @@ public class UserController extends HttpServlet {
         String dateRegister = request.getParameter("date_register");
         String dateDealed = request.getParameter("date_dealed");
 
+        Search mSearch = new Search();
+        if (null != userId && userId.length() != 0) {
+            System.out.println(TAG+":mSearch userId= "+ userId);
+            mSearch.setSearchId(Integer.parseInt(userId));
+        }
+        if (null != userStatus) {
+            mSearch.setSearchStatus(Integer.parseInt(userStatus));
+
+        }
+        if (null != userName && userName.length() != 0) {
+            mSearch.setSearchName(userName);
+        }
+        if (null != dateLastLogined && dateLastLogined.length() != 0) {
+            mSearch.setDateLastLogined(dateLastLogined);
+        }
+        if (null != dateRegister && dateRegister.length() != 0) {
+            mSearch.setSearchStartDate(dateRegister);
+        }
+        if (null != dateDealed && dateDealed.length() != 0) {
+            mSearch.setSearchOrderDate(dateDealed);
+        }
+
 //        if (userName != null) {
 //            // 编码，解决中文乱码
 //            String str = URLEncoder.encode(userName, "utf-8");
@@ -126,6 +154,7 @@ public class UserController extends HttpServlet {
 
             request.setAttribute("empty", false);
             request.setAttribute("user_list", userList);
+            request.setAttribute("search_input", mSearch);
             //Forward to adminuser.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
             dispatcher.forward(request, response);
