@@ -113,7 +113,7 @@ public class UserController extends HttpServlet {
 
         Search mSearch = new Search();
         if (null != userId && userId.length() != 0) {
-            System.out.println(TAG+":mSearch userId= "+ userId);
+            System.out.println(TAG + ":mSearch userId= "+ userId);
             mSearch.setSearchId(Integer.parseInt(userId));
         }
         if (null != userStatus) {

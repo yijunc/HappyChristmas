@@ -4977,6 +4977,7 @@ figure:hover .overlay {
 .resultBar {
     display: block;
     padding-bottom: 15px;
+    margin-top: 30px;
     margin-bottom: 25px;
     border-bottom: 1px solid #e5e5e5;
 }
