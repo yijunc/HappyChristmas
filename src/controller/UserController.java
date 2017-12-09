@@ -26,9 +26,6 @@ public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDbUtil userDbUtil;
 
-    SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
-    SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
-
     @Resource(name = "jdbc/2017J2EE")
     private DataSource dataSource;
 
@@ -110,7 +107,7 @@ public class UserController extends HttpServlet {
 
         UserSearch mUserSearch = new UserSearch();
         if (null != userId && userId.length() != 0) {
-            System.out.println(TAG + ":mUserSearch userId= "+ userId);
+            System.out.println(TAG + ":mUserSearch userId= " + userId);
             mUserSearch.setSearchId(Integer.parseInt(userId));
         }
         if (null != userStatus) {
@@ -148,7 +145,6 @@ public class UserController extends HttpServlet {
         List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, dateLastLogined, dateRegister, dateDealed);
 
         if (userList != null) {
-
             request.setAttribute("empty", false);
             request.setAttribute("user_list", userList);
             request.setAttribute("search_input", mUserSearch);
