@@ -47,8 +47,8 @@
                             用户管理</a>
                     </li>
                     <li class="">
-                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-car" aria-hidden="true"></i>
-                            车辆管理</a>
+                        <a href="admincar.jsp"><i class="fa fa-car" aria-hidden="true"></i>
+                            租车信息管理</a>
                     </li>
                     <li class="">
                         <a href="/UserController?command=ADMIN_USER"><i class="fa fa-building icon-dash" aria-hidden="true"></i></i>
