@@ -52,7 +52,7 @@
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="mm/dd/yyyy">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="mm/dd/yyyy">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -76,12 +76,15 @@
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="mm/dd/yyyy">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label for="customer">车辆ID</label>
+                                    <input type="text" class="form-control" id="order" placeholder="Customer">
+                                </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderStatus">订单状态</label>
                                     <input type="text" class="form-control" id="orderStatus" placeholder="做成选择">
@@ -105,12 +108,13 @@
                             <thead>
                             <tr>
                                 <th>订单ID</th>
-                                <th data-priority="">订单顾客名</th>
-                                <th data-priority="">订单发布者</th>
+                                <th data-priority="2">订单顾客名</th>
+                                <th data-priority="2">订单发布者</th>
                                 <th data-priority="3">订单金额</th>
-                                <th data-priority="2">订单下单时间</th>
-                                <th data-priority="6">订单开始时间</th>
-                                <th data-priority="6">订单结束时间</th>
+                                <th data-priority="4">订单下单时间</th>
+                                <th data-priority="4">订单开始时间</th>
+                                <th data-priority="4">订单结束时间</th>
+                                <th data-priority="3">车辆ID</th>
                                 <th data-priority="3">订单状态</th>
                                 <th data-priority="2">操作</th>
                             </tr>
@@ -124,6 +128,7 @@
                                 <th>订单下单时间</th>
                                 <th>订单开始时间</th>
                                 <th>订单结束时间</th>
+                                <th>车辆ID</th>
                                 <th>订单状态</th>
                                 <th>操作</th>
                             </tr>
@@ -131,17 +136,19 @@
                             <tbody>
                             <tr>
                                 <td>2475</td>
-                                <td>Tiger Nixon</td>
+                                <td>Tiger Nixon 跳转到用户管理界面</td>
+                                <td>Tiger Nixon 跳转到用户管理界面</td>
                                 <td>$700</td>
                                 <td>12/12/2017</td>
                                 <td>12/12/2017</td>
                                 <td>15/12/2017</td>
+                                <td>123456 跳转到车辆管理界面</td>
                                 <td><span class="label label-warning">Pending</span></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
+                                        <button type="button" class="btn btn-primary">查看订单详情</button>
+                                        <button type="button" class="btn btn-primary">修改订单内容</button>
+                                        <button type="button" class="btn btn-primary">删除订单</button>
                                     </div>
                                 </td>
                             </tr>
