@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by zhaoning on 2017/12/9.
  */
-public class Search {
+public class UserSearch {
     private int searchId;
     private String searchName;
     private int searchStatus;
@@ -18,14 +18,14 @@ private String searchOrderDate;
     private String searchEndDate;
     private String dateLastLogined;
 
-    public Search() {
+    public UserSearch() {
     }
 
     public int getSearchId() {
         return searchId;
     }
 
-    public Search setSearchId(int searchId) {
+    public UserSearch setSearchId(int searchId) {
         this.searchId = searchId;
         return this;
     }
@@ -34,7 +34,7 @@ private String searchOrderDate;
         return searchName;
     }
 
-    public Search setSearchName(String searchName) {
+    public UserSearch setSearchName(String searchName) {
         this.searchName = searchName;
         return this;
     }
@@ -43,7 +43,7 @@ private String searchOrderDate;
         return searchStatus;
     }
 
-    public Search setSearchStatus(int searchStatus) {
+    public UserSearch setSearchStatus(int searchStatus) {
         this.searchStatus = searchStatus;
         return this;
     }
@@ -52,7 +52,7 @@ private String searchOrderDate;
         return searchBalance;
     }
 
-    public Search setSearchBalance(int searchBalance) {
+    public UserSearch setSearchBalance(int searchBalance) {
         this.searchBalance = searchBalance;
         return this;
     }
@@ -61,7 +61,7 @@ private String searchOrderDate;
         return searchOrderDate;
     }
 
-    public Search setSearchOrderDate(String searchOrderDate) {
+    public UserSearch setSearchOrderDate(String searchOrderDate) {
         this.searchOrderDate = searchOrderDate;
         return this;
     }
@@ -70,7 +70,7 @@ private String searchOrderDate;
         return searchStartDate;
     }
 
-    public Search setSearchStartDate(String searchStartDate) {
+    public UserSearch setSearchStartDate(String searchStartDate) {
         this.searchStartDate = searchStartDate;
         return this;
     }
@@ -79,7 +79,7 @@ private String searchOrderDate;
         return searchEndDate;
     }
 
-    public Search setSearchEndDate(String searchEndDate) {
+    public UserSearch setSearchEndDate(String searchEndDate) {
         this.searchEndDate = searchEndDate;
         return this;
     }
@@ -88,7 +88,7 @@ private String searchOrderDate;
         return dateLastLogined;
     }
 
-    public Search setDateLastLogined(String dateLastLogined) {
+    public UserSearch setDateLastLogined(String dateLastLogined) {
         this.dateLastLogined = dateLastLogined;
         return this;
     }

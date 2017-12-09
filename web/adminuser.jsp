@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
-<%@ page import="bean.Search" %>
+<%@ page import="bean.UserSearch" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -41,7 +41,7 @@
                                     empty = true;
                                 }
                                 if (!empty) {
-                                    Search searchInput = (Search) request.getAttribute("search_input");
+                                    UserSearch userSearchInput = (UserSearch) request.getAttribute("search_input");
                             %>
                             <form action="/UserController" method="POST" class="row" id="userSearchForm">
                                 <input type="hidden" name="command" value="ADMIN_USER"/>
@@ -49,8 +49,8 @@
                                     <label for="userId">用户ID</label>
                                     <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
                                            name="user_id"
-                                    <%if(0!=searchInput.getSearchId()){%>
-                                    value=<%=searchInput.getSearchId()%>
+                                    <%if(0!=userSearchInput.getSearchId()){%>
+                                    value=<%=userSearchInput.getSearchId()%>
                                     <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
@@ -90,8 +90,8 @@
                                     <%--%>--%>
                                     <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
                                            name="user_name"
-                                           <%if(null!=searchInput.getSearchName()){%>
-                                           value=<%=searchInput.getSearchName()%>
+                                           <%if(null!=userSearchInput.getSearchName()){%>
+                                           value=<%=userSearchInput.getSearchName()%>
                                     <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
@@ -101,8 +101,8 @@
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
                                                    id="dateLastLogined" name="date_last_logined"
-                                                <%if(searchInput.getDateLastLogined()!=null){%>
-                                                   value=<%=searchInput.getDateLastLogined()%>
+                                                <%if(userSearchInput.getDateLastLogined()!=null){%>
+                                                   value=<%=userSearchInput.getDateLastLogined()%>
                                                        <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -117,8 +117,8 @@
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
                                                    id="dateRegister" name="date_register"
-                                                <%if(searchInput.getSearchStartDate()!=null){%>
-                                                   value=<%=searchInput.getSearchStartDate()%>
+                                                <%if(userSearchInput.getSearchStartDate()!=null){%>
+                                                   value=<%=userSearchInput.getSearchStartDate()%>
                                                 <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -133,8 +133,8 @@
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed"
                                                    name="date_dealed"
-                                                <%if(searchInput.getSearchOrderDate()!=null){%>
-                                                   value=<%=searchInput.getSearchOrderDate()%>
+                                                <%if(userSearchInput.getSearchOrderDate()!=null){%>
+                                                   value=<%=userSearchInput.getSearchOrderDate()%>
                                                        <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
