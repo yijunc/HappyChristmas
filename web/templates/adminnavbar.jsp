@@ -31,20 +31,28 @@
             <div class="collapse navbar-collapse navbar-dash">
                 <ul class="nav navbar-nav mr0">
                     <li class="active">
-                        <a href="admindashboard.jsp"><i class="fa fa-tachometer icon-dash" aria-hidden="true"></i>
+                        <a href="admindashboard.jsp"><i class="fa fa-tachometer" aria-hidden="true"></i>
                             管理主页</a>
                     </li>
                     <li class="">
-                        <a href="adminrentcar.jsp"><i class="fa fa-car icon-dash" aria-hidden="true"></i>
+                        <a href="adminrentcar.jsp"><i class="fa fa-list-ul" aria-hidden="true"></i></i></i>
                             租车订单管理</a>
                     </li>
                     <li class="">
-                        <a href="adminrentspace.jsp"><i class="fa fa-product-hunt icon-dash" aria-hidden="true"></i>
+                        <a href="adminrentspace.jsp"><i class="fa fa-product-hunt" aria-hidden="true"></i>
                             车位订单管理</a>
                     </li>
                     <li class="">
-                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-user icon-dash" aria-hidden="true"></i>
+                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-user" aria-hidden="true"></i>
                             用户管理</a>
+                    </li>
+                    <li class="">
+                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-car" aria-hidden="true"></i>
+                            车辆管理</a>
+                    </li>
+                    <li class="">
+                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-building icon-dash" aria-hidden="true"></i></i>
+                            车库管理</a>
                     </li>
                 </ul>
             </div>
