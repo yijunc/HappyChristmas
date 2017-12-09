@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
-<%@ page import="bean.Search" %>
+<%@ page import="bean.UserSearch" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator

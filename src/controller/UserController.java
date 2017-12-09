@@ -1,20 +1,17 @@
 package controller;
 
-import bean.Search;
+import bean.UserSearch;
 import bean.User;
 import model.UserDbUtil;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -111,26 +108,26 @@ public class UserController extends HttpServlet {
         String dateRegister = request.getParameter("date_register");
         String dateDealed = request.getParameter("date_dealed");
 
-        Search mSearch = new Search();
+        UserSearch mUserSearch = new UserSearch();
         if (null != userId && userId.length() != 0) {
-            System.out.println(TAG + ":mSearch userId= "+ userId);
-            mSearch.setSearchId(Integer.parseInt(userId));
+            System.out.println(TAG + ":mUserSearch userId= "+ userId);
+            mUserSearch.setSearchId(Integer.parseInt(userId));
         }
         if (null != userStatus) {
-            mSearch.setSearchStatus(Integer.parseInt(userStatus));
+            mUserSearch.setSearchStatus(Integer.parseInt(userStatus));
 
         }
         if (null != userName && userName.length() != 0) {
-            mSearch.setSearchName(userName);
+            mUserSearch.setSearchName(userName);
         }
         if (null != dateLastLogined && dateLastLogined.length() != 0) {
-            mSearch.setDateLastLogined(dateLastLogined);
+            mUserSearch.setDateLastLogined(dateLastLogined);
         }
         if (null != dateRegister && dateRegister.length() != 0) {
-            mSearch.setSearchStartDate(dateRegister);
+            mUserSearch.setSearchStartDate(dateRegister);
         }
         if (null != dateDealed && dateDealed.length() != 0) {
-            mSearch.setSearchOrderDate(dateDealed);
+            mUserSearch.setSearchOrderDate(dateDealed);
         }
 
 //        if (userName != null) {
@@ -154,7 +151,7 @@ public class UserController extends HttpServlet {
 
             request.setAttribute("empty", false);
             request.setAttribute("user_list", userList);
-            request.setAttribute("search_input", mSearch);
+            request.setAttribute("search_input", mUserSearch);
             //Forward to adminuser.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
             dispatcher.forward(request, response);
