@@ -152,13 +152,13 @@ public class UserController extends HttpServlet {
             request.setAttribute("empty", false);
             request.setAttribute("user_list", userList);
             request.setAttribute("search_input", mUserSearch);
-            //Forward to adminuser.jsp
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
+            //Forward to adminUser.jsp
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/adminUser.jsp");
             dispatcher.forward(request, response);
         } else {
             request.setAttribute("empty", true);
-            //Forword to adminuser.jsp
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/adminuser.jsp");
+            //Forword to adminUser.jsp
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/adminUser.jsp");
             dispatcher.forward(request, response);
         }
 

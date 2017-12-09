@@ -1,7 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
 <%@ page import="bean.UserSearch" %>
-<%@ page import="bean.UserSearch" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -22,7 +21,7 @@
 <div class="main-wrapper">
     <header id="pageTop" class="header">
         <%@include file="templates/navbars.jsp" %>
-        <%@include file="templates/adminnavbar.jsp" %>
+        <%@include file="templates/adminNavbar.jsp" %>
     </header>
 
 

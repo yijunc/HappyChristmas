@@ -18,7 +18,7 @@
 <div class="main-wrapper">
     <header id="pageTop" class="header">
         <%@include file="templates/navbars.jsp" %>
-        <%@include file="templates/adminnavbar.jsp" %>
+        <%@include file="templates/adminNavbar.jsp" %>
     </header>
 
     <!-- DASHBOARD ORDERS SECTION -->

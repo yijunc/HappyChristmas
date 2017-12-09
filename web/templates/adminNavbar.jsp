@@ -31,15 +31,15 @@
             <div class="collapse navbar-collapse navbar-dash">
                 <ul class="nav navbar-nav mr0">
                     <li class="active">
-                        <a href="admindashboard.jsp"><i class="fa fa-tachometer" aria-hidden="true"></i>
+                        <a href="adminDashboard.jsp"><i class="fa fa-tachometer" aria-hidden="true"></i>
                             管理主页</a>
                     </li>
                     <li class="">
-                        <a href="adminrentcar.jsp"><i class="fa fa-list-ul" aria-hidden="true"></i></i></i>
+                        <a href="adminRentCar.jsp"><i class="fa fa-list-ul" aria-hidden="true"></i></i></i>
                             租车订单管理</a>
                     </li>
                     <li class="">
-                        <a href="adminrentspace.jsp"><i class="fa fa-product-hunt" aria-hidden="true"></i>
+                        <a href="adminRentSpace.jsp"><i class="fa fa-product-hunt" aria-hidden="true"></i>
                             车位订单管理</a>
                     </li>
                     <li class="">
@@ -47,7 +47,7 @@
                             用户管理</a>
                     </li>
                     <li class="">
-                        <a href="admincar.jsp"><i class="fa fa-car" aria-hidden="true"></i>
+                        <a href="admincCar.jsp"><i class="fa fa-car" aria-hidden="true"></i>
                             租车信息管理</a>
                     </li>
                     <li class="">

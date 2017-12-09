@@ -68,7 +68,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-3 col-xs-12">
-                    <a href="rentcar.jsp" class="interestContent">
+                    <a href="rentCar.jsp" class="interestContent">
 					<span>
 						<i class="fa fa-car fa-3x"></i>
 						租车分享
@@ -76,7 +76,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12">
-                    <a href="rentspace.jsp" class="interestContent">
+                    <a href="rentSpace.jsp" class="interestContent">
 					<span>
 						<i class="fa fa-product-hunt fa-3x" aria-hidden="true"></i>
 						车位预定

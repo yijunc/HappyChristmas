@@ -63,11 +63,11 @@
                            role="button" aria-haspopup="true" aria-expanded="false">租车信息 <i
                                 class="fa fa-angle-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="rentcar.jsp">我要租车-查询车辆信息</a></li>
-                            <li><a href="addcar.jsp">我要出租-填写车辆信息</a></li>
+                            <li><a href="rentCar.jsp">我要租车-查询车辆信息</a></li>
+                            <li><a href="addCar.jsp">我要出租-填写车辆信息</a></li>
                         </ul>
                     </li>
-                    <li class=""><a href="rentspace.jsp">车位信息 </a></li>
+                    <li class=""><a href="rentSpace.jsp">车位信息 </a></li>
                     <li class=""><a href="news.jsp">新闻中心 </a></li>
                     <%
                         if (currentUser != null && currentUser.isUserAdmin()) {
@@ -76,12 +76,12 @@
                                     "                           role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">管理员网站管理 <i\n" +
                                     "                                class=\"fa fa-angle-down\" aria-hidden=\"true\"></i></a>\n" +
                                     "                        <ul class=\"dropdown-menu dropdown-menu-right\">\n" +
-                                    "                            <li><a href=\"admindashboard.jsp\">管理主页</a></li>\n" +
-                                    "                            <li><a href=\"adminrentcar.jsp\">租车订单管理</a></li>\n" +
-                                    "                            <li><a href=\"adminrentspace.jsp\">车位订单管理</a></li>\n" +
+                                    "                            <li><a href=\"adminDashboard.jsp\">管理主页</a></li>\n" +
+                                    "                            <li><a href=\"adminRentCar.jsp\">租车订单管理</a></li>\n" +
+                                    "                            <li><a href=\"adminRentSpace.jsp\">车位订单管理</a></li>\n" +
                                     "                            <li><a href=\"/UserController?command=ADMIN_USER\">用户管理</a></li>\n" +
-                                    "                            <li><a href=\"admincar.jsp\">租车信息管理</a></li>\n" +
-                                    "                            <li><a href=\"adminspace.jsp\">车库管理</a></li>\n" +
+                                    "                            <li><a href=\"admincCar.jsp\">租车信息管理</a></li>\n" +
+                                    "                            <li><a href=\"adminSpace.jsp\">车库管理</a></li>\n" +
                                     "                        </ul>\n" +
                                     "                    </li>");
                         }
