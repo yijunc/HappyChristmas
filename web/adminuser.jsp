@@ -56,7 +56,7 @@
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
-                                        <select id="userStatus" class="select-drop" name="user_status" size="1">
+                                        <select id="userStatus" class="select-drop" name="user_status" size="1" multiple="false">
                                             <option value="3">全部状态</option>
                                             <option value="1">已激活</option>
                                             <option value="2">待审核</option>
