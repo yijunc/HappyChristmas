@@ -300,7 +300,7 @@
     ////        $.cookie('the_cookie', '默认cookie的值');
     //    }
     //    function get_cookie(Name) {
-    //        var search = Name + "="//查询检索的值
+    //        var search = Name + "="//±查询检索的值
     //        var returnvalue = "";//返回值
     //        if (document.cookie.length > 0) {
     //            sd = document.cookie.indexOf(search);
