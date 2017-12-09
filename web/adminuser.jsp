@@ -56,7 +56,7 @@
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
-                                        <select id="userStatus" class="select-drop" name="user_status">
+                                        <select id="userStatus" class="select-drop" name="user_status" size="1">
                                             <option value="3">全部状态</option>
                                             <option value="1">已激活</option>
                                             <option value="2">待审核</option>
@@ -146,9 +146,27 @@
                                     <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
                                             class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()" >&nbsp;&nbsp;<i
+                                            class="fa fa-circle-o" aria-hidden="true" ></i>清空&nbsp;&nbsp;
                                     </button>
+                                    <script>
+                                        function re_set() {
+                                            $("input#userId").val("");
+                                            // $("#userStatus").val("2");
+                                            $("#userStatus").find("option:selected").attr("selected",false);
+                                            $("#userStatus option[value='3']").attr("selected",true);
+                                            // $("#userStatus").find("option:selected").text="hehe";
+                                            // parent.$("#userStatus").load(location.href+"#userStatus");
+                                            // $("#userStatus").attr("value",'3');
+                                            // $("#userStatus").get(0).selectedIndex=0; //设置Select索引值为0的项选中
+                                            console.log("select: "+$("#userStatus").val());
+                                            console.log("select option: "+$("#userStatus").find("option:selected").text());
+                                            $("input#userName").val("");
+                                            $("input#dateLastLogined").val("");
+                                            $("input#dateRegister").val("");
+                                            $("input#dateDealed").val("");
+                                        }
+                                    </script>
                                 </div>
                             </form>
                         </div>
