@@ -146,7 +146,7 @@
                                     <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
                                             class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
+                                    <button type="reset" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
                                     </button>
                                 </div>
