@@ -11,7 +11,7 @@
 <%@include file="/templates/headers.jsp" %>
 
 <head>
-    <title>网站主页--HAPPY CHRISTMAS</title>
+    <title>HAPPY CHRISTMAS主页</title>
 </head>
 <body class="body-wrapper">
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>

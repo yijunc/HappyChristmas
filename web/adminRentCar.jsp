@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="bean.CarOrder" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -10,7 +11,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <header>
-    <title>车位信息与订单管理</title>
+    <title>租赁出租订单管理</title>
 </header>
 
 <body class="body-wrapper">
@@ -27,30 +28,31 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>网站车辆租赁出租订单管理</h2>
+                        <h2><b>HC</b>租赁出租订单管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
-                        <div class="profileIntro">
-                            <div class="row">
+                        <form action="/CarOrderController" method="post" class="row">
+                            <input type="hidden" name="command" value="ADMIN_CAR_ORDER">
+                            <div class="profileIntro">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="orderId">订单ID</label>
-                                    <input type="text" class="form-control" id="orderId" placeholder="Order ID">
+                                    <label for="orderID">订单ID</label>
+                                    <input type="text" class="form-control" id="orderID" name="order_id" placeholder="请输入订单ID">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="customer">订单顾客名</label>
-                                    <input type="text" class="form-control" id="customer" placeholder="Customer">
+                                    <label for="orderTaker">订单顾客名</label>
+                                    <input type="text" class="form-control" id="orderTaker" placeholder="请输入用户名" name="order_taker">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="customer">订单发布者</label>
-                                    <input type="text" class="form-control" id="customer" placeholder="Customer">
+                                    <label for="orderPoster">订单发布者</label>
+                                    <input type="text" class="form-control" id="orderPoster" placeholder="请输入用户名" name="order_poster">
                                 </div>
 
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateAdded">订单下单时间</label>
+                                    <label>订单下单时间</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年" name="order_date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -58,11 +60,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateModified">订单开始时间</label>
+                                    <label>订单开始时间</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年" name="order_start">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -70,11 +72,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateModified">订单完成时间</label>
+                                    <label>订单完成时间</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年" name="order_end">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -82,25 +84,50 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="customer">车辆ID</label>
-                                    <input type="text" class="form-control" id="order" placeholder="Customer">
+                                    <label for="orderCarId">车辆ID</label>
+                                    <input type="text" class="form-control" id="orderCarId" placeholder="请输入车辆ID" name="order_car_id">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderStatus">订单状态</label>
-                                    <input type="text" class="form-control" id="orderStatus" placeholder="做成选择">
+                                    <div class="contactSelect">
+                                        <select id="orderStatus" class="select-drop" name="order_status" size="1"
+                                                multiple="false">
+                                            <option value="all">不限</option>
+                                            <option value="1">已完成</option>
+                                            <option value="0">已取消</option>
+                                            <option value="2">正在进行中</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
-                                    <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+
+                <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
+                    <%
+                        Boolean empty = (Boolean) request.getAttribute("empty");
+                        List<CarOrder> result = null;
+                        if(empty == null){
+                            empty = true;
+                        }
+                        if (!empty) {
+                            result = (List<CarOrder>) request.getAttribute("car_order_list");
+                            out.print(result.size());
+                        }
+                        else{
+                            out.print(0);
+                        }
+                    %></span> 条记录</p>
+
                 <div class="col-xs-12">
                     <div class="table-responsive bgAdd" data-pattern="priority-columns">
                         <table id="ordersTable" class="table table-small-font table-bordered table-striped"
@@ -134,24 +161,47 @@
                             </tr>
                             </tfoot>
                             <tbody>
+                            <%
+                                for(CarOrder it : result){
+                            %>
                             <tr>
-                                <td>2475</td>
-                                <td>Tiger Nixon 跳转到用户管理界面</td>
-                                <td>Tiger Nixon 跳转到用户管理界面</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td>123456 跳转到车辆管理界面</td>
-                                <td><span class="label label-warning">Pending</span></td>
+                                <td><%=it.getmId()%></td>
+                                <td><a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%></a></td>
+                                <td><a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderPoster()%>"><%=it.getOrderPoster()%></a></td>
+                                <td><%=it.getmAmount()%></td>
+                                <td><%=it.getOrderDate()%></td>
+                                <td><%=it.getOrderStart()%></td>
+                                <td><%=it.getOrderEnd()%></td>
+                                <td><a href="/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY&car_id=<%=it.getCarId()%>"><%=it.getCarId()%></a></td>
+                                    <%
+                                        switch (it.getmStatus()){
+                                            case 0: %>
+                                <td><span class="label label-danger">已取消</span></td>
+                                    <%
+                                                break;
+                                            case 1:
+                                    %>
+                                <td><span class="label label-success">已完成</span></td>
+                                    <%
+                                                break;
+                                            case 2:
+                                    %>
+                                <td><span class="label label-warning">正在进行中</span></td>
+                                     <%
+                                            break;
+                                        }
+                                    %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">查看订单详情</button>
-                                        <button type="button" class="btn btn-primary">修改订单内容</button>
-                                        <button type="button" class="btn btn-primary">删除订单</button>
+                                        <button type="button" class="btn btn-primary">修改订单</button>
+                                        <button type="button" class="btn btn-primary">完成订单</button>
+                                        <button type="button" class="btn btn-primary">取消订单</button>
                                     </div>
                                 </td>
                             </tr>
+                            <%
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>

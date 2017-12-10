@@ -14,7 +14,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <header>
-    <title>租车信息管理--HAPPY CHRISTMAS</title>
+    <title>车辆信息管理</title>
 </header>
 
 <body class="body-wrapper">
@@ -33,6 +33,13 @@
                     <div class="dashboardPageTitle text-center">
                         <h2><b>HC</b>车辆信息管理</h2>
                     </div>
+                    <%
+                        Boolean empty = (Boolean) request.getAttribute("empty");
+                        List<CarAvailability> result = null;
+                        if (empty == null) {
+                            empty = true;
+                        }
+                    %>
                     <div class="dashboardBoxBg mb30">
                         <form action="/CarAvailabilityController" method="POST" class="row"
                               id="carAvailabilitySearchForm">
@@ -40,12 +47,12 @@
                             <div class="profileIntro">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carId">车辆ID</label><!--!!!!--1--!!!!-->
-                                    <input type="text" class="form-control" id="carId" placeholder="Car ID"
+                                    <input type="text" class="form-control" id="carId" placeholder="请输入车辆ID"
                                            name="car_id">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carOwner">车辆提供者</label><!--!!!!--2--!!!!-->
-                                    <input type="text" class="form-control" id="carOwner" placeholder="Car Owner"
+                                    <input type="text" class="form-control" id="carOwner" placeholder="请输入提供者名"
                                            name="car_owner">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
@@ -105,7 +112,7 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input id="dateStart" type="text" class="form-control"
-                                                   placeholder="mm/dd/yyyy" name="date_start">
+                                                   placeholder="月/日/年" name="date_start">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -118,7 +125,7 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input id="dateEnd" type="text" class="form-control"
-                                                   placeholder="mm/dd/yyyy" name="date_end">
+                                                   placeholder="月/日/年" name="date_end">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -136,20 +143,28 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12"
-                                     style="padding-top: 2.3%; margin-bottom: 0px; padding-bottom: 0px;">
-                                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
+                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="reset" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span>8</span>条记录</p>
+                <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
+                    <%
+                        if (!empty) {
+                            result = (List<CarAvailability>) request.getAttribute("car_available_list");
+                            out.print(result.size());
+                        }
+                        else{
+                            out.print(0);
+                        }
+                    %></span> 条记录</p>
                 <div class="col-xs-12">
                     <div class="table-responsive bgAdd" data-pattern="priority-columns">
                         <table id="ordersTable" class="table table-small-font table-bordered table-striped"
@@ -202,27 +217,17 @@
                             <%--</tr>--%>
 
                             <%
-                                Boolean empty = (Boolean) request.getAttribute("empty");
-                                if (empty == null) {
-                                    empty = true;
-                                }
                                 if (!empty) {
-                                    List<CarAvailability> result = (List<CarAvailability>) request.getAttribute("car_available_list");
-                                    for (CarAvailability item : result) {%>
+                                    for (CarAvailability item : result) {
+                            %>
                             <tr>
                                 <td><%=item.getCarId()%>
                                 </td>
-                                <td><%=item.getCarOwner()%>
-                                </td>
-                                <%--跳转到用户管理界面--%>
-                                <td><%=item.getCarBrand()%>
-                                </td>
-                                <td><%=item.getCarType()%>
-                                </td>
-                                <td><%=item.getCarSeat()%>
-                                </td>
-                                <td><%=item.getCarPriceDaily()%>
-                                </td>
+                                <td><a href="/UserController?command=ADMIN_USER&user_name=<%=item.getCarOwner()%>"><%=item.getCarOwner()%></a></td>
+                                <td><%=item.getCarBrand()%></td>
+                                <td><%=item.getCarType()%></td>
+                                <td><%=item.getCarSeat()%></td>
+                                <td><%=item.getCarPriceDaily()%></td>
                                 <td>
                                     <%
                                         if (item.getCarDateStart() == null) {

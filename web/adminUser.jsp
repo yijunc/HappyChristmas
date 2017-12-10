@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>网站用户管理</h2>
+                        <h2><b>HC</b>用户管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
@@ -57,7 +57,7 @@
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
                                         <select id="userStatus" class="select-drop" name="user_status" size="1" multiple="false">
-                                            <option value="3">全部状态</option>
+                                            <option value="3">不限</option>
                                             <option value="1">已激活</option>
                                             <option value="2">待审核</option>
                                             <option value="0">已冻结</option>
@@ -142,12 +142,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6">
-                                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
+                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()" >&nbsp;&nbsp;<i
-                                            class="fa fa-circle-o" aria-hidden="true" ></i>清空&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
                                     <script>
                                         function re_set() {
@@ -173,6 +173,18 @@
                     </div>
                 </div>
 
+
+                <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
+                    <%
+                        List<User> result = null;
+                        if (!empty) {
+                            result = (List<User>) request.getAttribute("user_list");
+                            out.print(result.size());
+                        }
+                        else{
+                            out.print(0);
+                        }
+                    %></span> 条记录</p>
                 <div class="col-xs-12">
                     <div class="table-responsive bgAdd" data-pattern="priority-columns">
                         <table id="ordersTable" class="table table-small-font table-bordered table-striped"
@@ -201,7 +213,6 @@
                             </tfoot>
                             <tbody>
                             <%
-                                List<User> result = (List<User>) request.getAttribute("user_list");
                                 for (User mUser : result) { %>
                             <tr>
                                 <td><%=mUser.getUserId()%>

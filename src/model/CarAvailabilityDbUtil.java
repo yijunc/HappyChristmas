@@ -51,25 +51,25 @@ public class CarAvailabilityDbUtil extends DbUtil {
                 sql = sql + " car_availability_car_owner IS NOT NULL";
             }
             sql += " AND ";
-            if (null != carBrand && carBrand.length() != 0 && carBrand != "all") {
+            if (null != carBrand && carBrand.length() != 0 && !carBrand.equals("all")) {
                 sql = sql + " car_availability_car_brand=\"" + carBrand + "\"";
             } else {
                 sql = sql + " car_availability_car_brand IS NOT NULL";
             }
             sql += " AND ";
-            if (null != carType && carType.length() != 0 && carType != "all") {
+            if (null != carType && carType.length() != 0 && !carType.equals("all")) {
                 sql = sql + " car_availability_type=\"" + carType + "\"";
             } else {
                 sql = sql + " car_availability_type IS NOT NULL";
             }
             sql += " AND ";
-            if (null != carSeat && carSeat.length() != 0 && carSeat != "all") {
+            if (null != carSeat && carSeat.length() != 0 && !carSeat.equals("all")) {
                 sql = sql + " car_availability_car_seat=\"" + carSeat + "\"";
             } else {
                 sql = sql + " car_availability_car_seat IS NOT NULL";
             }
             sql += " AND ";
-            if (null != carStatus && carStatus.length() != 0 && carStatus != "all") {
+            if (null != carStatus && carStatus.length() != 0 && !carStatus.equals("all")) {
                 sql = sql + " car_availability_status=\"" + carStatus + "\"";
             } else {
                 sql = sql + " car_availability_status IS NOT NULL";

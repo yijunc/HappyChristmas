@@ -77,7 +77,7 @@
                                     "                                class=\"fa fa-angle-down\" aria-hidden=\"true\"></i></a>\n" +
                                     "                        <ul class=\"dropdown-menu dropdown-menu-right\">\n" +
                                     "                            <li><a href=\"adminDashboard.jsp\">管理主页</a></li>\n" +
-                                    "                            <li><a href=\"adminRentCar.jsp\">租车订单管理</a></li>\n" +
+                                    "                            <li><a href=\"/CarOrderController?command=ADMIN_CAR_ORDER\">租车订单管理</a></li>\n" +
                                     "                            <li><a href=\"adminRentSpace.jsp\">车位订单管理</a></li>\n" +
                                     "                            <li><a href=\"/UserController?command=ADMIN_USER\">用户管理</a></li>\n" +
                                     "                            <li><a href=\"/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY\">车辆信息管理</a></li>\n" +

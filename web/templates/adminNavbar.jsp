@@ -35,7 +35,7 @@
                             管理主页</a>
                     </li>
                     <li class="">
-                        <a href="adminRentCar.jsp"><i class="fa fa-list-ul" aria-hidden="true"></i></i></i>
+                        <a href="/CarOrderController?command=ADMIN_CAR_ORDER"><i class="fa fa-list-ul" aria-hidden="true"></i></i></i>
                             租车订单管理</a>
                     </li>
                     <li class="">
@@ -51,7 +51,7 @@
                             车辆信息管理</a>
                     </li>
                     <li class="">
-                        <a href="/UserController?command=ADMIN_USER"><i class="fa fa-building icon-dash" aria-hidden="true"></i></i>
+                        <a href=""><i class="fa fa-building icon-dash" aria-hidden="true"></i></i>
                             车库管理</a>
                     </li>
                 </ul>
