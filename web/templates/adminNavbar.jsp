@@ -47,7 +47,7 @@
                             用户管理</a>
                     </li>
                     <li class="">
-                        <a href="adminCar.jsp"><i class="fa fa-car" aria-hidden="true"></i>
+                        <a href="/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY"><i class="fa fa-car" aria-hidden="true"></i>
                             车辆信息管理</a>
                     </li>
                     <li class="">

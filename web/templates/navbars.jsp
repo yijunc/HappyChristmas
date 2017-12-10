@@ -80,7 +80,7 @@
                                     "                            <li><a href=\"adminRentCar.jsp\">租车订单管理</a></li>\n" +
                                     "                            <li><a href=\"adminRentSpace.jsp\">车位订单管理</a></li>\n" +
                                     "                            <li><a href=\"/UserController?command=ADMIN_USER\">用户管理</a></li>\n" +
-                                    "                            <li><a href=\"adminCar.jsp\">租车信息管理</a></li>\n" +
+                                    "                            <li><a href=\"/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY\">车辆信息管理</a></li>\n" +
                                     "                            <li><a href=\"adminSpace.jsp\">车库管理</a></li>\n" +
                                     "                        </ul>\n" +
                                     "                    </li>");
