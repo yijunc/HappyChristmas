@@ -207,6 +207,7 @@
                                 <th data-priority="3">品牌</th>
                                 <th data-priority="3">车系</th>
                                 <th data-priority="3">车座</th>
+                                <th data-priority="3">评分/用户数</th>
                                 <th data-priority="3">金额/天</th>
                                 <th data-priority="4">开始时间</th>
                                 <th data-priority="4">结束时间</th>
@@ -221,6 +222,7 @@
                                 <th>品牌</th>
                                 <th>车系</th>
                                 <th>车座</th>
+                                <th>评分/用户数</th>
                                 <th>金额/天</th>
                                 <th>开始时间</th>
                                 <th>结束时间</th>
@@ -262,6 +264,13 @@
                                 <td><%=item.getCarType()%>
                                 </td>
                                 <td><%=item.getCarSeat()%>
+                                </td>
+                                <td>
+                                    <%
+                                        out.print(item.getCarRating());
+                                        out.print("/");
+                                        out.print(item.getCarCustomer());
+                                    %>
                                 </td>
                                 <td><%=item.getCarPriceDaily()%>
                                 </td>

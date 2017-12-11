@@ -6,6 +6,8 @@ public class Car {
     private String carOwner;
     private String carBrand;
     private int carSeat;
+    private float carRating;
+    private int carCustomer;
 
     public int getCarId() {
         return carId;
@@ -49,6 +51,24 @@ public class Car {
 
     public Car setCarSeat(int carSeat) {
         this.carSeat = carSeat;
+        return this;
+    }
+
+    public float getCarRating() {
+        return carRating;
+    }
+
+    public Car setCarRating(float carRating) {
+        this.carRating = carRating;
+        return this;
+    }
+
+    public int getCarCustomer() {
+        return carCustomer;
+    }
+
+    public Car setCarCustomer(int carCustomer) {
+        this.carCustomer = carCustomer;
         return this;
     }
 }

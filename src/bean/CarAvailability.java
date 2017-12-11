@@ -13,6 +13,8 @@ public class CarAvailability {
     private String carBrand;
     private int carSeat;
     private int carStatus;
+    private float carRating;
+    private int carCustomer;
 
     public int getmId() {
         return mId;
@@ -104,4 +106,21 @@ public class CarAvailability {
         return this;
     }
 
+    public float getCarRating() {
+        return carRating;
+    }
+
+    public CarAvailability setCarRating(float carRating) {
+        this.carRating = carRating;
+        return this;
+    }
+
+    public int getCarCustomer() {
+        return carCustomer;
+    }
+
+    public CarAvailability setCarCustomer(int carCustomer) {
+        this.carCustomer = carCustomer;
+        return this;
+    }
 }

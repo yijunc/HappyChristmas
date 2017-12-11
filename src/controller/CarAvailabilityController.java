@@ -3,6 +3,7 @@ package controller;
 import bean.CarAvailability;
 import bean.CarAvailabilitySearch;
 import model.CarAvailabilityDbUtil;
+import model.CarDbUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -19,6 +20,7 @@ import java.util.List;
 public class CarAvailabilityController extends HttpServlet {
     private final static String TAG = "CarAvailabilityController";
     private CarAvailabilityDbUtil carAvailabilityDbUtil;
+    private CarDbUtil carDbUtil;
 
     @Resource(name = "jdbc/2017J2EE")
     private DataSource dataSource;
@@ -26,9 +28,9 @@ public class CarAvailabilityController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        // create our student db util ... and pass in the conn pool / datasource
         try {
             carAvailabilityDbUtil = new CarAvailabilityDbUtil(dataSource);
+            carDbUtil = new CarDbUtil(dataSource);
         } catch (Exception exc) {
             throw new ServletException(exc);
         }
@@ -41,15 +43,18 @@ public class CarAvailabilityController extends HttpServlet {
         try {
             String theCommand = request.getParameter("command");
             // if the command is missing, then default to listing cars which are available
-            if (theCommand == null) {
-            }
-            // route to the appropriate method
-            switch (theCommand) {
-                case "ADMIN_CAR_AVAILABILITY":
-                    adminCarAvailabillty(request, response);
-                    break;
-                default:
-                    break;
+            if (theCommand != null) {
+                // route to the appropriate method
+                switch (theCommand) {
+                    case "ADMIN_CAR_AVAILABILITY":
+                        adminCarAvailability(request, response);
+                        break;
+                    case "USER_CAR_AVAILABILITY":
+                        userCarAvailability(request, response);
+                        break;
+                    default:
+                        break;
+                }
             }
 
         } catch (Exception exc) {
@@ -64,7 +69,37 @@ public class CarAvailabilityController extends HttpServlet {
         doGet(request, response);
     }
 
-    private void adminCarAvailabillty(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void userCarAvailability(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String carPrice = request.getParameter("car_price");
+        String carSeat = request.getParameter("car_seat");
+        String carBrand = request.getParameter("car_brand");
+
+        int carPriceLow = 0;
+        int carPriceHigh = 0x3f3f3f3f;
+        if (carPrice != null && carPrice.length() == 0 && carPrice.equals("all")) {
+            switch (carPrice) {
+                case "1":
+                    carPriceLow = 0;
+                    carPriceHigh = 100;
+                    break;
+                case "2":
+                    carPriceLow = 100;
+                    carPriceHigh = 200;
+                    break;
+                case "3":
+                    carPriceLow = 200;
+                    carPriceHigh = 300;
+                    break;
+            }
+        }
+        List<CarAvailability> carAvailabilityList = carAvailabilityDbUtil.getCarAvalabilityListByUser(carSeat, carBrand, carPriceLow, carPriceHigh);
+        carAvailabilityList = carDbUtil.getCarByList(carAvailabilityList);
+        request.setAttribute("car_available_list", carAvailabilityList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/rentCar.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void adminCarAvailability(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String carId = request.getParameter("car_id");
         String carOwner = request.getParameter("car_owner");
         String carBrand = request.getParameter("car_brand");
@@ -106,7 +141,7 @@ public class CarAvailabilityController extends HttpServlet {
 
         List<CarAvailability> carAvailabilityList = carAvailabilityDbUtil.getCarAvailabilityListByAdmin(carId, carOwner, carBrand,
                 carType, carSeat, carStatus, carDateStart, carDateEnd, carPrice);
-
+        carAvailabilityList = carDbUtil.getCarByList(carAvailabilityList);
         if (null != carAvailabilityList) {
             request.setAttribute("empty", false);
             request.setAttribute("car_available_list", carAvailabilityList);
