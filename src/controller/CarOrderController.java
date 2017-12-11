@@ -1,6 +1,7 @@
 package controller;
 
 import bean.CarOrder;
+import bean.CarOrderSearch;
 import model.CarOrderDbUtil;
 
 import javax.annotation.Resource;
@@ -73,13 +74,39 @@ public class CarOrderController extends HttpServlet {
         String orderCarId = request.getParameter("order_car_id");
         String orderStatus = request.getParameter("order_status");
 
+        CarOrderSearch carOrderSearch = new CarOrderSearch();
+        if(null!=orderId){
+            carOrderSearch.setmId(orderId);
+        }
+        if(null!=orderTaker){
+            carOrderSearch.setOrderTaker(orderTaker);
+        }
+        if(null!=orderPoster){
+            carOrderSearch.setOrderPoster(orderPoster);
+        }
+        if(null!=orderDate){
+            carOrderSearch.setOrderDate(orderDate);
+        }
+        if(null!=orderStart){
+            carOrderSearch.setOrderStart(orderStart);
+        }
+        if(null!=orderEnd){
+            carOrderSearch.setOrderEnd(orderEnd);
+        }
+        if(null!=orderCarId){
+            carOrderSearch.setCarId(orderCarId);
+        }
+        if(null!=orderStatus){
+            carOrderSearch.setmStatus(orderStatus);
+        }
+
         List<CarOrder> carOrderList = carOrderDbUtil.getCarOrderListByAdmin(
-                orderId, orderTaker, orderPoster, orderDate, orderStart, orderEnd, orderCarId, orderStatus
-        );
+                orderId, orderTaker, orderPoster, orderDate, orderStart, orderEnd, orderCarId, orderStatus);
 
         if (null != carOrderList) {
             request.setAttribute("empty", false);
             request.setAttribute("car_order_list", carOrderList);
+            request.setAttribute("search_input",carOrderSearch);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminRentCar.jsp");
             dispatcher.forward(request, response);
         } else {

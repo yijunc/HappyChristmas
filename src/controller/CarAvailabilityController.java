@@ -1,6 +1,7 @@
 package controller;
 
 import bean.CarAvailability;
+import bean.CarAvailabilitySearch;
 import model.CarAvailabilityDbUtil;
 
 import javax.annotation.Resource;
@@ -74,12 +75,42 @@ public class CarAvailabilityController extends HttpServlet {
         String carDateEnd = request.getParameter("date_end");
         String carPrice = request.getParameter("car_price");
 
+        CarAvailabilitySearch carAvailabilitySearch = new CarAvailabilitySearch();
+        if (null != carId && carId.length() != 0) {
+            carAvailabilitySearch.setCarId(carId);
+        }
+        if (null != carOwner && carOwner.length() != 0 && !carOwner.equals("3")) {
+            carAvailabilitySearch.setCarOwner(carOwner);
+        }
+        if (null != carBrand && carBrand.length() != 0 && !carBrand.equals("all")) {
+            carAvailabilitySearch.setCarBrand(carBrand);
+        }
+        if (null != carType && carType.length() != 0 && !carType.equals("all")) {
+            carAvailabilitySearch.setCarType(carType);
+        }
+        if (null != carSeat && carSeat.length() != 0 && !carSeat.equals("all")) {
+            carAvailabilitySearch.setCarSeat(carSeat);
+        }
+        if (null != carStatus && carStatus.length() != 0 && !carStatus.equals("all")) {
+            carAvailabilitySearch.setCarStatus(carSeat);
+        }
+        if (null != carDateStart && carDateStart.length() != 0) {
+            carAvailabilitySearch.setCarDateStart(carDateStart);
+        }
+        if (null != carDateEnd && carDateEnd.length() != 0) {
+            carAvailabilitySearch.setCarDateEnd(carDateEnd);
+        }
+        if (null != carPrice && carPrice.length() != 0 && carPrice != "all") {
+            carAvailabilitySearch.setCarPriceDaily(carPrice);
+        }
+
         List<CarAvailability> carAvailabilityList = carAvailabilityDbUtil.getCarAvailabilityListByAdmin(carId, carOwner, carBrand,
                 carType, carSeat, carStatus, carDateStart, carDateEnd, carPrice);
 
         if (null != carAvailabilityList) {
             request.setAttribute("empty", false);
             request.setAttribute("car_available_list", carAvailabilityList);
+            request.setAttribute("search_input", carAvailabilitySearch);
             //Forward to adminCar.jsp
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminCar.jsp");
             dispatcher.forward(request, response);

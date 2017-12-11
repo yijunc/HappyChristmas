@@ -46,7 +46,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
             }
             sql += " AND ";
             if (null != carOwner && carOwner.length() != 0 && !carOwner.equals("3")) {
-                sql = sql + " car_availability_car_owner=" + carOwner;
+                sql = sql + " car_availability_car_owner=\"" + carOwner + "\"";
             } else {
                 sql = sql + " car_availability_car_owner IS NOT NULL";
             }

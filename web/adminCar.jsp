@@ -1,7 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="bean.User" %>
-<%@ page import="bean.UserSearch" %>
-<%@ page import="bean.CarAvailability" %>
+<%@ page import="bean.*" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -39,6 +37,8 @@
                         if (empty == null) {
                             empty = true;
                         }
+                        if (!empty) {
+                            CarAvailabilitySearch carAvailabilitySearch = (CarAvailabilitySearch)request.getAttribute("search_input");
                     %>
                     <div class="dashboardBoxBg mb30">
                         <form action="/CarAvailabilityController" method="POST" class="row"
@@ -48,18 +48,27 @@
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carId">车辆ID</label><!--!!!!--1--!!!!-->
                                     <input type="text" class="form-control" id="carId" placeholder="请输入车辆ID"
-                                           name="car_id">
+                                           name="car_id"
+                                        <%if(null!=carAvailabilitySearch.getCarId()){%>
+                                           value=<%=carAvailabilitySearch.getCarId()%>
+                                               <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carOwner">车辆提供者</label><!--!!!!--2--!!!!-->
                                     <input type="text" class="form-control" id="carOwner" placeholder="请输入提供者名"
-                                           name="car_owner">
+                                           name="car_owner"
+                                        <%if(null!=carAvailabilitySearch.getCarOwner()){%>
+                                           value=<%=carAvailabilitySearch.getCarOwner()%>
+                                               <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carBrand">车辆品牌</label><!--!!!!--3--!!!!-->
                                     <div class="contactSelect">
                                         <select id="carBrand" class="select-drop" name="car_brand" size="1"
-                                                multiple="false">
+                                                multiple="false"
+                                                <%if(null!=carAvailabilitySearch.getCarBrand()&&carAvailabilitySearch.getCarBrand()!="all"){%>
+                                                value=<%=carAvailabilitySearch.getCarBrand()%>
+                                                    <%}%> >
                                             <option value="all">所有品牌</option>
                                             <option value="宝马">宝马</option>
                                             <option value="奔驰">奔驰</option>
@@ -112,7 +121,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input id="dateStart" type="text" class="form-control"
-                                                   placeholder="月/日/年" name="date_start">
+                                                   placeholder="月/日/年" name="date_start"
+                                                <%if(null!=carAvailabilitySearch.getCarDateStart()){%>
+                                                   value=<%=carAvailabilitySearch.getCarDateStart()%>
+                                                       <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -125,7 +137,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input id="dateEnd" type="text" class="form-control"
-                                                   placeholder="月/日/年" name="date_end">
+                                                   placeholder="月/日/年" name="date_end"
+                                                <%if(null!=carAvailabilitySearch.getCarDateEnd()){%>
+                                                   value=<%=carAvailabilitySearch.getCarDateEnd()%>
+                                                       <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -147,9 +162,17 @@
                                     <button type="submit" class="btn btn-primary btn-lg"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
+                                    <script>
+                                        function re_set() {
+                                            $("input#carId").val("");
+                                            $("input#carOwner").val("");
+                                            $("input#dateStart").val("");
+                                            $("input#dateEnd").val("");
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </form>
@@ -157,11 +180,9 @@
                 </div>
                 <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
                     <%
-                        if (!empty) {
                             result = (List<CarAvailability>) request.getAttribute("car_available_list");
                             out.print(result.size());
-                        }
-                        else{
+                        } else {
                             out.print(0);
                         }
                     %></span> 条记录</p>
@@ -223,11 +244,17 @@
                             <tr>
                                 <td><%=item.getCarId()%>
                                 </td>
-                                <td><a href="/UserController?command=ADMIN_USER&user_name=<%=item.getCarOwner()%>"><%=item.getCarOwner()%></a></td>
-                                <td><%=item.getCarBrand()%></td>
-                                <td><%=item.getCarType()%></td>
-                                <td><%=item.getCarSeat()%></td>
-                                <td><%=item.getCarPriceDaily()%></td>
+                                <td>
+                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=item.getCarOwner()%>"><%=item.getCarOwner()%>
+                                    </a></td>
+                                <td><%=item.getCarBrand()%>
+                                </td>
+                                <td><%=item.getCarType()%>
+                                </td>
+                                <td><%=item.getCarSeat()%>
+                                </td>
+                                <td><%=item.getCarPriceDaily()%>
+                                </td>
                                 <td>
                                     <%
                                         if (item.getCarDateStart() == null) {

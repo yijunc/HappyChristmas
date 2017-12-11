@@ -49,14 +49,15 @@
                                     <label for="userId">用户ID</label>
                                     <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
                                            name="user_id"
-                                    <%if(0!=userSearchInput.getSearchId()){%>
-                                    value=<%=userSearchInput.getSearchId()%>
-                                    <%}%> >
+                                        <%if(0!=userSearchInput.getSearchId()){%>
+                                           value=<%=userSearchInput.getSearchId()%>
+                                               <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
-                                        <select id="userStatus" class="select-drop" name="user_status" size="1" multiple="false">
+                                        <select id="userStatus" class="select-drop" name="user_status" size="1"
+                                                multiple="false">
                                             <option value="3">不限</option>
                                             <option value="1">已激活</option>
                                             <option value="2">待审核</option>
@@ -90,9 +91,9 @@
                                     <%--%>--%>
                                     <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
                                            name="user_name"
-                                           <%if(null!=userSearchInput.getSearchName()){%>
+                                        <%if(null!=userSearchInput.getSearchName()){%>
                                            value=<%=userSearchInput.getSearchName()%>
-                                    <%}%> >
+                                               <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
@@ -103,7 +104,7 @@
                                                    id="dateLastLogined" name="date_last_logined"
                                                 <%if(userSearchInput.getDateLastLogined()!=null){%>
                                                    value=<%=userSearchInput.getDateLastLogined()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -119,7 +120,7 @@
                                                    id="dateRegister" name="date_register"
                                                 <%if(userSearchInput.getSearchStartDate()!=null){%>
                                                    value=<%=userSearchInput.getSearchStartDate()%>
-                                                <%}%> >
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -135,7 +136,7 @@
                                                    name="date_dealed"
                                                 <%if(userSearchInput.getSearchOrderDate()!=null){%>
                                                    value=<%=userSearchInput.getSearchOrderDate()%>
-                                                       <%}%> >
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -146,21 +147,21 @@
                                     <button type="submit" class="btn btn-primary btn-lg"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
                                     <script>
                                         function re_set() {
                                             $("input#userId").val("");
                                             // $("#userStatus").val("2");
-                                            $("#userStatus").find("option:selected").attr("selected",false);
-                                            $("#userStatus option[value='3']").attr("selected",true);
+                                            $("#userStatus").find("option:selected").attr("selected", false);
+                                            $("#userStatus option[value='3']").attr("selected", true);
                                             // $("#userStatus").find("option:selected").text="hehe";
                                             // parent.$("#userStatus").load(location.href+"#userStatus");
                                             // $("#userStatus").attr("value",'3');
                                             // $("#userStatus").get(0).selectedIndex=0; //设置Select索引值为0的项选中
-                                            console.log("select: "+$("#userStatus").val());
-                                            console.log("select option: "+$("#userStatus").find("option:selected").text());
+                                            console.log("select: " + $("#userStatus").val());
+                                            console.log("select option: " + $("#userStatus").find("option:selected").text());
                                             $("input#userName").val("");
                                             $("input#dateLastLogined").val("");
                                             $("input#dateRegister").val("");
@@ -180,8 +181,7 @@
                         if (!empty) {
                             result = (List<User>) request.getAttribute("user_list");
                             out.print(result.size());
-                        }
-                        else{
+                        } else {
                             out.print(0);
                         }
                     %></span> 条记录</p>

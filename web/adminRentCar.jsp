@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="bean.CarOrder" %><%--
+<%@ page import="bean.CarOrder" %>
+<%@ page import="bean.CarOrderSearch" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -30,21 +31,42 @@
                     <div class="dashboardPageTitle text-center">
                         <h2><b>HC</b>租赁出租订单管理</h2>
                     </div>
+                    <%
+                        Boolean empty = (Boolean) request.getAttribute("empty");
+                        List<CarOrder> result = null;
+                        if (empty == null) {
+                            empty = true;
+                        }
+                        if (!empty) {
+                            CarOrderSearch carOrderSearch = (CarOrderSearch)request.getAttribute("search_input");
+                    %>
                     <div class="dashboardBoxBg mb30">
                         <form action="/CarOrderController" method="post" class="row">
                             <input type="hidden" name="command" value="ADMIN_CAR_ORDER">
                             <div class="profileIntro">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderID">订单ID</label>
-                                    <input type="text" class="form-control" id="orderID" name="order_id" placeholder="请输入订单ID">
+                                    <input type="text" class="form-control" id="orderID" name="order_id"
+                                           placeholder="请输入订单ID"
+                                        <%if(null!=carOrderSearch.getmId()){%>
+                                           value=<%=carOrderSearch.getmId()%>
+                                               <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderTaker">订单顾客名</label>
-                                    <input type="text" class="form-control" id="orderTaker" placeholder="请输入用户名" name="order_taker">
+                                    <input type="text" class="form-control" id="orderTaker" placeholder="请输入用户名"
+                                           name="order_taker"
+                                        <%if(null!=carOrderSearch.getOrderTaker()){%>
+                                           value=<%=carOrderSearch.getOrderTaker()%>
+                                               <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderPoster">订单发布者</label>
-                                    <input type="text" class="form-control" id="orderPoster" placeholder="请输入用户名" name="order_poster">
+                                    <input type="text" class="form-control" id="orderPoster" placeholder="请输入用户名"
+                                           name="order_poster"
+                                        <%if(null!=carOrderSearch.getOrderPoster()){%>
+                                           value=<%=carOrderSearch.getOrderPoster()%>
+                                               <%}%> >
                                 </div>
 
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
@@ -52,7 +74,11 @@
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" name="order_date">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   name="order_date" id="orderDate"
+                                                <%if(null!=carOrderSearch.getOrderDate()){%>
+                                                   value=<%=carOrderSearch.getOrderDate()%>
+                                                       <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -64,7 +90,11 @@
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" name="order_start">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   name="order_start" id="orderStart"
+                                                <%if(null!=carOrderSearch.getOrderStart()){%>
+                                                   value=<%=carOrderSearch.getOrderStart()%>
+                                                       <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -76,7 +106,11 @@
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" name="order_end">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   name="order_end" id="orderEnd"
+                                                <%if(null!=carOrderSearch.getOrderEnd()){%>
+                                                   value=<%=carOrderSearch.getOrderEnd()%>
+                                                       <%}%> >
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -85,7 +119,11 @@
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderCarId">车辆ID</label>
-                                    <input type="text" class="form-control" id="orderCarId" placeholder="请输入车辆ID" name="order_car_id">
+                                    <input type="text" class="form-control" id="orderCarId" placeholder="请输入车辆ID"
+                                           name="order_car_id"
+                                        <%if(null!=carOrderSearch.getCarId()){%>
+                                           value=<%=carOrderSearch.getCarId()%>
+                                               <%}%> >
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderStatus">订单状态</label>
@@ -103,9 +141,20 @@
                                     <button type="submit" class="btn btn-primary btn-lg"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
+                                    <script>
+                                        function re_set() {
+                                            $("input#orderID").val("");
+                                            $("input#orderTaker").val("");
+                                            $("input#orderPoster").val("");
+                                            $("input#orderDate").val("");
+                                            $("input#orderStart").val("");
+                                            $("input#orderEnd").val("");
+                                            $("input#orderCarId").val("");
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </form>
@@ -114,16 +163,9 @@
 
                 <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
                     <%
-                        Boolean empty = (Boolean) request.getAttribute("empty");
-                        List<CarOrder> result = null;
-                        if(empty == null){
-                            empty = true;
-                        }
-                        if (!empty) {
                             result = (List<CarOrder>) request.getAttribute("car_order_list");
                             out.print(result.size());
-                        }
-                        else{
+                        } else {
                             out.print(0);
                         }
                     %></span> 条记录</p>
@@ -162,35 +204,46 @@
                             </tfoot>
                             <tbody>
                             <%
-                                for(CarOrder it : result){
+                                for (CarOrder it : result) {
                             %>
                             <tr>
-                                <td><%=it.getmId()%></td>
-                                <td><a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%></a></td>
-                                <td><a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderPoster()%>"><%=it.getOrderPoster()%></a></td>
-                                <td><%=it.getmAmount()%></td>
-                                <td><%=it.getOrderDate()%></td>
-                                <td><%=it.getOrderStart()%></td>
-                                <td><%=it.getOrderEnd()%></td>
-                                <td><a href="/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY&car_id=<%=it.getCarId()%>"><%=it.getCarId()%></a></td>
-                                    <%
-                                        switch (it.getmStatus()){
-                                            case 0: %>
+                                <td><%=it.getmId()%>
+                                </td>
+                                <td>
+                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
+                                    </a></td>
+                                <td>
+                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderPoster()%>"><%=it.getOrderPoster()%>
+                                    </a></td>
+                                <td><%=it.getmAmount()%>
+                                </td>
+                                <td><%=it.getOrderDate()%>
+                                </td>
+                                <td><%=it.getOrderStart()%>
+                                </td>
+                                <td><%=it.getOrderEnd()%>
+                                </td>
+                                <td>
+                                    <a href="/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY&car_id=<%=it.getCarId()%>"><%=it.getCarId()%>
+                                    </a></td>
+                                <%
+                                    switch (it.getmStatus()) {
+                                        case 0: %>
                                 <td><span class="label label-danger">已取消</span></td>
-                                    <%
-                                                break;
-                                            case 1:
-                                    %>
+                                <%
+                                        break;
+                                    case 1:
+                                %>
                                 <td><span class="label label-success">已完成</span></td>
-                                    <%
-                                                break;
-                                            case 2:
-                                    %>
+                                <%
+                                        break;
+                                    case 2:
+                                %>
                                 <td><span class="label label-warning">正在进行中</span></td>
-                                     <%
+                                <%
                                             break;
-                                        }
-                                    %>
+                                    }
+                                %>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary">修改订单</button>
