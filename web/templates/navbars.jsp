@@ -81,7 +81,7 @@
                                     "                            <li><a href=\"/SpaceOrderController?command=ADMIN_SPACE_ORDER\">车位订单管理</a></li>\n" +
                                     "                            <li><a href=\"/UserController?command=ADMIN_USER\">用户管理</a></li>\n" +
                                     "                            <li><a href=\"/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY\">车辆信息管理</a></li>\n" +
-                                    "                            <li><a href=\"adminSpace.jsp\">车库管理</a></li>\n" +
+                                    "                            <li><a href=\"/SpaceController?command=ADMIN_SPACE\">车库管理</a></li>\n" +
                                     "                        </ul>\n" +
                                     "                    </li>");
                         }

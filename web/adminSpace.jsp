@@ -1,6 +1,5 @@
+<%@ page import="bean.Space" %>
 <%@ page import="java.util.List" %>
-<%@ page import="bean.User" %>
-<%@ page import="bean.UserSearch" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -37,201 +36,137 @@
                         <div class="profileIntro">
                             <%
                                 Boolean empty = (Boolean) request.getAttribute("empty");
+                                List<Space> result = null;
                                 if (empty == null) {
                                     empty = true;
                                 }
-                                if (!empty) {
-                                    UserSearch userSearchInput = (UserSearch) request.getAttribute("search_input");
                             %>
-                            <form action="/UserController" method="POST" class="row" id="userSearchForm">
-                                <input type="hidden" name="command" value="ADMIN_USER"/>
+                            <form action="/SpaceController" method="POST" class="row" id="userSearchForm">
+                                <input type="hidden" name="command" value="ADMIN_SPACE"/>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="userId">用户ID</label>
-                                    <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
-                                           name="user_id"
-                                        <%if(0!=userSearchInput.getSearchId()){%>
-                                           value=<%=userSearchInput.getSearchId()%>
-                                               <%}%>>
+                                    <label for="spaceId">车库ID</label>
+                                    <input type="text" class="form-control" id="spaceId" placeholder="请输入车库ID"
+                                           name="space_id">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="userStatus">用户状态</label>
+                                    <label for="spaceCity">车库城市</label>
+                                    <input type="text" class="form-control" id="spaceCity" placeholder="请输车库所在城市"
+                                           name="space_city">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label for="spaceType">车库类型</label>
                                     <div class="contactSelect">
-                                        <select id="userStatus" class="select-drop" name="user_status">
-                                            <option value="3">全部状态</option>
-                                            <option value="1">已激活</option>
-                                            <option value="2">待审核</option>
-                                            <option value="0">已冻结</option>
+                                        <select id="spaceType" class="select-drop" name="space_type" size="1"
+                                                multiple="false">
+                                            <option value="all">不限</option>
+                                            <option value="地下车库">地下车库</option>
+                                            <option value="地上车库">地上车库</option>
+                                            <option value="露天车库">露天车库</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="userName">用户名</label>
-                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                    <%--name="user_name">--%>
-                                    <%--<%--%>
-                                    <%--Cookie cookie = null;--%>
-                                    <%--Cookie[] cookies = null;--%>
-                                    <%--// 获取cookies的数据,是一个数组--%>
-                                    <%--cookies = request.getCookies();--%>
-                                    <%--if (cookies != null) {--%>
-                                    <%--for (int i = 0; i < cookies.length; i++) {--%>
-                                    <%--cookie = cookies[i];--%>
-                                    <%--String name = cookie.getValue();--%>
-                                    <%--if (cookie.getName().equals("user_name")) {--%>
-                                    <%--out.println("参数名 : " + cookie.getValue());--%>
-                                    <%--%>--%>
-                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                    <%--name="user_name" value=<%=name%>>--%>
-
-                                    <%--<%--%>
-                                    <%--}--%>
-                                    <%--}--%>
-                                    <%--} else {--%>
-                                    <%--%>--%>
-                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
-                                           name="user_name"
-                                        <%if(null!=userSearchInput.getSearchName()){%>
-                                           value=<%=userSearchInput.getSearchName()%>
-                                               <%}%>>
-                                </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateLastLogined">最后登录日期</label>
-                                    <div class="dateSelect">
-                                        <div class="input-group date ed-datepicker filterDate"
-                                             data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年"
-                                                   id="dateLastLogined" name="date_last_logined"
-                                                <%if(userSearchInput.getDateLastLogined()!=null){%>
-                                                   value=<%=userSearchInput.getDateLastLogined()%>
-                                                <%}%>>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateRegister">用户注册日期</label>
-                                    <div class="dateSelect">
-                                        <div class="input-group date ed-datepicker filterDate"
-                                             data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年"
-                                                   id="dateRegister" name="date_register"
-                                                <%if(userSearchInput.getSearchStartDate()!=null){%>
-                                                   value=<%=userSearchInput.getSearchStartDate()%>
-                                                       <%}%>>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateDealed">最后订单成交日期</label>
-                                    <div class="dateSelect">
-                                        <div class="input-group date ed-datepicker filterDate"
-                                             data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="月/日/年" id="dateDealed"
-                                                   name="date_dealed"
-                                                <%if(userSearchInput.getSearchOrderDate()!=null){%>
-                                                   value=<%=userSearchInput.getSearchOrderDate()%>
-                                                       <%}%>>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
+                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-primary btn-lg" onclick=""><i
+                                            class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+                <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
+                <%
+                    if (!empty) {
+                        result = (List<Space>) request.getAttribute("space_list");
+                        out.print(result.size());
+                    } else {
+                        out.print(0);
+                    }
 
+                %>
+                    </span> 条记录</p>
                 <div class="col-xs-12">
                     <div class="table-responsive bgAdd" data-pattern="priority-columns">
                         <table id="ordersTable" class="table table-small-font table-bordered table-striped"
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>用户 ID</th>
-                                <th data-priority="">用户名</th>
-                                <th data-priority="6">用户注册日期</th>
-                                <th data-priority="6">最后登录日期</th>
-                                <th data-priority="6">最后成交日期</th>
-                                <th data-priority="3">用户状态</th>
+                                <th>车库ID</th>
+                                <th data-priority="">所在城市</th>
+                                <th data-priority="6">详细地址</th>
+                                <th data-priority="6">类别</th>
+                                <th data-priority="6">启用日期</th>
+                                <th data-priority="6">总车位</th>
+                                <th data-priority="3">可用车位</th>
+                                <th data-priority="3">车位价格</th>
                                 <th data-priority="2">操作</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>用户 ID</th>
-                                <th>用户名</th>
-                                <th>用户注册日期</th>
-                                <th>最后登录日期</th>
-                                <th>最后成交日期</th>
-                                <th>用户状态</th>
+                                <th>车库ID</th>
+                                <th>所在城市</th>
+                                <th>详细地址</th>
+                                <th>类别</th>
+                                <th>启用日期</th>
+                                <th>总车位</th>
+                                <th>可用车位</th>
+                                <th>车位价格</th>
                                 <th>操作</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             <%
-                                List<User> result = (List<User>) request.getAttribute("user_list");
-                                for (User mUser : result) { %>
+                                for (Space it : result) { %>
                             <tr>
-                                <td><%=mUser.getUserId()%>
+                                <td><%=it.getSpaceId()%>
                                 </td>
-                                <td><%=mUser.getUserName()%>
+                                <td><%=it.getSpaceCity()%>
                                 </td>
-                                <td><%=mUser.getUserRegisterDate()%>
+                                <td><%=it.getSpaceDetailLoc()%>
                                 </td>
-                                <td><%=mUser.getUserLastSeen()%>
+                                <td>
+                                    <%=it.getSpaceType()%>
+                                </td>
+                                <td>
+                                    <%=it.getSpaceDate()%>
                                 </td>
                                 <td>
                                     <%
-                                        if (mUser.getUserLastOrderDate() == null) {
-                                            out.print("无最后下单时间");
-                                        } else {
-                                            out.print(mUser.getUserLastOrderDate());
-                                        }
+                                        out.print("小型：");
+                                        out.print(it.getSpaceSmall());
+                                        out.print(" 大型：");
+                                        out.print(it.getSpaceLarge());
                                     %>
                                 </td>
-                                <%
-                                    switch (mUser.getUserValid()) {
-                                        case 0:%>
-                                <td><span class="label label-danger">已冻结</span></td>
-                                <%
-                                        break;
-                                    case 1:%>
-                                <td><span class="label label-success">已激活</span></td>
-                                <%
-                                        break;
-                                    case 2:%>
-                                <td><span class="label label-warning">待审核</span></td>
-                                <%
-                                            break;
-                                    }
-                                %>
+                                <td>
+                                    <%
+                                        out.print("小型：");
+                                        out.print(it.getSpaceSmallLeft());
+                                        out.print(" 大型：");
+                                        out.print(it.getSpaceLargeLeft());
+                                    %>
+                                </td>
+                                <td>
+                                    <%
+                                        out.print("小型：");
+                                        out.print(it.getSpaceSmallPrice());
+                                        out.print(" 大型：");
+                                        out.print(it.getSpaceLargePrice());
+                                    %>
+                                </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">查看用户详情</button>
-                                        <button type="button" class="btn btn-primary">审核通过</button>
-                                        <button type="button" class="btn btn-primary">冻结账户</button>
+                                        <button type="button" class="btn btn-primary">修改车库信息</button>
                                     </div>
                                 </td>
-                            </tr>
-                            <%
+                                <%
                                     }
-                                }
-                            %>
-
+                                %>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

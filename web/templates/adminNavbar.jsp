@@ -51,7 +51,7 @@
                             车辆信息管理</a>
                     </li>
                     <li class="">
-                        <a href=""><i class="fa fa-building icon-dash" aria-hidden="true"></i></i>
+                        <a href="/SpaceController?command=ADMIN_SPACE"><i class="fa fa-building icon-dash" aria-hidden="true"></i></i>
                             车库管理</a>
                     </li>
                 </ul>
