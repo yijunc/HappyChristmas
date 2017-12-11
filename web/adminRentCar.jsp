@@ -138,9 +138,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
-                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="rent_car_submit()"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
+                                    <script>
+                                        function rent_car_submit() {
+                                            if (isNaN($("input#orderID").val()))//是数字返回false
+                                            {
+                                                alert("订单ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else if (isNaN($("input#orderCarId").val())) {
+                                                alert("车辆ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else {
+                                                $("form#carAvailabilitySearchForm").submit();
+                                            }
+                                        }
+                                    </script>
                                     <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>

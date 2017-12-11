@@ -1,6 +1,7 @@
 package controller;
 
 import bean.SpaceOrder;
+import bean.SpaceOrderSearch;
 import model.SpaceOrderDbUtil;
 
 import javax.annotation.Resource;
@@ -73,6 +74,28 @@ public class SpaceOrderController extends HttpServlet {
         String orderEnd = request.getParameter("order_end");
         String orderStatus = request.getParameter("order_status");
 
+        SpaceOrderSearch spaceOrderSearch = new SpaceOrderSearch();
+        if(null!=orderId&&orderId.length()!=0){
+            spaceOrderSearch.setOrderId(orderId);
+        }
+        if(null!=orderTaker&&orderTaker.length()!=0){
+            spaceOrderSearch.setOrderTaker(orderTaker);
+        }
+        if(null!=orderSpaceId&&orderSpaceId.length()!=0){
+            spaceOrderSearch.setOrderSpaceId(orderSpaceId);
+        }
+        if(null!=orderSpaceType&&orderSpaceType.length()!=0){
+            spaceOrderSearch.setOrderSpaceType(orderSpaceType);
+        }
+        if(null!=orderStart&&orderStart.length()!=0){
+            spaceOrderSearch.setOrderStart(orderStart);
+        }
+        if(null!=orderEnd&&orderEnd.length()!=0){
+            spaceOrderSearch.setOrderEnd(orderEnd);
+        }
+        if(null!=orderStatus&&orderStatus.length()!=0){
+            spaceOrderSearch.setOrderStatus(orderStatus);
+        }
 
         List<SpaceOrder> spaceOrderList = spaceOrderDbUtil.getSpaceOrderListByAdmin(
                 orderId, orderTaker, orderSpaceId, orderSpaceType, orderStart, orderEnd, orderStatus
@@ -81,6 +104,7 @@ public class SpaceOrderController extends HttpServlet {
         if (null != spaceOrderList) {
             request.setAttribute("empty", false);
             request.setAttribute("space_order_list", spaceOrderList);
+            request.setAttribute("search_input",spaceOrderSearch);
             System.out.println(spaceOrderList.size());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminRentSpace.jsp");
             dispatcher.forward(request, response);

@@ -1,6 +1,7 @@
 <%@ page import="bean.SpaceOrder" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Date" %><%--
+<%@ page import="java.util.Date" %>
+<%@ page import="bean.SpaceOrderSearch" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -29,7 +30,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>HC车位出租订单管理</h2>
+                        <h2><b>HC</b>车位出租订单管理</h2>
                     </div>
                     <%
                         Boolean empty = (Boolean) request.getAttribute("empty");
@@ -37,25 +38,36 @@
                         if (empty == null) {
                             empty = true;
                         }
+                        if (!empty) {
+                            SpaceOrderSearch spaceOrderSearch = (SpaceOrderSearch) request.getAttribute("search_input");
                     %>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <form action="/SpaceOrderController" method="post" class="row">
+                            <form action="/SpaceOrderController" method="post" class="row" id="rentSpaceFormSearch">
                                 <input type="hidden" name="command" value="ADMIN_SPACE_ORDER">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderId">订单ID</label>
                                     <input type="text" class="form-control" id="orderId" placeholder="Order ID"
-                                           name="order_id">
+                                           name="order_id"
+                                        <%if(null!=spaceOrderSearch.getOrderId()){%>
+                                           value=<%=spaceOrderSearch.getOrderId()%>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="customer">订单顾客名</label>
                                     <input type="text" class="form-control" id="customer" placeholder="请输入用户名"
-                                           name="order_taker">
+                                           name="order_taker"
+                                        <%if(null!=spaceOrderSearch.getOrderTaker()){%>
+                                           value=<%=spaceOrderSearch.getOrderTaker()%>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="spaceId">预定车库ID</label>
                                     <input type="text" class="form-control" id="spaceId" placeholder="请输入车库ID"
-                                           name="order_space_id">
+                                           name="order_space_id"
+                                        <%if(null!=spaceOrderSearch.getOrderSpaceId()){%>
+                                           value=<%=spaceOrderSearch.getOrderSpaceId()%>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="spaceType">车位类型</label>
@@ -73,7 +85,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
-                                                   name="order_start">
+                                                   name="order_start" id="orderStart"
+                                                <%if(null!=spaceOrderSearch.getOrderStart()){%>
+                                                   value=<%=spaceOrderSearch.getOrderStart()%>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -86,7 +101,10 @@
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
                                             <input type="text" class="form-control" placeholder="月/日/年"
-                                                   name="order_end">
+                                                   name="order_end" id="orderEnd"
+                                                <%if(null!=spaceOrderSearch.getOrderEnd()){%>
+                                                   value=<%=spaceOrderSearch.getOrderEnd()%>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -104,14 +122,38 @@
                                             <option value="2">正在进行中</option>
                                         </select>
                                     </div>
+                                    <%}%>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
-                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="space_submit()"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                    <script>
+                                        function space_submit() {
+                                            if (isNaN($("input#orderId").val()))//是数字返回false
+                                            {
+                                                alert("订单ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else if (isNaN($("input#spaceId").val())) {
+                                                alert("预定车库ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else {
+                                                $("form#rentSpaceFormSearch").submit();
+                                            }
+                                        }
+                                    </script>
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
+                                    <script>
+                                        function re_set() {
+                                            $("input#orderId").val("");
+                                            $("input#customer").val("");
+                                            $("input#spaceId").val("");
+                                            $("input#orderStart").val("");
+                                            $("input#orderEnd").val("");
+                                        }
+                                    </script>
                                 </div>
                             </form>
                         </div>
@@ -187,20 +229,18 @@
                                 </td>
                                 <td>
                                     <%
-                                        if(it.getOrderStatus() != 1){
+                                        if (it.getOrderStatus() != 1) {
                                             out.print("未结束");
-                                        }
-                                        else{
+                                        } else {
                                             out.print(it.getOrderEnd());
                                         }
                                     %>
                                 </td>
                                 <td>
                                     <%
-                                        if(it.getOrderPrice() == -1){
+                                        if (it.getOrderPrice() == -1) {
                                             out.print("未出账");
-                                        }
-                                        else{
+                                        } else {
                                             out.print(it.getOrderPrice());
                                         }
                                     %>
