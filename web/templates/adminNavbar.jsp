@@ -39,7 +39,7 @@
                             租车订单管理</a>
                     </li>
                     <li class="">
-                        <a href="adminRentSpace.jsp"><i class="fa fa-product-hunt" aria-hidden="true"></i>
+                        <a href="/SpaceOrderController?command=ADMIN_SPACE_ORDER"><i class="fa fa-product-hunt" aria-hidden="true"></i>
                             车位订单管理</a>
                     </li>
                     <li class="">

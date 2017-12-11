@@ -84,7 +84,7 @@ public class SpaceOrderDbUtil extends DbUtil{
             SpaceOrder mSpaceOrder = null;
             while(myRs.next()){
                 mSpaceOrder = new SpaceOrder().setOrderId(myRs.getInt("space_order_id"))
-                        .setOrderSpaceId(myRs.getInt("space_order_spcae_id"))
+                        .setOrderSpaceId(myRs.getInt("space_order_space_id"))
                         .setOrderTaker(myRs.getString("space_order_taker"))
                         .setOrderStart(myRs.getDate("space_order_date_start"))
                         .setOrderEnd(myRs.getDate("space_order_date_end"))

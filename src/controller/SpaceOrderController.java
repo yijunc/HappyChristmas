@@ -81,6 +81,7 @@ public class SpaceOrderController extends HttpServlet {
         if (null != spaceOrderList) {
             request.setAttribute("empty", false);
             request.setAttribute("space_order_list", spaceOrderList);
+            System.out.println(spaceOrderList.size());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminRentSpace.jsp");
             dispatcher.forward(request, response);
         } else {

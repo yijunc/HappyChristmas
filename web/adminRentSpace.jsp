@@ -1,5 +1,6 @@
 <%@ page import="bean.SpaceOrder" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -39,7 +40,7 @@
                     %>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <form action="/SpaceOrderController" method="get" class="row">
+                            <form action="/SpaceOrderController" method="post" class="row">
                                 <input type="hidden" name="command" value="ADMIN_SPACE_ORDER">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderId">订单ID</label>
@@ -139,7 +140,7 @@
                                 <th data-priority="6">订单开始时间</th>
                                 <th data-priority="6">订单结束时间</th>
                                 <th data-priority="3">订单金额</th>
-                                <th data-priority="3">订单状态</th>
+                                <th data-priority="4">订单状态</th>
                                 <th data-priority="2">操作</th>
                             </tr>
                             </thead>
@@ -184,9 +185,25 @@
                                 </td>
                                 <td><%=it.getOrderStart()%>
                                 </td>
-                                <td><%=it.getOrderEnd()%>
+                                <td>
+                                    <%
+                                        if(it.getOrderStatus() != 1){
+                                            out.print("未结束");
+                                        }
+                                        else{
+                                            out.print(it.getOrderEnd());
+                                        }
+                                    %>
                                 </td>
-                                <td><%=it.getOrderPrice()%>
+                                <td>
+                                    <%
+                                        if(it.getOrderPrice() == -1){
+                                            out.print("未出账");
+                                        }
+                                        else{
+                                            out.print(it.getOrderPrice());
+                                        }
+                                    %>
                                 </td>
                                 <%
                                     switch (it.getOrderStatus()) {
