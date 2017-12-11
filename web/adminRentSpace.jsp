@@ -1,4 +1,5 @@
-<%--
+<%@ page import="bean.SpaceOrder" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -29,6 +30,13 @@
                     <div class="dashboardPageTitle text-center">
                         <h2>HC车位出租订单管理</h2>
                     </div>
+                    <%
+                        Boolean empty = (Boolean) request.getAttribute("empty");
+                        List<SpaceOrder> result = null;
+                        if (empty == null) {
+                            empty = true;
+                        }
+                    %>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
                             <form action="/SpaceOrderController" method="get" class="row">
@@ -108,6 +116,16 @@
                         </div>
                     </div>
                 </div>
+                <p style="height: 0px; padding-top: 10px; padding-left: 2%">共搜索到了<span style="font-weight: bold;">
+                    <%
+                        if (!empty) {
+                            result = (List<SpaceOrder>) request.getAttribute("space_order_list");
+                            out.print(result.size());
+                        } else {
+                            out.print(0);
+                        }
+                    %></span> 条记录
+                </p>
                 <div class="col-xs-12">
                     <div class="table-responsive bgAdd" data-pattern="priority-columns">
                         <table id="ordersTable" class="table table-small-font table-bordered table-striped"
@@ -139,22 +157,66 @@
                             </tr>
                             </tfoot>
                             <tbody>
+                            <%
+                                if (!empty) {
+                                    for (SpaceOrder it : result) {
+                            %>
                             <tr>
-                                <td>2475</td>
-                                <td>Tiger Nixon</td>
-                                <td>$700</td>
-                                <td>12/12/2017</td>
-                                <td>12/12/2017</td>
-                                <td>15/12/2017</td>
-                                <td><span class="label label-warning">Pending</span></td>
+                                <td><%=it.getOrderId()%>
+                                </td>
+                                <td>
+                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
+                                    </a></td>
+                                </td>
+                                <td><%=it.getOrderSpaceId()%>
+                                </td>
+                                <td>
+                                    <%
+                                        switch (it.getOrderSpaceType()) {
+                                            case 1:
+                                                out.print("小型车位");
+                                                break;
+                                            case 2:
+                                                out.print("大型车位");
+                                                break;
+                                        }
+                                    %>
+                                </td>
+                                <td><%=it.getOrderStart()%>
+                                </td>
+                                <td><%=it.getOrderEnd()%>
+                                </td>
+                                <td><%=it.getOrderPrice()%>
+                                </td>
+                                <%
+                                    switch (it.getOrderStatus()) {
+                                        case 0: %>
+                                <td><span class="label label-danger">已取消</span></td>
+                                <%
+                                        break;
+                                    case 1:
+                                %>
+                                <td><span class="label label-success">已完成</span></td>
+                                <%
+                                        break;
+                                    case 2:
+                                %>
+                                <td><span class="label label-warning">正在进行中</span></td>
+                                <%
+                                            break;
+                                    }
+                                %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">View</button>
-                                        <button type="button" class="btn btn-primary">Edit</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
+                                        <button type="button" class="btn btn-primary">完成订单</button>
+                                        <button type="button" class="btn btn-primary">取消订单</button>
                                     </div>
                                 </td>
                             </tr>
+                            <%
+                                    }
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>

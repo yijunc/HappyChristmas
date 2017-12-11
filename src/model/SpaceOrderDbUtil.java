@@ -83,11 +83,17 @@ public class SpaceOrderDbUtil extends DbUtil{
             List<SpaceOrder> mSpaceOrderList = new ArrayList<SpaceOrder>();
             SpaceOrder mSpaceOrder = null;
             while(myRs.next()){
-
+                mSpaceOrder = new SpaceOrder().setOrderId(myRs.getInt("space_order_id"))
+                        .setOrderSpaceId(myRs.getInt("space_order_spcae_id"))
+                        .setOrderTaker(myRs.getString("space_order_taker"))
+                        .setOrderStart(myRs.getDate("space_order_date_start"))
+                        .setOrderEnd(myRs.getDate("space_order_date_end"))
+                        .setOrderPrice(myRs.getInt("space_order_price"))
+                        .setOrderSpaceType(myRs.getInt("space_order_space_type"))
+                        .setOrderStatus(myRs.getInt("space_order_status"));
+                mSpaceOrderList.add(mSpaceOrder);
             }
-
             return mSpaceOrderList;
-
         }  finally {
             close(myConn, myStmt, myRs);
         }
