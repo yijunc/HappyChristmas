@@ -25,15 +25,15 @@ public class CarAvailabilityDbUtil extends DbUtil {
             myStmt = myConn.createStatement();
             String sql = "select * from 2017j2ee.car_availability WHERE";
 
-            System.out.println(carId);
-            System.out.println(carOwner);
-            System.out.println(carBrand);
-            System.out.println(carType);
-            System.out.println(carSeat);
-            System.out.println(carStatus);
-            System.out.println(carDateStart);
-            System.out.println(carDateEnd);
-            System.out.println(carPrice);
+//            System.out.println(carId);
+//            System.out.println(carOwner);
+//            System.out.println(carBrand);
+//            System.out.println(carType);
+//            System.out.println(carSeat);
+//            System.out.println(carStatus);
+//            System.out.println(carDateStart);
+//            System.out.println(carDateEnd);
+//            System.out.println(carPrice);
 
 
             SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
