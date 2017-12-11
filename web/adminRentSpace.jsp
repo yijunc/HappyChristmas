@@ -10,7 +10,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <header>
-    <title>车位信息与订单管理</title>
+    <title>车位出租订单管理</title>
 </header>
 
 <body class="body-wrapper">
@@ -27,69 +27,84 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>网站车位出租订单管理</h2>
+                        <h2>HC车位出租订单管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
-                            <div class="row">
+                            <form action="/SpaceOrderController" method="get" class="row">
+                                <input type="hidden" name="command" value="ADMIN_SPACE_ORDER">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderId">订单ID</label>
-                                    <input type="text" class="form-control" id="orderId" placeholder="Order ID">
+                                    <input type="text" class="form-control" id="orderId" placeholder="Order ID"
+                                           name="order_id">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="customer">订单顾客名</label>
-                                    <input type="text" class="form-control" id="customer" placeholder="Customer">
+                                    <input type="text" class="form-control" id="customer" placeholder="请输入用户名"
+                                           name="order_taker">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateAdded">订单下单时间</label>
+                                    <label for="spaceId">预定车库ID</label>
+                                    <input type="text" class="form-control" id="spaceId" placeholder="请输入车库ID"
+                                           name="order_space_id">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label for="spaceType">车位类型</label>
+                                    <div class="contactSelect">
+                                        <select id="spaceType" class="select-drop" name="order_space_type">
+                                            <option value="all">不限</option>
+                                            <option value="1">小型车位</option>
+                                            <option value="2">大型车位</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label>订单开始时间</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   name="order_start">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateModified">订单开始时间</label>
+                                    <label>订单完成时间</label>
                                     <div class="dateSelect">
                                         <div class="input-group date ed-datepicker filterDate"
                                              data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                                            <input type="text" class="form-control" placeholder="月/日/年"
+                                                   name="order_end">
                                             <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="dateModified">订单完成时间</label>
-                                    <div class="dateSelect">
-                                        <div class="input-group date ed-datepicker filterDate"
-                                             data-provide="datepicker">
-                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy">
-                                            <div class="input-group-addon">
-                                                <i class="icon-listy icon-calendar"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderStatus">订单状态</label>
-                                    <input type="text" class="form-control" id="orderStatus" placeholder="做成选择">
+                                    <div class="contactSelect">
+                                        <select id="orderStatus" class="select-drop" name="order_status" size="1"
+                                                multiple="false">
+                                            <option value="all">不限</option>
+                                            <option value="1">已完成</option>
+                                            <option value="0">已取消</option>
+                                            <option value="2">正在进行中</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <button type="submit" class="btn btn-primary btn-lg" onclick="setCookie()">&nbsp;&nbsp;<i
-                                            class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
+                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;<i
-                                            class="fa fa-circle-o" aria-hidden="true"></i>清空&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -101,10 +116,11 @@
                             <tr>
                                 <th>订单ID</th>
                                 <th data-priority="">订单顾客名</th>
-                                <th data-priority="3">订单金额</th>
-                                <th data-priority="2">订单下单时间</th>
+                                <th data-priority="1">车库ID</th>
+                                <th data-priority="1">车位类型</th>
                                 <th data-priority="6">订单开始时间</th>
                                 <th data-priority="6">订单结束时间</th>
+                                <th data-priority="3">订单金额</th>
                                 <th data-priority="3">订单状态</th>
                                 <th data-priority="2">操作</th>
                             </tr>
@@ -113,10 +129,11 @@
                             <tr>
                                 <th>订单ID</th>
                                 <th>订单顾客名</th>
-                                <th>订单金额</th>
-                                <th>订单下单时间</th>
+                                <th>车库ID</th>
+                                <th>车位类型</th>
                                 <th>订单开始时间</th>
                                 <th>订单结束时间</th>
+                                <th>订单金额</th>
                                 <th>订单状态</th>
                                 <th>操作</th>
                             </tr>

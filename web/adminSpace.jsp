@@ -13,7 +13,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <header>
-    <title>用户管理</title>
+    <title>车库信息管理</title>
 </header>
 
 <body class="body-wrapper">
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>网站用户管理</h2>
+                        <h2>HC车库管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
@@ -49,9 +49,9 @@
                                     <label for="userId">用户ID</label>
                                     <input type="text" class="form-control" id="userId" placeholder="请输入用户ID"
                                            name="user_id"
-                                    <%if(0!=userSearchInput.getSearchId()){%>
-                                    value=<%=userSearchInput.getSearchId()%>
-                                    <%}%> >
+                                        <%if(0!=userSearchInput.getSearchId()){%>
+                                           value=<%=userSearchInput.getSearchId()%>
+                                               <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
@@ -90,9 +90,9 @@
                                     <%--%>--%>
                                     <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
                                            name="user_name"
-                                           <%if(null!=userSearchInput.getSearchName()){%>
+                                        <%if(null!=userSearchInput.getSearchName()){%>
                                            value=<%=userSearchInput.getSearchName()%>
-                                    <%}%> >
+                                               <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
@@ -103,7 +103,7 @@
                                                    id="dateLastLogined" name="date_last_logined"
                                                 <%if(userSearchInput.getDateLastLogined()!=null){%>
                                                    value=<%=userSearchInput.getDateLastLogined()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -119,7 +119,7 @@
                                                    id="dateRegister" name="date_register"
                                                 <%if(userSearchInput.getSearchStartDate()!=null){%>
                                                    value=<%=userSearchInput.getSearchStartDate()%>
-                                                <%}%> >
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -135,7 +135,7 @@
                                                    name="date_dealed"
                                                 <%if(userSearchInput.getSearchOrderDate()!=null){%>
                                                    value=<%=userSearchInput.getSearchOrderDate()%>
-                                                       <%}%> >
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -246,65 +246,4 @@
 
 
 </body>
-<script>
-    //    $(document).ready(function () {
-    //        if (get_cookie("user_id").length != 0) {
-    //            $("input#userId").val(get_cookie("user_id"));
-    ////            alert(get_cookie("user_id"));
-    ////            delCookie("user_id");
-    //
-    //        }
-    //        if (get_cookie("user_name").length != 0) {
-    //            $("input#userName").val(get_cookie("user_name"));
-    //            alert(get_cookie("user_name"));
-    //            delCookie("user_name");
-    //        }
-    //
-    ////        if (!get_cookie("user_name").equals("\"\"")) {
-    ////            $("input#userName").val(get_cookie("user_name"));
-    ////        }
-    ////        else
-    ////            $("input#userName").val("");
-    ////        var value = $.cookie('the_cookie');
-    ////        alert(value);
-    //    });
-    //
-    //    function setCookie() {
-    //        var userId = $("input#userId").val();
-    //        var userName = $("input#userName").val();
-    //        if (userId.length != 0) {
-    //            document.cookie = "user_id=" + userId;
-    //        }
-    //        if (userName.length != 0) {
-    //            document.cookie = "user_name" + userName;
-    ////            alert("set cookie : "+userName);
-    //        }
-    ////        $.cookie('the_cookie', '默认cookie的值');
-    //    }
-    //
-    //    function get_cookie(Name) {
-    //        var search = Name + "="//查询检索的值
-    //        var returnvalue = "";//返回值
-    //        if (document.cookie.length > 0) {
-    //            sd = document.cookie.indexOf(search);
-    //            if (sd != -1) {
-    //                sd += search.length;
-    //                end = document.cookie.indexOf(";", sd);
-    //                if (end == -1)
-    //                    end = document.cookie.length;
-    //                //unescape() 函数可对通过 escape() 编码的字符串进行解码。
-    //                returnvalue = unescape(document.cookie.substring(sd, end))
-    //            }
-    //        }
-    //        return returnvalue;
-    //    }
-    //    //删除cookies
-    //    function delCookie(name) {
-    //        var exp = new Date();
-    //        exp.setTime(exp.getTime() - 1);
-    //        var cval = getCookie(name);
-    //        if (cval != null)
-    //            document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
-    //    }
-</script>
 </html>
