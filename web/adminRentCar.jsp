@@ -50,7 +50,7 @@
                                            placeholder="请输入订单ID"
                                         <%if(null!=carOrderSearch.getmId()){%>
                                            value=<%=carOrderSearch.getmId()%>
-                                               <%}%>>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderTaker">订单顾客名</label>
@@ -58,7 +58,7 @@
                                            name="order_taker"
                                         <%if(null!=carOrderSearch.getOrderTaker()){%>
                                            value=<%=carOrderSearch.getOrderTaker()%>
-                                               <%}%>>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderPoster">订单发布者</label>
@@ -66,7 +66,7 @@
                                            name="order_poster"
                                         <%if(null!=carOrderSearch.getOrderPoster()){%>
                                            value=<%=carOrderSearch.getOrderPoster()%>
-                                               <%}%>>
+                                        <%}%>>
                                 </div>
 
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
@@ -78,7 +78,7 @@
                                                    name="order_date" id="orderDate"
                                                 <%if(null!=carOrderSearch.getOrderDate()){%>
                                                    value=<%=carOrderSearch.getOrderDate()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -94,7 +94,7 @@
                                                    name="order_start" id="orderStart"
                                                 <%if(null!=carOrderSearch.getOrderStart()){%>
                                                    value=<%=carOrderSearch.getOrderStart()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -110,7 +110,7 @@
                                                    name="order_end" id="orderEnd"
                                                 <%if(null!=carOrderSearch.getOrderEnd()){%>
                                                    value=<%=carOrderSearch.getOrderEnd()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -123,7 +123,7 @@
                                            name="order_car_id"
                                         <%if(null!=carOrderSearch.getCarId()){%>
                                            value=<%=carOrderSearch.getCarId()%>
-                                               <%}%>>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderStatus">订单状态</label>
@@ -138,9 +138,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
-                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="rent_car_submit()"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
+                                    <script>
+                                        function rent_car_submit() {
+                                            if (isNaN($("input#orderID").val()))//是数字返回false
+                                            {
+                                                alert("订单ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else if (isNaN($("input#orderCarId").val())) {
+                                                alert("车辆ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else {
+                                                $("form#carAvailabilitySearchForm").submit();
+                                            }
+                                        }
+                                    </script>
                                     <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>

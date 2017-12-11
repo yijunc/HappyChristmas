@@ -51,7 +51,7 @@
                                            name="user_id"
                                         <%if(0!=userSearchInput.getSearchId()){%>
                                            value=<%=userSearchInput.getSearchId()%>
-                                               <%}%>>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
@@ -93,7 +93,7 @@
                                            name="user_name"
                                         <%if(null!=userSearchInput.getSearchName()){%>
                                            value=<%=userSearchInput.getSearchName()%>
-                                               <%}%>>
+                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
@@ -120,7 +120,7 @@
                                                    id="dateRegister" name="date_register"
                                                 <%if(userSearchInput.getSearchStartDate()!=null){%>
                                                    value=<%=userSearchInput.getSearchStartDate()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -136,7 +136,7 @@
                                                    name="date_dealed"
                                                 <%if(userSearchInput.getSearchOrderDate()!=null){%>
                                                    value=<%=userSearchInput.getSearchOrderDate()%>
-                                                       <%}%>>
+                                                <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -144,9 +144,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
-                                    <button type="submit" class="btn btn-primary btn-lg"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="user_submit()"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
+                                    <script>
+                                        function user_submit() {
+                                            if (isNaN($("input#userId").val()))//是数字返回false
+                                            {
+                                                alert("用户ID请输入数字哦(￣^￣)ゞ");
+                                            }
+                                            else {
+                                                $("form#carAvailabilitySearchForm").submit();
+                                            }
+                                        }
+                                    </script>
                                     <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
                                     </button>

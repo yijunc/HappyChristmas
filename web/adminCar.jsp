@@ -38,7 +38,7 @@
                             empty = true;
                         }
                         if (!empty) {
-                            CarAvailabilitySearch carAvailabilitySearch = (CarAvailabilitySearch)request.getAttribute("search_input");
+                            CarAvailabilitySearch carAvailabilitySearch = (CarAvailabilitySearch) request.getAttribute("search_input");
                     %>
                     <div class="dashboardBoxBg mb30">
                         <form action="/CarAvailabilityController" method="POST" class="row"
@@ -51,7 +51,7 @@
                                            name="car_id"
                                         <%if(null!=carAvailabilitySearch.getCarId()){%>
                                            value=<%=carAvailabilitySearch.getCarId()%>
-                                               <%}%> >
+                                               <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carOwner">车辆提供者</label><!--!!!!--2--!!!!-->
@@ -59,16 +59,16 @@
                                            name="car_owner"
                                         <%if(null!=carAvailabilitySearch.getCarOwner()){%>
                                            value=<%=carAvailabilitySearch.getCarOwner()%>
-                                               <%}%> >
+                                               <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="carBrand">车辆品牌</label><!--!!!!--3--!!!!-->
                                     <div class="contactSelect">
                                         <select id="carBrand" class="select-drop" name="car_brand" size="1"
                                                 multiple="false"
-                                                <%if(null!=carAvailabilitySearch.getCarBrand()&&carAvailabilitySearch.getCarBrand()!="all"){%>
+                                                <%if (null != carAvailabilitySearch.getCarBrand() && carAvailabilitySearch.getCarBrand() != "all") {%>
                                                 value=<%=carAvailabilitySearch.getCarBrand()%>
-                                                    <%}%> >
+                                                    <%}%>>
                                             <option value="all">所有品牌</option>
                                             <option value="宝马">宝马</option>
                                             <option value="奔驰">奔驰</option>
@@ -124,7 +124,7 @@
                                                    placeholder="月/日/年" name="date_start"
                                                 <%if(null!=carAvailabilitySearch.getCarDateStart()){%>
                                                    value=<%=carAvailabilitySearch.getCarDateStart()%>
-                                                       <%}%> >
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -140,7 +140,7 @@
                                                    placeholder="月/日/年" name="date_end"
                                                 <%if(null!=carAvailabilitySearch.getCarDateEnd()){%>
                                                    value=<%=carAvailabilitySearch.getCarDateEnd()%>
-                                                       <%}%> >
+                                                       <%}%>>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </div>
@@ -159,15 +159,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
-                                    <button type="button" class="btn btn-primary btn-lg" onclick="carSubmit()"><i
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="car_submit()"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
                                     </button>
                                     <script>
-                                        function carSubmit() {
-                                            if(isNaN($("input#carId").val()))//是数字返回false
+                                        function car_submit() {
+                                            if (isNaN($("input#carId").val()))//是数字返回false
                                             {
-                                                alert("车辆ID请输入数字！");
-                                            }else {
+                                                alert("车辆ID请输入数字哦(￣^￣)ゞ");
+                                            } else {
                                                 $("form#carAvailabilitySearchForm").submit();
                                             }
                                         }
