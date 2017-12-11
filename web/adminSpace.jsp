@@ -99,9 +99,9 @@
                                 <th data-priority="6">详细地址</th>
                                 <th data-priority="6">类别</th>
                                 <th data-priority="6">启用日期</th>
-                                <th data-priority="6">总车位</th>
-                                <th data-priority="3">可用车位</th>
-                                <th data-priority="3">车位价格</th>
+                                <th data-priority="6">总车位(小/大)</th>
+                                <th data-priority="3">可用车位(小/大)</th>
+                                <th data-priority="3">车位价格(小/大)</th>
                                 <th data-priority="2">操作</th>
                             </tr>
                             </thead>
@@ -136,25 +136,42 @@
                                 </td>
                                 <td>
                                     <%
-                                        out.print("小型：");
                                         out.print(it.getSpaceSmall());
-                                        out.print(" 大型：");
+                                        out.print(" / ");
                                         out.print(it.getSpaceLarge());
                                     %>
                                 </td>
                                 <td>
                                     <%
-                                        out.print("小型：");
-                                        out.print(it.getSpaceSmallLeft());
-                                        out.print(" 大型：");
-                                        out.print(it.getSpaceLargeLeft());
+                                        if (it.getSpaceSmallLeft() > 0) {
+                                            if(it.getSpaceSmall()*0.2 >= it.getSpaceSmallLeft()){
+                                                out.print("<span class=\"label label-warning\">" + it.getSpaceSmallLeft() + "</span>");
+                                            }
+                                            else{
+                                                out.print("<span class=\"label label-success\">" + it.getSpaceSmallLeft() + "</span>");
+                                            }
+                                        }
+                                        else{
+                                            out.print("<span class=\"label label-danger\">" + it.getSpaceSmallLeft() + "</span>");
+                                        }
+                                        out.print(" / ");
+                                        if (it.getSpaceLargeLeft() > 0) {
+                                            if(it.getSpaceLarge()*0.1 > it.getSpaceLargeLeft()){
+                                                out.print("<span class=\"label label-warning\">" + it.getSpaceLargeLeft() + "</span>");
+                                            }
+                                            else{
+                                                out.print("<span class=\"label label-success\">" + it.getSpaceLargeLeft() + "</span>");
+                                            }
+                                        }
+                                        else{
+                                            out.print("<span class=\"label label-danger\">" + it.getSpaceLargeLeft() + "</span>");
+                                        }
                                     %>
                                 </td>
                                 <td>
                                     <%
-                                        out.print("小型：");
                                         out.print(it.getSpaceSmallPrice());
-                                        out.print(" 大型：");
+                                        out.print(" / ");
                                         out.print(it.getSpaceLargePrice());
                                     %>
                                 </td>

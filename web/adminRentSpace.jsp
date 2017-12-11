@@ -211,7 +211,7 @@
                                     <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
                                     </a></td>
                                 </td>
-                                <td><%=it.getOrderSpaceId()%>
+                                <td><a href="/SpaceController?command=ADMIN_SPACE&space_id=<%=it.getOrderSpaceId()%>"><%=it.getOrderSpaceId()%></a>
                                 </td>
                                 <td>
                                     <%
