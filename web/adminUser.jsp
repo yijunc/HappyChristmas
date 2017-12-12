@@ -197,6 +197,7 @@
                             <tr>
                                 <th>用户 ID</th>
                                 <th data-priority="">用户名</th>
+                                <th data-priority="">用户密码</th>
                                 <th data-priority="6">预留手机号</th>
                                 <th data-priority="6">注册日期</th>
                                 <th data-priority="6">最后登录日期</th>
@@ -209,6 +210,7 @@
                             <tr>
                                 <th>用户 ID</th>
                                 <th>用户名</th>
+                                <th>用户密码</th>
                                 <th>预留手机号</th>
                                 <th>注册日期</th>
                                 <th>最后登录日期</th>
@@ -220,12 +222,13 @@
                             <tbody>
                             <%
                                 for (User mUser : result) { %>
-                            <tr>
-                                <td><%=mUser.getUserId()%>
+                            <tr id="result<%=mUser.getUserId()%>">
+                                <td name="resultUserId"><%=mUser.getUserId()%>
                                 </td>
-                                <td><%=mUser.getUserName()%>
+                                <td name="resultUserName"><%=mUser.getUserName()%>
                                 </td>
-                                <td>
+                                <td name="resultUserPsw"><%=mUser.getUserPsw()%></td>
+                                <td name="resultUserCell">
                                     <%=mUser.getUserCell()%>
                                 </td>
                                 <td><%=mUser.getUserRegisterDate()%>
@@ -259,9 +262,9 @@
                                 %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary" onclick="edit_user(this)">修改</button>
-                                        <button type="button" class="btn btn-primary">激活</button>
-                                        <button type="button" class="btn btn-primary">冻结</button>
+                                        <button type="button" class="btn btn-primary" name="editUser" value="<%=mUser.getUserId()%>">修改</button>
+                                        <button type="button" class="btn btn-primary" name="activateUser" value="<%=mUser.getUserId()%>">激活</button>
+                                        <button type="button" class="btn btn-primary" name="suspendUser" value="<%=mUser.getUserId()%>">冻结</button>
                                     </div>
                                 </td>
                             </tr>
@@ -279,108 +282,28 @@
     </section>
 </div>
 
-<div id="loginModal" tabindex="-1" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">用户登录</h4>
-            </div>
-            <div class="modal-body">
-                <form class="loginForm" action="/UserController" method="POST">
-                    <input type="hidden" name="command" value="LOGIN"/>
-                    <div class="form-group">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <input type="text" class="form-control" id="user_name" placeholder="用户名" name="user_name">
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input type="password" class="form-control" id="user_psw" placeholder="密码" name="user_psw">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">登录</button>
-                        <a href="#" class="pull-right link" style="margin-top: 5%">忘记密码?</a>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <p>还没有账号? <a href="/register.jsp" class="link">注册新用户</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>
-
 <%@include file="/templates/loginModal.jsp" %>
 <%@include file="/templates/footers.jsp" %>
 
 
 </body>
 <script>
-    function edit_user(obj) {
-        // var index = obj.parent().parent().children("td").get(0).innerHTML;
-        // console.log("edit index:"+obj.parent.);
-    }
-</script>
-<script>
-    //    $(document).ready(function () {
-    //        if (get_cookie("user_id").length != 0) {
-    //            $("input#userId").val(get_cookie("user_id"));
-    ////            alert(get_cookie("user_id"));
-    ////            delCookie("user_id");
-    //
-    //        }
-    //        if (get_cookie("user_name").length != 0) {
-    //            $("input#userName").val(get_cookie("user_name"));
-    //            alert(get_cookie("user_name"));
-    //            delCookie("user_name");
-    //        }
-    //
-    ////        if (!get_cookie("user_name").equals("\"\"")) {
-    ////            $("input#userName").val(get_cookie("user_name"));
-    ////        }
-    ////        else
-    ////            $("input#userName").val("");
-    ////        var value = $.cookie('the_cookie');
-    ////        alert(value);
-    //    });
-    //
-    //    function setCookie() {
-    //        var userId = $("input#userId").val();
-    //        var userName = $("input#userName").val();
-    //        if (userId.length != 0) {
-    //            document.cookie = "user_id=" + userId;
-    //        }
-    //        if (userName.length != 0) {
-    //            document.cookie = "user_name" + userName;
-    ////            alert("set cookie : "+userName);
-    //        }
-    ////        $.cookie('the_cookie', '默认cookie的值');
-    //    }
-    //    function get_cookie(Name) {
-    //        var search = Name + "="//±查询检索的值
-    //        var returnvalue = "";//返回值
-    //        if (document.cookie.length > 0) {
-    //            sd = document.cookie.indexOf(search);
-    //            if (sd != -1) {
-    //                sd += search.length;
-    //                end = document.cookie.indexOf(";", sd);
-    //                if (end == -1)
-    //                    end = document.cookie.length;
-    //                //unescape() 函数可对通过 escape() 编码的字符串进行解码。
-    //                returnvalue = unescape(document.cookie.substring(sd, end))
-    //            }
-    //        }
-    //        return returnvalue;
-    //    }
-    //    //删除cookies
-    //    function delCookie(name) {
-    //        var exp = new Date();
-    //        exp.setTime(exp.getTime() - 1);
-    //        var cval = getCookie(name);
-    //        if (cval != null)
-    //            document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
-    //    }
+    $("button[name='editUser']").click(
+        function () {
+            $("#loginModal").modal('show');
+            console.log($(this).parent().parent().);
+        }
+    );
+    $("button[name='activateUser']").click(
+        function () {
+            console.log(this.value);
+        }
+    );
+    $("button[name='suspendUser']").click(
+        function(){
+            console.log(this.value);
+        }
+    );
+
 </script>
 </html>
