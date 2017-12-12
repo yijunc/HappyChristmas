@@ -101,13 +101,13 @@ public class UserController extends HttpServlet {
         String userId = request.getParameter("user_id");
         String userStatus = request.getParameter("user_status"); //  {all,activated,pending,suspended}
         String userName = request.getParameter("user_name");
+        String userCell = request.getParameter("user_cell");
         String dateLastLogined = request.getParameter("date_last_logined");
         String dateRegister = request.getParameter("date_register");
         String dateDealed = request.getParameter("date_dealed");
 
         UserSearch mUserSearch = new UserSearch();
         if (null != userId && userId.length() != 0) {
-            System.out.println(TAG + ":mUserSearch userId= " + userId);
             mUserSearch.setSearchId(Integer.parseInt(userId));
         }
         if (null != userStatus) {
@@ -126,23 +126,11 @@ public class UserController extends HttpServlet {
         if (null != dateDealed && dateDealed.length() != 0) {
             mUserSearch.setSearchOrderDate(dateDealed);
         }
+        if(null != userCell && userCell.length() != 0){
+            mUserSearch.setSearchCell(Long.parseLong(userCell));
+        }
 
-//        if (userName != null) {
-//            // 编码，解决中文乱码
-//            String str = URLEncoder.encode(userName, "utf-8");
-//            // 设置 name 和 url cookie
-//            Cookie name = new Cookie("user_name", str);
-//
-//            // 设置cookie过期时间为24小时。
-//            name.setMaxAge(60 * 60 * 24);
-//
-//            // 在响应头部添加cookie
-//            response.addCookie(name);
-//            System.out.println("cookie:"+str);
-//        }
-
-
-        List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, dateLastLogined, dateRegister, dateDealed);
+        List<User> userList = userDbUtil.getUserListbyAdmin(userId, userStatus, userName, userCell, dateLastLogined, dateRegister, dateDealed);
 
         if (userList != null) {
             request.setAttribute("empty", false);

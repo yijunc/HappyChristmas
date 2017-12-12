@@ -10,13 +10,23 @@ public class UserSearch {
     private String searchName;
     private int searchStatus;
     private int searchBalance;
+    private long searchCell;
 //    private Date searchOrderDate;
 //    private Date searchStartDate;
 //    private Date searchEndDate;
-private String searchOrderDate;
+    private String searchOrderDate;
     private String searchStartDate;
     private String searchEndDate;
     private String dateLastLogined;
+
+    public long getSearchCell() {
+        return searchCell;
+    }
+
+    public UserSearch setSearchCell(long searchCell) {
+        this.searchCell = searchCell;
+        return this;
+    }
 
     public UserSearch() {
     }
