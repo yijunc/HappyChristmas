@@ -68,6 +68,9 @@ public class UserController extends HttpServlet {
                 case "SUSPEND_USER":
                     suspendUser(request, response);
                     break;
+                case "ADMIN_USER_UPDATE":
+                    updateUserById(request, response);
+                    break;
                 default:
                     break;
             }
@@ -82,6 +85,14 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         doGet(request, response);
+    }
+
+    private void updateUserById(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        userDbUtil.updateUserById(request.getParameter("user_id"), request.getParameter("user_psw"), request.getParameter("user_cell"));
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text");
+        PrintWriter out = response.getWriter();
+        out.print(true);
     }
 
     private void suspendUser(HttpServletRequest request, HttpServletResponse response) throws Exception{

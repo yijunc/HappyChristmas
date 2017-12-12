@@ -42,7 +42,7 @@ public class UserDbUtil extends DbUtil {
 //    }
 
 
-    public void suspendUserById(String user_id) throws Exception{
+    public void updateUserById(String userId, String userPsw, String userCell) throws Exception{
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -52,7 +52,26 @@ public class UserDbUtil extends DbUtil {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
             // create sql statement
-            String sql = "UPDATE 2017j2ee.user SET user_valid = 0 WHERE user_id =".concat(user_id);
+            String sql = "UPDATE 2017j2ee.user SET user_psw =\"" + userPsw + "\" user_cell=\"" + userCell + "\" WHERE user_id=" + userId;
+            myStmt.executeUpdate(sql);
+
+        } finally {
+            // close JDBC objects
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public void suspendUserById(String userId) throws Exception{
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            // get a connection
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            // create sql statement
+            String sql = "UPDATE 2017j2ee.user SET user_valid = 0 WHERE user_id =".concat(userId);
             myStmt.executeUpdate(sql);
 
         } finally {
