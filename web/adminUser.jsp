@@ -244,22 +244,24 @@
                                         }
                                     %>
                                 </td>
+                                <td name="resultUserStatus">
                                 <%
                                     switch (mUser.getUserValid()) {
                                         case 0:%>
-                                <td><span class="label label-danger">已冻结</span></td>
+                                <span class="label label-danger">已冻结</span>
                                 <%
                                         break;
                                     case 1:%>
-                                <td><span class="label label-success">已激活</span></td>
+                               <span class="label label-success">已激活</span>
                                 <%
                                         break;
                                     case 2:%>
-                                <td><span class="label label-warning">待审核</span></td>
+                               <span class="label label-warning">待审核</span>
                                 <%
                                             break;
                                     }
                                 %>
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary" name="editUser" value="<%=mUser.getUserId()%>">修改</button>
@@ -291,17 +293,47 @@
     $("button[name='editUser']").click(
         function () {
             $("#loginModal").modal('show');
-            console.log($(this).parent().parent().);
+
+            var userId = $("#result" + this.value).find("td[name='resultUserId']").text();
+            var userName = $("#result" + this.value).find("td[name='resultUserName']").text();
+            var userPsw = $("#result" + this.value).find("td[name='resultUserPsw']").text();
+            var userCell = $("#result" + this.value).find("td[name='resultUserCell']").text();
+
+            $("#user_name").val(userName);
         }
     );
     $("button[name='activateUser']").click(
         function () {
-            console.log(this.value);
+            var userId = this.value;
+            $.get("/UserController?command=ACTIVATE_USER",{
+                user_id : userId
+            }, function (data, textStatus) {
+                if(data == "true"){
+                    var status = $("#result" + userId).find("td[name='resultUserStatus']").find("span");
+                    status.attr("class","label label-success");
+                    status.html("已激活");
+                }
+                else{
+                    alert("用户状态更改失败");
+                }
+            })
         }
     );
     $("button[name='suspendUser']").click(
-        function(){
-            console.log(this.value);
+        function () {
+            var userId = this.value;
+            $.get("/UserController?command=SUSPEND_USER",{
+                user_id : userId
+            }, function (data, textStatus){
+                if(data == "true"){
+                    var status = $("#result" + userId).find("td[name='resultUserStatus']").find("span");
+                    status.attr("class","label label-danger");
+                    status.html("已冻结");
+                }
+                else{
+                    alert("用户状态更改失败");
+                }
+            })
         }
     );
 

@@ -5,6 +5,7 @@ import bean.User;
 import model.UserDbUtil;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -61,6 +62,12 @@ public class UserController extends HttpServlet {
                 case "ADMIN_USER":
                     adminUser(request, response);
                     break;
+                case "ACTIVATE_USER":
+                    activateUser(request, response);
+                    break;
+                case "SUSPEND_USER":
+                    suspendUser(request, response);
+                    break;
                 default:
                     break;
             }
@@ -75,6 +82,22 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         doGet(request, response);
+    }
+
+    private void suspendUser(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        userDbUtil.suspendUserById(request.getParameter("user_id"));
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text");
+        PrintWriter out = response.getWriter();
+        out.print(true);
+    }
+
+    private void activateUser(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        userDbUtil.activateUserById(request.getParameter("user_id"));
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text");
+        PrintWriter out = response.getWriter();
+        out.print(true);
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
