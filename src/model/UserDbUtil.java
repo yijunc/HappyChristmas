@@ -41,6 +41,45 @@ public class UserDbUtil extends DbUtil {
 //        }
 //    }
 
+
+    public void suspendUserById(String user_id) throws Exception{
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            // get a connection
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            // create sql statement
+            String sql = "UPDATE 2017j2ee.user SET user_valid = 0 WHERE user_id =".concat(user_id);
+            myStmt.executeUpdate(sql);
+
+        } finally {
+            // close JDBC objects
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public void activateUserById(String user_id) throws Exception{
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            // get a connection
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            // create sql statement
+            String sql = "UPDATE 2017j2ee.user SET user_valid = 1 WHERE user_id =".concat(user_id);
+            myStmt.executeUpdate(sql);
+
+        } finally {
+            // close JDBC objects
+            close(myConn, myStmt, myRs);
+        }
+    }
+
     public User getUserByName(String userName) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
