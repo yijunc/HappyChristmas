@@ -63,7 +63,7 @@
                            role="button" aria-haspopup="true" aria-expanded="false">租车信息 <i
                                 class="fa fa-angle-down" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="rentCar.jsp">我要租车-查询车辆信息</a></li>
+                            <li><a href="/CarAvailabilityController?command=USER_CAR_AVAILABILITY">我要租车-查询车辆信息</a></li>
                             <li><a href="addCar.jsp">我要出租-填写车辆信息</a></li>
                         </ul>
                     </li>

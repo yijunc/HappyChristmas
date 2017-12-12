@@ -39,7 +39,8 @@ public class CarAvailabilityDbUtil extends DbUtil {
                 sql = sql + " car_availability_car_brand IS NOT NULL";
             }
             sql  = sql + " AND car_availability_price_daily >= " + carPriceLow + " AND car_availability_price_daily <= " + carPriceHigh
-                    + " AND car_avilability_status=1";
+                    + " AND car_availability_status=1";
+            System.out.println(sql);
             myRs = myStmt.executeQuery(sql);
             List<CarAvailability> mCarAvaList = new ArrayList<CarAvailability>();
             CarAvailability mCarAva = null;

@@ -71,196 +71,195 @@
     <%
         List<CarAvailability> carAvailabilityList = (List<CarAvailability>) request.getAttribute("car_available_list");
     %>
-    
+
+
     <!-- LISTINGS SECTION -->
-    <section class="clearfix bg-dark listyPage">
+    <section class="clearfix bg-dark listyPage" style="padding-top: 0px">
+
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="dashboardPageTitle">
-                        <h2>My Listings</h2>
-                    </div>
-                    <div class="table-responsive"  data-pattern="priority-columns">
+                    <div class="table-responsive" data-pattern="priority-columns">
                         <table class="table listingsTable">
                             <thead>
                             <tr class="rowItem">
-                                <th data-priority="">Listings</th>
-                                <th data-priority="1">Featured</th>
-                                <th data-priority="6">Views</th>
-                                <th data-priority="2">Reviews</th>
-                                <th data-priority="3">Posted on</th>
-                                <th data-priority="4">Last Edited</th>
-                                <th data-priority="5">Status</th>
+                                <th data-priority="">共搜索到了<span
+                                        style="font-weight: bold;"><%=carAvailabilityList.size()%></span> 条记录
+                                </th>
+                                <th data-priority="6">车型</th>
+                                <th data-priority="2">价格</th>
+                                <th data-priority="2">评价</th>
+                                <th data-priority="3">取车时间</th>
+                                <th data-priority="4">换车时间</th>
+                                <th data-priority="5">操作</th>
                             </tr>
                             </thead>
                             <tbody>
 
+                            <%
+                                for (CarAvailability item:carAvailabilityList) {
+
+                            %>
                             <tr class="rowItem">
                                 <td>
                                     <ul class="list-inline listingsInfo">
-                                        <li><a href="#"><img src="img/dashboard/listing.jpg" alt="Image Listings"></a></li>
+                                        <li style="padding-right: 20px"><a href="#"><img src="img/dashboard/listing.jpg" alt="Image Listings"></a>
+                                        </li>
                                         <li>
-                                            <h3><b>&nbsp宝马&nbsp&nbsp七系 </b><i class="fa fa-check-circle" aria-hidden="true"></i></h3>
-                                            <h5>&nbsp1569 / <span class="cityName">7座</span></h5>
-                                            <span class="category">&nbsp个人：赵宁</span>
-                                            <p >&nbsp ¥ <span style="color: red">66.00 </span>/天 </p>
+                                            <p></p>
+                                            <h3><b>&nbsp<%=item.getCarBrand()%>&nbsp&nbsp<%=item.getCarType()%> </b>
+                                                    <%if(item.getCarOwner().equals("HC")){%>
+                                                <span class="label label-primary" style="width: 40px ; ">HC</span>
+                                                    <%}%>
+                                            </h3>
+                                            <h5>&nbsp&nbspID:<%=item.getCarId()%>  </h5>
+                                            <%if(item.getCarOwner().equals("HC")){%>
+                                            <span class="category">&nbsp&nbsp车主：HC</span>
+                                            <%}
+                                            else {%>
+                                            <span class="category">&nbsp&nbsp车主：<%=item.getCarOwner()%></span>
+                                            <%}
+                                            %>
+                                            <p><span class="likeArea"><i class="fa fa-heart-o" aria-hidden="true"
+                                                                         style="color: red"></i><%=item.getCarCustomer()%></span></p>
                                         </li>
                                     </ul>
                                 </td>
-                                <td><i class="fa fa-check primaryColor" aria-hidden="true"></i></td>
-                                <td><span class="likeArea"><i class="fa fa-heart-o" aria-hidden="true" style="color: red"></i>10k</span></td>
+                                <td>7座</td>
+                                <td >&nbsp  <span style="color: pink; font-size: 20px;font-weight: bold">¥ 66.00 </span>/日均</td>
                                 <td>
                                     <ul class="list-inline rating">
+                                        <%
+                                            int rating = (int)(item.getCarRating()+0.5);
+                                            for(int foreach = 0;foreach<rating;foreach++){
+                                        %>
                                         <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        <li>(9)</li>
+                                        <%}%>
+                                        <li>(<%=item.getCarRating()%>)</li>
                                     </ul>
 
                                 </td>
-                                <td>15/12/2016 <br>11.00am</td>
-                                <td>Today <br>11.00am</td>
+                                <td><%=item.getCarDateStart()%> <br>11.00am</td>
+                                <td><%=item.getCarDateEnd()%><br>11.00am</td>
                                 <td><span class="label label-warning">预约</span></td>
                             </tr>
+                            <%}%>
 
                             </tbody>
                         </table>
                     </div>
-                    <div class="paginationCommon blogPagination text-center">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
-                                    </a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <section style="padding-top: 15px; ">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="resultBar barSpaceAdjust">
-                        <h2>We found <span><%=carAvailabilityList.size()%></span> Results for you</h2>
-                    </div>
+    <%--<section style="padding-top: 15px; ">--%>
+    <%--<div class="container">--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-sm-12 col-xs-12">--%>
+    <%--<div class="resultBar barSpaceAdjust">--%>
+    <%--<h2>We found <span><%=carAvailabilityList.size()%></span> Results for you</h2>--%>
+    <%--</div>--%>
 
-                    <%
-                        for (int foreach = 0; foreach < carAvailabilityList.size(); foreach++) {
-                            CarAvailability mCarAvailability = carAvailabilityList.get(foreach);
-                    %>
-                    <div class="listContent">
-                        <div class="row">
-                            <div class="col-sm-5 col-xs-12">
-                                <div class="categoryImage">
-                                    <img src="img/things/things-<%=mCarAvailability.getCarId()%>.jpg"
-                                         alt="Image category"
-                                         class="img-responsive img-rounded">
-                                    <span class="label label-primary">Verified</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-7 col-xs-12">
-                                <div class="categoryDetails">
-                                    <ul class="list-inline rating">
-                                        <%
-                                            for (int i = 0; i < mCarAvailability.getCarRating(); i++) {
-                                        %>
-                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        <%
-                                            }
-                                        %>
-                                    </ul>
-                                    <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                        <span class="likeCount"><i class="fa fa-heart-o"
-                                                                   aria-hidden="true"></i> 10 k</span></h2>
-                                    <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                        incididunt labore et dolore magna aliqua. </p>
-                                    <ul class="list-inline list-tag">
-                                        <li><a href="category-list-full.html">Hotel,</a></li>
-                                        <li><a href="category-list-full.html">Restaurant</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <%--<%--%>
+    <%--for (int foreach = 0; foreach < carAvailabilityList.size(); foreach++) {--%>
+    <%--CarAvailability mCarAvailability = carAvailabilityList.get(foreach);--%>
+    <%--%>--%>
+    <%--<div class="listContent">--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-sm-5 col-xs-12">--%>
+    <%--<div class="categoryImage">--%>
+    <%--<img src="img/things/things-<%=mCarAvailability.getCarId()%>.jpg"--%>
+    <%--alt="Image category"--%>
+    <%--class="img-responsive img-rounded">--%>
+    <%--<span class="label label-primary">Verified</span>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--<div class="col-sm-7 col-xs-12">--%>
+    <%--<div class="categoryDetails">--%>
+    <%--<ul class="list-inline rating">--%>
+    <%--<%--%>
+    <%--for (int i = 0; i < mCarAvailability.getCarRating(); i++) {--%>
+    <%--%>--%>
+    <%--<li><i class="fa fa-star" aria-hidden="true"></i></li>--%>
+    <%--<%--%>
+    <%--}--%>
+    <%--%>--%>
+    <%--</ul>--%>
+    <%--<h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>--%>
+    <%--<span class="likeCount"><i class="fa fa-heart-o"--%>
+    <%--aria-hidden="true"></i> 10 k</span></h2>--%>
+    <%--<p>1569 Queen Street West <span class="placeName">Toronto</span></p>--%>
+    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor--%>
+    <%--incididunt labore et dolore magna aliqua. </p>--%>
+    <%--<ul class="list-inline list-tag">--%>
+    <%--<li><a href="category-list-full.html">Hotel,</a></li>--%>
+    <%--<li><a href="category-list-full.html">Restaurant</a></li>--%>
+    <%--</ul>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
-                    <div class="listContent borderRemove">
-                        <div class="row">
-                            <div class="col-sm-5 col-xs-12">
-                                <div class="categoryImage">
-                                    <img src="img/things/things-2.jpg" alt="Image category"
-                                         class="img-responsive img-rounded">
-                                </div>
-                            </div>
-                            <div class="col-sm-7 col-xs-12">
-                                <div class="categoryDetails">
-                                    <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                        <span class="likeCount"><i class="fa fa-heart-o"
-                                                                   aria-hidden="true"></i> 10 k</span></h2>
-                                    <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                        incididunt labore et dolore magna aliqua. </p>
-                                    <ul class="list-inline list-tag">
-                                        <li><a href="category-list-full.html">Hotel,</a></li>
-                                        <li><a href="category-list-full.html">Restaurant</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <%--<div class="listContent borderRemove">--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-sm-5 col-xs-12">--%>
+    <%--<div class="categoryImage">--%>
+    <%--<img src="img/things/things-2.jpg" alt="Image category"--%>
+    <%--class="img-responsive img-rounded">--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--<div class="col-sm-7 col-xs-12">--%>
+    <%--<div class="categoryDetails">--%>
+    <%--<h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>--%>
+    <%--<span class="likeCount"><i class="fa fa-heart-o"--%>
+    <%--aria-hidden="true"></i> 10 k</span></h2>--%>
+    <%--<p>1569 Queen Street West <span class="placeName">Toronto</span></p>--%>
+    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor--%>
+    <%--incididunt labore et dolore magna aliqua. </p>--%>
+    <%--<ul class="list-inline list-tag">--%>
+    <%--<li><a href="category-list-full.html">Hotel,</a></li>--%>
+    <%--<li><a href="category-list-full.html">Restaurant</a></li>--%>
+    <%--</ul>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
-                    <%}%>
-                    <div class="paginationCommon blogPagination categoryPagination">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="fa fa-angle-left"
-                                                                    aria-hidden="true"></i></span>
-                                    </a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="fa fa-angle-right"
-                                                                    aria-hidden="true"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <%--<%}%>--%>
+    <%--<div class="paginationCommon blogPagination categoryPagination">--%>
+    <%--<nav aria-label="Page navigation">--%>
+    <%--<ul class="pagination">--%>
+    <%--<li>--%>
+    <%--<a href="#" aria-label="Previous">--%>
+    <%--<span aria-hidden="true"><i class="fa fa-angle-left"--%>
+    <%--aria-hidden="true"></i></span>--%>
+    <%--</a>--%>
+    <%--</li>--%>
+    <%--<li class="active"><a href="#">1</a></li>--%>
+    <%--<li><a href="#">2</a></li>--%>
+    <%--<li><a href="#">3</a></li>--%>
+    <%--<li><a href="#">4</a></li>--%>
+    <%--<li><a href="#">5</a></li>--%>
+    <%--<li>--%>
+    <%--<a href="#" aria-label="Next">--%>
+    <%--<span aria-hidden="true"><i class="fa fa-angle-right"--%>
+    <%--aria-hidden="true"></i></span>--%>
+    <%--</a>--%>
+    <%--</li>--%>
+    <%--</ul>--%>
+    <%--</nav>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</section>--%>
 
 </div>
 <%@include file="templates/loginModal.jsp" %>
 <%@include file="templates/footers.jsp" %>
 </body>
-
+<script>
+</script>
 </html>
 
 
