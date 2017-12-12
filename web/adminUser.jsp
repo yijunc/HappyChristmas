@@ -54,6 +54,22 @@
                                         <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label for="userName">用户名</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
+                                           name="user_name"
+                                        <%if(null!=userSearchInput.getSearchName()){%>
+                                           value=<%=userSearchInput.getSearchName()%>
+                                        <%}%>>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                    <label for="userCell">用户预留手机</label>
+                                    <input type="text" class="form-control" id="userCell" placeholder="请输入用户预留手机"
+                                           name="user_cell"
+                                        <%if(0!=userSearchInput.getSearchCell()){%>
+                                           value=<%=userSearchInput.getSearchCell()%>
+                                        <%}%>>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="userStatus">用户状态</label>
                                     <div class="contactSelect">
                                         <select id="userStatus" class="select-drop" name="user_status" size="1"
@@ -64,36 +80,6 @@
                                             <option value="0">已冻结</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="userName">用户名</label>
-                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                    <%--name="user_name">--%>
-                                    <%--<%--%>
-                                    <%--Cookie cookie = null;--%>
-                                    <%--Cookie[] cookies = null;--%>
-                                    <%--// 获取cookies的数据,是一个数组--%>
-                                    <%--cookies = request.getCookies();--%>
-                                    <%--if (cookies != null) {--%>
-                                    <%--for (int i = 0; i < cookies.length; i++) {--%>
-                                    <%--cookie = cookies[i];--%>
-                                    <%--String name = cookie.getValue();--%>
-                                    <%--if (cookie.getName().equals("user_name")) {--%>
-                                    <%--out.println("参数名 : " + cookie.getValue());--%>
-                                    <%--%>--%>
-                                    <%--<input type="text" class="form-control" id="userName" placeholder="请输入用户名"--%>
-                                    <%--name="user_name" value=<%=name%>>--%>
-
-                                    <%--<%--%>
-                                    <%--}--%>
-                                    <%--}--%>
-                                    <%--} else {--%>
-                                    <%--%>--%>
-                                    <input type="text" class="form-control" id="userName" placeholder="请输入用户名"
-                                           name="user_name"
-                                        <%if(null!=userSearchInput.getSearchName()){%>
-                                           value=<%=userSearchInput.getSearchName()%>
-                                        <%}%>>
                                 </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="dateLastLogined">最后登录日期</label>
@@ -149,12 +135,18 @@
                                     </button>
                                     <script>
                                         function user_submit() {
+                                            var ok = true;
                                             if (isNaN($("input#userId").val()))//是数字返回false
                                             {
                                                 alert("用户ID请输入数字哦(￣^￣)ゞ");
+                                                ok = false;
                                             }
-                                            else {
-                                                $("form#carAvailabilitySearchForm").submit();
+                                            if(isNaN($("input#userCell").val())){
+                                                alert("用户手机号请输入数字哦(￣^￣)ゞ");
+                                                ok = false;
+                                            }
+                                            if(ok){
+                                                $("form#userSearchForm").submit();
                                             }
                                         }
                                     </script>
@@ -177,6 +169,7 @@
                                             $("input#dateLastLogined").val("");
                                             $("input#dateRegister").val("");
                                             $("input#dateDealed").val("");
+                                            $("input#userCell").val("");
                                         }
                                     </script>
                                 </div>
@@ -204,7 +197,8 @@
                             <tr>
                                 <th>用户 ID</th>
                                 <th data-priority="">用户名</th>
-                                <th data-priority="6">用户注册日期</th>
+                                <th data-priority="6">预留手机号</th>
+                                <th data-priority="6">注册日期</th>
                                 <th data-priority="6">最后登录日期</th>
                                 <th data-priority="6">最后成交日期</th>
                                 <th data-priority="3">用户状态</th>
@@ -215,7 +209,8 @@
                             <tr>
                                 <th>用户 ID</th>
                                 <th>用户名</th>
-                                <th>用户注册日期</th>
+                                <th>预留手机号</th>
+                                <th>注册日期</th>
                                 <th>最后登录日期</th>
                                 <th>最后成交日期</th>
                                 <th>用户状态</th>
@@ -229,6 +224,9 @@
                                 <td><%=mUser.getUserId()%>
                                 </td>
                                 <td><%=mUser.getUserName()%>
+                                </td>
+                                <td>
+                                    <%=mUser.getUserCell()%>
                                 </td>
                                 <td><%=mUser.getUserRegisterDate()%>
                                 </td>

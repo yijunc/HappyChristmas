@@ -106,7 +106,7 @@ public class UserDbUtil extends DbUtil {
     }
 
     public List<User> getUserListbyAdmin(String userId, String userStatus, String userName,
-                                         String dateLastLogined, String dateRegister, String dateDealed) throws Exception {
+                                         String userCell, String dateLastLogined, String dateRegister, String dateDealed) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -138,6 +138,13 @@ public class UserDbUtil extends DbUtil {
                 sql = sql + " user_valid=" +  userStatus;
             } else {
                 sql = sql + " user_valid IS NOT NULL";
+            }
+            sql += " AND ";
+            if(null != userCell && userCell.length() != 0){
+                sql = sql + " user_cell=" + userCell;
+            }
+            else{
+                sql = sql + " user_cell IS NOT NULL ";
             }
             sql += " AND ";
             if ( null != userName && userName.length() != 0) {
