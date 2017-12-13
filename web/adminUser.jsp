@@ -141,11 +141,11 @@
                                                 alert("用户ID请输入数字哦(￣^￣)ゞ");
                                                 ok = false;
                                             }
-                                            if(isNaN($("input#userCell").val())){
+                                            if (isNaN($("input#userCell").val())) {
                                                 alert("用户手机号请输入数字哦(￣^￣)ゞ");
                                                 ok = false;
                                             }
-                                            if(ok){
+                                            if (ok) {
                                                 $("form#userSearchForm").submit();
                                             }
                                         }
@@ -227,7 +227,8 @@
                                 </td>
                                 <td name="resultUserName"><%=mUser.getUserName()%>
                                 </td>
-                                <td name="resultUserPsw"><%=mUser.getUserPsw()%></td>
+                                <td name="resultUserPsw"><%=mUser.getUserPsw()%>
+                                </td>
                                 <td name="resultUserCell">
                                     <%=mUser.getUserCell()%>
                                 </td>
@@ -245,28 +246,34 @@
                                     %>
                                 </td>
                                 <td name="resultUserStatus">
-                                <%
-                                    switch (mUser.getUserValid()) {
-                                        case 0:%>
-                                <span class="label label-danger">已冻结</span>
-                                <%
-                                        break;
-                                    case 1:%>
-                               <span class="label label-success">已激活</span>
-                                <%
-                                        break;
-                                    case 2:%>
-                               <span class="label label-warning">待审核</span>
-                                <%
+                                    <%
+                                        switch (mUser.getUserValid()) {
+                                            case 0:%>
+                                    <span class="label label-danger">已冻结</span>
+                                    <%
                                             break;
-                                    }
-                                %>
+                                        case 1:%>
+                                    <span class="label label-success">已激活</span>
+                                    <%
+                                            break;
+                                        case 2:%>
+                                    <span class="label label-warning">待审核</span>
+                                    <%
+                                                break;
+                                        }
+                                    %>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary" name="editUser" value="<%=mUser.getUserId()%>">修改</button>
-                                        <button type="button" class="btn btn-primary" name="activateUser" value="<%=mUser.getUserId()%>">激活</button>
-                                        <button type="button" class="btn btn-primary" name="suspendUser" value="<%=mUser.getUserId()%>">冻结</button>
+                                        <button type="button" class="btn btn-primary" name="editUser"
+                                                value="<%=mUser.getUserId()%>">修改
+                                        </button>
+                                        <button type="button" class="btn btn-primary" name="activateUser"
+                                                value="<%=mUser.getUserId()%>">激活
+                                        </button>
+                                        <button type="button" class="btn btn-primary" name="suspendUser"
+                                                value="<%=mUser.getUserId()%>">冻结
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -287,12 +294,68 @@
 <%@include file="/templates/loginModal.jsp" %>
 <%@include file="/templates/footers.jsp" %>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="userModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="height: 250px;width: 700px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">编辑用户</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding-left: 20px;padding-right: 20px">
+
+
+                    <div class="input-group input-group-sm"
+                         style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
+                                class="glyphicon glyphicon-search" aria-hidden="true"></span>用户ID&nbsp&nbsp</span>
+                        <input type="text" class="form-control" placeholder="User Password"
+                               aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group input-group-sm"
+                         style="width: 300px;padding-bottom: 30px;padding-left: 20px">
+                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
+                                class="glyphicon glyphicon-search" aria-hidden="true"></span>用户密码</span>
+                        <input type="text" class="form-control" placeholder="User Password"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+                <div style="padding-left: 20px;padding-right: 20px">
+
+
+                    <div class="input-group input-group-sm" style="padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
+                                class="glyphicon glyphicon-search" aria-hidden="true"></span>用户姓名</span>
+                        <input type="text" class="form-control" placeholder="User Password"
+                               aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
+                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
+                                class="glyphicon glyphicon-search" aria-hidden="true"></span>联系方式</span>
+                        <input type="text" class="form-control" placeholder="User Password"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm"
+                        style="width: 70px;height: 25px; line-height: 5px;">确认
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </body>
 <script>
     $("button[name='editUser']").click(
         function () {
-            $("#loginModal").modal('show');
+            $("#userModal").modal('show');
 
             var userId = $("#result" + this.value).find("td[name='resultUserId']").text();
             var userName = $("#result" + this.value).find("td[name='resultUserName']").text();
@@ -305,15 +368,15 @@
     $("button[name='activateUser']").click(
         function () {
             var userId = this.value;
-            $.get("/UserController?command=ACTIVATE_USER",{
-                user_id : userId
+            $.get("/UserController?command=ACTIVATE_USER", {
+                user_id: userId
             }, function (data, textStatus) {
-                if(data == "true"){
+                if (data == "true") {
                     var status = $("#result" + userId).find("td[name='resultUserStatus']").find("span");
-                    status.attr("class","label label-success");
+                    status.attr("class", "label label-success");
                     status.html("已激活");
                 }
-                else{
+                else {
                     alert("用户状态更改失败");
                 }
             })
@@ -322,15 +385,15 @@
     $("button[name='suspendUser']").click(
         function () {
             var userId = this.value;
-            $.get("/UserController?command=SUSPEND_USER",{
-                user_id : userId
-            }, function (data, textStatus){
-                if(data == "true"){
+            $.get("/UserController?command=SUSPEND_USER", {
+                user_id: userId
+            }, function (data, textStatus) {
+                if (data == "true") {
                     var status = $("#result" + userId).find("td[name='resultUserStatus']").find("span");
-                    status.attr("class","label label-danger");
+                    status.attr("class", "label label-danger");
                     status.html("已冻结");
                 }
-                else{
+                else {
                     alert("用户状态更改失败");
                 }
             })
