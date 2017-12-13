@@ -27,43 +27,57 @@
     <section class="clearfix searchArea banerInfo searchAreaGray">
         <form>
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Find</div>
-                                <input type="text" class="form-control" id="findItem"
-                                       placeholder="What are you looking for?">
-                                <div class="input-group-addon addon-right"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Near</div>
-                                <input type="text" class="form-control" id="nearLocation" placeholder="Location">
-                                <div class="input-group-addon addon-right"><i class="icon-listy icon-target"
-                                                                              aria-hidden="true"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="searchPart">
-                            <div class="searchPartInner">
-                                <div class="searchPartTitle">Category</div>
-                                <div class="searchSelectboxes">
-                                    <select name="guiest_id32" id="guiest_id32" class="select-drop">
-                                        <option value="0">All Categories</option>
-                                        <option value="1">All Categories 1</option>
-                                        <option value="2">All Categories 2</option>
-                                        <option value="3">All Categories 3</option>
-                                    </select>
+                <form>
+
+                    <div class="row">
+                        <div class="col-xs-3 col-xs-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">取车时间</div>
+                                    <div class="input-group date ed-datepicker filterDate"
+                                         data-provide="datepicker">
+                                        <input type="text" class="form-control" placeholder="月/日/年"
+                                               id="dateStart" name="date_start">
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xs-3 col-xs-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">还车时间</div>
+                                    <div class="input-group date ed-datepicker filterDate"
+                                         data-provide="datepicker" style="width: 100%">
+                                        <input type="text" class="form-control" placeholder="月/日/年"
+                                               id="dateEnd" name="date_end">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-xs-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">车座</div>
+                                    <div class="searchSelectboxes" style="width: 100%">
+                                        <select name="guiest_id32" id="guiest_id32" class="select-drop">
+                                            <option value="0">不限</option>
+                                            <option value="1">4座</option>
+                                            <option value="2">5座</option>
+                                            <option value="3">7座</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" style="padding-left: 20px">
+                            <div class="">
+                                <button type="button" class="btn btn-primary btn-xs" onclick=""><i
+                                        class="fa fa-search" aria-hidden="true"></i>搜索
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </form>
     </section>
@@ -74,7 +88,7 @@
 
 
     <!-- LISTINGS SECTION -->
-    <section class="clearfix bg-dark listyPage" style="padding-top: 0px">
+    <section class="clearfix bg-dark listyPage" style="padding-top: 10px;">
 
         <div class="container">
             <div class="row">
@@ -97,41 +111,46 @@
                             <tbody>
 
                             <%
-                                for (CarAvailability item:carAvailabilityList) {
+                                for (CarAvailability item : carAvailabilityList) {
 
                             %>
                             <tr class="rowItem">
                                 <td>
                                     <ul class="list-inline listingsInfo">
-                                        <li style="padding-right: 20px"><a href="#"><img src="img/dashboard/listing.jpg" alt="Image Listings"></a>
+                                        <li style="padding-right: 20px"><a href="#"><img src="img/dashboard/listing.jpg"
+                                                                                         alt="Image Listings"></a>
                                         </li>
                                         <li>
                                             <p></p>
-                                            <h3><b>&nbsp<%=item.getCarBrand()%>&nbsp&nbsp<%=item.getCarType()%> </b>
-                                                    <%if(item.getCarOwner().equals("HC")){%>
+                                            <h3><b>&nbsp<%=item.getCarBrand()%>&nbsp&nbsp<%=item.getCarType()%>
+                                            </b>
+                                                <%if (item.getCarOwner().equals("HC")) {%>
                                                 <span class="label label-primary" style="width: 40px ; ">HC</span>
-                                                    <%}%>
+                                                <%}%>
                                             </h3>
-                                            <h5>&nbsp&nbspID:<%=item.getCarId()%>  </h5>
-                                            <%if(item.getCarOwner().equals("HC")){%>
+                                            <h5>&nbsp&nbspID:<%=item.getCarId()%>
+                                            </h5>
+                                            <%if (item.getCarOwner().equals("HC")) {%>
                                             <span class="category">&nbsp&nbsp车主：HC</span>
-                                            <%}
-                                            else {%>
+                                            <%} else {%>
                                             <span class="category">&nbsp&nbsp车主：<%=item.getCarOwner()%></span>
-                                            <%}
+                                            <%
+                                                }
                                             %>
                                             <p><span class="likeArea"><i class="fa fa-heart-o" aria-hidden="true"
-                                                                         style="color: red"></i><%=item.getCarCustomer()%></span></p>
+                                                                         style="color: red"></i><%=item.getCarCustomer()%></span>
+                                            </p>
                                         </li>
                                     </ul>
                                 </td>
                                 <td>7座</td>
-                                <td >&nbsp  <span style="color: pink; font-size: 20px;font-weight: bold">¥ 66.00 </span>/日均</td>
+                                <td>&nbsp <span style="color: pink; font-size: 20px;font-weight: bold">¥ 66.00 </span>/日均
+                                </td>
                                 <td>
                                     <ul class="list-inline rating">
                                         <%
-                                            int rating = (int)(item.getCarRating()+0.5);
-                                            for(int foreach = 0;foreach<rating;foreach++){
+                                            int rating = (int) (item.getCarRating() + 0.5);
+                                            for (int foreach = 0; foreach < rating; foreach++) {
                                         %>
                                         <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                         <%}%>
@@ -148,8 +167,8 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
             </div>
-        </div>
     </section>
 
     <%--<section style="padding-top: 15px; ">--%>
