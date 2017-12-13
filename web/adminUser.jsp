@@ -229,9 +229,7 @@
                                 </td>
                                 <td name="resultUserPsw"><%=mUser.getUserPsw()%>
                                 </td>
-                                <td name="resultUserCell">
-                                    <%=mUser.getUserCell()%>
-                                </td>
+                                <td name="resultUserCell"><%=mUser.getUserCell()%></td>
                                 <td><%=mUser.getUserRegisterDate()%>
                                 </td>
                                 <td><%=mUser.getUserLastSeen()%>
@@ -294,9 +292,9 @@
 <%@include file="/templates/loginModal.jsp" %>
 <%@include file="/templates/footers.jsp" %>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="userModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="userModal" style="padding-top: 10%">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="height: 250px;width: 700px;">
+        <div class="modal-content" style="height: 265px;width: 675px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
@@ -304,48 +302,34 @@
             </div>
             <div class="modal-body">
                 <div style="padding-left: 20px;padding-right: 20px">
-
-
                     <div class="input-group input-group-sm"
                          style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
-                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
-                                class="glyphicon glyphicon-search" aria-hidden="true"></span>用户ID&nbsp&nbsp</span>
-                        <input type="text" class="form-control" placeholder="User Password"
-                               aria-describedby="basic-addon1">
+                        <span class="input-group-addon" style="width: 80px">用户ID&nbsp&nbsp</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalUserId">
                     </div>
 
                     <div class="input-group input-group-sm"
                          style="width: 300px;padding-bottom: 30px;padding-left: 20px">
-                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
-                                class="glyphicon glyphicon-search" aria-hidden="true"></span>用户密码</span>
-                        <input type="text" class="form-control" placeholder="User Password"
-                               aria-describedby="basic-addon1">
+                        <span class="input-group-addon" style="width: 80px">用户密码</span>
+                        <input type="text" class="form-control" placeholder="请输入用户密码" id="modalUserPsw">
                     </div>
                 </div>
 
                 <div style="padding-left: 20px;padding-right: 20px">
-
-
                     <div class="input-group input-group-sm" style="padding-right: 20px;float:left;width: 300px">
-                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
-                                class="glyphicon glyphicon-search" aria-hidden="true"></span>用户姓名</span>
-                        <input type="text" class="form-control" placeholder="User Password"
-                               aria-describedby="basic-addon1">
+                        <span class="input-group-addon" style="width: 80px">用户姓名</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalUserName">
                     </div>
 
                     <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
-                        <span class="input-group-addon" id="basic-addon1" style="width: 80px"><span
-                                class="glyphicon glyphicon-search" aria-hidden="true"></span>联系方式</span>
-                        <input type="text" class="form-control" placeholder="User Password"
-                               aria-describedby="basic-addon1">
+                        <span class="input-group-addon" style="width: 80px">联系方式</span>
+                        <input type="text" class="form-control" placeholder="请输入用户号码" id="modalUserCell">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-sm"
-                        style="width: 70px;height: 25px; line-height: 5px;">确认
-                </button>
+                <button type="button" class="btn btn-primary" style="width: 70px" id="modalReset">重置</button>
+                <button type="button" class="btn btn-primary" style="width: 70px" id="modalConfirm">确认</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -353,6 +337,25 @@
 
 </body>
 <script>
+    $("#modalConfirm").click(
+        function () {
+            $("#result" + $("#modalUserId").val()).find("td[name='resultUserPsw']").text($("#modalUserPsw").val());
+            $("#result" + $("#modalUserId").val()).find("td[name='resultUserCell']").text($("#modalUserCell").val());
+
+            $("#userModal").modal('hide');
+
+            //TODO
+            // 联网更新
+        }  
+    );
+    $("#modalReset").click(
+        function () {
+            var userPsw = $("#result" + $("#modalUserId").val()).find("td[name='resultUserPsw']").text();
+            var userCell = $("#result" + $("#modalUserId").val()).find("td[name='resultUserCell']").text();
+            $("#modalUserCell").val(userCell);
+            $("#modalUserPsw").val(userPsw);
+        }
+    );
     $("button[name='editUser']").click(
         function () {
             $("#userModal").modal('show');
@@ -362,7 +365,14 @@
             var userPsw = $("#result" + this.value).find("td[name='resultUserPsw']").text();
             var userCell = $("#result" + this.value).find("td[name='resultUserCell']").text();
 
-            $("#user_name").val(userName);
+            $("#modalUserId").val(userId);
+            $("#modalUserName").val(userName);
+            $("#modalUserCell").val(userCell);
+            $("#modalUserPsw").val(userPsw);
+
+            $("#result" + this.value).find("td[name='resultUserPsw']").text($("#modalUserPsw").val());
+            $("#result" + this.value).find("td[name='resultUserCell']").text($("#modalUserCell").val());
+
         }
     );
     $("button[name='activateUser']").click(
