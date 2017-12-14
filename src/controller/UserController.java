@@ -88,11 +88,10 @@ public class UserController extends HttpServlet {
     }
 
     private void updateUserById(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        userDbUtil.updateUserById(request.getParameter("user_id"), request.getParameter("user_psw"), request.getParameter("user_cell"));
         response.setCharacterEncoding("utf-8");
         response.setContentType("text");
         PrintWriter out = response.getWriter();
-        out.print(true);
+        out.print(userDbUtil.updateUserById(request.getParameter("user_id"), request.getParameter("user_psw"), request.getParameter("user_cell")));
     }
 
     private void suspendUser(HttpServletRequest request, HttpServletResponse response) throws Exception{

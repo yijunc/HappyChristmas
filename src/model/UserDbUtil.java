@@ -42,18 +42,26 @@ public class UserDbUtil extends DbUtil {
 //    }
 
 
-    public void updateUserById(String userId, String userPsw, String userCell) throws Exception{
+    public boolean updateUserById(String userId, String userPsw, String userCell) throws Exception{
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
-
         try {
             // get a connection
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            // create sql statement
-            String sql = "UPDATE 2017j2ee.user SET user_psw =\"" + userPsw + "\" user_cell=\"" + userCell + "\" WHERE user_id=" + userId;
-            myStmt.executeUpdate(sql);
+            String sqlPre = "SELECT * FROM 2017j2ee.user WHERE user_cell=\"" + userCell + "\"";
+            myRs = myStmt.executeQuery(sqlPre);
+            if(myRs.first()){
+                return false;
+            }
+            else{
+                // create sql statement
+                String sql = "UPDATE 2017j2ee.user SET user_psw =\"" + userPsw + "\", user_cell=\"" + userCell + "\" WHERE user_id=" + userId;
+                System.out.println(sql);
+                myStmt.executeUpdate(sql);
+                return true;
+            }
 
         } finally {
             // close JDBC objects

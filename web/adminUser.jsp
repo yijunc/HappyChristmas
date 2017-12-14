@@ -223,12 +223,9 @@
                             <%
                                 for (User mUser : result) { %>
                             <tr id="result<%=mUser.getUserId()%>">
-                                <td name="resultUserId"><%=mUser.getUserId()%>
-                                </td>
-                                <td name="resultUserName"><%=mUser.getUserName()%>
-                                </td>
-                                <td name="resultUserPsw"><%=mUser.getUserPsw()%>
-                                </td>
+                                <td name="resultUserId"><%=mUser.getUserId()%></td>
+                                <td name="resultUserName"><%=mUser.getUserName()%></td>
+                                <td name="resultUserPsw"><%=mUser.getUserPsw()%></td>
                                 <td name="resultUserCell"><%=mUser.getUserCell()%></td>
                                 <td><%=mUser.getUserRegisterDate()%>
                                 </td>
@@ -337,15 +334,37 @@
 
 </body>
 <script>
+
+    var userId = $("#result" + this.value).find("td[name='resultUserId']").text();
+
     $("#modalConfirm").click(
         function () {
-            $("#result" + $("#modalUserId").val()).find("td[name='resultUserPsw']").text($("#modalUserPsw").val());
-            $("#result" + $("#modalUserId").val()).find("td[name='resultUserCell']").text($("#modalUserCell").val());
-
-            $("#userModal").modal('hide');
-
             //TODO
             // 联网更新
+            var ok = true;
+            if (isNaN($("#modalUserCell").val()) || $("#modalUserCell").val().length != 11)//是数字返回false
+            {
+                alert("手机号仅可为11位数字");
+                ok = false;
+            }
+            if(ok){
+
+                $.get("/UserController?command=ADMIN_USER_UPDATE",{
+                    user_id : $("#modalUserId").val(),
+                    user_psw: $("#modalUserPsw").val(),
+                    user_cell: $("#modalUserCell").val(),
+                }, function (data, textStatus) {
+                    console.log(data);
+                    if(data == "true"){
+                        $("#userModal").modal('hide');
+                        $("#result" + $("#modalUserId").val()).find("td[name='resultUserPsw']").text($("#modalUserPsw").val());
+                        $("#result" + $("#modalUserId").val()).find("td[name='resultUserCell']").text($("#modalUserCell").val());
+                    }
+                    else{
+                        alert("手机号已存在或密码长度过长");
+                    }
+                });
+            }
         }  
     );
     $("#modalReset").click(
