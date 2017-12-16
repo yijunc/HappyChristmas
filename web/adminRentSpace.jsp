@@ -47,7 +47,7 @@
                                 <input type="hidden" name="command" value="ADMIN_SPACE_ORDER">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                     <label for="orderId">订单ID</label>
-                                    <input type="text" class="form-control" id="orderId" placeholder="Order ID"
+                                    <input type="text" class="form-control" id="orderId" placeholder="请输入订单号"
                                            name="order_id"
                                         <%if(null!=spaceOrderSearch.getOrderId()){%>
                                            value=<%=spaceOrderSearch.getOrderId()%>

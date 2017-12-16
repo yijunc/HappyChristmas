@@ -41,7 +41,7 @@
                             CarOrderSearch carOrderSearch = (CarOrderSearch) request.getAttribute("search_input");
                     %>
                     <div class="dashboardBoxBg mb30">
-                        <form action="/CarOrderController" method="post" class="row">
+                        <form action="/CarOrderController" method="post" class="row" id="carRentSearchForm">
                             <input type="hidden" name="command" value="ADMIN_CAR_ORDER">
                             <div class="profileIntro">
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12">
@@ -151,7 +151,7 @@
                                                 alert("车辆ID请输入数字哦(￣^￣)ゞ");
                                             }
                                             else {
-                                                $("form#carAvailabilitySearchForm").submit();
+                                                $("form#carRentSearchForm").submit();
                                             }
                                         }
                                     </script>
@@ -222,8 +222,7 @@
                                 for (CarOrder it : result) {
                             %>
                             <tr>
-                                <td><%=it.getmId()%>
-                                </td>
+                                <td><%=it.getmId()%></td>
                                 <td>
                                     <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
                                     </a></td>

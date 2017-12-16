@@ -339,8 +339,6 @@
 
     $("#modalConfirm").click(
         function () {
-            //TODO
-            // 联网更新
             var ok = true;
             if (isNaN($("#modalUserCell").val()) || $("#modalUserCell").val().length != 11)//是数字返回false
             {
@@ -355,7 +353,7 @@
                     user_cell: $("#modalUserCell").val(),
                 }, function (data, textStatus) {
                     console.log(data);
-                    if(data == "true"){
+                    if(data == "true" || $("#modalUserCell").val() == $("#result" + $("#modalUserId").val()).find("td[name='resultUserCell']").text()){
                         $("#userModal").modal('hide');
                         $("#result" + $("#modalUserId").val()).find("td[name='resultUserPsw']").text($("#modalUserPsw").val());
                         $("#result" + $("#modalUserId").val()).find("td[name='resultUserCell']").text($("#modalUserCell").val());
