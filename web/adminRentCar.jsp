@@ -260,9 +260,8 @@
                                 %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">修改订单</button>
-                                        <button type="button" class="btn btn-primary">完成订单</button>
-                                        <button type="button" class="btn btn-primary">取消订单</button>
+                                        <button type="button" class="btn btn-primary">完成</button>
+                                        <button type="button" class="btn btn-primary">取消</button>
                                     </div>
                                 </td>
                             </tr>

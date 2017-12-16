@@ -147,17 +147,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                    <label for="carPrice">价格</label><!--!!!!--9--!!!!-->
-                                    <div class="contactSelect">
-                                        <select id="carPrice" class="select-drop" name="car_price" size="1"
-                                                multiple="false">
-                                            <option value="all">不限</option>
-                                            <option value="1">从高到低</option>
-                                            <option value="2">从低到高</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
                                     <button type="button" class="btn btn-primary btn-lg" onclick="car_submit()"><i
                                             class="fa fa-search" aria-hidden="true"></i>搜索
@@ -268,7 +257,7 @@
                                 <td>
                                     <%
                                         out.print(item.getCarRating());
-                                        out.print("/");
+                                        out.print("  /  ");
                                         out.print(item.getCarCustomer());
                                     %>
                                 </td>

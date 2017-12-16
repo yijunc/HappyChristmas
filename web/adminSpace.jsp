@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="dashboardPageTitle text-center">
-                        <h2>HC车库管理</h2>
+                        <h2><b>HC</b>车库管理</h2>
                     </div>
                     <div class="dashboardBoxBg mb30">
                         <div class="profileIntro">
@@ -71,6 +71,10 @@
                                     </button>
                                     <button type="button" class="btn btn-primary btn-lg" onclick=""><i
                                             class="fa fa-circle-o" aria-hidden="true"></i>清空
+                                    </button>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-6 col-xs-12" style="padding-top: 2.3%;">
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="re_set()"><i class="fa fa-plus" aria-hidden="true"></i>添加新车库
                                     </button>
                                 </div>
                             </form>
