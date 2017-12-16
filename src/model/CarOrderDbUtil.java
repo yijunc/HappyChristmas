@@ -1,18 +1,52 @@
 package model;
 
 import bean.CarOrder;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarOrderDbUtil extends DbUtil{
+public class CarOrderDbUtil extends DbUtil {
 
     public CarOrderDbUtil(DataSource dataSource) {
         super(dataSource);
+    }
+
+    public boolean cancelCarOrder(int orderId) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+
+            String sql = "UPDATE 2017j2ee.car_order set car_order_status = 0 WHERE car_order_id = ".concat(String.valueOf(orderId));
+            myStmt.executeUpdate(sql);
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public boolean changeCarOrderPriceByOrderId(int carId, int carPrice) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+
+            String sql = "UPDATE 2017j2ee.car_order set car_order_price =" + carPrice + " , car_order_status = 1 WHERE car_order_id=" + carId;
+            System.out.println("sql car_order_price_update:  " + sql);
+            myStmt.executeUpdate(sql);
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
     }
 
     public List<CarOrder> getCarOrderListByAdmin(String orderId, String orderTaker, String orderPoster, String orderDate, String orderStart, String orderEnd, String orderCarId, String orderStatus) throws Exception {

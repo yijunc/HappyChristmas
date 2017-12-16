@@ -1,13 +1,9 @@
 package controller;
 
-import bean.UserSearch;
 import bean.User;
+import bean.UserSearch;
+import com.sun.deploy.net.HttpResponse;
 import model.UserDbUtil;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Servlet implementation class StudentControllerServlet
@@ -59,6 +58,9 @@ public class UserController extends HttpServlet {
                 case "LOGIN":
                     login(request, response);
                     break;
+                case "USER_REGISTER":
+                    userRegister(request, response);
+                    break;
                 case "ADMIN_USER":
                     adminUser(request, response);
                     break;
@@ -87,14 +89,20 @@ public class UserController extends HttpServlet {
         doGet(request, response);
     }
 
-    private void updateUserById(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    private void userRegister(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void updateUserById(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text");
         PrintWriter out = response.getWriter();
         out.print(userDbUtil.updateUserById(request.getParameter("user_id"), request.getParameter("user_psw"), request.getParameter("user_cell")));
     }
 
-    private void suspendUser(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    private void suspendUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         userDbUtil.suspendUserById(request.getParameter("user_id"));
         response.setCharacterEncoding("utf-8");
         response.setContentType("text");
@@ -102,7 +110,7 @@ public class UserController extends HttpServlet {
         out.print(true);
     }
 
-    private void activateUser(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    private void activateUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         userDbUtil.activateUserById(request.getParameter("user_id"));
         response.setCharacterEncoding("utf-8");
         response.setContentType("text");
@@ -159,7 +167,7 @@ public class UserController extends HttpServlet {
         if (null != dateDealed && dateDealed.length() != 0) {
             mUserSearch.setSearchOrderDate(dateDealed);
         }
-        if(null != userCell && userCell.length() != 0){
+        if (null != userCell && userCell.length() != 0) {
             mUserSearch.setSearchCell(Long.parseLong(userCell));
         }
 

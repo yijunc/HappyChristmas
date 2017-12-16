@@ -41,7 +41,7 @@
     <section class="clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-xs-12">
+                <div class="col-xs-12">
                     <div class="blogInnerWrapper">
                         <div class="thumbnail blogInner">
                             <img src="img/blog/blog-1.jpg" alt="Image blog" class="img-responsive">
@@ -162,99 +162,6 @@
                                     officia deserunt mollit
                                     anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
                                     voluptatem </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="sidebarInner">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..."
-                                   aria-describedby="basic-addon2">
-                            <a href="#" class="input-group-addon" id="basic-addon2">
-                                <i class="icon-listy icon-search-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sidebarInner">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Categories</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li>
-                                        <a href="#">Real Estate
-                                            <span class="pull-right">(3)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Automotive
-                                            <span class="pull-right">(7)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Healthcare
-                                            <span class="pull-right">(12)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Restaurent
-                                            <span class="pull-right">(5)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Business
-                                            <span class="pull-right">(9)</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebarInner">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Recent Posts</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li>
-                                        <a href="#">Curabitur scelerisque lacus sit amet.</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Morbi pretium ipsum ac massa sollicitu.</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Etiam eget augue et lorem sagittis.</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Sed mollis tincidunt massa vel egestas.</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Aliquam semper dolor nec metus alique.</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebarInner">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Archives</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li>
-                                        <a href="#">Jan 2016</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feb 2016</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Mar 2016</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">April 2016</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">May 2016</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>

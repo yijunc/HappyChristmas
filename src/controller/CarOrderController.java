@@ -48,6 +48,12 @@ public class CarOrderController extends HttpServlet {
                 case "ADMIN_CAR_ORDER":
                     adminCarOrder(request, response);
                     break;
+                case "ADMIN_ORDER_DONE":
+                    adminOrderDone(request, response);
+                    break;
+                case "ADMIN_ORDER_CANCEL":
+                    adminOrderCancel(request, response);
+                    break;
                 default:
                     break;
             }
@@ -62,6 +68,17 @@ public class CarOrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         doGet(request, response);
+    }
+
+    private void adminOrderCancel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String orderId = request.getParameter("order_id");
+        carOrderDbUtil.cancelCarOrder(Integer.parseInt(orderId));
+    }
+
+    private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String orderId = request.getParameter("order_id");
+        String orderPrice = request.getParameter("order_price");
+        carOrderDbUtil.changeCarOrderPriceByOrderId(Integer.parseInt(orderId), Integer.parseInt(orderPrice));
     }
 
     private void adminCarOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
