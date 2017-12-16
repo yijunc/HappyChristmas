@@ -222,8 +222,7 @@
                                 for (CarOrder it : result) {
                             %>
                             <tr id="orderCarResult">
-                                <td name="order_carId"><%=it.getmId()%>
-                                </td>
+                                <td name="order_carId"><%=it.getmId()%></td>
                                 <td name="order_taker"><a
                                         href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
                                 </a></td>
@@ -248,12 +247,12 @@
                                         break;
                                     case 1:
                                 %>
-                                <td><span class="label label-success">已完成</span></td>
+                                <td name="order_status"><span class="label label-success">已完成</span></td>
                                 <%
                                         break;
                                     case 2:
                                 %>
-                                <td><span class="label label-warning">正在进行中</span></td>
+                                <td name="order_status"><span class="label label-warning">正在进行中</span></td>
                                 <%
                                             break;
                                     }
@@ -352,6 +351,7 @@
         var index = this.parentNode.parentNode.parentNode;
         element = index;
         var id = $(index).find("td[name='order_carId']").text();
+        console.log(id);
         var orderPoster = $(index).find("td[name='order_poster']").text();
         var orderTaker = $(index).find("td[name='order_taker']").text();
         var orderStart = $(index).find("td[name='order_start']").text();
@@ -374,21 +374,16 @@
         }
         if(ok){
             console.log("ok");
-            $.get("/UserController?command=ADMIN_ORDER_DONE",{
+            $.get("/CarOrderController?command=ADMIN_ORDER_DONE",{
                 order_id: $("#modalCarOrderId").val(),
                 order_price: $("#modalCarOrderPrice").val(),
             },function (data,ret) {
                 console.log(data);
-                if(data == "true"){
                     $("#carOrderModal").modal('hide');
                     $(element).find("td[name='order_price']").text($("#modalCarOrderPrice").val());
-                    var status = $(index).find("td[name='order_status']").find("span");
+                    var status = $(element).find("td[name='order_status']").find("span");
                     status.attr("class", "label label-success");
                     status.html("已完成");
-                }
-                else {
-                    alert("订单修改失败哦～")
-                }
             });
         }
     });
@@ -403,17 +398,13 @@
     $(".cancel").click(function () {
         var index = this.parentNode.parentNode.parentNode;
         var id = $(index).find("td[name='order_carId']").text();
-        $.get("/UserController?command=ADMIN_ORDER_CANCEL", {
+        console.log(id);
+        $.get("/CarOrderController?command=ADMIN_ORDER_CANCEL", {
             order_id: id
         }, function (data, ret) {
-            if (data == "true") {
                 var status = $(index).find("td[name='order_status']").find("span");
                 status.attr("class", "label label-danger");
                 status.html("已取消");
-            }
-            else {
-                alert("用户状态更改失败╭(°A°`)╮");
-            }
         })
     });
 </script>
