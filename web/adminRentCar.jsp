@@ -221,21 +221,21 @@
                             <%
                                 for (CarOrder it : result) {
                             %>
-                            <tr>
-                                <td><%=it.getmId()%></td>
-                                <td>
-                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
-                                    </a></td>
-                                <td>
-                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderPoster()%>"><%=it.getOrderPoster()%>
-                                    </a></td>
-                                <td><%=it.getmAmount()%>
+                            <tr id="orderCarResult">
+                                <td name="order_carId"><%=it.getmId()%>
                                 </td>
+                                <td name="order_taker"><a
+                                        href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
+                                </a></td>
+                                <td name="order_poster"><a
+                                        href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderPoster()%>"><%=it.getOrderPoster()%>
+                                </a></td>
+                                <td name="order_price"><%=it.getmAmount()%></td>
                                 <td><%=it.getOrderDate()%>
                                 </td>
-                                <td><%=it.getOrderStart()%>
+                                <td name="order_start"><%=it.getOrderStart()%>
                                 </td>
-                                <td><%=it.getOrderEnd()%>
+                                <td name="order_end"><%=it.getOrderEnd()%>
                                 </td>
                                 <td>
                                     <a href="/CarAvailabilityController?command=ADMIN_CAR_AVAILABILITY&car_id=<%=it.getCarId()%>"><%=it.getCarId()%>
@@ -243,7 +243,7 @@
                                 <%
                                     switch (it.getmStatus()) {
                                         case 0: %>
-                                <td><span class="label label-danger">已取消</span></td>
+                                <td name="order_status"><span class="label label-danger">已取消</span></td>
                                 <%
                                         break;
                                     case 1:
@@ -260,8 +260,8 @@
                                 %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">完成</button>
-                                        <button type="button" class="btn btn-primary">取消</button>
+                                        <button type="button" class="btn btn-primary mdfPrice">完成</button>
+                                        <button type="button" class="btn btn-primary cancel">取消</button>
                                     </div>
                                 </td>
                             </tr>
@@ -281,6 +281,142 @@
 <%@include file="/templates/footers.jsp" %>
 
 
+<div class="modal fade" tabindex="-1" role="dialog" id="carOrderModal" style="padding-top: 10%">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="height: 320px;width: 675px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">编辑租车订单</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding-left: 20px;padding-right: 20px">
+                    <div class="input-group input-group-sm"
+                         style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" style="width: 80px">订单ID：&nbsp&nbsp</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalCarOrderId"
+                               style="background-color: white">
+                    </div>
+
+                    <div class="input-group input-group-sm"
+                         style="width: 300px;padding-bottom: 30px;padding-left: 20px">
+                        <span class="input-group-addon" style="width: 80px">订单金额：</span>
+                        <input type="text" class="form-control" placeholder="请输入订单金额" id="modalCarOrderPrice">
+                    </div>
+                </div>
+
+                <div style="padding-left: 20px;padding-right: 20px">
+                    <div class="input-group input-group-sm"
+                         style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" style="width: 80px">订单发布：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalCarOrderPost"
+                               style="background-color: white">
+                    </div>
+
+                    <div class="input-group input-group-sm"
+                         style="width: 300px;padding-bottom: 30px;padding-left: 20px">
+                        <span class="input-group-addon" style="width: 80px">订单顾客：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalCarOrderTaker"
+                               style="background-color: white">
+                    </div>
+                </div>
+
+                <div style="padding-left: 20px;padding-right: 20px">
+                    <div class="input-group input-group-sm" style="padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" style="width: 80px">开始时间：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalCarOrderStart"
+                               style="background-color: white">
+                    </div>
+
+                    <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
+                        <span class="input-group-addon" style="width: 80px">结束时间：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalCarOrderEnd"
+                               style="background-color: white">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="width: 70px" id="modalReset">重置</button>
+                <button type="button" class="btn btn-primary" style="width: 70px" id="modalConfirm">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 </body>
+<script>
+    var element;
+    $(".mdfPrice").click(function () {
+        $("#carOrderModal").modal('show');
+        var index = this.parentNode.parentNode.parentNode;
+        element = index;
+        var id = $(index).find("td[name='order_carId']").text();
+        var orderPoster = $(index).find("td[name='order_poster']").text();
+        var orderTaker = $(index).find("td[name='order_taker']").text();
+        var orderStart = $(index).find("td[name='order_start']").text();
+        var orderEnd = $(index).find("td[name='order_end']").text();
+        var orderPrice = $(index).find("td[name='order_price']").text();
+        $("#modalCarOrderId").val(id);
+        $("#modalCarOrderPrice").val(orderPrice);
+        $("#modalCarOrderPost").val(orderPoster);
+        $("#modalCarOrderTaker").val(orderTaker);
+        $("#modalCarOrderStart").val(orderStart);
+        $("#modalCarOrderEnd").val(orderEnd);
+    });
+
+    $("#modalConfirm").click(function () {
+        var ok =true;
+        if(isNaN($("#modalCarOrderPrice").val())||$("#modalCarOrderPrice").val().length>10)
+        {
+            alert("请输入有效数字(¬_¬)");
+            ok = false;
+        }
+        if(ok){
+            console.log("ok");
+            $.get("/UserController?command=ADMIN_ORDER_DONE",{
+                order_id: $("#modalCarOrderId").val(),
+                order_price: $("#modalCarOrderPrice").val(),
+            },function (data,ret) {
+                console.log(data);
+                if(data == "true"){
+                    $("#carOrderModal").modal('hide');
+                    $(element).find("td[name='order_price']").text($("#modalCarOrderPrice").val());
+                    var status = $(index).find("td[name='order_status']").find("span");
+                    status.attr("class", "label label-success");
+                    status.html("已完成");
+                }
+                else {
+                    alert("订单修改失败哦～")
+                }
+            });
+        }
+    });
+
+    $("#modalReset").click(
+        function () {
+            var price = $(element).find("td[name='order_price']").text();
+            $("#modalCarOrderPrice").val(price);
+        }
+    );
+
+    $(".cancel").click(function () {
+        var index = this.parentNode.parentNode.parentNode;
+        var id = $(index).find("td[name='order_carId']").text();
+        $.get("/UserController?command=ADMIN_ORDER_CANCEL", {
+            order_id: id
+        }, function (data, ret) {
+            if (data == "true") {
+                var status = $(index).find("td[name='order_status']").find("span");
+                status.attr("class", "label label-danger");
+                status.html("已取消");
+            }
+            else {
+                alert("用户状态更改失败╭(°A°`)╮");
+            }
+        })
+    });
+</script>
+
 
 </html>
