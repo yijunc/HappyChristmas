@@ -28,9 +28,9 @@
         <form>
             <div class="container">
                 <form>
-
                     <div class="row">
-                        <div class="col-xs-3 col-xs-12">
+
+                        <div class="col-xs-4 col-xs-12" style="width: 30%">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">取车时间</div>
@@ -38,11 +38,14 @@
                                          data-provide="datepicker">
                                         <input type="text" class="form-control" placeholder="月/日/年"
                                                id="dateStart" name="date_start">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-3 col-xs-12">
+                        <div class="col-xs-4 col-xs-12" style="width: 30%">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">还车时间</div>
@@ -50,11 +53,14 @@
                                          data-provide="datepicker" style="width: 100%">
                                         <input type="text" class="form-control" placeholder="月/日/年"
                                                id="dateEnd" name="date_end">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-3 col-xs-12">
+                        <div class="col-xs-4 col-xs-12" style="width: 27%">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">车座</div>
@@ -112,8 +118,8 @@
 
                             <%
                                 for (CarAvailability item : carAvailabilityList) {
-
                             %>
+
                             <tr class="rowItem">
                                 <td>
                                     <ul class="list-inline listingsInfo">
