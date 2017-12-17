@@ -229,7 +229,14 @@
                                 <td name="resultUserCell"><%=mUser.getUserCell()%></td>
                                 <td><%=mUser.getUserRegisterDate()%>
                                 </td>
-                                <td><%=mUser.getUserLastSeen()%>
+                                <td>
+                                    <%
+                                        if(mUser.getUserLastSeen() == null){
+                                            out.print("无最后登录时间");
+                                        } else {
+                                            out.print(mUser.getUserLastSeen());
+                                        }
+                                    %>
                                 </td>
                                 <td>
                                     <%
@@ -363,7 +370,7 @@
                     }
                 });
             }
-        }  
+        }
     );
     $("#modalReset").click(
         function () {

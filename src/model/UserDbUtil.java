@@ -3,9 +3,13 @@ package model;
 import bean.User;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDbUtil extends DbUtil {
@@ -15,34 +19,33 @@ public class UserDbUtil extends DbUtil {
         super(dataSource);
     }
 
-//    public List<User> listUser() throws Exception{
-//        Connection myConn = null;
-//        Statement myStmt = null;
-//        ResultSet myRs = null;
-//
-//        try {
-//            // get a connection
-//            myConn = dataSource.getConnection();
-//
-//            // create sql statement
-//            String sql = "select * from 2017j2ee.user WHERE user_name=\"".concat(userName).concat("\"");
-//            System.out.println("In UserDbUtil: ".concat(sql));
-//            myStmt = myConn.createStatement();
-//
-//            // execute query
-//            myRs = myStmt.executeQuery(sql);
-//
-//            // process result set
-//
-//
-//        } finally {
-//            // close JDBC objects
-//            close(myConn, myStmt, myRs);
-//        }
-//    }
+    public boolean registerUser(String userName, String userPsw, String userEmail, String userCell) throws Exception{
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try{
+            myConn = dataSource.getConnection();
+            String sql = "insert into 2017j2ee.user (user_name, user_psw, user_cell, user_email, user_register_date) VALUES (?,?,?,?,?)";
+            PreparedStatement prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setString(1,userName);
+            prstmt.setString(2,userPsw);
+            prstmt.setString(3,userCell);
+            prstmt.setString(4,userEmail);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            prstmt.setDate(5, java.sql.Date.valueOf(df.format(new Date())));
+
+            prstmt.execute();
+            return true;
+
+        }finally {
+            close(myConn,myStmt,myRs);
+        }
+
+    }
 
 
-    public boolean updateUserById(String userId, String userPsw, String userCell) throws Exception{
+    public boolean updateUserById(String userId, String userPsw, String userCell) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -52,12 +55,11 @@ public class UserDbUtil extends DbUtil {
             myStmt = myConn.createStatement();
             String sqlPre = "SELECT * FROM 2017j2ee.user WHERE user_cell=\"" + userCell + "\"";
             myRs = myStmt.executeQuery(sqlPre);
-            if(myRs.first()){
+            if (myRs.first()) {
                 return false;
-            }
-            else{
+            } else {
                 // create sql statement
-                String sql = "UPDATE 2017j2ee.user SET user_psw =\"" + userPsw + "\", user_cell=\"" + userCell + "\" WHERE user_id=" + userId;
+                String sql = new StringBuilder().append("UPDATE 2017j2ee.user SET user_psw =\"").append(userPsw).append("\", user_cell=\"").append(userCell).append("\" WHERE user_id=").append(userId).toString();
                 System.out.println(sql);
                 myStmt.executeUpdate(sql);
                 return true;
@@ -69,7 +71,26 @@ public class UserDbUtil extends DbUtil {
         }
     }
 
-    public void suspendUserById(String userId) throws Exception{
+    public void updateUserLastSeen(int userId) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String sql = new StringBuilder().append("UPDATE 2017j2ee.user SET user_last_seen = \"").append(df.format(new Date())).append("\" WHERE user_id = ").append(userId).toString();
+            System.out.println(sql);
+            myStmt.executeUpdate(sql);
+
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public void suspendUserById(String userId) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -88,7 +109,7 @@ public class UserDbUtil extends DbUtil {
         }
     }
 
-    public void activateUserById(String user_id) throws Exception{
+    public void activateUserById(String user_id) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -101,6 +122,44 @@ public class UserDbUtil extends DbUtil {
             String sql = "UPDATE 2017j2ee.user SET user_valid = 1 WHERE user_id =".concat(user_id);
             myStmt.executeUpdate(sql);
 
+        } finally {
+            // close JDBC objects
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public User getUserByCell(String userCell) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            // get a connection
+            myConn = dataSource.getConnection();
+
+            // create sql statement
+//            String sql = "select * from 2017j2ee.user WHERE user_name=\"".concat(userName).concat("\"");
+            String sql = "select * from 2017j2ee.user WHERE user_cell=?";//注释部分窝最后再删哦
+            PreparedStatement ptmt = (PreparedStatement) myConn.prepareStatement(sql);//夸我夸我哦
+            //传参
+            ptmt.setString(1, userCell);
+            //执行
+            myRs = ptmt.executeQuery();
+            while (myRs.next()) {
+                return new User(myRs.getInt("user_id"),
+                        myRs.getString("user_name"),
+                        myRs.getString("user_psw"),
+                        myRs.getString("user_cell"),
+                        myRs.getInt("user_valid"),
+                        myRs.getString("user_email"),
+                        myRs.getBoolean("user_admin"),
+                        myRs.getBoolean("user_avatar"),
+                        myRs.getInt("user_balance"),
+                        myRs.getDate("user_last_seen"),
+                        myRs.getDate("user_register_date"),
+                        myRs.getDate("user_last_order_date"));
+            }
+            return null;
         } finally {
             // close JDBC objects
             close(myConn, myStmt, myRs);
@@ -139,32 +198,6 @@ public class UserDbUtil extends DbUtil {
                         myRs.getDate("user_last_order_date"));
             }
             return null;
-
-
-//            System.out.println("In UserDbUtil: ".concat(sql));
-//            myStmt = myConn.createStatement();
-//
-//            // execute query
-//            myRs = myStmt.executeQuery(sql);
-//
-//            // process result set
-//
-//            if ( null != myRs.first()) {
-//                return new User(myRs.getInt("user_id"),
-//                        myRs.getString("user_name"),
-//                        myRs.getString("user_psw"),
-//                        myRs.getString("user_cell"),
-//                        myRs.getBoolean("user_valid"),
-//                        myRs.getString("user_email"),
-//                        myRs.getBoolean("user_admin"),
-//                        myRs.getBoolean("user_avatar"),
-//                        myRs.getInt("user_balance"),
-//                        myRs.getDate("user_last_seen"),
-//                        myRs.getDate("user_register_date"));
-//            } else {
-//                return null;
-//            }
-
         } finally {
             // close JDBC objects
             close(myConn, myStmt, myRs);
@@ -194,46 +227,43 @@ public class UserDbUtil extends DbUtil {
             SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
             SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
 
-            if ( null != userId && userId.length() != 0) {
+            if (null != userId && userId.length() != 0) {
                 sql = sql + " user_id=" + userId;
             } else {
                 sql = sql + " user_id IS NOT NULL";
             }
             sql += " AND ";
-            if ( null != userStatus && userStatus.length() != 0 && !userStatus.equals("3")) {
-                sql = sql + " user_valid=" +  userStatus;
+            if (null != userStatus && userStatus.length() != 0 && !userStatus.equals("3")) {
+                sql = sql + " user_valid=" + userStatus;
             } else {
                 sql = sql + " user_valid IS NOT NULL";
             }
             sql += " AND ";
-            if(null != userCell && userCell.length() != 0){
+            if (null != userCell && userCell.length() != 0) {
                 sql = sql + " user_cell=" + userCell;
-            }
-            else{
+            } else {
                 sql = sql + " user_cell IS NOT NULL ";
             }
             sql += " AND ";
-            if ( null != userName && userName.length() != 0) {
-                sql = sql + " user_name=\"" +  userName  + "\"";
+            if (null != userName && userName.length() != 0) {
+                sql = sql + " user_name=\"" + userName + "\"";
             } else {
                 sql = sql + " user_name IS NOT NULL";
             }
-            sql += " AND ";
-            if ( null != dateLastLogined && dateLastLogined.length() != 0) {
-                sql = sql + " user_last_seen=\"" +  dateFormatTo.format(dateFormatFrom.parse(dateLastLogined))  + "\"";
-            } else {
-                sql = sql + " user_last_seen IS NOT NULL";
+            if (null != dateLastLogined && dateLastLogined.length() != 0) {
+                sql += " AND ";
+                sql = sql + " user_last_seen=\"" + dateFormatTo.format(dateFormatFrom.parse(dateLastLogined)) + "\"";
             }
             sql += " AND ";
-            if ( null != dateRegister && dateRegister.length() != 0) {
-                sql = sql + "user_register_date=\"" +  dateFormatTo.format(dateFormatFrom.parse(dateRegister))  + "\"";
+            if (null != dateRegister && dateRegister.length() != 0) {
+                sql = sql + "user_register_date=\"" + dateFormatTo.format(dateFormatFrom.parse(dateRegister)) + "\"";
             } else {
                 sql = sql + "user_register_date IS NOT NULL";
             }
 
-            if ( null != dateDealed && dateDealed.length() != 0) {
+            if (null != dateDealed && dateDealed.length() != 0) {
                 sql += " AND ";
-                sql = sql + " user_last_order_date=\"" +  dateFormatTo.format(dateFormatFrom.parse(dateDealed))  + "\"";
+                sql = sql + " user_last_order_date=\"" + dateFormatTo.format(dateFormatFrom.parse(dateDealed)) + "\"";
             }
 
 //            //预编译
@@ -246,7 +276,7 @@ public class UserDbUtil extends DbUtil {
 ////            ptmt.setDate(4, new Date(g.getBirthday().getTime()));
 
             //执行
-            System.out.println("sql:"+sql);
+            System.out.println("sql:" + sql);
             myRs = myStmt.executeQuery(sql);
 
             List<User> userList = new ArrayList<User>();

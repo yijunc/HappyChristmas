@@ -61,6 +61,12 @@ public class UserController extends HttpServlet {
                 case "USER_REGISTER":
                     userRegister(request, response);
                     break;
+                case "CHECK_NAME":
+                    checkName(request, response);
+                    break;
+                case "CHECK_CELL":
+                    checkCell(request, response);
+                    break;
                 case "ADMIN_USER":
                     adminUser(request, response);
                     break;
@@ -89,8 +95,30 @@ public class UserController extends HttpServlet {
         doGet(request, response);
     }
 
-    private void userRegister(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void checkCell(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PrintWriter out = response.getWriter();
+        boolean result = true;
+        if(userDbUtil.getUserByCell(request.getParameter("user_cell")) == null){
+            result = false;
+        }
+        out.print(result);
+    }
 
+    private void checkName(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        PrintWriter out = response.getWriter();
+        boolean result = true;
+        if(userDbUtil.getUserByName(request.getParameter("user_name")) == null){
+            result = false;
+        }
+        out.print(result);
+    }
+
+    private void userRegister(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String userName = request.getParameter("user_name");
+        String userCell = request.getParameter("user_cell");
+        String userPsw = request.getParameter("user_psw");
+        String userEmail = request.getParameter("user_email");
+        userDbUtil.registerUser(userName,userPsw,userEmail,userCell);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
@@ -129,6 +157,7 @@ public class UserController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
         } else {
+            userDbUtil.updateUserLastSeen(user_db.getUserId());
             request.setAttribute("logged_in", true);
             request.setAttribute("current_user", user_db);
             //Forword to index.jsp
