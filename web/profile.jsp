@@ -28,28 +28,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-md-4 col-sm-5 col-xs-12">  <!--left-->
-                    <div class="dashboardBoxBg mb30">
-                        <div class="profileImage">
-                            <img src="img/dashboard/user-2.jpg" alt="Image User" class="img-circle">
-                            <div class="file-upload profileImageUpload">
-                                <div class="upload-area">
-                                    <input type="file" name="img[]" class="file">
-                                    <button class="browse" type="button">上传头像<i class="icon-listy icon-upload"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profileUserInfo bt profileName">
-                            <p>普通会员</p>
-                            <h2>Nora</h2>
-                            <h5>Email:<span>1379026619@qq.com</span></h5>
-                            <a href="#" class="btn btn-primary">修改</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-sm-7 col-xs-12">  <!--right-->
+                <div class="col-xs-12">  <!--right-->
 
                     <!-- <div class="dashboardBoxBg "> -->
                     <ul class="nav nav-tabs" id="userNavBar">

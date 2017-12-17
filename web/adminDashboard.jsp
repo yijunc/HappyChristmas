@@ -328,63 +328,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="panel panel-default panel-card">
-                        <div class="panel-heading" id="message">
-                            Messages <span class="label label-default label-sm">3 New</span> <a href=""
-                                                                                                class="btn label label-primary">Send
-                            Message</a>
-                        </div>
-                        <div class="panel-body panel-message">
-                            <ul class="list-unstyled panel-list">
-                                <li class="messageCommon recentMessage listWrapper">
-								<span class="messageInfo">
-									<h5>Rifat Abeer, <small>Today <span class="dayTime">11.08 AM</span></small></h5>
-									<p>Dear Sir, Confirming the order for the following items: LC Latex Classy Gents: 24 x 1200 = 28800, Suede Convers 02: 6 x 1200 = 7200</p>
-								</span>
-                                    <span class="messageTime">5m ago</span>
-                                </li>
-                                <li class="messageCommon recentMessage listWrapper">
-								<span class="messageInfo">
-									<h5>Rifat Abeer, <small>Today <span class="dayTime">11.08 AM</span></small></h5>
-									<p>Dear Sir, Confirming the order for the following items: LC Latex Classy Gents: 24 x 1200 = 28800, Suede Convers 02: 6 x 1200 = 7200</p>
-								</span>
-                                    <span class="messageTime">5m ago</span>
-                                </li>
-                                <li class="messageCommon recentMessage listWrapper">
-								<span class="messageInfo">
-									<h5>Rifat Abeer, <small>Today <span class="dayTime">11.08 AM</span></small></h5>
-									<p>Dear Sir, Confirming the order for the following items: LC Latex Classy Gents: 24 x 1200 = 28800, Suede Convers 02: 6 x 1200 = 7200</p>
-								</span>
-                                    <span class="messageTime">5m ago</span>
-                                </li>
-                                <li class="messageCommon oldMessage listWrapper">
-								<span class="messageInfo">
-									<h5>Rifat Abeer, <small>Today <span class="dayTime">11.08 AM</span></small></h5>
-									<p>Dear Sir, Confirming the order for the following items: LC Latex Classy Gents: 24 x 1200 = 28800, Suede Convers 02: 6 x 1200 = 7200</p>
-								</span>
-                                    <span class="messageTime">5m ago</span>
-                                </li>
-                                <li class="messageCommon oldMessage listWrapper">
-								<span class="messageInfo">
-									<h5>Rifat Abeer, <small>Today <span class="dayTime">11.08 AM</span></small></h5>
-									<p>Dear Sir, Confirming the order for the following items: LC Latex Classy Gents: 24 x 1200 = 28800, Suede Convers 02: 6 x 1200 = 7200</p>
-								</span>
-                                    <span class="messageTime">5m ago</span>
-                                </li>
-                                <li class="messageCommon oldMessage listWrapper">
-								<span class="messageInfo">
-									<h5>Rifat Abeer, <small>Today <span class="dayTime">11.08 AM</span></small></h5>
-									<p>Dear Sir, Confirming the order for the following items: LC Latex Classy Gents: 24 x 1200 = 28800, Suede Convers 02: 6 x 1200 = 7200</p>
-								</span>
-                                    <span class="messageTime">5m ago</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 </div>

@@ -11,7 +11,7 @@
 <%@include file="templates/headers.jsp" %>
 
 <head>
-    <title>新闻中心--HAPPY CHRISTMAS</title>
+    <title>新闻中心</title>
 </head>
 
 <body class="body-wrapper">
@@ -41,7 +41,7 @@
     <section class="clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-8">
                     <div class="blogInnerWrapper">
                         <div class="thumbnail blogInner">
                             <img src="img/blog/blog-1.jpg" alt="Image blog" class="img-responsive">
@@ -164,6 +164,23 @@
                                     voluptatem </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="sidebarInner">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..."
+                                   aria-describedby="basic-addon2">
+                            <a href="#" class="input-group-addon" id="basic-addon2">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <button class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+                                class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </button>
+                        <button class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;<i
+                                class="fa fa-search" aria-hidden="true"></i>添加新新闻&nbsp;&nbsp;&nbsp;
+                        </button>
                     </div>
                 </div>
             </div>
