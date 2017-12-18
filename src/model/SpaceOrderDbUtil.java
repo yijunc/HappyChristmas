@@ -10,19 +10,35 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceOrderDbUtil extends DbUtil{
+public class SpaceOrderDbUtil extends DbUtil {
 
     public SpaceOrderDbUtil(DataSource dataSource) {
         super(dataSource);
     }
 
 
-    public List<SpaceOrder> getSpaceOrderListByAdmin(String orderId, String orderTaker, String orderSpaceId, String orderSpaceType, String orderStart, String orderEnd, String orderStatus) throws Exception{
+    public boolean cancelSpaceOrderByOrderId(int orderId) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
 
-        try{
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = "UPDATE 2017j2ee.space_order SET space_order_status = 0 WHERE space_order_id = " + orderId;
+            myStmt.executeUpdate(sql);
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public List<SpaceOrder> getSpaceOrderListByAdmin(String orderId, String orderTaker, String orderSpaceId, String orderSpaceType, String orderStart, String orderEnd, String orderStatus) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
             String sql = "select * from 2017j2ee.space_order WHERE";
@@ -30,49 +46,43 @@ public class SpaceOrderDbUtil extends DbUtil{
             SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
             SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
 
-            if(null != orderId && orderId.length() != 0){
+            if (null != orderId && orderId.length() != 0) {
                 sql = sql + " space_order_id=" + orderId;
-            }
-            else{
+            } else {
                 sql += " space_order_id IS NOT NULL ";
             }
             sql += " AND ";
-            if(null != orderTaker && orderTaker.length() != 0){
+            if (null != orderTaker && orderTaker.length() != 0) {
                 sql = sql + " space_order_taker=\"" + orderTaker + "\"";
-            }
-            else{
+            } else {
                 sql += " space_order_taker IS NOT NULL";
             }
             sql += " AND ";
-            if(null != orderSpaceId && orderSpaceId.length() != 0){
+            if (null != orderSpaceId && orderSpaceId.length() != 0) {
                 sql = sql + " space_order_space_id=" + orderSpaceId;
-            }
-            else{
+            } else {
                 sql += " space_order_space_id IS NOT NULL";
             }
             sql += " AND ";
-            if (orderSpaceType != null && orderSpaceType.length() != 0 && !orderSpaceType.equals("all")){
+            if (orderSpaceType != null && orderSpaceType.length() != 0 && !orderSpaceType.equals("all")) {
                 sql = sql + " space_order_space_type=" + orderSpaceType;
-            }
-            else{
+            } else {
                 sql += " space_order_space_type IS NOT NULL";
             }
             sql += " AND ";
-            if(null != orderStart && orderStart.length() != 0){
+            if (null != orderStart && orderStart.length() != 0) {
                 sql = sql + " space_order_date_start=\"" + dateFormatTo.format(dateFormatFrom.parse(orderStart)) + "\"";
-            }
-            else{
+            } else {
                 sql += " space_order_date_start IS NOT NULL";
             }
             sql += " AND ";
-            if(null != orderEnd && orderEnd.length() != 0){
+            if (null != orderEnd && orderEnd.length() != 0) {
                 sql = sql + " space_order_date_end=\"" + dateFormatTo.format(dateFormatFrom.parse(orderEnd)) + "\"";
-            }
-            else{
+            } else {
                 sql += " space_order_date_end IS NOT NULL";
             }
 
-            if(null != orderStatus && orderStatus.length() != 0 && !orderStatus.equals("all")){
+            if (null != orderStatus && orderStatus.length() != 0 && !orderStatus.equals("all")) {
                 sql += " AND ";
                 sql = sql + " space_order_status=" + orderStatus;
             }
@@ -82,7 +92,7 @@ public class SpaceOrderDbUtil extends DbUtil{
 
             List<SpaceOrder> mSpaceOrderList = new ArrayList<SpaceOrder>();
             SpaceOrder mSpaceOrder = null;
-            while(myRs.next()){
+            while (myRs.next()) {
                 mSpaceOrder = new SpaceOrder().setOrderId(myRs.getInt("space_order_id"))
                         .setOrderSpaceId(myRs.getInt("space_order_space_id"))
                         .setOrderTaker(myRs.getString("space_order_taker"))
@@ -94,7 +104,7 @@ public class SpaceOrderDbUtil extends DbUtil{
                 mSpaceOrderList.add(mSpaceOrder);
             }
             return mSpaceOrderList;
-        }  finally {
+        } finally {
             close(myConn, myStmt, myRs);
         }
     }
