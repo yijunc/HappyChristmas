@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/SpaceController")
-public class SpaceController extends HttpServlet{
+public class SpaceController extends HttpServlet {
     private final static String TAG = "SpaceController";
     private SpaceDbUtil spaceDbUtil;
 
@@ -47,6 +48,9 @@ public class SpaceController extends HttpServlet{
                 case "ADMIN_SPACE":
                     adminSpace(request, response);
                     break;
+                case "GET_PRICE":
+                    getSpacePriceById(request, response);
+                    break;
                 default:
                     break;
             }
@@ -63,13 +67,20 @@ public class SpaceController extends HttpServlet{
         doGet(request, response);
     }
 
+    private void getSpacePriceById(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int spaceId = Integer.valueOf(request.getParameter("space_id"));
+        int spaceType = Integer.valueOf(request.getParameter("space_type"));
+        PrintWriter out = response.getWriter();
+        out.write(spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType));
+    }
+
     private void adminSpace(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String spaceId = request.getParameter("space_id");
         String spaceType = request.getParameter("space_type");
         String spaceCity = request.getParameter("space_city");
 
         List<Space> spaceList = spaceDbUtil.getSpaceListByAdmin(
-            spaceId, spaceCity, spaceType
+                spaceId, spaceCity, spaceType
         );
 
         if (null != spaceList) {
