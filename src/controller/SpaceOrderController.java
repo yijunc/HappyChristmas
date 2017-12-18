@@ -49,6 +49,9 @@ public class SpaceOrderController extends HttpServlet {
                 case "ADMIN_SPACE_ORDER":
                     adminSpaceOrder(request, response);
                     break;
+                case "ADMIN_ORDER_CANCEL":
+                    adminOrderCancel(request, response);
+                    break;
                 default:
                     break;
             }
@@ -63,6 +66,11 @@ public class SpaceOrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         doGet(request, response);
+    }
+
+    private void adminOrderCancel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        int orderId = Integer.valueOf(request.getParameter("order_id"));
+        spaceOrderDbUtil.cancelSpaceOrderByOrderId(orderId);
     }
 
     private void adminSpaceOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -269,7 +269,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary">完成订单</button>
-                                        <button type="button" class="btn btn-primary">取消订单</button>
+                                        <button type="button" class="btn btn-primary cancelOrder">取消订单</button>
                                     </div>
                                 </td>
                             </tr>
@@ -289,7 +289,11 @@
 <%@include file="/templates/loginModal.jsp" %>
 <%@include file="/templates/footers.jsp" %>
 
-
 </body>
-
+<script>
+    $(".cancelOrder").click(function () {
+        var index = this.parentNode.parentNode.parentNode;//index为tr
+        var id = $(index).find("td[]")
+    })
+</script>
 </html>
