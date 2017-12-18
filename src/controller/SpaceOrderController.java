@@ -56,6 +56,7 @@ public class SpaceOrderController extends HttpServlet {
                     break;
                 case "ADMIN_ORDER_DONE":
                     adminOrderDone(request, response);
+                    System.out.println("xxxxxxx");
                     break;
                 default:
                     break;
@@ -74,6 +75,7 @@ public class SpaceOrderController extends HttpServlet {
     }
 
     private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        System.out.println("mmmmm:"+request.getParameter("order_id"));//输出正确
         int orderId = Integer.valueOf(request.getParameter("order_id"));
         String orderDate = request.getParameter("order_date");
         int orderPrice = Integer.valueOf(request.getParameter("order_price"));

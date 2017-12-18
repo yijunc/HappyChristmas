@@ -229,7 +229,7 @@
                                             out.print(it.getOrderEnd());
                                         }
                                     %></td>
-                                <td>
+                                <td name="order_price">
                                     <%
                                         if (it.getOrderPrice() == -1) {
                                             out.print("未出账");
@@ -315,8 +315,7 @@
                     <div class="input-group input-group-sm"
                          style="width: 300px;padding-bottom: 30px;padding-left: 20px">
                         <span class="input-group-addon" style="width: 80px">订单金额：</span>
-                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceOrderPrice"
-                               style="background-color: white; color:dimgrey">
+                        <input type="text" class="form-control"  id="modalSpaceOrderPrice">
                     </div>
                 </div>
 
@@ -344,6 +343,9 @@
 
 </body>
 <script>
+    var element;
+    var finalPrice;
+    var dateEnd;
     $(".cancelOrder").click(function () {
         var index = this.parentNode.parentNode.parentNode;//index为tr
         var id = $(index).find("td[name='order_id']").text();
@@ -370,20 +372,71 @@
     });
     $(".finishOrder").click(function () {
         var index = this.parentNode.parentNode.parentNode;//index为tr
+        element = index;
         var id = $(index).find("td[name='order_id']").text();
         var spaceId = $(index).find("td[name='space_id']").text();
         var spaceType = $(index).find("td[name='space_type']").text();
+        var sT = 1 ;
+        if(spaceType == "大型车位"){
+            sT = 2;
+        }
         var spaceCustom = $(index).find("td[name='space_customer']").text();
         var orderStart = $(index).find("td[name='order_start']").text();
-        // $.get("/SpaceController?command=ADMIN_ORDER_DONE")
+        var dailyPrice;
+        $.get("/SpaceController?command=GET_PRICE",{
+            space_id: spaceId,
+            space_type: sT
+        },function (data , textStatus) {
+            dailyPrice = data;
+            var price = getPrice(orderStart,dailyPrice);
+            finalPrice = price;
+            $("#modalSpaceOrderPrice").val(price);
+        });
+
         $("#spaceOrderModal").modal('show');
         $("#modalSpaceId").val(spaceId);
         $("#modalSpaceType").val(spaceType);
         $("#modalSpaceCustomer").val(spaceCustom);
-        $("#modalSpaceOrderPrice").val();
         $("#modalSpaceOrderStart").val(orderStart);
-        $("#modalSpaceOrderEnd").val();
+        var myDate = new Date();
+        var reg = new RegExp("/","g");//g,表示全部替换。
+        var time = myDate.toLocaleDateString().replace(reg,'-');
+        dateEnd = time;
+        $("#modalSpaceOrderEnd").val(time);
 
     });
+
+    function getPrice(dateStart, dailyPrice) {
+        var arr1 = dateStart.split("-");
+        var date1 = new Date(parseInt(arr1[0]),parseInt(arr1[1])-1,parseInt(arr1[2]));
+        date1 = date1.getTime();
+        var date2 = new Date().getTime();
+        return Math.floor((date2 - date1) / (1000 * 60 * 60 * 24) )* dailyPrice; //结果是秒
+    }
+
+    $("#modalReset").click(function () {
+        $("#modalSpaceOrderPrice").val(finalPrice);
+    });
+    
+    $("#modalConfirm").click(function () {
+        $("#spaceOrderModal").modal('hide');
+        $(element).find("td[name='order_end']").text($("#modalSpaceOrderEnd").val());
+        $(element).find("td[name='order_price']").text($("#modalSpaceOrderPrice").val());
+        var status = $(element).find("td[name='order_status']").find("span");
+        status.attr("class", "label label-success");
+        status.html("已完成");
+        var id = $(element).find("td[name='order_id']").text();
+        // var p = $("#modalSpaceOrderPrice").val();
+        // var d = $("#modalSpaceOrderEnd").val();
+        console.log("id="+id);
+        console.log("finalPrice="+finalPrice);
+        console.log("dateEnd="+dateEnd);
+        $.post("/SpaceOrderController?command=ADMIN_ORDER_DONE", {
+            order_id:id,
+            order_price:finalPrice,
+            order_date:dateEnd
+        });
+    });
+
 </script>
 </html>

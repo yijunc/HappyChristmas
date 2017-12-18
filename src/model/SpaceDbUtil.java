@@ -50,7 +50,7 @@ public class SpaceDbUtil extends DbUtil {
         try {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            String spaceTypeCol = "阿爸太失望了";
+            String spaceTypeCol = "崽崽尼皮这一下开心吗";
             switch (spaceType) {
                 case 1:
                     spaceTypeCol = "space_small_left";
@@ -121,5 +121,31 @@ public class SpaceDbUtil extends DbUtil {
         }
     }
 
+    public int getSpacePriceByIdAndType(int spaceId, int spaceType) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String spaceTypeCol = "崽崽尼皮这一下开心吗";
+            switch (spaceType) {
+                case 1:
+                    spaceTypeCol = "space_small_price";
+                    break;
+                case 2:
+                    spaceTypeCol = "space_large_price";
+                    break;
+                default:
+                    break;
+            }
+            String sql = "SELECT * FROM 2017j2ee.space WHERE space_id = " + spaceId;
+            myRs = myStmt.executeQuery(sql);
+            myRs.first();
+            return myRs.getInt(spaceTypeCol);
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
 
 }

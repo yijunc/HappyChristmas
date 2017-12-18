@@ -54,7 +54,6 @@ public class SpaceController extends HttpServlet {
                 default:
                     break;
             }
-
         } catch (Exception exc) {
             throw new ServletException(exc);
         }
@@ -71,7 +70,8 @@ public class SpaceController extends HttpServlet {
         int spaceId = Integer.valueOf(request.getParameter("space_id"));
         int spaceType = Integer.valueOf(request.getParameter("space_type"));
         PrintWriter out = response.getWriter();
-        out.write(spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType));
+        String price = String.valueOf(spaceDbUtil.getSpacePriceByIdAndType(spaceId, spaceType));
+        out.write(price);
     }
 
     private void adminSpace(HttpServletRequest request, HttpServletResponse response) throws Exception {

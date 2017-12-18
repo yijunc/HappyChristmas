@@ -31,7 +31,7 @@ public class SpaceOrderDbUtil extends DbUtil {
                     + orderPrice
                     + " WHERE space_order_id = "
                     + orderId;
-            System.out.println(sql);
+            System.out.println("2017/12/19: "+sql);
             myStmt.executeUpdate(sql);
             return true;
         } finally {
