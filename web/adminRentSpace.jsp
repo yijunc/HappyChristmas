@@ -208,16 +208,12 @@
                                     for (SpaceOrder it : result) {
                             %>
                             <tr>
-                                <td><%=it.getOrderId()%>
+                                <td name="order_id"><%=it.getOrderId()%></td>
+                                <td name="space_customer"><a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%></a></td></td>
+                                <td name="space_id"><a href="/SpaceController?command=ADMIN_SPACE&space_id=<%=it.getOrderSpaceId()%>"><%=it.getOrderSpaceId()%>
+                                    </a>
                                 </td>
-                                <td>
-                                    <a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%>
-                                    </a></td>
-                                </td>
-                                <td><a href="/SpaceController?command=ADMIN_SPACE&space_id=<%=it.getOrderSpaceId()%>"><%=it.getOrderSpaceId()%></a>
-                                </td>
-                                <td>
-                                    <%
+                                <td name="space_type"><%
                                         switch (it.getOrderSpaceType()) {
                                             case 1:
                                                 out.print("小型车位");
@@ -226,19 +222,15 @@
                                                 out.print("大型车位");
                                                 break;
                                         }
-                                    %>
-                                </td>
-                                <td><%=it.getOrderStart()%>
-                                </td>
-                                <td>
-                                    <%
+                                    %></td>
+                                <td name="order_start"><%=it.getOrderStart()%></td>
+                                <td name="order_end"><%
                                         if (it.getOrderStatus() != 1) {
                                             out.print("未结束");
                                         } else {
                                             out.print(it.getOrderEnd());
                                         }
-                                    %>
-                                </td>
+                                    %></td>
                                 <td>
                                     <%
                                         if (it.getOrderPrice() == -1) {
@@ -251,24 +243,24 @@
                                 <%
                                     switch (it.getOrderStatus()) {
                                         case 0: %>
-                                <td><span class="label label-danger">已取消</span></td>
+                                <td name="order_status"><span class="label label-danger">已取消</span></td>
                                 <%
                                         break;
                                     case 1:
                                 %>
-                                <td><span class="label label-success">已完成</span></td>
+                                <td name="order_status"><span class="label label-success">已完成</span></td>
                                 <%
                                         break;
                                     case 2:
                                 %>
-                                <td><span class="label label-warning">正在进行中</span></td>
+                                <td name="order_status"><span class="label label-warning">正在进行中</span></td>
                                 <%
                                             break;
                                     }
                                 %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">完成订单</button>
+                                        <button type="button" class="btn btn-primary finishOrder">完成订单</button>
                                         <button type="button" class="btn btn-primary cancelOrder">取消订单</button>
                                     </div>
                                 </td>
@@ -289,11 +281,102 @@
 <%@include file="/templates/loginModal.jsp" %>
 <%@include file="/templates/footers.jsp" %>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="spaceOrderModal" style="padding-top: 10%">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="height: 320px;width: 675px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">编辑车位订单</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding-left: 20px;padding-right: 20px">
+                    <div class="input-group input-group-sm"
+                         style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" style="width: 80px">车库ID：&nbsp&nbsp</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceId"
+                               style="background-color: white; color:dimgrey">
+                    </div>
+
+                    <div class="input-group input-group-sm"
+                         style="width: 300px;padding-bottom: 30px;padding-left: 20px">
+                        <span class="input-group-addon" style="width: 80px">车位类型：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceType"
+                               style="background-color: white; color:dimgrey">
+                    </div>
+                </div>
+
+                <div style="padding-left: 20px;padding-right: 20px">
+                    <div class="input-group input-group-sm"
+                         style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" style="width: 80px">订单顾客：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceCustomer"
+                               style="background-color: white; color:dimgrey">
+                    </div>
+
+                    <div class="input-group input-group-sm"
+                         style="width: 300px;padding-bottom: 30px;padding-left: 20px">
+                        <span class="input-group-addon" style="width: 80px">订单金额：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceOrderPrice"
+                               style="background-color: white; color:dimgrey">
+                    </div>
+                </div>
+
+                <div style="padding-left: 20px;padding-right: 20px">
+                    <div class="input-group input-group-sm" style="padding-right: 20px;float:left;width: 300px">
+                        <span class="input-group-addon" style="width: 80px">开始时间：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceOrderStart"
+                               style="background-color: white; color:dimgrey">
+                    </div>
+
+                    <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
+                        <span class="input-group-addon" style="width: 80px">结束时间：</span>
+                        <input type="text" class="form-control" disabled="disabled" id="modalSpaceOrderEnd"
+                               style="background-color: white; color:dimgrey">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" style="width: 70px" id="modalReset">重置</button>
+                <button type="button" class="btn btn-primary" style="width: 70px" id="modalConfirm">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </body>
 <script>
     $(".cancelOrder").click(function () {
         var index = this.parentNode.parentNode.parentNode;//index为tr
-        var id = $(index).find("td[]")
+        var id = $(index).find("td[name='order_id']").text();
+        var spaceId = $(index).find("td[name='space_id']").text();
+        var spaceType = $(index).find("td[name='space_type']").text();
+        console.log(id);
+        $.post("/SpaceOrderController?command=ADMIN_ORDER_CANCEL", {
+            order_id: id,
+            space_id: spaceId,
+            space_type: spaceType
+        });
+        var status = $(index).find("td[name='order_status']").find("span");
+        status.attr("class", "label label-danger");
+        status.html("已取消");
+    })
+    $(".finishOrder").click(function () {
+        var index = this.parentNode.parentNode.parentNode;//index为tr
+        var id = $(index).find("td[name='order_id']").text();
+        var spaceId = $(index).find("td[name='space_id']").text();
+        var spaceType = $(index).find("td[name='space_type']").text();
+        var spaceCustom = $(index).find("td[name='space_customer']").text();
+        var orderStart = $(index).find("td[name='order_start']").text();
+        // $.get("/SpaceOrderController?command=ADMIN_ORDER_DONE")
+        $("#spaceOrderModal").modal('show');
+        $("#modalSpaceId").val(spaceId);
+        $("#modalSpaceType").val(spaceType);
+        $("#modalSpaceCustomer").val(spaceCustom);
+        $("#modalSpaceOrderPrice").val();
+        $("#modalSpaceOrderStart").val(orderStart);
+        $("#modalSpaceOrderEnd").val();
+
     })
 </script>
 </html>
