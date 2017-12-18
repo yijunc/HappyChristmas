@@ -68,7 +68,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-3 col-xs-12">
-                    <a href="rentCar.jsp" class="interestContent">
+                    <a href="/CarAvailabilityController?command=USER_CAR_AVAILABILITY" class="interestContent">
 					<span>
 						<i class="fa fa-car fa-3x"></i>
 						租车分享

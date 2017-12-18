@@ -19,6 +19,10 @@
 <body class="body-wrapper">
 <div class="page-loader" style="background: url(img/preloader.gif) center no-repeat #fff;"></div>
 <div class="main-wrapper">
+
+    <script>
+        var PAGEID = "adp4";
+    </script>
     <header id="pageTop" class="header">
         <%@include file="templates/navbars.jsp" %>
         <%@include file="templates/adminNavbar.jsp" %>

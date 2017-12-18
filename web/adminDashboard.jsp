@@ -18,6 +18,10 @@
 <div class="main-wrapper">
     <!-- HEADER -->
 
+    <script>
+        var PAGEID = "adp1";
+    </script>
+
     <header id="pageTop" class="header">
         <%@include file="templates/navbars.jsp" %>
         <%@include file="templates/adminNavbar.jsp" %>

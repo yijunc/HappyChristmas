@@ -17,6 +17,9 @@
     <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
     <link href="plugins/isotope/isotope.min.css" rel="stylesheet">
 
+    <!--JAVASCRIPTS-->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
     <!-- CUSTOM CSS -->
     <link href="css/style.css" rel="stylesheet">
 
