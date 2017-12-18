@@ -297,7 +297,7 @@
                          style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
                         <span class="input-group-addon" style="width: 80px">订单ID：&nbsp&nbsp</span>
                         <input type="text" class="form-control" disabled="disabled" id="modalCarOrderId"
-                               style="background-color: white">
+                               style="background-color: white; color:dimgrey">
                     </div>
 
                     <div class="input-group input-group-sm"
@@ -312,14 +312,14 @@
                          style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
                         <span class="input-group-addon" style="width: 80px">订单发布：</span>
                         <input type="text" class="form-control" disabled="disabled" id="modalCarOrderPost"
-                               style="background-color: white">
+                               style="background-color: white; color:dimgrey">
                     </div>
 
                     <div class="input-group input-group-sm"
                          style="width: 300px;padding-bottom: 30px;padding-left: 20px">
                         <span class="input-group-addon" style="width: 80px">订单顾客：</span>
                         <input type="text" class="form-control" disabled="disabled" id="modalCarOrderTaker"
-                               style="background-color: white">
+                               style="background-color: white; color:dimgrey">
                     </div>
                 </div>
 
@@ -327,13 +327,13 @@
                     <div class="input-group input-group-sm" style="padding-right: 20px;float:left;width: 300px">
                         <span class="input-group-addon" style="width: 80px">开始时间：</span>
                         <input type="text" class="form-control" disabled="disabled" id="modalCarOrderStart"
-                               style="background-color: white">
+                               style="background-color: white; color:dimgrey">
                     </div>
 
                     <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
                         <span class="input-group-addon" style="width: 80px">结束时间：</span>
                         <input type="text" class="form-control" disabled="disabled" id="modalCarOrderEnd"
-                               style="background-color: white">
+                               style="background-color: white; color:dimgrey">
                     </div>
                 </div>
             </div>
