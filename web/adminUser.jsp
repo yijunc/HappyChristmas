@@ -313,7 +313,7 @@
                     <div class="input-group input-group-sm"
                          style="padding-bottom: 30px;padding-right: 20px;float:left;width: 300px">
                         <span class="input-group-addon" style="width: 80px">用户ID&nbsp&nbsp</span>
-                        <input type="text" class="form-control" disabled="disabled" id="modalUserId">
+                        <input type="text" class="form-control" disabled="disabled" id="modalUserId" style="background-color: white; color:dimgrey">
                     </div>
 
                     <div class="input-group input-group-sm"
@@ -326,7 +326,7 @@
                 <div style="padding-left: 20px;padding-right: 20px">
                     <div class="input-group input-group-sm" style="padding-right: 20px;float:left;width: 300px">
                         <span class="input-group-addon" style="width: 80px">用户姓名</span>
-                        <input type="text" class="form-control" disabled="disabled" id="modalUserName">
+                        <input type="text" class="form-control" disabled="disabled" id="modalUserName" style="background-color: white; color:dimgrey">
                     </div>
 
                     <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
