@@ -17,6 +17,29 @@ public class SpaceOrderDbUtil extends DbUtil {
     }
 
 
+    public boolean doneSpaceOrderByOrderId(int orderId, int orderPrice, String orderDate) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql  = "UPDATE 2017j2ee.space_order SET space_order_status = 1 , space_order_date_end = \""
+                    + orderDate
+                    + "\" , space_order_price = "
+                    + orderPrice
+                    + " WHERE space_order_id = "
+                    + orderId;
+            System.out.println(sql);
+            myStmt.executeUpdate(sql);
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+
     public boolean cancelSpaceOrderByOrderId(int orderId) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
@@ -26,6 +49,7 @@ public class SpaceOrderDbUtil extends DbUtil {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
             String sql = "UPDATE 2017j2ee.space_order SET space_order_status = 0 WHERE space_order_id = " + orderId;
+            System.out.println(sql);
             myStmt.executeUpdate(sql);
             return true;
         } finally {

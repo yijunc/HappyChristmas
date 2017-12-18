@@ -2,6 +2,7 @@ package controller;
 
 import bean.SpaceOrder;
 import bean.SpaceOrderSearch;
+import model.SpaceDbUtil;
 import model.SpaceOrderDbUtil;
 
 import javax.annotation.Resource;
@@ -13,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/SpaceOrderController")
 public class SpaceOrderController extends HttpServlet {
     private final static String TAG = "SpaceOrderController";
     private SpaceOrderDbUtil spaceOrderDbUtil;
+    private SpaceDbUtil spaceDbUtil;
 
     @Resource(name = "jdbc/2017J2EE")
     private DataSource dataSource;
@@ -30,6 +31,7 @@ public class SpaceOrderController extends HttpServlet {
         // create our student db util ... and pass in the conn pool / datasource
         try {
             spaceOrderDbUtil = new SpaceOrderDbUtil(dataSource);
+            spaceDbUtil = new SpaceDbUtil(dataSource);
         } catch (Exception exc) {
             throw new ServletException(exc);
         }
@@ -52,6 +54,9 @@ public class SpaceOrderController extends HttpServlet {
                 case "ADMIN_ORDER_CANCEL":
                     adminOrderCancel(request, response);
                     break;
+                case "ADMIN_ORDER_DONE":
+                    adminOrderDone(request, response);
+                    break;
                 default:
                     break;
             }
@@ -68,9 +73,22 @@ public class SpaceOrderController extends HttpServlet {
         doGet(request, response);
     }
 
-    private void adminOrderCancel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int orderId = Integer.valueOf(request.getParameter("order_id"));
+        String orderDate = request.getParameter("order_date");
+        int orderPrice = Integer.valueOf(request.getParameter("order_price"));
+        int spaceId = Integer.valueOf(request.getParameter("space_id"));
+        int spaceType = Integer.valueOf(request.getParameter("space_type"));
+        spaceOrderDbUtil.doneSpaceOrderByOrderId(orderId, orderPrice, orderDate);
+        spaceDbUtil.setSpaceRemainByIdAndType(spaceId, spaceType, spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType) + 1);
+    }
+
+    private void adminOrderCancel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int orderId = Integer.valueOf(request.getParameter("order_id"));
+        int spaceId = Integer.valueOf(request.getParameter("space_id"));
+        int spaceType = Integer.valueOf(request.getParameter("space_type"));
         spaceOrderDbUtil.cancelSpaceOrderByOrderId(orderId);
+        spaceDbUtil.setSpaceRemainByIdAndType(spaceId, spaceType, spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType) + 1);
     }
 
     private void adminSpaceOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -83,25 +101,25 @@ public class SpaceOrderController extends HttpServlet {
         String orderStatus = request.getParameter("order_status");
 
         SpaceOrderSearch spaceOrderSearch = new SpaceOrderSearch();
-        if(null!=orderId&&orderId.length()!=0){
+        if (null != orderId && orderId.length() != 0) {
             spaceOrderSearch.setOrderId(orderId);
         }
-        if(null!=orderTaker&&orderTaker.length()!=0){
+        if (null != orderTaker && orderTaker.length() != 0) {
             spaceOrderSearch.setOrderTaker(orderTaker);
         }
-        if(null!=orderSpaceId&&orderSpaceId.length()!=0){
+        if (null != orderSpaceId && orderSpaceId.length() != 0) {
             spaceOrderSearch.setOrderSpaceId(orderSpaceId);
         }
-        if(null!=orderSpaceType&&orderSpaceType.length()!=0){
+        if (null != orderSpaceType && orderSpaceType.length() != 0) {
             spaceOrderSearch.setOrderSpaceType(orderSpaceType);
         }
-        if(null!=orderStart&&orderStart.length()!=0){
+        if (null != orderStart && orderStart.length() != 0) {
             spaceOrderSearch.setOrderStart(orderStart);
         }
-        if(null!=orderEnd&&orderEnd.length()!=0){
+        if (null != orderEnd && orderEnd.length() != 0) {
             spaceOrderSearch.setOrderEnd(orderEnd);
         }
-        if(null!=orderStatus&&orderStatus.length()!=0){
+        if (null != orderStatus && orderStatus.length() != 0) {
             spaceOrderSearch.setOrderStatus(orderStatus);
         }
 
@@ -112,7 +130,7 @@ public class SpaceOrderController extends HttpServlet {
         if (null != spaceOrderList) {
             request.setAttribute("empty", false);
             request.setAttribute("space_order_list", spaceOrderList);
-            request.setAttribute("search_input",spaceOrderSearch);
+            request.setAttribute("search_input", spaceOrderSearch);
             System.out.println(spaceOrderList.size());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminRentSpace.jsp");
             dispatcher.forward(request, response);
