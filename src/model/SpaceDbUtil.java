@@ -14,6 +14,10 @@ public class SpaceDbUtil extends DbUtil {
         super(dataSource);
     }
 
+    public boolean getSpaceRemainByIdAndType(Stirng spaceId, String spaceType) throws Exception{
+        
+    }
+
     public List<Space> getSpaceListByAdmin(String spaceId, String spaceCity, String spaceType) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
