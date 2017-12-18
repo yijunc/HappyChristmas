@@ -246,7 +246,7 @@
                                     for (CarAvailability item : result) {
                             %>
                             <tr>
-                                <td><%=item.getCarId()%>
+                                <td name="car_id"><%=item.getCarId()%>
                                 </td>
                                 <td>
                                     <a href="/UserController?command=ADMIN_USER&user_name=<%=item.getCarOwner()%>"><%=item.getCarOwner()%>
@@ -287,7 +287,7 @@
                                 <%
                                     switch (item.getCarStatus()) {
                                         case 0:%>
-                                <td><span class="label label-danger">已过期</span></td>
+                                <td name="car_status"><span class="label label-danger">已过期</span></td>
                                 <%
                                         break;
                                     case 1:%>
@@ -298,8 +298,7 @@
                                 %>
                                 <td>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">修改</button>
-                                        <button type="button" class="btn btn-primary">删除</button>
+                                        <button type="button" class="btn btn-primary  cancelCar">删除</button>
                                     </div>
                                 </td>
                             </tr>
@@ -320,6 +319,24 @@
 <%@include file="/templates/loginModal.jsp" %>
 <%@include file="/templates/footers.jsp" %>
 
-
 </body>
+<script>
+    $(".cancelCar").click(function () {
+        var index = this.parentNode.parentNode.parentNode;//index为tr
+        var id = $(index).find("td[name='car_id']").text();
+        console.log(id);
+        var status = $(index).find("td[name='car_status']").find("span");
+        if(status.attr("class")=="label label-danger")
+        {
+            alert("您已经删除此车辆(¬_¬)");
+        }
+        else {
+            status.attr("class", "label label-danger");
+            status.html("已取消");
+            $.post("/CarController?command=ADMIN_CAR_CANCEL", {
+                order_id: id
+            });
+        }
+    });
+</script>
 </html>

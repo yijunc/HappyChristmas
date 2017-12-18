@@ -360,7 +360,7 @@
         var status = $(index).find("td[name='order_status']").find("span");
         status.attr("class", "label label-danger");
         status.html("已取消");
-    })
+    });
     $(".finishOrder").click(function () {
         var index = this.parentNode.parentNode.parentNode;//index为tr
         var id = $(index).find("td[name='order_id']").text();
@@ -377,6 +377,6 @@
         $("#modalSpaceOrderStart").val(orderStart);
         $("#modalSpaceOrderEnd").val();
 
-    })
+    });
 </script>
 </html>
