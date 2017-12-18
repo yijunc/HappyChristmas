@@ -70,29 +70,14 @@ public class CarAvailabilityController extends HttpServlet {
     }
 
     private void userCarAvailability(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String carPrice = request.getParameter("car_price");
+        String dataStart = request.getParameter("date_start");
+        String dataEnd = request.getParameter("date_end");
         String carSeat = request.getParameter("car_seat");
-        String carBrand = request.getParameter("car_brand");
+        System.out.println(TAG+" dataStart: "+dataStart);
+        System.out.println(TAG+" dataEnd: "+dataEnd);
+        System.out.println(TAG+" carSeat: "+carSeat);
 
-        int carPriceLow = 0;
-        int carPriceHigh = 0x3f3f3f3f;
-        if (carPrice != null && carPrice.length() == 0 && carPrice.equals("all")) {
-            switch (carPrice) {
-                case "1":
-                    carPriceLow = 0;
-                    carPriceHigh = 100;
-                    break;
-                case "2":
-                    carPriceLow = 100;
-                    carPriceHigh = 200;
-                    break;
-                case "3":
-                    carPriceLow = 200;
-                    carPriceHigh = 300;
-                    break;
-            }
-        }
-        List<CarAvailability> carAvailabilityList = carAvailabilityDbUtil.getCarAvalabilityListByUser(carSeat, carBrand, carPriceLow, carPriceHigh);
+        List<CarAvailability> carAvailabilityList = carAvailabilityDbUtil.getCarAvalabilityListByUser(dataStart, dataEnd, carSeat);
         carAvailabilityList = carDbUtil.getCarByList(carAvailabilityList);
         request.setAttribute("car_available_list", carAvailabilityList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/rentCar.jsp");

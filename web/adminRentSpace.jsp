@@ -210,9 +210,7 @@
                             <tr>
                                 <td name="order_id"><%=it.getOrderId()%></td>
                                 <td name="space_customer"><a href="/UserController?command=ADMIN_USER&user_name=<%=it.getOrderTaker()%>"><%=it.getOrderTaker()%></a></td></td>
-                                <td name="space_id"><a href="/SpaceController?command=ADMIN_SPACE&space_id=<%=it.getOrderSpaceId()%>"><%=it.getOrderSpaceId()%>
-                                    </a>
-                                </td>
+                                <td name="space_id"><a href="/SpaceController?command=ADMIN_SPACE&space_id=<%=it.getOrderSpaceId()%>"><%=it.getOrderSpaceId()%></a></td>
                                 <td name="space_type"><%
                                         switch (it.getOrderSpaceType()) {
                                             case 1:
@@ -351,16 +349,25 @@
         var id = $(index).find("td[name='order_id']").text();
         var spaceId = $(index).find("td[name='space_id']").text();
         var spaceType = $(index).find("td[name='space_type']").text();
-        console.log(id);
+        var sT=0;
+        switch(spaceType){
+            case "小型车位":
+                sT = 1;
+                break;
+            case "大型车位":
+                sT = 2;
+                break;
+        }
+        console.log("id="+id+" spaceId="+spaceId+" spaceType="+spaceType);
         $.post("/SpaceOrderController?command=ADMIN_ORDER_CANCEL", {
             order_id: id,
             space_id: spaceId,
-            space_type: spaceType
+            space_type: sT
         });
         var status = $(index).find("td[name='order_status']").find("span");
         status.attr("class", "label label-danger");
         status.html("已取消");
-    })
+    });
     $(".finishOrder").click(function () {
         var index = this.parentNode.parentNode.parentNode;//index为tr
         var id = $(index).find("td[name='order_id']").text();
@@ -368,7 +375,7 @@
         var spaceType = $(index).find("td[name='space_type']").text();
         var spaceCustom = $(index).find("td[name='space_customer']").text();
         var orderStart = $(index).find("td[name='order_start']").text();
-        // $.get("/SpaceOrderController?command=ADMIN_ORDER_DONE")
+        // $.get("/SpaceController?command=ADMIN_ORDER_DONE")
         $("#spaceOrderModal").modal('show');
         $("#modalSpaceId").val(spaceId);
         $("#modalSpaceType").val(spaceType);
@@ -377,6 +384,6 @@
         $("#modalSpaceOrderStart").val(orderStart);
         $("#modalSpaceOrderEnd").val();
 
-    })
+    });
 </script>
 </html>

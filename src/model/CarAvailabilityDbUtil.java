@@ -13,11 +13,14 @@ import java.util.List;
 
 public class CarAvailabilityDbUtil extends DbUtil {
 
+    private SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
+    private SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
+
     public CarAvailabilityDbUtil(DataSource dataSource) {
         super(dataSource);
     }
 
-    public List<CarAvailability> getCarAvalabilityListByUser(String carSeat, String carBrand, int carPriceLow, int carPriceHigh) throws Exception{
+    public List<CarAvailability> getCarAvalabilityListByUser(String dataStart,  String dataEnd, String carSeat) throws Exception{
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -25,21 +28,26 @@ public class CarAvailabilityDbUtil extends DbUtil {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
             String sql = "select * from 2017j2ee.car_availability WHERE";
-            if(carSeat != null && carSeat.length() != 0){
-                sql = sql + " car_availability_car_seat=" + carSeat;
+            if(carSeat != null && carSeat.length() != 0 && !carSeat.equals("all")){
+                sql = sql + " car_availability_car_seat = " + carSeat;
             }
             else{
                 sql = sql + " car_availability_car_seat IS NOT NULL";
             }
             sql += " AND ";
-            if(carBrand != null && carBrand.length() != 0){
-                sql = sql + " car_availability_car_brand\"" + carBrand + "\"";
+            if(dataStart != null && dataStart.length() != 0){
+                sql = sql + " car_availability_date_start <= \"" + dateFormatTo.format(dateFormatFrom.parse(dataStart))+"\"";
             }
             else{
-                sql = sql + " car_availability_car_brand IS NOT NULL";
+                sql = sql + " car_availability_date_start <= CURDATE()";
             }
-            sql  = sql + " AND car_availability_price_daily >= " + carPriceLow + " AND car_availability_price_daily <= " + carPriceHigh
-                    + " AND car_availability_status=1";
+            sql += " AND ";
+            if(dataEnd != null && dataEnd.length() != 0){
+                sql = sql + " car_availability_date_end >= \"" + dateFormatTo.format(dateFormatFrom.parse(dataEnd))+"\"";
+            }
+            else{
+                sql = sql + " car_availability_date_end IS NOT NULL";
+            }
             System.out.println(sql);
             myRs = myStmt.executeQuery(sql);
             List<CarAvailability> mCarAvaList = new ArrayList<CarAvailability>();

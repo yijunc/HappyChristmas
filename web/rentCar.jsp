@@ -27,9 +27,9 @@
     <section class="clearfix searchArea banerInfo searchAreaGray">
         <form>
             <div class="container">
-                <form>
+                <form action="/CarAvailabilityController" method="post" id="carSearchForm">
+                    <input type="hidden" name="command" value="USER_CAR_AVAILABILITY"/>
                     <div class="row">
-
                         <div class="col-xs-4 col-xs-12" style="width: 30%">
                             <div class="form-group">
                                 <div class="input-group">
@@ -65,11 +65,12 @@
                                 <div class="input-group">
                                     <div class="input-group-addon">车座</div>
                                     <div class="searchSelectboxes" style="width: 100%">
-                                        <select name="guiest_id32" id="guiest_id32" class="select-drop">
-                                            <option value="0">不限</option>
-                                            <option value="1">4座</option>
-                                            <option value="2">5座</option>
-                                            <option value="3">7座</option>
+                                        <select name="car_seat" id="carSeat" class="select-drop" size="1"
+                                                multiple="false">
+                                            <option value="all">不限</option>
+                                            <option value="4">4座</option>
+                                            <option value="5">5座</option>
+                                            <option value="7">7座</option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,7 +78,7 @@
                         </div>
                         <div class="" style="padding-left: 20px">
                             <div class="">
-                                <button type="button" class="btn btn-primary btn-xs" onclick=""><i
+                                <button type="submit" class="btn btn-primary btn-xs" onclick=""><i
                                         class="fa fa-search" aria-hidden="true"></i>搜索
                                 </button>
                             </div>
@@ -91,7 +92,6 @@
     <%
         List<CarAvailability> carAvailabilityList = (List<CarAvailability>) request.getAttribute("car_available_list");
     %>
-
 
     <!-- LISTINGS SECTION -->
     <section class="clearfix bg-dark listyPage" style="padding-top: 10px;">
@@ -115,15 +115,13 @@
                             </tr>
                             </thead>
                             <tbody>
-
                             <%
                                 for (CarAvailability item : carAvailabilityList) {
                             %>
-
                             <tr class="rowItem">
                                 <td>
                                     <ul class="list-inline listingsInfo">
-                                        <li style="padding-right: 20px"><a href="#"><img src="img/dashboard/listing.jpg"
+                                        <li style="padding-right: 20px"><a href="#"><img src="img/carpic/<%=item.getCarId()%>.jpg"
                                                                                          alt="Image Listings"></a>
                                         </li>
                                         <li>
@@ -149,8 +147,8 @@
                                         </li>
                                     </ul>
                                 </td>
-                                <td>7座</td>
-                                <td>&nbsp <span style="color: pink; font-size: 20px;font-weight: bold">¥ 66.00 </span>/日均
+                                <td><%=item.getCarSeat()%>座</td>
+                                <td>&nbsp <span style="color: pink; font-size: 20px;font-weight: bold">¥ <%=item.getCarPriceDaily()%> </span>/日均
                                 </td>
                                 <td>
                                     <ul class="list-inline rating">
