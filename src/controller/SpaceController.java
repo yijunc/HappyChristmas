@@ -51,6 +51,9 @@ public class SpaceController extends HttpServlet {
                 case "GET_PRICE":
                     getSpacePriceById(request, response);
                     break;
+                case "USER_SPACE":
+                    userSpace(request, response);
+                    break;
                 default:
                     break;
             }
@@ -91,6 +94,27 @@ public class SpaceController extends HttpServlet {
         } else {
             request.setAttribute("empty", true);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminSpace.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    private void userSpace(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String spaceLocation = request.getParameter("space_location");
+//        System.out.println(spaceLocation);
+//        System.out.println(new String(request.getParameter("space_location").getBytes("iso-8859-1"),"utf-8"));
+        String spaceType = request.getParameter("space_type");
+//        System.out.println("xxxxxxxxxxxx:" + spaceType);
+
+        List<Space> spaceList = spaceDbUtil.getSpaceListByUser(spaceLocation, spaceType);
+
+        if (spaceList != null) {
+            request.setAttribute("empty", false);
+            request.setAttribute("space_list", spaceList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/rentSpace.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            request.setAttribute("empty", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/rentSpace.jsp");
             dispatcher.forward(request, response);
         }
     }

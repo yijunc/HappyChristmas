@@ -173,6 +173,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <%--<section style="padding-top: 15px; ">--%>

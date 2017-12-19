@@ -98,7 +98,7 @@ public class UserController extends HttpServlet {
     private void checkCell(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PrintWriter out = response.getWriter();
         boolean result = true;
-        if(userDbUtil.getUserByCell(request.getParameter("user_cell")) == null){
+        if (userDbUtil.getUserByCell(request.getParameter("user_cell")) == null) {
             result = false;
         }
         out.print(result);
@@ -107,7 +107,7 @@ public class UserController extends HttpServlet {
     private void checkName(HttpServletRequest request, HttpServletResponse response) throws Exception {
         PrintWriter out = response.getWriter();
         boolean result = true;
-        if(userDbUtil.getUserByName(request.getParameter("user_name")) == null){
+        if (userDbUtil.getUserByName(request.getParameter("user_name")) == null) {
             result = false;
         }
         out.print(result);
@@ -118,7 +118,7 @@ public class UserController extends HttpServlet {
         String userCell = request.getParameter("user_cell");
         String userPsw = request.getParameter("user_psw");
         String userEmail = request.getParameter("user_email");
-        userDbUtil.registerUser(userName,userPsw,userEmail,userCell);
+        userDbUtil.registerUser(userName, userPsw, userEmail, userCell);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
@@ -149,6 +149,7 @@ public class UserController extends HttpServlet {
     private void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
         User user = new User();
         User user_db = userDbUtil.getUserByName(request.getParameter("user_name"));
+        System.out.println(request.getParameter("user_name"));
         if (user_db == null
                 || user_db.getUserValid() != 1
                 || !user_db.getUserPsw().equals(request.getParameter("user_psw"))) {

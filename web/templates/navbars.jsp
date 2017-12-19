@@ -67,7 +67,7 @@
                             <li><a href="addCar.jsp">我要出租-填写车辆信息</a></li>
                         </ul>
                     </li>
-                    <li class=""><a href="rentSpace.jsp">车位信息 </a></li>
+                    <li class=""><a href="/SpaceController?command=USER_SPACE">车位信息 </a></li>
                     <li class=""><a href="news.jsp">新闻中心 </a></li>
                     <%
                         if (currentUser != null && currentUser.isUserAdmin()) {

@@ -148,4 +148,50 @@ public class SpaceDbUtil extends DbUtil {
         }
     }
 
+    public List<Space> getSpaceListByUser(String spaceLocation, String spaceType) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = " SELECT * FROM 2017j2ee.space WHERE";
+
+            if (spaceType != null && spaceType.length() != 0 && !spaceType.equals("all")) {
+                sql = sql + " space_type=\"" + spaceType + "\"";
+            } else {
+                sql += " space_type IS NOT NULL";
+            }
+            sql += " AND ";
+            if (null != spaceLocation && spaceLocation.length() != 0) {
+                sql = sql + " space_detail_location LIKE \'%" + spaceLocation + "%\'";
+            } else {
+                sql += " space_detail_location IS NOT NULL";
+            }
+            System.out.println("sql：user space = " + sql);
+            myRs = myStmt.executeQuery(sql);
+
+            List<Space> mSpaceList = new ArrayList<Space>();
+            Space mSpace = null;
+
+            while (myRs.next()) {
+                mSpace = new Space().setSpaceId(myRs.getInt("space_id"))
+                        .setSpaceCity(myRs.getString("space_city"))
+                        .setSpaceDetailLoc(myRs.getString("space_detail_location"))
+                        .setSpaceType(myRs.getString("space_type"))
+                        .setSpaceSmall(myRs.getInt("space_small"))
+                        .setSpaceSmallLeft(myRs.getInt("space_small_left"))
+                        .setSpaceSmallPrice(myRs.getInt("space_small_price"))
+                        .setSpaceLarge(myRs.getInt("space_large"))
+                        .setSpaceLargeLeft(myRs.getInt("space_large_left"))
+                        .setSpaceLargePrice(myRs.getInt("space_large_price"))
+                        .setSpaceDate(myRs.getDate("space_date"));
+                mSpaceList.add(mSpace);
+            }
+            return mSpaceList;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
 }
