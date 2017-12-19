@@ -229,15 +229,13 @@
                                             out.print(it.getOrderEnd());
                                         }
                                     %></td>
-                                <td name="order_price">
-                                    <%
+                                <td name="order_price"><%
                                         if (it.getOrderPrice() == -1) {
                                             out.print("未出账");
                                         } else {
                                             out.print(it.getOrderPrice());
                                         }
-                                    %>
-                                </td>
+                                    %></td>
                                 <%
                                     switch (it.getOrderStatus()) {
                                         case 0: %>
@@ -382,28 +380,38 @@
         }
         var spaceCustom = $(index).find("td[name='space_customer']").text();
         var orderStart = $(index).find("td[name='order_start']").text();
+        var orderEnd = $(index).find("td[name='order_end']").text();
+        var orderPrice = $(index).find("td[name='order_price']").text();
         var dailyPrice;
-        $.get("/SpaceController?command=GET_PRICE",{
-            space_id: spaceId,
-            space_type: sT
-        },function (data , textStatus) {
-            dailyPrice = data;
-            var price = getPrice(orderStart,dailyPrice);
-            finalPrice = price;
-            $("#modalSpaceOrderPrice").val(price);
-        });
-
+        if(orderPrice == "未出账"){
+            $.get("/SpaceController?command=GET_PRICE",{
+                space_id: spaceId,
+                space_type: sT
+            },function (data , textStatus) {
+                dailyPrice = data;
+                var price = getPrice(orderStart,dailyPrice);
+                finalPrice = price;
+                $("#modalSpaceOrderPrice").val(price);
+            });
+        }
+        else {
+            $("#modalSpaceOrderPrice").val(orderPrice);
+        }
         $("#spaceOrderModal").modal('show');
         $("#modalSpaceId").val(spaceId);
         $("#modalSpaceType").val(spaceType);
         $("#modalSpaceCustomer").val(spaceCustom);
         $("#modalSpaceOrderStart").val(orderStart);
-        var myDate = new Date();
-        var reg = new RegExp("/","g");//g,表示全部替换。
-        var time = myDate.toLocaleDateString().replace(reg,'-');
-        dateEnd = time;
-        $("#modalSpaceOrderEnd").val(time);
-
+        if(orderEnd == "未结束"){
+            var myDate = new Date();
+            var reg = new RegExp("/","g");//g,表示全部替换。
+            var time = myDate.toLocaleDateString().replace(reg,'-');
+            dateEnd = time;
+            $("#modalSpaceOrderEnd").val(time);
+        }
+        else {
+            $("#modalSpaceOrderEnd").val(orderEnd);
+        }
     });
 
     function getPrice(dateStart, dailyPrice) {
@@ -426,15 +434,28 @@
         status.attr("class", "label label-success");
         status.html("已完成");
         var id = $(element).find("td[name='order_id']").text();
+        var spaceId = $("#modalSpaceId").val();
+        var spaceType = $("#modalSpaceType").val();
+        var sT;
         // var p = $("#modalSpaceOrderPrice").val();
         // var d = $("#modalSpaceOrderEnd").val();
         console.log("id="+id);
         console.log("finalPrice="+finalPrice);
         console.log("dateEnd="+dateEnd);
+        switch(spaceType){
+            case "小型车位":
+                sT = 1;
+                break;
+            case "大型车位":
+                sT = 2;
+                break;
+        }
         $.post("/SpaceOrderController?command=ADMIN_ORDER_DONE", {
             order_id:id,
             order_price:finalPrice,
-            order_date:dateEnd
+            order_date:dateEnd,
+            space_id:spaceId,
+            space_type:sT
         });
     });
 
