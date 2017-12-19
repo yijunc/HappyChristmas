@@ -78,7 +78,7 @@
                             <div class="categoryImage">
                                 <img src="img/things/things-1.jpg" alt="Image category"
                                      class="img-responsive img-rounded">
-                                <span class="label label-primary">Verified</span>
+                                <span class="label label-primary"><b>HC</b></span>
                             </div>
                         </div>
                         <div class="col-sm-7 col-xs-12">
@@ -90,190 +90,16 @@
                                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 </ul>
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
+                                <h2><a href="blog-details.html" style="color: #222222">华东师大理科大楼 车库1</a>
                                     <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listContent">
-                    <div class="row">
-                        <div class="col-sm-5 col-xs-12">
-                            <div class="categoryImage">
-                                <img src="img/things/things-2.jpg" alt="Image category"
-                                     class="img-responsive img-rounded">
-                                <span class="label label-primary">Verified</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-xs-12">
-                            <div class="categoryDetails">
-                                <ul class="list-inline rating">
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                </ul>
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listContent">
-                    <div class="row">
-                        <div class="col-sm-5 col-xs-12">
-                            <div class="categoryImage">
-                                <img src="img/things/things-3.jpg" alt="Image category"
-                                     class="img-responsive img-rounded">
-                                <span class="label label-primary">Verified</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-xs-12">
-                            <div class="categoryDetails">
-                                <ul class="list-inline rating">
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                </ul>
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listContent">
-                    <div class="row">
-                        <div class="col-sm-5 col-xs-12">
-                            <div class="categoryImage">
-                                <img src="img/things/things-1.jpg" alt="Image category"
-                                     class="img-responsive img-rounded">
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-xs-12">
-                            <div class="categoryDetails">
-                                <ul class="list-inline rating">
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                </ul>
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listContent">
-                    <div class="row">
-                        <div class="col-sm-5 col-xs-12">
-                            <div class="categoryImage">
-                                <img src="img/things/things-2.jpg" alt="Image category"
-                                     class="img-responsive img-rounded">
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-xs-12">
-                            <div class="categoryDetails">
-                                <ul class="list-inline rating">
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                </ul>
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listContent">
-                    <div class="row">
-                        <div class="col-sm-5 col-xs-12">
-                            <div class="categoryImage">
-                                <img src="img/things/things-3.jpg" alt="Image category"
-                                     class="img-responsive img-rounded">
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-xs-12">
-                            <div class="categoryDetails">
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listContent">
-                    <div class="row">
-                        <div class="col-sm-5 col-xs-12">
-                            <div class="categoryImage">
-                                <img src="img/things/things-1.jpg" alt="Image category"
-                                     class="img-responsive img-rounded">
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-xs-12">
-                            <div class="categoryDetails">
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
-                                </ul>
+                                                               aria-hidden="true" style="color: red"></i> 10 k</span></h2>
+                                <p>2017-12-11 <span class="placeName">上海</span></p>
+                                <p ><span style="color: pink; font-size: 20px;font-weight: bold">¥ 15</span>/大型日均
+                                    <span style="margin-left: 50px">剩余&nbsp;<span style="color: orange">3</span></span></p>
+                                <p><span style="color: pink; font-size: 20px;font-weight: bold">¥ 30</span>/小型日均
+                                    <span style="margin-left: 50px">剩余&nbsp;<span style="color: red">0</span></span></p>
+                                <p><a >地上车库</a></p>
+                                <p class="text-right"><button type="button" class="btn btn-primary btn-sm" style="width: 100px;background-color: orange">预约</button></p>
                             </div>
                         </div>
                     </div>
@@ -282,22 +108,33 @@
                     <div class="row">
                         <div class="col-sm-5 col-xs-12">
                             <div class="categoryImage">
-                                <img src="img/things/things-2.jpg" alt="Image category"
+                                <img src="img/things/things-1.jpg" alt="Image category"
                                      class="img-responsive img-rounded">
+                                <span class="label label-primary"><b>HC</b></span>
                             </div>
                         </div>
                         <div class="col-sm-7 col-xs-12">
                             <div class="categoryDetails">
-                                <h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>
-                                    <span class="likeCount"><i class="fa fa-heart-o"
-                                                               aria-hidden="true"></i> 10 k</span></h2>
-                                <p>1569 Queen Street West <span class="placeName">Toronto</span></p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore magna aliqua. </p>
-                                <ul class="list-inline list-tag">
-                                    <li><a href="category-list-full.html">Hotel,</a></li>
-                                    <li><a href="category-list-full.html">Restaurant</a></li>
+                                <ul class="list-inline rating">
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 </ul>
+                                <h2><a href="blog-details.html" style="color: #222222">华东师大理科大楼 车库1</a>
+                                    <span class="likeCount"><i class="fa fa-heart-o"
+                                                               aria-hidden="true" style="color: red"></i> 10 k</span></h2>
+                                <p>2017-12-11 <span class="placeName">上海</span></p>
+                                <p ><span style="color: pink; font-size: 20px;font-weight: bold">¥ 15</span>/大型日均
+                                    <span style="margin-left: 50px">剩余&nbsp;<span style="color: orange">3</span></span></p>
+                                <p><span style="color: pink; font-size: 20px;font-weight: bold">¥ 30</span>/小型日均
+                                    <span style="margin-left: 50px">剩余&nbsp;<span style="color: red">0</span></span></p>
+                                <p><a >地上车库</a></p>
+                                <p class="text-right"><button type="button" class="btn btn-primary btn-sm" style="width: 100px;background-color: orange">预约</button></p>
+                                <!-- <div>
+                                  <button type="button" class="btn btn-warning">预约</button>
+                                </div> -->
                             </div>
                         </div>
                     </div>
