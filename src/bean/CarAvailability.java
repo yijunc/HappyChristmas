@@ -123,4 +123,33 @@ public class CarAvailability {
         this.carCustomer = carCustomer;
         return this;
     }
+
+    public CarAvailability(){
+
+    }
+
+    public CarAvailability(int mId, int carId, Date carDateStart, Date carDateEnd, int carPriceDaily, String carType, String carOwner, String carBrand, int carSeat, int carStatus, float carRating, int carCustomer) {
+        this.mId = mId;
+        this.carId = carId;
+        this.carDateStart = carDateStart;
+        this.carDateEnd = carDateEnd;
+        this.carPriceDaily = carPriceDaily;
+        this.carType = carType;
+        this.carOwner = carOwner;
+        this.carBrand = carBrand;
+        this.carSeat = carSeat;
+        this.carStatus = carStatus;
+        this.carRating = carRating;
+        this.carCustomer = carCustomer;
+    }
+
+    public Object clone() {
+        CarAvailability ret = null;
+        try{
+            ret = (CarAvailability) super.clone();
+        }catch(CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
 }

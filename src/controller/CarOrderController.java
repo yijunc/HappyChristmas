@@ -1,7 +1,9 @@
 package controller;
 
+import bean.CarAvailability;
 import bean.CarOrder;
 import bean.CarOrderSearch;
+import model.CarAvailabilityDbUtil;
 import model.CarOrderDbUtil;
 
 import javax.annotation.Resource;
@@ -19,6 +21,7 @@ import java.util.List;
 public class CarOrderController extends HttpServlet {
     private final static String TAG = "CarOrderController";
     private CarOrderDbUtil carOrderDbUtil;
+    private CarAvailabilityDbUtil carAvailabilityDbUtil;
 
     @Resource(name = "jdbc/2017J2EE")
     private DataSource dataSource;
@@ -29,6 +32,7 @@ public class CarOrderController extends HttpServlet {
         // create our student db util ... and pass in the conn pool / datasource
         try {
             carOrderDbUtil = new CarOrderDbUtil(dataSource);
+            carAvailabilityDbUtil = new CarAvailabilityDbUtil(dataSource);
         } catch (Exception exc) {
             throw new ServletException(exc);
         }
@@ -54,6 +58,9 @@ public class CarOrderController extends HttpServlet {
                 case "ADMIN_ORDER_CANCEL":
                     adminOrderCancel(request, response);
                     break;
+                case "USER_ADD_ORDER":
+                    addCarOrder(request, response);
+                    break;
                 default:
                     break;
             }
@@ -70,12 +77,26 @@ public class CarOrderController extends HttpServlet {
         doGet(request, response);
     }
 
-    private void adminOrderCancel(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    private void addCarOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int carId = Integer.parseInt(request.getParameter("car_id"));
+        String carStart = request.getParameter("car_start");
+        String carEnd = request.getParameter("car_end");
+        String carTaker = request.getParameter("car_taker");
+        String carPoster = request.getParameter("car_poster");
+        int carPrice = Integer.parseInt(request.getParameter("car_price"));
+        int availabilityId = Integer.parseInt(request.getParameter("ava_id"));
+
+        carOrderDbUtil.addCarOrder(carId,carStart,carEnd,carTaker,carPoster,carPrice);
+        carAvailabilityDbUtil.modifyCar(carId,carStart,carEnd);
+
+    }
+
+    private void adminOrderCancel(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String orderId = request.getParameter("order_id");
         carOrderDbUtil.cancelCarOrder(Integer.parseInt(orderId));
     }
 
-    private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String orderId = request.getParameter("order_id");
         String orderPrice = request.getParameter("order_price");
         carOrderDbUtil.changeCarOrderPriceByOrderId(Integer.parseInt(orderId), Integer.parseInt(orderPrice));
@@ -92,28 +113,28 @@ public class CarOrderController extends HttpServlet {
         String orderStatus = request.getParameter("order_status");
 
         CarOrderSearch carOrderSearch = new CarOrderSearch();
-        if(null!=orderId){
+        if (null != orderId) {
             carOrderSearch.setmId(orderId);
         }
-        if(null!=orderTaker){
+        if (null != orderTaker) {
             carOrderSearch.setOrderTaker(orderTaker);
         }
-        if(null!=orderPoster){
+        if (null != orderPoster) {
             carOrderSearch.setOrderPoster(orderPoster);
         }
-        if(null!=orderDate){
+        if (null != orderDate) {
             carOrderSearch.setOrderDate(orderDate);
         }
-        if(null!=orderStart){
+        if (null != orderStart) {
             carOrderSearch.setOrderStart(orderStart);
         }
-        if(null!=orderEnd){
+        if (null != orderEnd) {
             carOrderSearch.setOrderEnd(orderEnd);
         }
-        if(null!=orderCarId){
+        if (null != orderCarId) {
             carOrderSearch.setCarId(orderCarId);
         }
-        if(null!=orderStatus){
+        if (null != orderStatus) {
             carOrderSearch.setmStatus(orderStatus);
         }
 
@@ -123,7 +144,7 @@ public class CarOrderController extends HttpServlet {
         if (null != carOrderList) {
             request.setAttribute("empty", false);
             request.setAttribute("car_order_list", carOrderList);
-            request.setAttribute("search_input",carOrderSearch);
+            request.setAttribute("search_input", carOrderSearch);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/adminRentCar.jsp");
             dispatcher.forward(request, response);
         } else {

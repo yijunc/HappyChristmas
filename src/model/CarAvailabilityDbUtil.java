@@ -4,10 +4,13 @@ import bean.CarAvailability;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -15,12 +18,117 @@ public class CarAvailabilityDbUtil extends DbUtil {
 
     private SimpleDateFormat dateFormatFrom = new SimpleDateFormat("mm/dd/yyyy");
     private SimpleDateFormat dateFormatTo = new SimpleDateFormat("yyyy-mm-dd");
+    private SimpleDateFormat dff = new SimpleDateFormat("yyyy-MM-dd");
 
     public CarAvailabilityDbUtil(DataSource dataSource) {
         super(dataSource);
     }
 
-    public List<CarAvailability> getCarAvalabilityListByUser(String dataStart,  String dataEnd, String carSeat) throws Exception{
+    public boolean modifyCar(int avaId, String dateStart, String dateEnd) throws Exception{
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+
+            String sql = "select * from 2017j2ee.car_availability WHERE car_availability_id = " + avaId;
+            myRs = myStmt.executeQuery(sql);
+            myRs.first();
+            CarAvailability origin = new CarAvailability().setCarId(myRs.getInt("car_availability_id"))
+                    .setCarId(myRs.getInt("car_availability_car_id"))
+                    .setCarDateStart(myRs.getDate("car_availability_date_start"))
+                    .setCarDateEnd(myRs.getDate("car_availability_date_end"))
+                    .setCarPriceDaily(myRs.getInt("car_availability_price_daily"))
+                    .setCarBrand(myRs.getString("car_availability_car_brand"))
+                    .setCarType(myRs.getString("car_availability_type"))
+                    .setCarOwner(myRs.getString("car_availability_car_owner"))
+                    .setCarSeat(myRs.getInt("car_availability_car_seat"))
+                    .setCarStatus(myRs.getInt("car_availability_status"));
+            myStmt.execute(sql);
+
+            Calendar ca = Calendar.getInstance();
+            ca.setTime(dff.parse(dateStart)); //设置时间为当前时间
+            ca.add(Calendar.DATE, -1); //年份减1
+            Date prevDateEnd = ca.getTime(); //结果
+
+            ca.setTime(dff.parse(dateEnd)); //设置时间为当前时间
+            ca.add(Calendar.DATE, 1);
+            Date postDateStart = ca.getTime();
+
+            CarAvailability post = (CarAvailability) origin.clone();
+            CarAvailability prev = (CarAvailability) origin.clone();
+
+            post.setCarDateStart(postDateStart);
+            prev.setCarDateEnd(prevDateEnd);
+
+            origin.setCarDateStart(dff.parse(dateStart));
+            origin.setCarDateEnd(dff.parse(dateEnd));
+            origin.setCarStatus(0);
+
+            sql = "DELETE FROM 2017j2ee.car_availability WHERE car_availability_id = " + avaId;
+            myStmt.execute(sql);
+
+            sql = "INSERT INTO 2017j2ee.car_availability (car_availability_car_id, car_availability_date_start, " +
+                    "car_availability_date_end, car_availability_price_daily, car_availability_type," +
+                    "car_availability_car_owner, car_availability_car_brand, car_availability_car_seat, car_availability_status" +
+                    ") VALUES (?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setInt(1,origin.getCarId());
+            prstmt.setDate(2, (java.sql.Date) origin.getCarDateStart());
+            prstmt.setDate(3, (java.sql.Date) origin.getCarDateEnd());
+            prstmt.setInt(4, origin.getCarPriceDaily());
+            prstmt.setString(5, origin.getCarType());
+            prstmt.setString(6, origin.getCarOwner());
+            prstmt.setString(7, origin.getCarBrand());
+            prstmt.setInt(8, origin.getCarSeat());
+            prstmt.setInt(9,origin.getCarStatus());
+
+
+            prstmt.execute();
+
+            prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setInt(1,prev.getCarId());
+            prstmt.setDate(2, (java.sql.Date) prev.getCarDateStart());
+            prstmt.setDate(3, (java.sql.Date) prev.getCarDateEnd());
+            prstmt.setInt(4, prev.getCarPriceDaily());
+            prstmt.setString(5, prev.getCarType());
+            prstmt.setString(6, prev.getCarOwner());
+            prstmt.setString(7, prev.getCarBrand());
+            prstmt.setInt(8, prev.getCarSeat());
+            prstmt.setInt(9,prev.getCarStatus());
+
+
+            prstmt.execute();
+
+            prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setInt(1,post.getCarId());
+            prstmt.setDate(2, (java.sql.Date) post.getCarDateStart());
+            prstmt.setDate(3, (java.sql.Date) post.getCarDateEnd());
+            prstmt.setInt(4, post.getCarPriceDaily());
+            prstmt.setString(5, post.getCarType());
+            prstmt.setString(6, post.getCarOwner());
+            prstmt.setString(7, post.getCarBrand());
+            prstmt.setInt(8, post.getCarSeat());
+            prstmt.setInt(9,post.getCarStatus());
+
+            prstmt.execute();
+
+
+
+            return true;
+
+
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public List<CarAvailability> getCarAvalabilityListByUser(String dataStart, String dataEnd, String carSeat) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -28,24 +136,21 @@ public class CarAvailabilityDbUtil extends DbUtil {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
             String sql = "select * from 2017j2ee.car_availability WHERE";
-            if(carSeat != null && carSeat.length() != 0 && !carSeat.equals("all")){
+            if (carSeat != null && carSeat.length() != 0 && !carSeat.equals("all")) {
                 sql = sql + " car_availability_car_seat = " + carSeat;
-            }
-            else{
+            } else {
                 sql = sql + " car_availability_car_seat IS NOT NULL";
             }
             sql += " AND ";
-            if(dataStart != null && dataStart.length() != 0){
-                sql = sql + " car_availability_date_start <= \"" + dateFormatTo.format(dateFormatFrom.parse(dataStart))+"\"";
-            }
-            else{
+            if (dataStart != null && dataStart.length() != 0) {
+                sql = sql + " car_availability_date_start <= \"" + dateFormatTo.format(dateFormatFrom.parse(dataStart)) + "\"";
+            } else {
                 sql = sql + " car_availability_date_start <= CURDATE()";
             }
             sql += " AND ";
-            if(dataEnd != null && dataEnd.length() != 0){
-                sql = sql + " car_availability_date_end >= \"" + dateFormatTo.format(dateFormatFrom.parse(dataEnd))+"\"";
-            }
-            else{
+            if (dataEnd != null && dataEnd.length() != 0) {
+                sql = sql + " car_availability_date_end >= \"" + dateFormatTo.format(dateFormatFrom.parse(dataEnd)) + "\"";
+            } else {
                 sql = sql + " car_availability_date_end IS NOT NULL";
             }
             System.out.println(sql);

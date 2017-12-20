@@ -4,16 +4,46 @@ import bean.CarOrder;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CarOrderDbUtil extends DbUtil {
 
     public CarOrderDbUtil(DataSource dataSource) {
         super(dataSource);
+    }
+
+
+    public boolean addCarOrder(int carId, String carStart, String carEnd, String carTaker, String carPoster,
+                               int carPrice) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            String sql = "insert into 2017j2ee.car_order (car_order_car_id, car_order_date_start, car_order_date_end," +
+                    "car_order_order_date, car_order_taker, car_order_poster, car_order_price) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setInt(1,carId);
+            prstmt.setString(2,carStart);
+            prstmt.setString(3,carEnd);
+            prstmt.setString(5,carTaker);
+            prstmt.setString(6,carPoster);
+            prstmt.setInt(7,carPrice);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            prstmt.setDate(4, java.sql.Date.valueOf(df.format(new Date())));
+
+            prstmt.execute();
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
     }
 
     public boolean cancelCarOrder(int orderId) throws Exception {
