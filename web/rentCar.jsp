@@ -164,7 +164,7 @@
                                 </td>
                                 <td><%=item.getCarDateStart()%> <br>11.00am</td>
                                 <td><%=item.getCarDateEnd()%><br>11.00am</td>
-                                <td><span class="label label-warning">预约</span></td>
+                                <td><span class="label label-warning orderButton">预约</span></td>
                             </tr>
                             <%}%>
 
@@ -175,114 +175,15 @@
             </div>
         </div>
     </section>
-
-    <%--<section style="padding-top: 15px; ">--%>
-    <%--<div class="container">--%>
-    <%--<div class="row">--%>
-    <%--<div class="col-sm-12 col-xs-12">--%>
-    <%--<div class="resultBar barSpaceAdjust">--%>
-    <%--<h2>We found <span><%=carAvailabilityList.size()%></span> Results for you</h2>--%>
-    <%--</div>--%>
-
-    <%--<%--%>
-    <%--for (int foreach = 0; foreach < carAvailabilityList.size(); foreach++) {--%>
-    <%--CarAvailability mCarAvailability = carAvailabilityList.get(foreach);--%>
-    <%--%>--%>
-    <%--<div class="listContent">--%>
-    <%--<div class="row">--%>
-    <%--<div class="col-sm-5 col-xs-12">--%>
-    <%--<div class="categoryImage">--%>
-    <%--<img src="img/things/things-<%=mCarAvailability.getCarId()%>.jpg"--%>
-    <%--alt="Image category"--%>
-    <%--class="img-responsive img-rounded">--%>
-    <%--<span class="label label-primary">Verified</span>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<div class="col-sm-7 col-xs-12">--%>
-    <%--<div class="categoryDetails">--%>
-    <%--<ul class="list-inline rating">--%>
-    <%--<%--%>
-    <%--for (int i = 0; i < mCarAvailability.getCarRating(); i++) {--%>
-    <%--%>--%>
-    <%--<li><i class="fa fa-star" aria-hidden="true"></i></li>--%>
-    <%--<%--%>
-    <%--}--%>
-    <%--%>--%>
-    <%--</ul>--%>
-    <%--<h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>--%>
-    <%--<span class="likeCount"><i class="fa fa-heart-o"--%>
-    <%--aria-hidden="true"></i> 10 k</span></h2>--%>
-    <%--<p>1569 Queen Street West <span class="placeName">Toronto</span></p>--%>
-    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor--%>
-    <%--incididunt labore et dolore magna aliqua. </p>--%>
-    <%--<ul class="list-inline list-tag">--%>
-    <%--<li><a href="category-list-full.html">Hotel,</a></li>--%>
-    <%--<li><a href="category-list-full.html">Restaurant</a></li>--%>
-    <%--</ul>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<div class="listContent borderRemove">--%>
-    <%--<div class="row">--%>
-    <%--<div class="col-sm-5 col-xs-12">--%>
-    <%--<div class="categoryImage">--%>
-    <%--<img src="img/things/things-2.jpg" alt="Image category"--%>
-    <%--class="img-responsive img-rounded">--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<div class="col-sm-7 col-xs-12">--%>
-    <%--<div class="categoryDetails">--%>
-    <%--<h2><a href="blog-details.html" style="color: #222222">Glory Hole Doughnuts</a>--%>
-    <%--<span class="likeCount"><i class="fa fa-heart-o"--%>
-    <%--aria-hidden="true"></i> 10 k</span></h2>--%>
-    <%--<p>1569 Queen Street West <span class="placeName">Toronto</span></p>--%>
-    <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor--%>
-    <%--incididunt labore et dolore magna aliqua. </p>--%>
-    <%--<ul class="list-inline list-tag">--%>
-    <%--<li><a href="category-list-full.html">Hotel,</a></li>--%>
-    <%--<li><a href="category-list-full.html">Restaurant</a></li>--%>
-    <%--</ul>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<%}%>--%>
-    <%--<div class="paginationCommon blogPagination categoryPagination">--%>
-    <%--<nav aria-label="Page navigation">--%>
-    <%--<ul class="pagination">--%>
-    <%--<li>--%>
-    <%--<a href="#" aria-label="Previous">--%>
-    <%--<span aria-hidden="true"><i class="fa fa-angle-left"--%>
-    <%--aria-hidden="true"></i></span>--%>
-    <%--</a>--%>
-    <%--</li>--%>
-    <%--<li class="active"><a href="#">1</a></li>--%>
-    <%--<li><a href="#">2</a></li>--%>
-    <%--<li><a href="#">3</a></li>--%>
-    <%--<li><a href="#">4</a></li>--%>
-    <%--<li><a href="#">5</a></li>--%>
-    <%--<li>--%>
-    <%--<a href="#" aria-label="Next">--%>
-    <%--<span aria-hidden="true"><i class="fa fa-angle-right"--%>
-    <%--aria-hidden="true"></i></span>--%>
-    <%--</a>--%>
-    <%--</li>--%>
-    <%--</ul>--%>
-    <%--</nav>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</section>--%>
-
 </div>
 <%@include file="templates/loginModal.jsp" %>
 <%@include file="templates/footers.jsp" %>
 </body>
 <script>
+    $(".orderButton").click(function () {
+        var index = $(this).parentNode.parentNode;
+        var id = $(index).find("td[]")
+    });
 </script>
 </html>
 
