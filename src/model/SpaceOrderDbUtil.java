@@ -4,6 +4,7 @@ import bean.SpaceOrder;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,31 @@ public class SpaceOrderDbUtil extends DbUtil {
         super(dataSource);
     }
 
+    public boolean addSpaceOrder(int spaceId, String spaceTaker, String spaceStart, String spaceEnd, int spacePrice, int spaceType) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            myConn = dataSource.getConnection();
+            String sql = "insert into 2017j2ee.space_order (space_order_space_id, space_order_taker, " +
+                    "space_order_date_start, space_order_date_end, space_order_price, space_order_space_type) VALUES (?,?,?,?,?,?)";
+            PreparedStatement prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setInt(1, spaceId);
+            prstmt.setString(2, spaceTaker);
+            prstmt.setString(3, spaceStart);
+            prstmt.setString(4, spaceEnd);
+            prstmt.setInt(5, spacePrice);
+            prstmt.setInt(6, spaceType);
+
+            prstmt.execute();
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
 
     public boolean doneSpaceOrderByOrderId(int orderId, int orderPrice, String orderDate) throws Exception {
         Connection myConn = null;
@@ -25,13 +51,13 @@ public class SpaceOrderDbUtil extends DbUtil {
         try {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            String sql  = "UPDATE 2017j2ee.space_order SET space_order_status = 1 , space_order_date_end = \""
+            String sql = "UPDATE 2017j2ee.space_order SET space_order_status = 1 , space_order_date_end = \""
                     + orderDate
                     + "\" , space_order_price = "
                     + orderPrice
                     + " WHERE space_order_id = "
                     + orderId;
-            System.out.println("2017/12/19: "+sql);
+            System.out.println("2017/12/19: " + sql);
             myStmt.executeUpdate(sql);
             return true;
         } finally {

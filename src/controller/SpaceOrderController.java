@@ -56,7 +56,9 @@ public class SpaceOrderController extends HttpServlet {
                     break;
                 case "ADMIN_ORDER_DONE":
                     adminOrderDone(request, response);
-                    System.out.println("xxxxxxx");
+                    break;
+                case "USER_TAKE_ORDER":
+                    userTakeOrder(request, response);
                     break;
                 default:
                     break;
@@ -72,6 +74,18 @@ public class SpaceOrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         doGet(request, response);
+    }
+
+    private void userTakeOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int spaceId = Integer.valueOf(request.getParameter("space_id"));
+        String spaceTaker = request.getParameter("space_taker");
+        String spaceStart = request.getParameter("space_start");
+        String spaceEnd = request.getParameter("space_end");
+        int spacePrice = Integer.valueOf(request.getParameter("space_price"));
+        int spaceType = Integer.valueOf(request.getParameter("space_type"));
+
+        spaceOrderDbUtil.addSpaceOrder(spaceId, spaceTaker, spaceStart, spaceEnd, spacePrice, spaceType);
+        spaceDbUtil.setSpaceRemainByIdAndType(spaceId, spaceType, spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType) - 1);
     }
 
     private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception {
