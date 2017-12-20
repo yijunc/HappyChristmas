@@ -27,6 +27,7 @@ public class SpaceOrderDbUtil extends DbUtil {
             String sql = "insert into 2017j2ee.space_order (space_order_space_id, space_order_taker, " +
                     "space_order_date_start, space_order_date_end, space_order_price, space_order_space_type) VALUES (?,?,?,?,?,?)";
             PreparedStatement prstmt = myConn.prepareStatement(sql);
+            System.out.println(sql);
 
             prstmt.setInt(1, spaceId);
             prstmt.setString(2, spaceTaker);

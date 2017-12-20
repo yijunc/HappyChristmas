@@ -25,16 +25,16 @@
                     <div class="processArea">
                         <ul class="list-inline">
                             <li>
-                                <h2>Your Billing Information</h2>
+                                <h2>订单详情</h2>
                                 <form class="loginForm">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="cardHOlderName"
-                                               placeholder="Cardholder Name">
+                                               placeholder="持卡人姓名">
                                     </div>
                                     <div class="form-group">
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                         <input type="text" class="form-control" id="cardNumber"
-                                               placeholder="Card Number">
+                                               placeholder="银行卡号">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
@@ -51,14 +51,13 @@
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
                                                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                                                <input type="text" class="form-control" id="cvc" placeholder="CVC">
+                                                <input type="text" class="form-control" id="cvc" placeholder="安全码">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"> By confirming you agree to Listty <a
-                                                href="terms-of-services.html">Terms of Service</a>
+                                            <input type="checkbox"> 请同意HC网站的使用条款，并保证上述提供的信息均为<a>真实信息</a>。
                                         </label>
                                     </div>
                                     <div class="form-group mgnBtm0">
@@ -67,9 +66,10 @@
                                 </form>
                             </li>
                             <li>
-                                <h2>Your Purchase</h2>
-                                <h3>predictive Analytics for business Nanodegree </h3>
-                                <p>$1550.00</p>
+                                <h2>订单详情</h2>
+                                <h3></h3>
+
+                                <p>¥1550.00</p>
                             </li>
                         </ul>
                     </div>
