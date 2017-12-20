@@ -223,7 +223,7 @@
                                     %></td>
                                 <td name="order_start"><%=it.getOrderStart()%></td>
                                 <td name="order_end"><%
-                                        if (it.getOrderStatus() != 1) {
+                                        if (it.getOrderEnd().toString().equals("1899-12-31")) {
                                             out.print("未结束");
                                         } else {
                                             out.print(it.getOrderEnd());

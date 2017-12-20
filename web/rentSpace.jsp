@@ -155,7 +155,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">账单详情</h4>
+                <h4 class="modal-title">停车位账单详情</h4>
             </div>
             <div class="modal-body">
                 <div style="padding-left: 20px;padding-right: 20px">
@@ -222,6 +222,7 @@
 </body>
 <script>
     var element;
+    var spaceType;
     var dailyPrice;
     $(".orderButton").click(function () {
         var index = this.parentNode.parentNode;
@@ -245,6 +246,7 @@
             var reg = new RegExp("/","g");//g,表示全部替换
             var today = myDate.toLocaleDateString().replace(reg,'-');
             var type = $("input:checked[name='modal_space_type']").val();
+            spaceType =type;
             if(type == "大型车位"){
                 dailyPrice = $(element).find("p").find("span[name='large_price']").text();
             }
@@ -271,6 +273,7 @@
         else{
             dailyPrice = $(element).find("p").find("span[name='small_price']").text();
         }
+        spaceType = type;
         console.log("dailyPrice"+dailyPrice);
         updatePrice();
     });
@@ -292,7 +295,19 @@
         console.log("total:"+price);
     }
     $(".confirmButton").click(function () {
-        $.post("")
-    })
+        var sT = 1;
+        if(spaceType=="大型车位"){
+            sT = 2;
+        }
+        $.get("/SpaceOrderController?command=USER_TAKE_ORDER",{
+            space_id: $("#modalSpaceId").val(),
+            space_taker: $("#modalCustomer").val(),
+            space_start: $("#modalStart").val(),
+            space_end: $("#modalEnd").val(),
+            space_price: $("#modalPrice").text(),
+            space_type: sT
+        });
+        $("#spaceOrderingModal").modal('hide');
+    });
 </script>
 </html>
