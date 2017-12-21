@@ -52,6 +52,9 @@ public class CarAvailabilityController extends HttpServlet {
                     case "USER_CAR_AVAILABILITY":
                         userCarAvailability(request, response);
                         break;
+                    case "ADD_CAR_AVAILABILITY":
+                        userAddCarAvailability(request, response);
+                        break;
                     default:
                         break;
                 }
@@ -69,13 +72,31 @@ public class CarAvailabilityController extends HttpServlet {
         doGet(request, response);
     }
 
+    private void userAddCarAvailability(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String carType = request.getParameter("car_type");
+        String carOwner = request.getParameter("car_owner");
+        String carBrand = request.getParameter("car_brand");
+        String dateStart = request.getParameter("date_start");
+        String dateEnd = request.getParameter("date_end");
+        int priceDaily = Integer.parseInt(request.getParameter("price_daily"));
+        int carSeat = Integer.parseInt(request.getParameter("car_seat"));
+
+        int carId = carDbUtil.addCar(carType, carOwner, carBrand, carSeat);
+
+        carAvailabilityDbUtil.addCarAvailability(carId, dateStart, dateEnd, priceDaily, carType, carOwner, carBrand, carSeat);
+
+
+        response.sendRedirect("/UserController?command=USER_PAGE&user_name=" + carOwner);
+
+    }
+
     private void userCarAvailability(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String dataStart = request.getParameter("date_start");
         String dataEnd = request.getParameter("date_end");
         String carSeat = request.getParameter("car_seat");
-        System.out.println(TAG+" dataStart: "+dataStart);
-        System.out.println(TAG+" dataEnd: "+dataEnd);
-        System.out.println(TAG+" carSeat: "+carSeat);
+        System.out.println(TAG + " dataStart: " + dataStart);
+        System.out.println(TAG + " dataEnd: " + dataEnd);
+        System.out.println(TAG + " carSeat: " + carSeat);
 
         List<CarAvailability> carAvailabilityList = carAvailabilityDbUtil.getCarAvalabilityListByUser(dataStart, dataEnd, carSeat);
         carAvailabilityList = carDbUtil.getCarByList(carAvailabilityList);
