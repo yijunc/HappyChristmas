@@ -58,7 +58,7 @@ public class CarOrderController extends HttpServlet {
                 case "ADMIN_ORDER_CANCEL":
                     adminOrderCancel(request, response);
                     break;
-                case "USER_ADD_ORDER":
+                case "USER_TAKE_ORDER":
                     addCarOrder(request, response);
                     break;
                 default:

@@ -124,7 +124,7 @@ public class CarAvailability {
         return this;
     }
 
-    public CarAvailability(){
+    public CarAvailability() {
 
     }
 
@@ -143,13 +143,9 @@ public class CarAvailability {
         this.carCustomer = carCustomer;
     }
 
-    public Object clone() {
-        CarAvailability ret = null;
-        try{
-            ret = (CarAvailability) super.clone();
-        }catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+    public CarAvailability copy() {
+        CarAvailability ret = new CarAvailability(mId, carId, carDateStart, carDateEnd, carPriceDaily, carType, carOwner, carBrand,
+                carSeat, carStatus, carRating, carCustomer);
         return ret;
     }
 }

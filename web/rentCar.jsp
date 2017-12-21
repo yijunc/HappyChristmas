@@ -295,6 +295,7 @@
             }
         }
         $("#carOrderingModal").modal('show');
+        updatePrice();
     });
     function getDaysDiff(dateStart, dateEnd) {
         var arr1 = dateStart.split("-");
@@ -337,7 +338,7 @@
     }
     $(".confirmButton").click(function () {
         var mId = $(element).find("span[name='hidden_id']").text();
-        $.get("/CarOrderController?command=USER_TAKE_ORDER",{
+        $.post("/CarOrderController?command=USER_TAKE_ORDER",{
             ava_id: mId,
             car_id: $("#modalCarId").val(),
             car_start: $("#modalStart").val(),
@@ -345,6 +346,8 @@
             car_taker: $("#modalHost").val(),
             car_poster: $("#modalCustomer").val(),
             car_price: $("#modalPrice").text()
+        }, function (data, status) {
+            window.location.href='/profile.jsp';
         });
         $("#carOrderingModal").modal('hide');
     });

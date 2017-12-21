@@ -35,7 +35,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
             String sql = "select * from 2017j2ee.car_availability WHERE car_availability_id = " + avaId;
             myRs = myStmt.executeQuery(sql);
             myRs.first();
-            CarAvailability origin = new CarAvailability().setCarId(myRs.getInt("car_availability_id"))
+            CarAvailability origin = new CarAvailability().setmId(myRs.getInt("car_availability_id"))
                     .setCarId(myRs.getInt("car_availability_car_id"))
                     .setCarDateStart(myRs.getDate("car_availability_date_start"))
                     .setCarDateEnd(myRs.getDate("car_availability_date_end"))
@@ -56,8 +56,8 @@ public class CarAvailabilityDbUtil extends DbUtil {
             ca.add(Calendar.DATE, 1);
             Date postDateStart = ca.getTime();
 
-            CarAvailability post = (CarAvailability) origin.clone();
-            CarAvailability prev = (CarAvailability) origin.clone();
+            CarAvailability post = origin.copy();
+            CarAvailability prev = origin.copy();
 
             post.setCarDateStart(postDateStart);
             prev.setCarDateEnd(prevDateEnd);
@@ -77,14 +77,14 @@ public class CarAvailabilityDbUtil extends DbUtil {
             PreparedStatement prstmt = myConn.prepareStatement(sql);
 
             prstmt.setInt(1,origin.getCarId());
-            prstmt.setDate(2, (java.sql.Date) origin.getCarDateStart());
-            prstmt.setDate(3, (java.sql.Date) origin.getCarDateEnd());
+            prstmt.setDate(2, java.sql.Date.valueOf(dff.format(origin.getCarDateStart())));
+            prstmt.setDate(3, java.sql.Date.valueOf(dff.format(origin.getCarDateEnd())));
             prstmt.setInt(4, origin.getCarPriceDaily());
             prstmt.setString(5, origin.getCarType());
             prstmt.setString(6, origin.getCarOwner());
             prstmt.setString(7, origin.getCarBrand());
             prstmt.setInt(8, origin.getCarSeat());
-            prstmt.setInt(9,origin.getCarStatus());
+            prstmt.setInt(9,0);
 
 
             prstmt.execute();
@@ -92,14 +92,14 @@ public class CarAvailabilityDbUtil extends DbUtil {
             prstmt = myConn.prepareStatement(sql);
 
             prstmt.setInt(1,prev.getCarId());
-            prstmt.setDate(2, (java.sql.Date) prev.getCarDateStart());
-            prstmt.setDate(3, (java.sql.Date) prev.getCarDateEnd());
+            prstmt.setDate(2, java.sql.Date.valueOf(dff.format(prev.getCarDateStart())));
+            prstmt.setDate(3, java.sql.Date.valueOf(dff.format(prev.getCarDateEnd())));
             prstmt.setInt(4, prev.getCarPriceDaily());
             prstmt.setString(5, prev.getCarType());
             prstmt.setString(6, prev.getCarOwner());
             prstmt.setString(7, prev.getCarBrand());
             prstmt.setInt(8, prev.getCarSeat());
-            prstmt.setInt(9,prev.getCarStatus());
+            prstmt.setInt(9,1);
 
 
             prstmt.execute();
@@ -107,14 +107,14 @@ public class CarAvailabilityDbUtil extends DbUtil {
             prstmt = myConn.prepareStatement(sql);
 
             prstmt.setInt(1,post.getCarId());
-            prstmt.setDate(2, (java.sql.Date) post.getCarDateStart());
-            prstmt.setDate(3, (java.sql.Date) post.getCarDateEnd());
+            prstmt.setDate(2, java.sql.Date.valueOf(dff.format(post.getCarDateStart())));
+            prstmt.setDate(3, java.sql.Date.valueOf(dff.format(post.getCarDateEnd())));
             prstmt.setInt(4, post.getCarPriceDaily());
             prstmt.setString(5, post.getCarType());
             prstmt.setString(6, post.getCarOwner());
             prstmt.setString(7, post.getCarBrand());
             prstmt.setInt(8, post.getCarSeat());
-            prstmt.setInt(9,post.getCarStatus());
+            prstmt.setInt(9,1);
 
             prstmt.execute();
 
@@ -135,7 +135,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
         try {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            String sql = "select * from 2017j2ee.car_availability WHERE";
+            String sql = "select * from 2017j2ee.car_availability WHERE car_availability_status = 1 AND ";
             if (carSeat != null && carSeat.length() != 0 && !carSeat.equals("all")) {
                 sql = sql + " car_availability_car_seat = " + carSeat;
             } else {
@@ -158,7 +158,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
             List<CarAvailability> mCarAvaList = new ArrayList<CarAvailability>();
             CarAvailability mCarAva = null;
             while (myRs.next()) {
-                mCarAva = new CarAvailability().setCarId(myRs.getInt("car_availability_id"))
+                mCarAva = new CarAvailability().setmId(myRs.getInt("car_availability_id"))
                         .setCarId(myRs.getInt("car_availability_car_id"))
                         .setCarDateStart(myRs.getDate("car_availability_date_start"))
                         .setCarDateEnd(myRs.getDate("car_availability_date_end"))
@@ -248,7 +248,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
             CarAvailability mCarAva = null;
 
             while (myRs.next()) {
-                mCarAva = new CarAvailability().setCarId(myRs.getInt("car_availability_id"))
+                mCarAva = new CarAvailability().setmId(myRs.getInt("car_availability_id"))
                         .setCarId(myRs.getInt("car_availability_car_id"))
                         .setCarDateStart(myRs.getDate("car_availability_date_start"))
                         .setCarDateEnd(myRs.getDate("car_availability_date_end"))
