@@ -188,13 +188,13 @@ public class CarAvailabilityDbUtil extends DbUtil {
             }
             sql += " AND ";
             if (dataStart != null && dataStart.length() != 0) {
-                sql = sql + " car_availability_date_start <= \"" + dateFormatTo.format(dateFormatFrom.parse(dataStart)) + "\"";
+                sql = sql + " car_availability_date_start >= \"" + dateFormatTo.format(dateFormatFrom.parse(dataStart)) + "\"";
             } else {
-                sql = sql + " car_availability_date_start <= CURDATE()";
+                sql = sql + " car_availability_date_start IS NOT NULL";
             }
             sql += " AND ";
             if (dataEnd != null && dataEnd.length() != 0) {
-                sql = sql + " car_availability_date_end >= \"" + dateFormatTo.format(dateFormatFrom.parse(dataEnd)) + "\"";
+                sql = sql + " car_availability_date_end <= \"" + dateFormatTo.format(dateFormatFrom.parse(dataEnd)) + "\"";
             } else {
                 sql = sql + " car_availability_date_end IS NOT NULL";
             }

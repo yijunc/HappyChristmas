@@ -76,7 +76,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12">
-                    <a href="rentSpace.jsp" class="interestContent">
+                    <a href="/SpaceController?command=USER_SPACE" class="interestContent">
 					<span>
 						<i class="fa fa-product-hunt fa-3x" aria-hidden="true"></i>
 						车位预定
