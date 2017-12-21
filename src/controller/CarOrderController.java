@@ -87,7 +87,7 @@ public class CarOrderController extends HttpServlet {
         int availabilityId = Integer.parseInt(request.getParameter("ava_id"));
 
         carOrderDbUtil.addCarOrder(carId,carStart,carEnd,carTaker,carPoster,carPrice);
-        carAvailabilityDbUtil.modifyCar(availabilityId,carStart,carEnd);
+        carAvailabilityDbUtil.modifyCarAvailability(availabilityId,carStart,carEnd);
 
     }
 

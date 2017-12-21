@@ -24,6 +24,21 @@ public class CarAvailabilityDbUtil extends DbUtil {
         super(dataSource);
     }
 
+    public boolean cancelCarAva(int avaId) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = "UPDATE 2017j2ee.car_availability SET car_availability_status = 0 WHERE car_availability_id = " + avaId;
+            myStmt.execute(sql);
+            return true;
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
     public boolean addCarAvailability(int carId, String dateStart, String dateEnd, int priceDaily, String carType,
                                       String carOwner, String carBrand, int carSeat) throws Exception {
         Connection myConn = null;
@@ -37,8 +52,8 @@ public class CarAvailabilityDbUtil extends DbUtil {
             PreparedStatement prstmt = myConn.prepareStatement(sql);
 
             prstmt.setInt(1, carId);
-            prstmt.setDate(2, java.sql.Date.valueOf(dff.format(dff.parse(dateStart))));
-            prstmt.setDate(3, java.sql.Date.valueOf(dff.format(dff.parse(dateEnd))));
+            prstmt.setDate(2, java.sql.Date.valueOf(dff.format(dateFormatFrom.parse(dateStart))));
+            prstmt.setDate(3, java.sql.Date.valueOf(dff.format(dateFormatFrom.parse(dateEnd))));
             prstmt.setInt(4, priceDaily);
             prstmt.setString(5, carType);
             prstmt.setString(6, carOwner);
@@ -54,7 +69,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
         }
     }
 
-    public boolean modifyCar(int avaId, String dateStart, String dateEnd) throws Exception {
+    public boolean modifyCarAvailability(int avaId, String dateStart, String dateEnd) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -105,6 +120,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
                     ") VALUES (?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement prstmt = myConn.prepareStatement(sql);
+
 
             prstmt.setInt(1, origin.getCarId());
             prstmt.setDate(2, java.sql.Date.valueOf(dff.format(origin.getCarDateStart())));

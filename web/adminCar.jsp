@@ -246,6 +246,7 @@
                                     for (CarAvailability item : result) {
                             %>
                             <tr>
+                                <td hidden="hidden"  name="m_id"><%=item.getmId()%></td>
                                 <td name="car_id"><%=item.getCarId()%>
                                 </td>
                                 <td>
@@ -287,11 +288,11 @@
                                 <%
                                     switch (item.getCarStatus()) {
                                         case 0:%>
-                                <td name="car_status"><span class="label label-danger">已过期</span></td>
+                                <td name="car_status"><span class="label label-danger">已取消</span></td>
                                 <%
                                         break;
                                     case 1:%>
-                                <td><span class="label label-success">可使用</span></td>
+                                <td name="car_status"><span class="label label-success">可使用</span></td>
                                 <%
                                             break;
                                     }
@@ -323,9 +324,10 @@
 <script>
     $(".cancelCar").click(function () {
         var index = this.parentNode.parentNode.parentNode;//index为tr
-        var id = $(index).find("td[name='car_id']").text();
-        console.log(id);
+        var mId = $(index).find("td[name='m_id']").text();
+        console.log(mId);
         var status = $(index).find("td[name='car_status']").find("span");
+        console.log(status);
         if(status.attr("class")=="label label-danger")
         {
             alert("您已经删除此车辆(¬_¬)");
@@ -333,8 +335,9 @@
         else {
             status.attr("class", "label label-danger");
             status.html("已取消");
-            $.post("/CarController?command=ADMIN_CAR_CANCEL", {
-                order_id: id
+            console.log(status.attr("class"));
+            $.get("/CarAvailabilityController?command=ADMIN_CAR_CANCEL", {
+                ava_id: mId
             });
         }
     });

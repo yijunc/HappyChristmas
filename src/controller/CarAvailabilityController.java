@@ -55,6 +55,9 @@ public class CarAvailabilityController extends HttpServlet {
                     case "ADD_CAR_AVAILABILITY":
                         userAddCarAvailability(request, response);
                         break;
+                    case "ADMIN_CAR_CANCEL":
+                        adminCarCancel(request, response);
+                        break;
                     default:
                         break;
                 }
@@ -72,6 +75,11 @@ public class CarAvailabilityController extends HttpServlet {
         doGet(request, response);
     }
 
+    private void adminCarCancel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int avaId = Integer.parseInt(request.getParameter("ava_id"));
+        carAvailabilityDbUtil.cancelCarAva(avaId);
+    }
+
     private void userAddCarAvailability(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String carType = request.getParameter("car_type");
         String carOwner = request.getParameter("car_owner");
@@ -84,7 +92,6 @@ public class CarAvailabilityController extends HttpServlet {
         int carId = carDbUtil.addCar(carType, carOwner, carBrand, carSeat);
 
         carAvailabilityDbUtil.addCarAvailability(carId, dateStart, dateEnd, priceDaily, carType, carOwner, carBrand, carSeat);
-
 
         response.sendRedirect("/UserController?command=USER_PAGE&user_name=" + carOwner);
 
