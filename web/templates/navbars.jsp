@@ -90,7 +90,7 @@
                 <%
                     if (hasLoggedIn) {
                         out.print("<button class=\"btn btn-default navbar-btn\" type=\"button\"><i class=\"fa fa-user fa-lg\" aria-hidden=\"true\"></i>\n" +
-                                "                    <a href=\"UserController?command=USER_PAGE?user_name=" + currentUser.getUserName() + "\"><span>");
+                                "                    <a href=\"UserController?command=USER_PAGE&user_name=" + currentUser.getUserName() + "\"><span>");
                         out.print("欢迎, ".concat(currentUser.getUserName()));
                         out.print("</span></a>\n" +
                                 "                </button>");
