@@ -122,7 +122,7 @@
                                 <td>
                                     <span name="hidden_id" class="hidden"><%=item.getmId()%></span>
                                     <ul class="list-inline listingsInfo">
-                                        <li style="padding-right: 20px"><a href="#"><img src="img/carpic/<%=item.getCarId()%>.jpg"
+                                        <li style="padding-right: 20px"><a href="#"><img src="img/carpic/<%=item.getCarId()%11%>.jpg"
                                                                                          alt="Image Listings"></a>
                                         </li>
                                         <li>
