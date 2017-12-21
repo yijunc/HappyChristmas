@@ -86,6 +86,7 @@ public class SpaceOrderController extends HttpServlet {
 
         spaceOrderDbUtil.addSpaceOrder(spaceId, spaceTaker, spaceStart, spaceEnd, spacePrice, spaceType);
         spaceDbUtil.setSpaceRemainByIdAndType(spaceId, spaceType, spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType) - 1);
+
     }
 
     private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception {

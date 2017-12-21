@@ -1,8 +1,9 @@
 package controller;
 
-import bean.User;
-import bean.UserSearch;
-import com.sun.deploy.net.HttpResponse;
+import bean.*;
+import model.CarAvailabilityDbUtil;
+import model.CarOrderDbUtil;
+import model.SpaceOrderDbUtil;
 import model.UserDbUtil;
 
 import javax.annotation.Resource;
@@ -25,6 +26,9 @@ public class UserController extends HttpServlet {
     private final static String TAG = "UserController";
     private static final long serialVersionUID = 1L;
     private UserDbUtil userDbUtil;
+    private CarOrderDbUtil carOrderDbUtil;
+    private SpaceOrderDbUtil spaceOrderDbUtil;
+    private CarAvailabilityDbUtil carAvailabilityDbUtil;
 
     @Resource(name = "jdbc/2017J2EE")
     private DataSource dataSource;
@@ -36,6 +40,9 @@ public class UserController extends HttpServlet {
         // create our student db util ... and pass in the conn pool / datasource
         try {
             userDbUtil = new UserDbUtil(dataSource);
+            spaceOrderDbUtil = new SpaceOrderDbUtil(dataSource);
+            carOrderDbUtil = new CarOrderDbUtil(dataSource);
+            carAvailabilityDbUtil = new CarAvailabilityDbUtil(dataSource);
         } catch (Exception exc) {
             throw new ServletException(exc);
         }
@@ -79,6 +86,9 @@ public class UserController extends HttpServlet {
                 case "ADMIN_USER_UPDATE":
                     updateUserById(request, response);
                     break;
+                case "USER_PAGE":
+                    getUserInfoByName(request, response);
+                    break;
                 default:
                     break;
             }
@@ -93,6 +103,29 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         doGet(request, response);
+    }
+
+    private void getUserInfoByName(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String userName = request.getParameter("user_name");
+        User nowUser = userDbUtil.getUserByName(userName);
+        request.setAttribute("nowUser", nowUser);
+
+        List<CarOrder> nowCarOrder = carOrderDbUtil.getCarOrderListByAdmin(null, userName,
+                null, null, null, null, null, null);
+
+        request.setAttribute("nowCarOrder", nowCarOrder);
+
+        List<SpaceOrder> nowSpaceOrder = spaceOrderDbUtil.getSpaceOrderListByAdmin(null, userName,
+                null, null, null, null, null);
+        request.setAttribute("nowSpaceOrder", nowSpaceOrder);
+
+        List<CarAvailability> nowCarAva = carAvailabilityDbUtil.getCarAvailabilityListByAdmin(null, userName,
+                null,null,null,null,null,null,null);
+
+        request.setAttribute("nowCarAva", nowCarAva);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/profile.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void checkCell(HttpServletRequest request, HttpServletResponse response) throws Exception {
