@@ -24,7 +24,37 @@ public class CarAvailabilityDbUtil extends DbUtil {
         super(dataSource);
     }
 
-    public boolean modifyCar(int avaId, String dateStart, String dateEnd) throws Exception{
+    public boolean addCarAvailability(int carId, String dateStart, String dateEnd, int priceDaily, String carType,
+                                      String carOwner, String carBrand, int carSeat) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            String sql = "insert into 2017j2ee.car_availability (car_availability_car_id, car_availability_date_start, " +
+                    "car_availability_date_end, car_availability_price_daily, car_availability_type, " +
+                    "car_availability_car_owner, car_availability_car_brand, car_availability_car_seat) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement prstmt = myConn.prepareStatement(sql);
+
+            prstmt.setInt(1, carId);
+            prstmt.setDate(2, java.sql.Date.valueOf(dff.format(dff.parse(dateStart))));
+            prstmt.setDate(3, java.sql.Date.valueOf(dff.format(dff.parse(dateEnd))));
+            prstmt.setInt(4, priceDaily);
+            prstmt.setString(5, carType);
+            prstmt.setString(6, carOwner);
+            prstmt.setString(7, carBrand);
+            prstmt.setInt(8, carSeat);
+            
+            prstmt.execute();
+            return true;
+
+
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public boolean modifyCar(int avaId, String dateStart, String dateEnd) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -76,7 +106,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
 
             PreparedStatement prstmt = myConn.prepareStatement(sql);
 
-            prstmt.setInt(1,origin.getCarId());
+            prstmt.setInt(1, origin.getCarId());
             prstmt.setDate(2, java.sql.Date.valueOf(dff.format(origin.getCarDateStart())));
             prstmt.setDate(3, java.sql.Date.valueOf(dff.format(origin.getCarDateEnd())));
             prstmt.setInt(4, origin.getCarPriceDaily());
@@ -84,14 +114,14 @@ public class CarAvailabilityDbUtil extends DbUtil {
             prstmt.setString(6, origin.getCarOwner());
             prstmt.setString(7, origin.getCarBrand());
             prstmt.setInt(8, origin.getCarSeat());
-            prstmt.setInt(9,0);
+            prstmt.setInt(9, 0);
 
 
             prstmt.execute();
 
             prstmt = myConn.prepareStatement(sql);
 
-            prstmt.setInt(1,prev.getCarId());
+            prstmt.setInt(1, prev.getCarId());
             prstmt.setDate(2, java.sql.Date.valueOf(dff.format(prev.getCarDateStart())));
             prstmt.setDate(3, java.sql.Date.valueOf(dff.format(prev.getCarDateEnd())));
             prstmt.setInt(4, prev.getCarPriceDaily());
@@ -99,14 +129,14 @@ public class CarAvailabilityDbUtil extends DbUtil {
             prstmt.setString(6, prev.getCarOwner());
             prstmt.setString(7, prev.getCarBrand());
             prstmt.setInt(8, prev.getCarSeat());
-            prstmt.setInt(9,1);
+            prstmt.setInt(9, 1);
 
 
             prstmt.execute();
 
             prstmt = myConn.prepareStatement(sql);
 
-            prstmt.setInt(1,post.getCarId());
+            prstmt.setInt(1, post.getCarId());
             prstmt.setDate(2, java.sql.Date.valueOf(dff.format(post.getCarDateStart())));
             prstmt.setDate(3, java.sql.Date.valueOf(dff.format(post.getCarDateEnd())));
             prstmt.setInt(4, post.getCarPriceDaily());
@@ -114,10 +144,9 @@ public class CarAvailabilityDbUtil extends DbUtil {
             prstmt.setString(6, post.getCarOwner());
             prstmt.setString(7, post.getCarBrand());
             prstmt.setInt(8, post.getCarSeat());
-            prstmt.setInt(9,1);
+            prstmt.setInt(9, 1);
 
             prstmt.execute();
-
 
 
             return true;
