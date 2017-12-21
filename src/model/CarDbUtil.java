@@ -23,7 +23,7 @@ public class CarDbUtil extends DbUtil {
         ResultSet myRs = null;
         try {
             myConn = dataSource.getConnection();
-            String sql = "insert into 2017j2ee.car (car_type, car_owner, car_brand, car_seat) VALUES (?,?,?,?,?)";
+            String sql = "insert into 2017j2ee.car (car_type, car_owner, car_brand, car_seat) VALUES (?,?,?,?)";
             PreparedStatement prstmt = myConn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             prstmt.setString(1,carType);

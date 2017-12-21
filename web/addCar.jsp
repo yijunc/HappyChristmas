@@ -25,7 +25,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <form action="" method="" class="listing__form">
+                    <form action="/CarAvailabilityController" method="get" class="listing__form">
+                        <input hidden="hidden" name="command" value="ADD_CAR_AVAILABILITY">
                         <div class="dashboardPageTitle text-center">
                             <h2>出租车辆信息填写表</h2>
                         </div>
@@ -61,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-xs-12">
-                                        <label for="addTags">Tags</label>
+                                        <label for="addTags">其他说明</label>
                                         <input type="text" class="form-control" id="addTags" placeholder="其他说明">
                                     </div>
                                 </div>
