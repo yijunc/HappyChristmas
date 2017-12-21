@@ -32,32 +32,37 @@
                         <div class="dashboardBoxBg mb30">
                             <div class="profileIntro paraMargin">
                                 <h3>车辆基本信息</h3>
-                                <p>HAPPY CHRISTMAS 不对意外产生的对您的车辆造成的伤害负责。</p>
+                                <p>HAPPY CHRISTMAS 对您的车辆造成的意外伤害保留最终解释权。</p>
+                                <input hidden="hidden" name="car_owner" value="<%=currentUser.getUserName()%>">
                                 <div class="row">
                                     <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="listingTitle">Listing Title</label>
-                                        <input type="text" class="form-control" id="listingTitle"
-                                               placeholder="Listing Title">
+                                        <label for="carBrand">品牌</label>
+                                        <input type="text" class="form-control" id="carBrand" name="car_brand"
+                                               placeholder="您的车辆品牌，如：宝马">
                                     </div>
                                     <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="listingTitle">Listing Title</label>
-                                        <input type="text" class="form-control" id="listingTitle"
-                                               placeholder="Listing Title">
+                                        <label for="carType">车系</label>
+                                        <input type="text" class="form-control" id="carType" name="car_type"
+                                               placeholder="您的车系，如：X5">
                                     </div>
                                     <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="listingCategory">Category</label>
+                                        <label for="carPriceDaily">租价／日均</label>
+                                        <input type="text" class="form-control" id="carPriceDaily" name="price_daily"
+                                               placeholder="您的车辆日均租价">
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="carSeat">车座</label>
                                         <div class="contactSelect">
-                                            <select name="guiest_id9" id="guiest_id9" class="select-drop">
-                                                <option value="0">All Category</option>
-                                                <option value="1">Restaurant</option>
-                                                <option value="2">Bar</option>
-                                                <option value="3">Cafe</option>
+                                            <select name="car_seat" id="carSeat" class="select-drop" >
+                                                <option value="4">4座</option>
+                                                <option value="5">5座</option>
+                                                <option value="7">7座</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group col-xs-12">
                                         <label for="addTags">Tags</label>
-                                        <input type="text" class="form-control" id="addTags" placeholder="Add Tags">
+                                        <input type="text" class="form-control" id="addTags" placeholder="其他说明">
                                     </div>
                                 </div>
                             </div>
@@ -66,16 +71,42 @@
                             <div class="profileIntro paraMargin">
                                 <h3>出租信息</h3>
                                 <div class="row">
-                                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                                        <label for="mondayTime">Monday</label>
-                                        <input type="text" class="form-control" id="mondayTime"
-                                               placeholder="10.00am - 5.00pm">
+                                    <%--<div class="form-group col-md-4 col-sm-6 col-xs-12">--%>
+                                        <%--<label for="mondayTime">Monday</label>--%>
+                                        <%--<input type="text" class="form-control" id="mondayTime"--%>
+                                               <%--placeholder="10.00am - 5.00pm">--%>
+                                    <%--</div>--%>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="dateEnd">开始时间</label><!--!!!!--8--!!!!-->
+                                        <div class="dateSelect">
+                                            <div class="input-group date ed-datepicker filterDate"
+                                                 data-provide="datepicker">
+                                                <input id="dateStart" type="text" class="form-control" name="date_start"
+                                                       placeholder="月/日/年" name="date_end">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="dateEnd">结束时间</label><!--!!!!--8--!!!!-->
+                                        <div class="dateSelect">
+                                            <div class="input-group date ed-datepicker filterDate"
+                                                 data-provide="datepicker">
+                                                <input id="dateEnd" type="text" class="form-control" name="date_end"
+                                                       placeholder="月/日/年" name="date_end">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-footer text-center">
-                            <button type="submit" class="btn-submit">Submit</button>
+                            <button type="submit" class="btn-submit">提 交</button>
                         </div>
                     </form>
                 </div>
