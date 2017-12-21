@@ -343,8 +343,8 @@
             car_id: $("#modalCarId").val(),
             car_start: $("#modalStart").val(),
             car_end: $("#modalEnd").val(),
-            car_taker: $("#modalHost").val(),
-            car_poster: $("#modalCustomer").val(),
+            car_taker: $("#modalCustomer").val(),
+            car_poster: $("#modalHost").val(),
             car_price: $("#modalPrice").text()
         }, function (data, status) {
             window.location.href='/profile.jsp';

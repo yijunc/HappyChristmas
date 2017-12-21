@@ -44,7 +44,7 @@ public class CarAvailabilityDbUtil extends DbUtil {
             prstmt.setString(6, carOwner);
             prstmt.setString(7, carBrand);
             prstmt.setInt(8, carSeat);
-            
+
             prstmt.execute();
             return true;
 
