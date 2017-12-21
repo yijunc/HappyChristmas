@@ -347,7 +347,6 @@
             car_poster: $("#modalCustomer").val(),
             car_price: $("#modalPrice").text()
         }, function (data, status) {
-            window.location.href='/profile.jsp';
         });
         $("#carOrderingModal").modal('hide');
     });
