@@ -73,11 +73,11 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                     <div class="resultBar barSpaceAdjust">
-                        <h2>We found <span><%
+                        <h2>共搜索到了<span><%
                             if (null == spaceList)
                                 out.print("0");
                             else {
-                                out.print(spaceList.size());%></span> Results for you</h2>
+                                out.print(spaceList.size());%></span> 条结果</h2>
                     </div>
                     <%
                         for (Space item : spaceList) {
