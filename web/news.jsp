@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="pageTitle">
-                        <h2>新闻资讯</h2>
+                        <h2>新闻中心</h2>
                     </div>
                 </div>
             </div>
