@@ -99,9 +99,9 @@
                             <button id="searchNews" type="submit" class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
                                     class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </button>
-                            <button class="btn btn-primary" style="margin: 8px auto;margin-left: 75px">&nbsp;&nbsp;&nbsp;<i
-                                    class="fa fa-search" aria-hidden="true"></i>发布新闻&nbsp;&nbsp;&nbsp;
-                            </button>
+                            <%--<button class="btn btn-primary" style="margin: 8px auto;margin-left: 75px">&nbsp;&nbsp;&nbsp;<i--%>
+                                    <%--class="fa fa-search" aria-hidden="true"></i>发布新闻&nbsp;&nbsp;&nbsp;--%>
+                            <%--</button>--%>
                         </div>
                     </form>
                 </div>
