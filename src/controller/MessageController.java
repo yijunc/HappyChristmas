@@ -69,9 +69,8 @@ public class MessageController extends HttpServlet {
     }
 
     private void deleteMessage(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        int newsId = Integer.parseInt(request.getParameter("news_id"));
-        messageDbUtil.deleteMessagesById(newsId);
+        int messageId = Integer.parseInt(request.getParameter("message_id"));
+        messageDbUtil.deleteMessagesById(messageId);
 
-        response.sendRedirect("/NewsController?command=NEWS_DETAIL&news_id=" + newsId);
     }
 }

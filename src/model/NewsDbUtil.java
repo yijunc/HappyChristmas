@@ -67,9 +67,9 @@ public class NewsDbUtil extends DbUtil {
         try {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            String sql = " SELECT * FROM 2017j2ee.news WHERE ";
+            String sql = " SELECT * FROM 2017j2ee.news";
             if (null != search && search.length() != 0) {
-                sql = sql + " news.news_title LIKE \'%" + search + "%\'";
+                sql =  " WHERE "+sql + " news.news_title LIKE \'%" + search + "%\'";
             }
             myRs = myStmt.executeQuery(sql);
 

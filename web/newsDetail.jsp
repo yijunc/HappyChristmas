@@ -1,4 +1,6 @@
-<%--
+<%@ page import="bean.News" %>
+<%@ page import="bean.Message" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -23,43 +25,28 @@
     <section class="clearfix blogDetials">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-xs-12">
+                <div class="col-sm-12 col-xs-12">
+                    <%
+                        News news = (News) request.getAttribute("news");
+                    %>
                     <div class="thumbnail blogContent">
                         <div class="caption">
-                            <h4>Nov 22, 2016 by <a href="#">Admin</a></h4>
-                            <h3>Donec id dolor in erat imperdiet</h3>
-                            <img src="img/blog/blog-1.jpg" alt="Image blog" class="img-responsive">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident. sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam.</p>
-                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                porro quisquam est. </p>
-                            <p>Qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-                                eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.eaque
-                                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                                porro quisquam est. </p>
-                            <p>Sed eiusmod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis
-                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur.</p>
-                            <p>Dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                                modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.eaque ipsa
-                                quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                                quisquam est. </p>
-                            <p>Mod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur. </p>
+                            <h3 style="text-align:center "><%=news.getTitle()%>
+                            </h3>
+                            <h4 style="text-align: right;margin-right: 10%"><%=news.getPostDate()%> by <a><%=news.getPoster()%>
+                            </a></h4>
+                            <div class="carousel-inner" style="margin-left: 17%">
+                                <div class="item active">
+                                    <img src="img/news/news<%=news.getNewsId()%>-1.jpg" alt="Image blog">
+                                </div>
+                                <div class="item">
+                                    <img src="img/news/news<%=news.getNewsId()%>-2.jpg" alt="Image blog">
+                                </div>
+                            </div>
+                            <p><%=news.getBrief()%>
+                            </p>
+                            <p><%=news.getContent()%>
+                            </p>
                             <ul class="list-inline socialLink">
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -70,98 +57,56 @@
                     </div>
                     <div class="commentArea">
                         <h3>热门评论</h3>
-                        <form action="#" class="deafultForm">
+                        <form class="deafultForm">
                             <div class="row">
+                                <%
+                                    List<Message> messageList = (List<Message>) request.getAttribute("messages");
+                                    if (messageList.size() == 0) {
+                                        out.print(" &nbsp;&nbsp;&nbsp;&nbsp;暂无评论(˶‾᷄ ⁻̫ ‾᷅˵)<br><br>");
+                                    } else {
+                                        for (Message item : messageList) {
+                                %>
                                 <div class="form-group col-xs-12">
-                                    <label for="messageBox" class="control-label">陈崽崽</label>
-                                    <p>Mod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                        pariatur. </p>
+                                    <input hidden="hidden" name="message_id" value="<%=item.getMessageId()%>">
+                                    <h3 for="messageBox" class="control-label"><%=item.getMessagePoster()%>
+                                        <button type="button" class="btn btn-default active btn-xs pull-right"
+                                                name="delete_commit"
+                                                style="width: auto;padding: 7px 7px;font-size: 12px;margin-right: 50px">
+                                            删除评论
+                                        </button>
+                                    </h3>
+
+                                    <p><%=item.getMessageContent()%>
+                                    </p>
                                 </div>
-                                <div class="form-group col-xs-12">
-                                    <label for="messageBox" class="control-label">赵阿爸</label>
-                                    <p>Mod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                        pariatur. </p>
-                                </div>
+                                <%
+                                        }
+                                    }
+                                %>
                             </div>
                         </form>
                     </div>
                     <div class="commentArea">
-                        <h3>撰写评论</h3>
                         <form action="#" class="deafultForm">
                             <div class="row">
                                 <div class="form-group col-xs-12">
-                                    <label for="messageBox" class="control-label">您的评论</label>
+                                    <h3>撰写评论</h3>
                                     <textarea class="form-control" rows="3" id="messageBox"></textarea>
                                 </div>
-                                <div class="form-group col-sm-6 col-xs-12">
-                                    <label for="userName" class="control-label">姓名</label>
-                                    <input type="text" class="form-control" id="userName">
-                                </div>
-                                <div class="form-group col-sm-6 col-xs-12">
-                                    <label for="userEmail" class="control-label">邮箱</label>
-                                    <input type="email" class="form-control" id="userEmail">
-                                </div>
+                                <%--<div class="form-group col-sm-6 col-xs-12">--%>
+                                <%--<label for="userName" class="control-label">姓名</label>--%>
+                                <%--<input type="text" class="form-control" id="userName">--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group col-sm-6 col-xs-12">--%>
+                                <%--<label for="userEmail" class="control-label">邮箱</label>--%>
+                                <%--<input type="email" class="form-control" id="userEmail">--%>
+                                <%--</div>--%>
                                 <div class="form-group col-xs-12">
-                                    <button type="submit" class="btn btn-primary">发布评论&nbsp;<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                    <button type="submit" class="btn btn-primary">发布评论&nbsp;<i
+                                            class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="sidebarInner">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..."
-                                   aria-describedby="basic-addon2">
-                            <a href="#" class="input-group-addon" id="basic-addon2"><i
-                                    class="icon-listy icon-search-2"></i></a>
-                        </div>
-                    </div>
-                    <div class="sidebarInner">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Categories</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li><a href="#">Real Estate <span class="pull-right">(3)</span></a></li>
-                                    <li><a href="#">Automotive <span class="pull-right">(7)</span></a></li>
-                                    <li><a href="#">Healthcare <span class="pull-right">(12)</span></a></li>
-                                    <li><a href="#">Restaurent <span class="pull-right">(5)</span></a></li>
-                                    <li><a href="#">Business <span class="pull-right">(9)</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebarInner">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Recent Posts</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li><a href="#">Curabitur scelerisque lacus sit amet.</a></li>
-                                    <li><a href="#">Morbi pretium ipsum ac massa sollicitu.</a></li>
-                                    <li><a href="#">Etiam eget augue et lorem sagittis.</a></li>
-                                    <li><a href="#">Sed mollis tincidunt massa vel egestas.</a></li>
-                                    <li><a href="#">Aliquam semper dolor nec metus alique.</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebarInner">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Archives</div>
-                            <div class="panel-body">
-                                <ul class="list-unstyle categoryList">
-                                    <li><a href="#">Jan 2016</a></li>
-                                    <li><a href="#">Feb 2016</a></li>
-                                    <li><a href="#">Mar 2016</a></li>
-                                    <li><a href="#">April 2016</a></li>
-                                    <li><a href="#">May 2016</a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -173,6 +118,15 @@
 <%@include file="templates/footers.jsp" %>
 
 </body>
-
+<script>
+    $("button[name='delete_commit']").click(function () {
+        var id = $(this.parentNode.parentNode).find("input[name='message_id']").val();
+        console.log(id);
+        $.get("/MessageController?command=DELETE_MESSAGE", {
+            message_id: id
+        });
+        $(this.parentNode.parentNode).remove();
+    });
+</script>
 </html>
 

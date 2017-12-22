@@ -68,7 +68,7 @@
                         </ul>
                     </li>
                     <li class=""><a href="/SpaceController?command=USER_SPACE">车位信息 </a></li>
-                    <li class=""><a href="news.jsp">新闻中心 </a></li>
+                    <li class=""><a href="/NewsController?command=NEWS_CENTER">新闻中心 </a></li>
                     <%
                         if (currentUser != null && currentUser.isUserAdmin()) {
                             out.print("<li class=\" dropdown singleDrop\">\n" +

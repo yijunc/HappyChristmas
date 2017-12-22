@@ -89,7 +89,7 @@ public class NewsController extends HttpServlet {
         String search = request.getParameter("search_info");
         List<News> newsList = newsDbUtil.getNewsList(search);
         request.setAttribute("news_list", newsList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/News.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/news.jsp");
         dispatcher.forward(request, response);
     }
 }

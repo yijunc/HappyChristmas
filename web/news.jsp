@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="bean.News" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/12/4
@@ -25,7 +26,7 @@
 
     <!-- PAGE TITLE SECTION -->
     <section class="clearfix pageTitleSection bg-image"
-             style="background-image: url(img/background/bg-page-title.jpg);">
+             style="background-image: url(img/news/news0.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -44,101 +45,65 @@
                 <div class="col-xs-8">
                     <div class="blogInnerWrapper">
 
+                        <%
+                            List<News> newsList = (List<News>) request.getAttribute("news_list");
+                            for (News item : newsList) {
+                        %>
                         <div class="thumbnail blogInner">
-                            <div id="blog-carousel-1" class="carousel slide" data-ride="carousel">
+                            <div id="blog-carousel-<%=item.getNewsId()%>" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img src="img/news/news1.jpg" alt="Image blog">
+                                        <img src="img/news/news<%=item.getNewsId()%>-1.jpg" alt="Image blog">
                                     </div>
                                     <div class="item">
-                                        <img src="img/news/news2.jpg" alt="Image blog">
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/news/news3.jpg" alt="Image blog">
+                                        <img src="img/news/news<%=item.getNewsId()%>-2.jpg" alt="Image blog">
                                     </div>
                                 </div>
-                                <a class="left carousel-control " href="#blog-carousel-1" data-slide="prev">
+                                <a class="left carousel-control " href="#blog-carousel-<%=item.getNewsId()%>"
+                                   data-slide="prev">
                                     <i class="icon-listy icon-left-arrow-3 "></i>
                                 </a>
-                                <a class="right carousel-control" href="#blog-carousel-1" data-slide="next">
+                                <a class="right carousel-control" href="#blog-carousel-<%=item.getNewsId()%>"
+                                   data-slide="next">
                                     <i class="icon-listy icon-right-arrow-3"></i>
                                 </a>
                             </div>
-                            <div class="caption">
-                                <h4>2017-12-25 by
-                                    <a href="#">HC</a>
+                            <div class="caption" style="margin-top: 3%">
+                                <h4><%=item.getPostDate()%> by
+                                    <a ><%=item.getPoster()%>
+                                    </a>
                                 </h4>
-                                <h3>
-                                    <a href="./newsDetail.jsp">Donec id dolor in erat imperdiet.</a>
+                                <h3 class="news_title">
+                                    <input hidden="hidden" name="news_id" value="<%=item.getNewsId()%>">
+                                    <a href="/NewsController?command=NEWS_DETAIL&news_id=<%=item.getNewsId()%>"><%=item.getTitle()%></a>
                                 </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore
-                                    magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                    ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui
-                                    officia deserunt mollit
-                                    anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem </p>
+                                <p><%=item.getBrief()%>
+                                </p>
                             </div>
                         </div>
-
-                        <div class="thumbnail blogInner">
-                            <div id="blog-carousel-id" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img src="img/blog/blog-2.jpg" alt="Image blog">
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/blog/blog-1.jpg" alt="Image blog">
-                                    </div>
-                                </div>
-                                <a class="left carousel-control" href="#blog-carousel-id" data-slide="prev">
-                                    <i class="icon-listy icon-left-arrow-3"></i>
-                                </a>
-                                <a class="right carousel-control" href="#blog-carousel-id" data-slide="next">
-                                    <i class="icon-listy icon-right-arrow-3"></i>
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <h4>Nov 22, 2016 by
-                                    <a href="#">Admin</a>
-                                </h4>
-                                <h3>
-                                    <a href="./newsDetail.jsp">Donec id dolor in erat imperdiet.</a>
-                                </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore
-                                    magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                    ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui
-                                    officia deserunt mollit
-                                    anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem </p>
-                            </div>
-                        </div>
-
+                        <% }%>
                     </div>
                 </div>
+
                 <div class="col-xs-4">
-                    <div class="sidebarInner">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="搜索..."
-                                   aria-describedby="basic-addon2">
-                            <a href="#" class="input-group-addon" id="basic-addon2">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </a>
+                    <form action="/NewsController" method="get">
+                        <input hidden="hidden" name="command" value="NEWS_CENTER">
+                        <div class="sidebarInner">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="搜索..." name="search_info"
+                                       aria-describedby="basic-addon2">
+                                <a href="#" class="input-group-addon" id="basic-addon2">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <button id="searchNews" type="submit" class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
+                                    class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </button>
+                            <button class="btn btn-primary" style="margin: 8px auto;margin-left: 75px">&nbsp;&nbsp;&nbsp;<i
+                                    class="fa fa-search" aria-hidden="true"></i>发布新闻&nbsp;&nbsp;&nbsp;
+                            </button>
                         </div>
-                        <button class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
-                                class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </button>
-                        <button class="btn btn-primary" style="margin: 8px auto;margin-left: 75px">&nbsp;&nbsp;&nbsp;<i
-                                class="fa fa-search" aria-hidden="true"></i>发布新闻&nbsp;&nbsp;&nbsp;
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -146,7 +111,19 @@
 </div>
 <%@include file="templates/loginModal.jsp" %>
 <%@include file="templates/footers.jsp" %>
-
 </body>
+<script>
+    $("#searchNews").click(function () {
 
+    });
+
+    // $("h3.news_title").click(function () {
+    //     var id = $(this.parentNode).find("input[name='news_id']").val();
+    //     console.log("mmm:"+id);
+    //    $.get("/NewsController?command=NEWS_DETAIL",{
+    //        news_id : id
+    //    });
+    // });
+
+</script>
 </html>

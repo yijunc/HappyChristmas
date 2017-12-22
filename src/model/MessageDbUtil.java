@@ -61,7 +61,7 @@ public class MessageDbUtil extends DbUtil {
         try {
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            String sql = "SELECT * FROM 2017j2ee.news WHERE news_id = " + newsId;
+            String sql = "SELECT * FROM 2017j2ee.message WHERE message_news_id = " + newsId;
             myRs = myStmt.executeQuery(sql);
             List<Message> mmList = new ArrayList<Message>();
             while (myRs.next()) {
