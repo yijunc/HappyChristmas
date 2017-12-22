@@ -53,17 +53,10 @@ public class UserDbUtil extends DbUtil {
             // get a connection
             myConn = dataSource.getConnection();
             myStmt = myConn.createStatement();
-            String sqlPre = "SELECT * FROM 2017j2ee.user WHERE user_cell=\"" + userCell + "\"";
-            myRs = myStmt.executeQuery(sqlPre);
-            if (myRs.first()) {
-                return false;
-            } else {
-                // create sql statement
-                String sql = new StringBuilder().append("UPDATE 2017j2ee.user SET user_psw =\"").append(userPsw).append("\", user_cell=\"").append(userCell).append("\" WHERE user_id=").append(userId).toString();
-                System.out.println(sql);
-                myStmt.executeUpdate(sql);
-                return true;
-            }
+            String sql = new StringBuilder().append("UPDATE 2017j2ee.user SET user_psw =\"").append(userPsw).append("\", user_cell=\"").append(userCell).append("\" WHERE user_id=").append(userId).toString();
+            System.out.println(sql);
+            myStmt.executeUpdate(sql);
+            return true;
 
         } finally {
             // close JDBC objects

@@ -396,6 +396,7 @@
         }
         else {
             $("#modalSpaceOrderPrice").val(orderPrice);
+            finalPrice = orderPrice;
         }
         $("#spaceOrderModal").modal('show');
         $("#modalSpaceId").val(spaceId);
@@ -411,6 +412,7 @@
         }
         else {
             $("#modalSpaceOrderEnd").val(orderEnd);
+            dateEnd = orderEnd;
         }
     });
 
@@ -434,6 +436,7 @@
         status.attr("class", "label label-success");
         status.html("已完成");
         var id = $(element).find("td[name='order_id']").text();
+        console.log(id);
         var spaceId = $("#modalSpaceId").val();
         var spaceType = $("#modalSpaceType").val();
         var sT;
@@ -450,12 +453,12 @@
                 sT = 2;
                 break;
         }
-        $.post("/SpaceOrderController?command=ADMIN_ORDER_DONE", {
-            order_id:id,
-            order_price:finalPrice,
-            order_date:dateEnd,
-            space_id:spaceId,
-            space_type:sT
+        $.get("/SpaceOrderController?command=ADMIN_ORDER_DONE", {
+            order_id: id,
+            order_price: finalPrice,
+            order_date: dateEnd,
+            space_id: spaceId,
+            space_type: sT
         });
     });
 
