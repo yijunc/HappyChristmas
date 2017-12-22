@@ -1,12 +1,8 @@
 package controller;
 
-import bean.Message;
-import bean.News;
 import model.MessageDbUtil;
-import model.NewsDbUtil;
 
 import javax.annotation.Resource;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/NewsController")
-public class NewsController extends HttpServlet {
-    private final static String TAG = "NewsController";
-    private NewsDbUtil newsDbUtil;
+@WebServlet("/MessageController")
+public class MessageController extends HttpServlet {
+    private final static String TAG = "MessageController";
     private MessageDbUtil messageDbUtil;
 
     @Resource(name = "jdbc/2017J2EE")
@@ -30,7 +24,6 @@ public class NewsController extends HttpServlet {
         super.init();
         // create our student db util ... and pass in the conn pool / datasource
         try {
-            newsDbUtil = new NewsDbUtil(dataSource);
             messageDbUtil = new MessageDbUtil(dataSource);
         } catch (Exception exc) {
             throw new ServletException(exc);
@@ -51,14 +44,11 @@ public class NewsController extends HttpServlet {
             }
             // route to the appropriate method
             switch (theCommand) {
-                case "NEWS_CENTER":
-                    getNewsList(request, response);
+                case "ADD_MESSAGE":
+                    addMessage(request, response);
                     break;
-                case "DELETE_NEWS":
-                    deleteNews(request, response);
-                    break;
-                case "NEWS_DETAIL":
-                    getNewsDetail(request, response);
+                case "DELETE_MESSAGE":
+                    deleteMessage(request, response);
                     break;
                 default:
                     break;
@@ -69,26 +59,19 @@ public class NewsController extends HttpServlet {
         }
     }
 
-    private void getNewsDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void addMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int newsId = Integer.parseInt(request.getParameter("news_id"));
-        News news = newsDbUtil.getNewsById(newsId);
-        List<Message> messages = messageDbUtil.getMessagesByNewsId(newsId);
-        request.setAttribute("news", news);
-        request.setAttribute("messages", messages);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
-        dispatcher.forward(request, response);
+        String messagePoster = request.getParameter("message_poster");
+        String messageContent = request.getParameter("message_content");
+        messageDbUtil.addMessage(messagePoster,messageContent,newsId);
+
+        response.sendRedirect("/NewsController?command=NEWS_DETAIL&news_id=" + newsId);
     }
 
-    private void deleteNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void deleteMessage(HttpServletRequest request, HttpServletResponse response) throws Exception{
         int newsId = Integer.parseInt(request.getParameter("news_id"));
-        newsDbUtil.deleteNewsById(newsId);
-    }
+        messageDbUtil.deleteMessagesById(newsId);
 
-    private void getNewsList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String search = request.getParameter("search_info");
-        List<News> newsList = newsDbUtil.getNewsList(search);
-        request.setAttribute("news_list", newsList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/News.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/NewsController?command=NEWS_DETAIL&news_id=" + newsId);
     }
 }
