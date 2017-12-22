@@ -75,13 +75,14 @@ public class NewsController extends HttpServlet {
         List<Message> messages = messageDbUtil.getMessagesByNewsId(newsId);
         request.setAttribute("news", news);
         request.setAttribute("messages", messages);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/newsDetail.jsp");
         dispatcher.forward(request, response);
     }
 
     private void deleteNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int newsId = Integer.parseInt(request.getParameter("news_id"));
         newsDbUtil.deleteNewsById(newsId);
+        getNewsList(request, response);
     }
 
     private void getNewsList(HttpServletRequest request, HttpServletResponse response) throws Exception {
