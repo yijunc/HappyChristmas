@@ -69,23 +69,44 @@
                         </div>
                     </div>
                     <div class="commentArea">
-                        <h3>Leave A Comment</h3>
+                        <h3>热门评论</h3>
                         <form action="#" class="deafultForm">
                             <div class="row">
                                 <div class="form-group col-xs-12">
-                                    <label for="messageBox" class="control-label">Message</label>
+                                    <label for="messageBox" class="control-label">陈崽崽</label>
+                                    <p>Mod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                        pariatur. </p>
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label for="messageBox" class="control-label">赵阿爸</label>
+                                    <p>Mod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                        pariatur. </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="commentArea">
+                        <h3>撰写评论</h3>
+                        <form action="#" class="deafultForm">
+                            <div class="row">
+                                <div class="form-group col-xs-12">
+                                    <label for="messageBox" class="control-label">您的评论</label>
                                     <textarea class="form-control" rows="3" id="messageBox"></textarea>
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
-                                    <label for="userName" class="control-label">Name</label>
+                                    <label for="userName" class="control-label">姓名</label>
                                     <input type="text" class="form-control" id="userName">
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
-                                    <label for="userEmail" class="control-label">Email</label>
+                                    <label for="userEmail" class="control-label">邮箱</label>
                                     <input type="email" class="form-control" id="userEmail">
                                 </div>
                                 <div class="form-group col-xs-12">
-                                    <button type="submit" class="btn btn-primary">Get Started</button>
+                                    <button type="submit" class="btn btn-primary">发布评论&nbsp;<i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </form>

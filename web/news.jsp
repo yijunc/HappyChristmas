@@ -43,14 +43,33 @@
             <div class="row">
                 <div class="col-xs-8">
                     <div class="blogInnerWrapper">
+
                         <div class="thumbnail blogInner">
-                            <img src="img/blog/blog-1.jpg" alt="Image blog" class="img-responsive">
+                            <div id="blog-carousel-1" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img src="img/news/news1.jpg" alt="Image blog">
+                                    </div>
+                                    <div class="item">
+                                        <img src="img/news/news2.jpg" alt="Image blog">
+                                    </div>
+                                    <div class="item">
+                                        <img src="img/news/news3.jpg" alt="Image blog">
+                                    </div>
+                                </div>
+                                <a class="left carousel-control " href="#blog-carousel-1" data-slide="prev">
+                                    <i class="icon-listy icon-left-arrow-3 "></i>
+                                </a>
+                                <a class="right carousel-control" href="#blog-carousel-1" data-slide="next">
+                                    <i class="icon-listy icon-right-arrow-3"></i>
+                                </a>
+                            </div>
                             <div class="caption">
-                                <h4>Nov 22, 2016 by
-                                    <a href="#">Admin</a>
+                                <h4>2017-12-25 by
+                                    <a href="#">HC</a>
                                 </h4>
                                 <h3>
-                                    <a href="blog-details.html">Donec id dolor in erat imperdiet.</a>
+                                    <a href="./newsDetail.jsp">Donec id dolor in erat imperdiet.</a>
                                 </h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
                                     incididunt labore et dolore
@@ -64,6 +83,7 @@
                                     voluptatem </p>
                             </div>
                         </div>
+
                         <div class="thumbnail blogInner">
                             <div id="blog-carousel-id" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
@@ -86,7 +106,7 @@
                                     <a href="#">Admin</a>
                                 </h4>
                                 <h3>
-                                    <a href="blog-details.html">Donec id dolor in erat imperdiet.</a>
+                                    <a href="./newsDetail.jsp">Donec id dolor in erat imperdiet.</a>
                                 </h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
                                     incididunt labore et dolore
@@ -100,76 +120,13 @@
                                     voluptatem </p>
                             </div>
                         </div>
-                        <div class="thumbnail blogInner">
-                            <div class="caption">
-                                <h4>Nov 22, 2016 by
-                                    <a href="#">Admin</a>
-                                </h4>
-                                <h3>
-                                    <a href="blog-details.html">Donec id dolor in erat imperdiet.</a>
-                                </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore
-                                    magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                    ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui
-                                    officia deserunt mollit
-                                    anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem </p>
-                            </div>
-                        </div>
-                        <div class="thumbnail blogInner">
-                            <div class="iframWrapper">
-                                <iframe scrolling="no" frameborder="no"
-                                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/273828810&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-                            </div>
-                            <div class="caption">
-                                <h4>Nov 22, 2016 by
-                                    <a href="#">Admin</a>
-                                </h4>
-                                <h3>
-                                    <a href="blog-details.html">Donec id dolor in erat imperdiet.</a>
-                                </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore
-                                    magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                    ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui
-                                    officia deserunt mollit
-                                    anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem </p>
-                            </div>
-                        </div>
-                        <div class="thumbnail blogInner ">
-                            <div class="caption">
-                                <h4>Nov 22, 2016 by
-                                    <a href="#">Admin</a>
-                                </h4>
-                                <h3>
-                                    <a href="blog-details.html">Donec id dolor in erat imperdiet.</a>
-                                </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor
-                                    incididunt labore et dolore
-                                    magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                    ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat
-                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui
-                                    officia deserunt mollit
-                                    anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem </p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="sidebarInner">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..."
+                            <input type="text" class="form-control" placeholder="搜索..."
                                    aria-describedby="basic-addon2">
                             <a href="#" class="input-group-addon" id="basic-addon2">
                                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -178,8 +135,8 @@
                         <button class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i
                                 class="fa fa-search" aria-hidden="true"></i>搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </button>
-                        <button class="btn btn-primary" style="margin: 8px auto;">&nbsp;&nbsp;&nbsp;<i
-                                class="fa fa-search" aria-hidden="true"></i>添加新新闻&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-primary" style="margin: 8px auto;margin-left: 75px">&nbsp;&nbsp;&nbsp;<i
+                                class="fa fa-search" aria-hidden="true"></i>发布新闻&nbsp;&nbsp;&nbsp;
                         </button>
                     </div>
                 </div>
