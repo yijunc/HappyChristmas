@@ -17,6 +17,22 @@ public class CarDbUtil extends DbUtil {
         super(dataSource);
     }
 
+    public int carCount() throws Exception{
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = "SELECT * FROM 2017j2ee.car";
+            myRs = myStmt.executeQuery(sql);
+            myRs.last();
+            return myRs.getRow();
+        }finally {
+            close(myConn,myStmt,myRs);
+        }
+    }
+
     public int addCar(String carType, String carOwner, String carBrand, int carSeat) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;

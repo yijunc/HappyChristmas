@@ -152,7 +152,7 @@ public class UserController extends HttpServlet {
         String userPsw = request.getParameter("user_psw");
         String userEmail = request.getParameter("user_email");
         userDbUtil.registerUser(userName, userPsw, userEmail, userCell);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/IndexController");
         dispatcher.forward(request, response);
     }
 
@@ -195,7 +195,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("logged_in", true);
             request.setAttribute("current_user", user_db);
             //Forword to index.jsp
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/IndexController");
             dispatcher.forward(request, response);
         }
 

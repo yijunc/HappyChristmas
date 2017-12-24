@@ -25,10 +25,10 @@
                     </div>
                     <div class="useLink">
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="index.jsp">网站主页</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentCar.jsp">租车信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="rentSpace.jsp">车位信息</a></li>
-                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="news.jsp">新闻中心</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="/IndexController">网站主页</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="/CarAvailabilityController?command=USER_CAR_AVAILABILITY">租车信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="/SpaceController?command=USER_SPACE">车位信息</a></li>
+                            <li><i class="fa fa-link" aria-hidden="true"></i> <a href="/NewsController?command=NEWS_CENTER">新闻中心</a></li>
                             <%
                                 if(hasLoggedIn && currentUser != null && currentUser.isUserAdmin()){
                                     out.print("<li><i class=\"fa fa-link\" aria-hidden=\"true\"></i> <a href=\"adminDashboard.jsp\">" + currentUser.getUserName() + "的管理主页</a></li>");

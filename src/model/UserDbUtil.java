@@ -19,27 +19,43 @@ public class UserDbUtil extends DbUtil {
         super(dataSource);
     }
 
-    public boolean registerUser(String userName, String userPsw, String userEmail, String userCell) throws Exception{
+    public int userCount() throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
-        try{
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = "SELECT * FROM 2017j2ee.user";
+            myRs = myStmt.executeQuery(sql);
+            myRs.last();
+            return myRs.getRow();
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
+    public boolean registerUser(String userName, String userPsw, String userEmail, String userCell) throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
             myConn = dataSource.getConnection();
             String sql = "insert into 2017j2ee.user (user_name, user_psw, user_cell, user_email, user_register_date) VALUES (?,?,?,?,?)";
             PreparedStatement prstmt = myConn.prepareStatement(sql);
 
-            prstmt.setString(1,userName);
-            prstmt.setString(2,userPsw);
-            prstmt.setString(3,userCell);
-            prstmt.setString(4,userEmail);
+            prstmt.setString(1, userName);
+            prstmt.setString(2, userPsw);
+            prstmt.setString(3, userCell);
+            prstmt.setString(4, userEmail);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             prstmt.setDate(5, java.sql.Date.valueOf(df.format(new Date())));
 
             prstmt.execute();
             return true;
 
-        }finally {
-            close(myConn,myStmt,myRs);
+        } finally {
+            close(myConn, myStmt, myRs);
         }
 
     }

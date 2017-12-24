@@ -84,7 +84,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 col-xs-12">
-                    <a href="news.jsp" class="interestContent">
+                    <a href="/NewsController?command=NEWS_CENTER" class="interestContent">
 					<span>
 						<i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
 						新闻动态
@@ -112,25 +112,25 @@
             <div class="row">
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
-                        <div class="counter">140</div>
+                        <div class="counter"><%=request.getAttribute("car_count")%></div>
                         <div class="counterInfo bg-color-1">平台车辆数</div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
-                        <div class="counter">120</div>
-                        <div class="counterInfo bg-color-2">平台车位数</div>
+                        <div class="counter"><%=request.getAttribute("car_order_count")%></div>
+                        <div class="counterInfo bg-color-2">平台车辆租赁订单数</div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
-                        <div class="counter">180</div>
-                        <div class="counterInfo bg-color-3">达成交易单数</div>
+                        <div class="counter"><%=request.getAttribute("space_order_count")%></div>
+                        <div class="counterInfo bg-color-3">平台车位租赁订单数</div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12">
                     <div class="text-center countItem">
-                        <div class="counter">220</div>
+                        <div class="counter"><%=request.getAttribute("user_count")%></div>
                         <div class="counterInfo bg-color-4">平台用户数</div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="btnArea text-center">
-                        <a href="#" class="btn btn-primary">加入我们</a>
+                        <a href="register.jsp" class="btn btn-primary">加入我们</a>
                     </div>
                 </div>
             </div>

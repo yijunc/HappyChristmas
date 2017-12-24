@@ -11,8 +11,11 @@
 <html>
 <%@include file="templates/headers.jsp" %>
 
+<%
+    News news = (News) request.getAttribute("news");
+%>
 <head>
-    <title>某新闻的新闻标题---新闻中心</title>
+    <title><%=news.getTitle()%></title>
 </head>
 
 <body class="body-wrapper">
@@ -26,9 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <%
-                        News news = (News) request.getAttribute("news");
-                    %>
+
                     <div class="thumbnail blogContent">
                         <div class="caption">
                             <h3 style="text-align:center "><%=news.getTitle()%>

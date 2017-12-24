@@ -34,7 +34,13 @@
                             <div class="profileIntro paraMargin">
                                 <h3>车辆基本信息</h3>
                                 <p>HAPPY CHRISTMAS 对您的车辆造成的意外伤害保留最终解释权。</p>
-                                <input hidden="hidden" name="car_owner" value="<%=currentUser.getUserName()%>">
+                                <input hidden="hidden" name="car_owner" value="<%
+                                if(currentUser == null){
+                                   response.sendRedirect("login.jsp");
+                                }
+                                else{
+                                    out.print(currentUser.getUserName());
+                                }%>">
                                 <div class="row">
                                     <div class="form-group col-sm-6 col-xs-12">
                                         <label for="carBrand">品牌</label>
@@ -54,7 +60,7 @@
                                     <div class="form-group col-sm-6 col-xs-12">
                                         <label for="carSeat">车座</label>
                                         <div class="contactSelect">
-                                            <select name="car_seat" id="carSeat" class="select-drop" >
+                                            <select name="car_seat" id="carSeat" class="select-drop">
                                                 <option value="4">4座</option>
                                                 <option value="5">5座</option>
                                                 <option value="7">7座</option>
@@ -73,9 +79,9 @@
                                 <h3>出租信息</h3>
                                 <div class="row">
                                     <%--<div class="form-group col-md-4 col-sm-6 col-xs-12">--%>
-                                        <%--<label for="mondayTime">Monday</label>--%>
-                                        <%--<input type="text" class="form-control" id="mondayTime"--%>
-                                               <%--placeholder="10.00am - 5.00pm">--%>
+                                    <%--<label for="mondayTime">Monday</label>--%>
+                                    <%--<input type="text" class="form-control" id="mondayTime"--%>
+                                    <%--placeholder="10.00am - 5.00pm">--%>
                                     <%--</div>--%>
                                     <div class="form-group col-sm-6 col-xs-12">
                                         <label for="dateEnd">开始时间</label><!--!!!!--8--!!!!-->

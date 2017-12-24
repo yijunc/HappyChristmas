@@ -18,6 +18,22 @@ public class CarOrderDbUtil extends DbUtil {
         super(dataSource);
     }
 
+    public int carOrderCount() throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = "SELECT * FROM 2017j2ee.car_order";
+            myRs = myStmt.executeQuery(sql);
+            myRs.last();
+            return myRs.getRow();
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
 
     public boolean addCarOrder(int carId, String carStart, String carEnd, String carTaker, String carPoster,
                                int carPrice) throws Exception {
@@ -30,12 +46,12 @@ public class CarOrderDbUtil extends DbUtil {
                     "car_order_order_date, car_order_taker, car_order_poster, car_order_price) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement prstmt = myConn.prepareStatement(sql);
 
-            prstmt.setInt(1,carId);
-            prstmt.setString(2,carStart);
-            prstmt.setString(3,carEnd);
-            prstmt.setString(5,carTaker);
-            prstmt.setString(6,carPoster);
-            prstmt.setInt(7,carPrice);
+            prstmt.setInt(1, carId);
+            prstmt.setString(2, carStart);
+            prstmt.setString(3, carEnd);
+            prstmt.setString(5, carTaker);
+            prstmt.setString(6, carPoster);
+            prstmt.setInt(7, carPrice);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             prstmt.setDate(4, java.sql.Date.valueOf(df.format(new Date())));
 

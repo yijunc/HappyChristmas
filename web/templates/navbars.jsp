@@ -57,7 +57,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class=""><a href="index.jsp">网站主页 </a></li>
+                    <li class=""><a href="/IndexController">网站主页 </a></li>
                     <li class=" dropdown singleDrop">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="true" aria-expanded="false">租车信息 <i

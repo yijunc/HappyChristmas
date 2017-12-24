@@ -17,6 +17,23 @@ public class SpaceOrderDbUtil extends DbUtil {
         super(dataSource);
     }
 
+    public int countSpaceOrder() throws Exception {
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        try {
+            myConn = dataSource.getConnection();
+            myStmt = myConn.createStatement();
+            String sql = "SELECT * FROM 2017j2ee.space_order";
+            myRs = myStmt.executeQuery(sql);
+            myRs.last();
+            return myRs.getRow();
+        } finally {
+            close(myConn, myStmt, myRs);
+        }
+    }
+
     public boolean addSpaceOrder(int spaceId, String spaceTaker, String spaceStart, String spaceEnd, int spacePrice, int spaceType) throws Exception {
         Connection myConn = null;
         Statement myStmt = null;
