@@ -93,7 +93,7 @@ public class CarAvailabilityController extends HttpServlet {
 
         carAvailabilityDbUtil.addCarAvailability(carId, dateStart, dateEnd, priceDaily, carType, carOwner, carBrand, carSeat);
 
-        response.sendRedirect("/UserController?command=USER_PAGE&user_name=" + carOwner);
+        response.sendRedirect("/CarAvailabilityController?command=USER_CAR_AVAILABILITY");
 
     }
 

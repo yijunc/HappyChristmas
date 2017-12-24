@@ -30,10 +30,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-dash">
                 <ul class="nav navbar-nav mr0">
-                    <li class="" id="adp1">
-                        <a href="adminDashboard.jsp"><i class="fa fa-tachometer" aria-hidden="true"></i>
-                            管理主页</a>
-                    </li>
+                    <%--<li class="" id="adp1">--%>
+                        <%--<a href="adminDashboard.jsp"><i class="fa fa-tachometer" aria-hidden="true"></i>--%>
+                            <%--管理主页</a>--%>
+                    <%--</li>--%>
                     <li class="" id="adp2">
                         <a href="/CarOrderController?command=ADMIN_CAR_ORDER"><i class="fa fa-list-ul" aria-hidden="true"></i></i></i>
                             租车订单管理</a>

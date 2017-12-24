@@ -306,7 +306,7 @@
             space_price: $("#modalPrice").text(),
             space_type: sT
         }, function (){
-            window.location=("/UserController?command=USER_PAGE&user_name=" + $("#modalCustomer").val());
+            window.location="/UserController?command=USER_PAGE&user_name=" + $("#modalCustomer").val();
         });
         $("#spaceOrderingModal").modal('hide');
     });
