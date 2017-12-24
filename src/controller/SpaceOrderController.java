@@ -88,6 +88,7 @@ public class SpaceOrderController extends HttpServlet {
         spaceDbUtil.setSpaceRemainByIdAndType(spaceId, spaceType, spaceDbUtil.getSpaceRemainByIdAndType(spaceId, spaceType) - 1);
 
         response.sendRedirect("/UserController?command=USER_PAGE&user_name=" + spaceTaker);
+        return;
     }
 
     private void adminOrderDone(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -453,7 +453,7 @@
                 sT = 2;
                 break;
         }
-        $.get("/SpaceOrderController?command=ADMIN_ORDER_DONE", {
+        $.post("/SpaceOrderController?command=ADMIN_ORDER_DONE", {
             order_id: id,
             order_price: finalPrice,
             order_date: dateEnd,

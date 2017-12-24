@@ -89,7 +89,8 @@ public class CarOrderController extends HttpServlet {
         carOrderDbUtil.addCarOrder(carId,carStart,carEnd,carTaker,carPoster,carPrice);
         carAvailabilityDbUtil.modifyCarAvailability(availabilityId,carStart,carEnd);
 
-        response.sendRedirect("/UserController?command=USER_PAGE&user_name=" + carTaker);
+//        response.sendRedirect("/UserController?command=USER_PAGE&user_name=" + carTaker);
+//        return;
 
     }
 

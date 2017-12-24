@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-sm-7 col-xs-12">
                     <div class="footerText">
-                        <a href="index.jsp" class="footerLogo"><img src="img/logo-footer.png"
+                        <a href="/IndexController" class="footerLogo"><img src="img/logo-footer.png"
                                                                     alt="Footer Logo"></a>
                         <p>一个圣诞节需要上交的J2EE课程作业。圣诞节快乐。🎄</p>
                         <p>一个车辆租赁出租，车位租赁的信息管理平台。</p>
@@ -37,7 +37,7 @@
                             <li><i class="fa fa-link" aria-hidden="true"></i>
                                 <%
                                     if(hasLoggedIn){
-                                        out.print("<a href=\"profile.jsp?user_id=" + currentUser.getUserId() + "\">");
+                                        out.print("<a href=\"UserController?command=USER_PAGE&user_name=" + currentUser.getUserName() + "\">");
                                         out.print(currentUser.getUserName());
                                         out.print("的个人主页</a>");
                                     }

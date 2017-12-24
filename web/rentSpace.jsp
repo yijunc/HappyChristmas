@@ -21,7 +21,6 @@
         <%@include file="templates/navbars.jsp" %>
     </header>
 
-
     <!-- CATEGORY SEARCH SECTION -->
     <section class="clearfix searchArea banerInfo searchAreaGray">
         <form action="/SpaceController" method="post" id="spaceSearchForm">
@@ -299,13 +298,15 @@
         if(spaceType=="大型车位"){
             sT = 2;
         }
-        $.get("/SpaceOrderController?command=USER_TAKE_ORDER",{
+        $.post("/SpaceOrderController?command=USER_TAKE_ORDER",{
             space_id: $("#modalSpaceId").val(),
             space_taker: $("#modalCustomer").val(),
             space_start: $("#modalStart").val(),
             space_end: $("#modalEnd").val(),
             space_price: $("#modalPrice").text(),
             space_type: sT
+        }, function (){
+            window.location=("/UserController?command=USER_PAGE&user_name=" + $("#modalCustomer").val());
         });
         $("#spaceOrderingModal").modal('hide');
     });

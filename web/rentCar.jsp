@@ -22,6 +22,12 @@
         <%@include file="templates/navbars.jsp" %>
     </header>
 
+    <%
+        if(currentUser == null){
+            response.sendRedirect("login.jsp");
+        }
+    %>
+
 
     <!-- CATEGORY SEARCH SECTION -->
     <section class="clearfix searchArea banerInfo searchAreaGray">
@@ -346,7 +352,8 @@
             car_taker: $("#modalCustomer").val(),
             car_poster: $("#modalHost").val(),
             car_price: $("#modalPrice").text()
-        }, function (data, status) {
+        }, function (){
+            window.location="/UserController?command=USER_PAGE&user_name=" + $("#modalCustomer").val();
         });
         $("#carOrderingModal").modal('hide');
     });
