@@ -25,7 +25,7 @@
     <section class="clearfix blogDetials">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-xs-12">
+                <div class="col-xs-12">
                     <%
                         News news = (News) request.getAttribute("news");
                     %>
@@ -33,14 +33,17 @@
                         <div class="caption">
                             <h3 style="text-align:center "><%=news.getTitle()%>
                             </h3>
-                            <h4 style="text-align: right;margin-right: 10%"><%=news.getPostDate()%> by <a><%=news.getPoster()%>
-                            </a></h4>
-                            <div class="carousel-inner" style="margin-left: 17%">
+                            <h4 style="text-align: right;margin-right: 10%"><%=news.getPostDate()%> by
+                                <a><%=news.getPoster()%>
+                                </a></h4>
+                            <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="img/news/news<%=news.getNewsId()%>-1.jpg" alt="Image blog">
+                                    <img src="img/news/news<%=news.getNewsId()%>-1.jpg" alt="Image blog"
+                                         style="margin:0 auto">
                                 </div>
                                 <div class="item">
-                                    <img src="img/news/news<%=news.getNewsId()%>-2.jpg" alt="Image blog">
+                                    <img src="img/news/news<%=news.getNewsId()%>-2.jpg" alt="Image blog"
+                                         style="margin:0 auto">
                                 </div>
                             </div>
                             <p><%=news.getBrief()%>
