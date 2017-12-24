@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="bean.News" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/11/28
@@ -28,30 +29,30 @@
                     <div class="banerInfo">
                         <h1>租赁. 连接. 分享</h1>
                         <p>『HAPPY CHRISTMAS』连接车主与租客，分享咨询与新闻</p>
-                        <form class="form-inline" action="" method="">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon" style="width: 30%;">查找</div>
-                                    <input type="text" class="form-control" id="findItem"
-                                           placeholder="输入您想要了解的信息">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon" style="width: 30%;">类别</div>
-                                    <div class="searchSelectboxes">
-                                        <select id="" class="select-drop" name="user_status" style="margin-right: 10%">
-                                            <option value="">未选择</option>
-                                            <option value="1">车辆租赁资讯</option>
-                                            <option value="2">车位租赁资讯</option>
-                                            <option value="0">新闻资讯</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">搜索 <i class="fa fa-search"
-                                                                                    aria-hidden="true"></i></button>
-                        </form>
+                        <%--<form class="form-inline" action="" method="">--%>
+                            <%--<div class="form-group">--%>
+                                <%--<div class="input-group">--%>
+                                    <%--<div class="input-group-addon" style="width: 30%;">查找</div>--%>
+                                    <%--<input type="text" class="form-control" id="findItem"--%>
+                                           <%--placeholder="输入您想要了解的信息">--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group">--%>
+                                <%--<div class="input-group">--%>
+                                    <%--<div class="input-group-addon" style="width: 30%;">类别</div>--%>
+                                    <%--<div class="searchSelectboxes">--%>
+                                        <%--<select id="" class="select-drop" name="user_status" style="margin-right: 10%">--%>
+                                            <%--<option value="">未选择</option>--%>
+                                            <%--<option value="1">车辆租赁资讯</option>--%>
+                                            <%--<option value="2">车位租赁资讯</option>--%>
+                                            <%--<option value="0">新闻资讯</option>--%>
+                                        <%--</select>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<button type="submit" class="btn btn-primary">搜索 <i class="fa fa-search"--%>
+                                                                                    <%--aria-hidden="true"></i></button>--%>
+                        <%--</form>--%>
                     </div>
                 </div>
             </div>
@@ -154,39 +155,55 @@
                 </h2>
             </div>
             <div class="row">
+                <%
+                    List<News> newsList = (List<News>)request.getAttribute("news_list");
+                    for(int i = 0 ; i<3 ; i++){%>
                 <div class="col-sm-4 col-xs-12">
                     <div class="thumbnail articleContent">
-                        <img src="img/articles/article-1.jpg" alt="Image articles" class="img-responsive">
+                        <img src="img/news/news<%=newsList.get(i).getNewsId()%>-1.jpg" alt="Image articles" class="img-responsive">
                         <div class="caption">
-                            <h4>Nov 22, 2016 by <a href="#">Admin</a></h4>
-                            <h3><a href="blog-details.html">Donec id dolor in erat imperdiet.</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.</p>
+                            <h4><%=newsList.get(i).getPostDate()%> by <a href="#"><%=newsList.get(i).getPoster()%></a></h4>
+                            <h3><a href="/NewsController?command=NEWS_DETAIL&news_id=<%=newsList.get(i).getNewsId()%>"><%=newsList.get(i).getTitle()%></a></h3>
+                            <p><%=newsList.get(i).getBrief()%></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="thumbnail articleContent">
-                        <img src="img/articles/article-2.jpg" alt="Image articles" class="img-responsive">
-                        <div class="caption">
-                            <h4>Nov 22, 2016 by <a href="#">Admin</a></h4>
-                            <h3><a href="blog-details.html">Donec id dolor in erat imperdiet.</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <div class="thumbnail articleContent">
-                        <img src="img/articles/article-3.jpg" alt="Image articles" class="img-responsive">
-                        <div class="caption">
-                            <h4>Nov 22, 2016 by <a href="#">Admin</a></h4>
-                            <h3><a href="blog-details.html">Donec id dolor in erat imperdiet.</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt
-                                labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
+                <%
+                    }
+                %>
+                <%--<div class="col-sm-4 col-xs-12">--%>
+                    <%--<div class="thumbnail articleContent">--%>
+                        <%--<img src="img/articles/article-1.jpg" alt="Image articles" class="img-responsive">--%>
+                        <%--<div class="caption">--%>
+                            <%--<h4>Nov 22, 2016 by <a href="#">Admin</a></h4>--%>
+                            <%--<h3><a href="blog-details.html">Donec id dolor in erat imperdiet.</a></h3>--%>
+                            <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt--%>
+                                <%--labore et dolore magna aliqua.</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="col-sm-4 col-xs-12">--%>
+                    <%--<div class="thumbnail articleContent">--%>
+                        <%--<img src="img/articles/article-2.jpg" alt="Image articles" class="img-responsive">--%>
+                        <%--<div class="caption">--%>
+                            <%--<h4>Nov 22, 2016 by <a href="#">Admin</a></h4>--%>
+                            <%--<h3><a href="blog-details.html">Donec id dolor in erat imperdiet.</a></h3>--%>
+                            <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt--%>
+                                <%--labore et dolore magna aliqua.</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="col-sm-4 col-xs-12">--%>
+                    <%--<div class="thumbnail articleContent">--%>
+                        <%--<img src="img/articles/article-3.jpg" alt="Image articles" class="img-responsive">--%>
+                        <%--<div class="caption">--%>
+                            <%--<h4>Nov 22, 2016 by <a href="#">Admin</a></h4>--%>
+                            <%--<h3><a href="blog-details.html">Donec id dolor in erat imperdiet.</a></h3>--%>
+                            <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt--%>
+                                <%--labore et dolore magna aliqua.</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </div>
         </div>
     </section>

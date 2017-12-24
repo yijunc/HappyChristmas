@@ -28,32 +28,34 @@
     <section class="clearfix blogDetials">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-xs-12">
-
+                <div class="col-xs-12">
                     <div class="thumbnail blogContent">
                         <div class="caption">
                             <h3 style="text-align:center "><%=news.getTitle()%>
                             </h3>
-                            <h4 style="text-align: right;margin-right: 10%"><%=news.getPostDate()%> by <a><%=news.getPoster()%>
-                            </a></h4>
-                            <div class="carousel-inner" style="margin-left: 17%">
+                            <h4 style="text-align: right;margin-right: 10%"><%=news.getPostDate()%> by
+                                <a><%=news.getPoster()%>
+                                </a></h4>
+                            <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="img/news/news<%=news.getNewsId()%>-1.jpg" alt="Image blog">
+                                    <img src="img/news/news<%=news.getNewsId()%>-1.jpg" alt="Image blog"
+                                         style="margin:0 auto">
                                 </div>
                                 <div class="item">
-                                    <img src="img/news/news<%=news.getNewsId()%>-2.jpg" alt="Image blog">
+                                    <img src="img/news/news<%=news.getNewsId()%>-2.jpg" alt="Image blog"
+                                         style="margin:0 auto">
                                 </div>
                             </div>
                             <p><%=news.getBrief()%>
                             </p>
                             <p><%=news.getContent()%>
                             </p>
-                            <ul class="list-inline socialLink">
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            </ul>
+                            <%--<ul class="list-inline socialLink">--%>
+                                <%--<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>--%>
+                                <%--<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>--%>
+                                <%--<li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>--%>
+                                <%--<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>--%>
+                            <%--</ul>--%>
                         </div>
                     </div>
                     <div class="commentArea">
@@ -88,11 +90,21 @@
                         </form>
                     </div>
                     <div class="commentArea">
-                        <form action="#" class="deafultForm">
+                        <form action="/MessageController" class="deafultForm">
                             <div class="row">
                                 <div class="form-group col-xs-12">
+                                    <input hidden="hidden" name="command" value="ADD_MESSAGE">
+                                    <input hidden="hidden" name="news_id" value="<%=news.getNewsId()%>">
+                                    <input hidden="hidden" name="message_poster" value="<%
+                                    if(null == currentUser)
+                                        {
+                                            response.sendRedirect("login.jsp");
+                                        }
+                                        else {
+                                        out.print(currentUser.getUserName());
+                                    }%>">
                                     <h3>撰写评论</h3>
-                                    <textarea class="form-control" rows="3" id="messageBox"></textarea>
+                                    <textarea class="form-control" rows="3" id="messageBox" name="message_content"></textarea>
                                 </div>
                                 <%--<div class="form-group col-sm-6 col-xs-12">--%>
                                 <%--<label for="userName" class="control-label">姓名</label>--%>

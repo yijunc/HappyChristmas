@@ -110,7 +110,7 @@
                                 <th data-priority="2">价格</th>
                                 <th data-priority="2">评价</th>
                                 <th data-priority="3">取车时间</th>
-                                <th data-priority="4">换车时间</th>
+                                <th data-priority="4">还车时间</th>
                                 <th data-priority="5">操作</th>
                             </tr>
                             </thead>
@@ -228,7 +228,7 @@
                     </div>
 
                     <div class="input-group input-group-sm" style="width: 300px;padding-left: 20px">
-                        <span class="input-group-addon" style="width: 80px">取车时间：</span>
+                        <span class="input-group-addon" style="width: 80px">还车时间：</span>
                         <input type="text" class="form-control" id="modalEnd">
                     </div>
                 </div>
